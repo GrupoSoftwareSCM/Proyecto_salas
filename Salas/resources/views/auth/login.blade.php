@@ -6,8 +6,10 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">						
-						<center><img src="/img/Logo_UTEM.png"></center>
-						<h2><center>Bienvenido al sistema de salas de la UTEM</center></h2>
+						<center><img src="/img/Logo_UTEM.png" style="width:140px;height:150px;"></center> <!-- height = alto
+																											  width = ancho
+																									 	  -->
+						<h2><center>Bienvenido al sistema de salas</center></h2>
 				</div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
