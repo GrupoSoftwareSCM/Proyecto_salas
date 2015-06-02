@@ -15,7 +15,7 @@ class CreateFacultadesTable extends Migration {
 		Schema::create('facultades', function(Blueprint $table)
 		{
 			$table->increments('id_facultades');
-            $table->string('nombre',255);->unique();
+            $table->string('nombre',255)->unique();
             $table->integer('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id_campus')->on('campus')->onDelete('cascade');
             $table->text('descripcion');

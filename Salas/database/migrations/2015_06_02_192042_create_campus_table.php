@@ -17,8 +17,8 @@ class CreateCampusTable extends Migration {
 			$table->increments('id_campus');
 			$table->string('nombre',255)->unique();
 			$table->string('direccion',255);
-			$table->double('latitud');->unique();
-			$table->double('longitud');->unique();
+			$table->double('latitud')->unique();
+			$table->double('longitud')->unique();
 			$table->text('descripcion');
 			$table->integer('rut_encargado');
 			$table->timestamps();
