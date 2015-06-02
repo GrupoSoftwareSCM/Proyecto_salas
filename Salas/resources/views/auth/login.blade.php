@@ -5,7 +5,10 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
+				<div class="panel-heading">
+						<img src="Salas/public/img/logo_UTEM.png" alt="UTEM"> <!--style="width:300px;height:228px;" -->
+						<h5><center>Bienvenido al sistema de salas de la UTEM</center></h5>
+				</div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
@@ -22,14 +25,14 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							<label class="col-md-4 control-label">R.U.T. (Dirdoc)</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
+							<label class="col-md-4 control-label">Contraseña (Dirdoc)</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password">
 							</div>
@@ -39,7 +42,7 @@
 							<div class="col-md-6 col-md-offset-4">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" name="remember"> Remember Me
+										<input type="checkbox" name="remember"> Recordarme
 									</label>
 								</div>
 							</div>
@@ -47,9 +50,9 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
+								<button type="submit" class="btn btn-primary">Entrar</button>
 
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
+								<a class="btn btn-link" href="{{ url('/password/email') }}">Olvidate tu contraseña?</a>
 							</div>
 						</div>
 					</form>
