@@ -10,7 +10,7 @@
 <body>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2"> 
-		<br>
+			<br>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 			  		<center>Título del panel con estilo normal</center>
@@ -18,10 +18,10 @@
 			  	<div class="panel-body">
 			  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="{{ url('/adm')}}">Inicio</a></li>
-							<li><a href="{{ url('/adm')}}">Crear</a></li>
-							<li><a href="{{ url('/adm')}}">Modificar</a></li>
-							<li><a href="{{ url('/adm')}}">Archivar</a></li>
+							<li><a href="{{ url('adm')}}">Inicio</a></li>
+							<li><a href="{{ url('adm/crear')}}">Crear</a></li>
+							<li><a href="{{ url('adm/modif')}}">Modificar</a></li>
+							<li><a href="{{ url('adm/archivar')}}">Archivar</a></li>
 						</ul>
 					</div>
 			  	</div>
