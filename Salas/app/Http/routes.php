@@ -16,6 +16,9 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('adm','Administrador\AdmUserController@index');
+Route::get('adm/modif','Administrador\AdmUserController@index');
+Route::get('adm/archivar','Administrador\AdmUserController@index');
+Route::get('adm/crear','Administrador\AdmCrearController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
