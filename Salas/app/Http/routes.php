@@ -39,7 +39,8 @@ Route::get('adm',         'Administrador\AdmUserController@index');
 Route::get('adm/modif',   'Administrador\AdmUserController@index');
 Route::get('adm/archivar','Administrador\AdmUserController@index');
 Route::get('adm/crear',   'Administrador\AdmUserController@index');
-	//
+
+
 	Route::get('adm/crear/apui' , function()
 		{
 			return view('Administrador.crearAdm');
