@@ -45,7 +45,7 @@
 					</div>
 				@endif
 
-				@if($_SERVER['REQUEST_URI'] == "/encar/ingre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos") 
+				@if($_SERVER['REQUEST_URI'] == "/encar/ingre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu") 
                    <span style="color: #7292E9;"><h3>INGRESO DE DATOS ACADEMICOS</h3>
                   <ul class="nav nav-pills">
                   <li class="active"><a href="{{ url('encar/ingre')}}">Inicio</a></li>
@@ -56,6 +56,7 @@
                   </ul>
                 
                 @yield('content2')
+
            		@endif
 			</div>
 		</div>

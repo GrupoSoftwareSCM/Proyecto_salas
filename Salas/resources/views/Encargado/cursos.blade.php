@@ -2,6 +2,6 @@
 
 @section('content2')
 
-awdawdwa
+wadwad
 @endsection 
 
