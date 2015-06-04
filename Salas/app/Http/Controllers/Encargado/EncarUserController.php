@@ -16,6 +16,18 @@ class EncarUserController extends Controller {
 	{
 		return view('Encargado.homeEncar');
 	}
+    public function cursos()
+    {
+    	return view('Encargado.cursos');
+    }
+    public function asig()
+    {
+    	return view('Encargado.asignaturas');
+    }
+    public function estu()
+    {
+    	return view('Encargado.estudiantes');
+    }
 
 	/**
 	 * Show the form for creating a new resource.

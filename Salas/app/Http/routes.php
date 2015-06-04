@@ -25,6 +25,9 @@ Route::get('encar','Encargado\EncarUserController@index');
 Route::get('encar/asig','Encargado\EncarUserController@index');
 Route::get('encar/modif','Encargado\EncarUserController@index');
 Route::get('encar/ingre','Encargado\EncarUserController@index');
+Route::get('encar/ingre/cursos','Encargado\EncarUserController@cursos');
+Route::get('encar/ingre/asig','Encargado\EncarUserController@asig');
+Route::get('encar/ingre/estu','Encargado\EncarUserController@estu');
 
 //RUTAS PARA EL ALUMNOS
 Route::get('alum',        'Alumnos\AlumUserController@index');
