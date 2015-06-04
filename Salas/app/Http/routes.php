@@ -15,6 +15,8 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('doc','Docente\DocUserController@index');
+
 Route::get('alum',        'Alumnos\AlumUserController@index');
 Route::get('alum/horario','Alumnos\AlumUserController@index');
 Route::get('alum/salas',  'Alumnos\AlumUserController@index');
