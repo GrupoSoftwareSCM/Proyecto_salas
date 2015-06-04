@@ -22,14 +22,6 @@ class AlumUserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function horario()
-	{
-		return view('Alumnos.horario');
-	}
-	public function salas()
-	{
-		return view('Alumnos.salas');
-	}
 	public function create()
 	{
 		//
