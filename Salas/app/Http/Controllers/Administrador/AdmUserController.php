@@ -23,7 +23,7 @@ class AdmUserController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		
 	}
 
 	/**
