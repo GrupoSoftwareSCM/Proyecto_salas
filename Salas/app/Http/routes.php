@@ -15,15 +15,14 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('adm','Administrador\AdmUserController@index');
+Route::get('alum',        'Alumnos\AlumUserController@index');
+Route::get('alum/horario','Alumnos\AlumUserController@index');
+Route::get('alum/salas',  'Alumnos\AlumUserController@index');
 
-Route::get('alum','Alumnos\AlumUserController@index');
-Route::get('alum/horario','Alumnos\AlumUserController@horario');
-Route::get('alum/salas','Alumnos\AlumUserController@salas');
-
-Route::get('adm/modif','Administrador\AdmUserController@index');
+Route::get('adm',         'Administrador\AdmUserController@index');
+Route::get('adm/modif',   'Administrador\AdmUserController@index');
 Route::get('adm/archivar','Administrador\AdmUserController@index');
-Route::get('adm/crear','Administrador\AdmCrearController@index');
+Route::get('adm/crear',   'Administrador\AdmUserController@index');
 
 
 Route::controllers([
