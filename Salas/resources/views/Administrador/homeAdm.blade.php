@@ -1,33 +1,28 @@
 @extends('Administrador.header')
 
 @section('content')
-<div class="col-md-8 col-md-offset-2"> 
-	<?php if($_SERVER['REQUEST_URI'] == "/adm") {?>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2"> 
 		<div class="panel panel-default">
 			<div class="panel-body">
-			Bienvenido admnistrador, en esta pagina usted podra ..............................
+				@if($_SERVER['REQUEST_URI'] == "/adm")
+						Bienvenido admnistrador, en esta pagina usted podra ..............................
+				@endif
+
+				@if($_SERVER['REQUEST_URI'] == "/adm/crear")
+					estamos en crear 
+				@endif
+
+				@if($_SERVER['REQUEST_URI'] == "/adm/modif")
+					estamos en mo
+				@endif
+
+				@if($_SERVER['REQUEST_URI'] == "/adm/archivar")
+					estamos en archivar
+				@endif
 			</div>
 		</div>
-	<?php } ?>
-	<?php if($_SERVER['REQUEST_URI'] == "/adm/crear") {?>
-		<div class="panel panel-default">
-			<div class="panel-body">
-			estamos en crear 
-			</div>
-		</div>
-	<?php } ?>
-	<?php if($_SERVER['REQUEST_URI'] == "/adm/modif") {?>
-		<div class="panel panel-default">
-			<div class="panel-body"> 
-			</div>
-		</div>
-	<?php } ?>
-	<?php if($_SERVER['REQUEST_URI'] == "/adm/archivar") {?>
-		<div class="panel panel-default">
-			<div class="panel-body">
-			</div>
-		</div>
-	<?php } ?>
+	</div>
 </div>
 
-@stop
+@endsection
