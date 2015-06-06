@@ -36,7 +36,21 @@ class AdmUserController extends Controller {
 	{
 		return view('Administrador.crearAdm');
 	}
-	
+
+	public function perfuser()
+	{
+		return view('Administrador.crearAdm');
+	}
+
+	public function camp()
+	{
+		return view('Administrador.crearAdm');
+	}
+
+	public function encamp()
+	{
+		return view('Administrador.crearAdm');
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *

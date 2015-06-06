@@ -37,6 +37,9 @@ Route::get('alum/salas',  'Alumnos\AlumUserController@index');
 //RUTAS PARA EL ADMINISTRADOR
 Route::get('adm',         'Administrador\AdmUserController@index');
 Route::get('adm/modif',   'Administrador\AdmUserController@index');
+	Route::get('adm/modif/perfuser','Administrador\AdmUserController@perfuser');
+	Route::get('adm/modif/camp',    'Administrador\AdmUserController@camp');
+	Route::get('adm/modif/encamp',  'Administrador\AdmUserController@encamp');
 Route::get('adm/archivar','Administrador\AdmUserController@index');
 Route::get('adm/crear',   'Administrador\AdmUserController@index');
 	//SUB-RUTAS PARA CREAR
