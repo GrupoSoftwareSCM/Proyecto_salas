@@ -39,24 +39,11 @@ Route::get('adm',         'Administrador\AdmUserController@index');
 Route::get('adm/modif',   'Administrador\AdmUserController@index');
 Route::get('adm/archivar','Administrador\AdmUserController@index');
 Route::get('adm/crear',   'Administrador\AdmUserController@index');
-
-
-	Route::get('adm/crear/apui' , function()
-		{
-			return view('Administrador.crearAdm');
-		});
-	Route::get('adm/crear/apum' , function()
-		{
-			return view('Administrador.crearAdm');
-		});
-	Route::get('adm/crear/cc' , function()
-		{
-			return view('Administrador.crearAdm');
-		});
-	Route::get('adm/crear/aec' , function()
-		{
-			return view('Administrador.crearAdm');
-		});
+	//SUB-RUTAS PARA CREAR
+	Route::get('adm/crear/apui','Administrador\AdmUserController@apui');
+	Route::get('adm/crear/apum','Administrador\AdmUserController@apum');
+	Route::get('adm/crear/cc',  'Administrador\AdmUserController@cc');
+	Route::get('adm/crear/aec', 'Administrador\AdmUserController@aec');
 
 
 Route::controllers([

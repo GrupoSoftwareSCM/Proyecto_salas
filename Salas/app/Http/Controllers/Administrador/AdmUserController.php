@@ -16,6 +16,27 @@ class AdmUserController extends Controller {
 	{
 		return view('Administrador.homeAdm');
 	}
+
+	public function apui()
+	{
+		return view('Administrador.crearAdm');
+	}
+
+	public function apum()
+	{
+		return view('Administrador.crearAdm');
+	}
+
+	public function cc()
+	{
+		return view('Administrador.crearAdm');
+	}
+
+	public function aec()
+	{
+		return view('Administrador.crearAdm');
+	}
+	
 	/**
 	 * Show the form for creating a new resource.
 	 *
