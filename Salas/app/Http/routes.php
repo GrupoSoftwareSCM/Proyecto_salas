@@ -28,6 +28,10 @@ Route::get('encar/ingre','Encargado\EncarUserController@index');
 Route::get('encar/ingre/cursos','Encargado\EncarUserController@cursos');
 Route::get('encar/ingre/asig','Encargado\EncarUserController@asig');
 Route::get('encar/ingre/estu','Encargado\EncarUserController@estu');
+      //SUB-RUTAS PARA CREAR
+      Route::get('/encar/ingre/cursos/agre','Encargado\EncarUserController@agre');
+      Route::get('/encar/ingre/cursos/modi','Encargado\EncarUserController@modi');
+      Route::get('/encar/ingre/cursos/elim','Encargado\EncarUserController@elim');
 
 //RUTAS PARA EL ALUMNOS
 Route::get('alum',        'Alumnos\AlumUserController@index');

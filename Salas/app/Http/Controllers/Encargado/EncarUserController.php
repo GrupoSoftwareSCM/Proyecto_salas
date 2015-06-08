@@ -28,6 +28,19 @@ class EncarUserController extends Controller {
     {
     	return view('Encargado.estudiantes');
     }
+     public function agre()
+    {
+    	return view('Encargado.modifCursos');
+    }
+     public function modi()
+    {
+    	return view('Encargado.modifCursos');
+    }
+     public function elim()
+    {
+    	return view('Encargado.modifCursos');
+    }
+
 
 	/**
 	 * Show the form for creating a new resource.
