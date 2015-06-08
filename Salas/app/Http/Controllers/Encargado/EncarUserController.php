@@ -18,29 +18,52 @@ class EncarUserController extends Controller {
 	}
     public function cursos()
     {
-    	return view('Encargado.cursos');
+    	return view('Encargado.homeEncar');
     }
     public function asig()
     {
-    	return view('Encargado.asignaturas');
+    	return view('Encargado.homeEncar');
     }
     public function estu()
     {
-    	return view('Encargado.estudiantes');
+    	return view('Encargado.homeEncar');
     }
-     public function agre()
+     public function agrecurso()
     {
     	return view('Encargado.modifCursos');
     }
-     public function modi()
+     public function modicurso()
     {
     	return view('Encargado.modifCursos');
     }
-     public function elim()
+     public function elimcurso()
     {
     	return view('Encargado.modifCursos');
     }
-
+    public function agreasig()
+    {
+    	return view('Encargado.modifAsig');
+    }
+    public function modiasig()
+    {
+    	return view('Encargado.modifAsig');
+    }
+    public function elimasig()
+    {
+    	return view('Encargado.modifAsig');
+    }
+    public function agreestu()
+    {
+    	return view('Encargado.modifEstu');
+    }
+    public function modiestu()
+    {
+    	return view('Encargado.modifEstu');
+    }
+    public function elimestu()
+    {
+    	return view('Encargado.modifEstu');
+    }
 
 	/**
 	 * Show the form for creating a new resource.

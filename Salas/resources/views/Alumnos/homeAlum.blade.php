@@ -108,7 +108,7 @@
 		            </div>
 		            <div class="row"> 
                     <div class="col-md-8">
-                    	
+                    	<form name="formulario" id="formulario" action="/demos/2013/05-html-form-datalist.php" method="POST">
                         <div class="form-group"> <div class="col-md-8"> <b>CAMPUS</b></div>
                         <div class="col-md-4"> <datalist id="listas">
                             <option value="Macul">
