@@ -9,6 +9,7 @@
 						Bienvenido admnistrador, en esta pagina usted podra ..............................
 				@endif
 
+				<!--	MENU PARA CREAR	-->
 				@if($_SERVER['REQUEST_URI'] == "/adm/crear" || $_SERVER['REQUEST_URI'] == "/adm/crear/cc" || $_SERVER['REQUEST_URI'] == "/adm/crear/aec" || $_SERVER['REQUEST_URI'] == "/adm/crear/apui" || $_SERVER['REQUEST_URI'] == "/adm/crear/apum")
 					<div class="panel-body">
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -56,32 +57,35 @@
 				  	@yield('crear')
 				@endif
 
+				<!--	MENU PARA MODIFICAR	-->
 				@if($_SERVER['REQUEST_URI'] == "/adm/modif" || $_SERVER['REQUEST_URI'] == "/adm/modif/perfuser" || $_SERVER['REQUEST_URI'] == "/adm/modif/camp" || $_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
 					<div class="panel-body">
 				  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav">
+							<ul class="nav navbar-nav nav-tabs">
 								@if($_SERVER['REQUEST_URI'] == "/adm/modif/perfuser")
-									<li class="active"><a href="/adm/modif/perfuser">Modificar perfiles de usuarios</a></li>
+									<li class="active"><a href="{{url('adm/modif/perfuser')}}">Modificar perfiles de usuarios</a></li>
 								@else
-									<li><a href="/adm/modif/perfuser">Modificar perfiles de usuarios</a></li>
+									<li><a href="{{url('adm/modif/perfuser')}}">Modificar perfiles de usuarios</a></li>
 								@endif
 
 								@if($_SERVER['REQUEST_URI'] == "/adm/modif/camp")
-									<li class="active"><a href="/adm/modif/camp">Modificar campus</a></li>
+									<li class="active"><a href="{{url('adm/modif/camp')}}">Modificar campus</a></li>
 								@else
-									<li><a href="/adm/modif/camp">Modificar campus</a></li>
+									<li><a href="{{url('adm/modif/camp')}}">Modificar campus</a></li>
 								@endif
 								
 								@if($_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
-									<li class="active"><a href="/adm/modif/encamp">Modificar encargado a campus</a></li>
+									<li class="active"><a href="{{url('/adm/modif/encamp')}}">Modificar encargado a campus</a></li>
 								@else
-									<li><a href="/adm/modif/encamp">Modificar encargado a campus</a></li>
+									<li><a href="{{url('/adm/modif/encamp')}}">Modificar encargado a campus</a></li>
 								@endif
 							</ul>
 						</div>
 				  	</div>
+				  	@yield('modificar')
 				@endif
 
+				<!--	MENU PARA ARCHIVAR	-->
 				@if($_SERVER['REQUEST_URI'] == "/adm/archivar")
 				@endif
 			</div>
