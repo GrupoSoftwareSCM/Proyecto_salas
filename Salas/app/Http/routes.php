@@ -17,8 +17,8 @@ Route::get('/', 'HomeController@index');
 
 //RUTAS PARA EL DOCENTE
 Route::get('doc','Docente\DocUserController@index');
-Route::get('doc/clases','Docente\DocUserController@index');
-Route::get('doc/salas','Docente\DocUserController@index');
+Route::get('doc/clases','Docente\DocUserController@clases');
+Route::get('doc/salas','Docente\DocUserController@clases');
 
 //RUTAS PARA EL ENCARGADO DE CAMPUS
 Route::get('encar','Encargado\EncarUserController@index');

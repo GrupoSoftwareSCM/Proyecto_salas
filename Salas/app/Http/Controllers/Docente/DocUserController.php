@@ -17,6 +17,10 @@ class DocUserController extends Controller {
 		return view('Docente.homeDoc');
 	}
 
+	public function clases ()
+	{
+		return view('Docente.consultarDoc');	
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *

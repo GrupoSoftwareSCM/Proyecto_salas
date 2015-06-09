@@ -17,10 +17,24 @@
 			  	</div>
 			  	<div class="panel-body">
 			  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li><a href="{{ url('doc')}}">Inicio</a></li>
-							<li><a href="{{ url('doc/clases')}}">Clases</a></li>
-							<li><a href="{{ url('doc/salas')}}">Salas</a></li>
+						<ul class="nav navbar-nav nav-pills">
+							@if($_SERVER['REQUEST_URI'] == "/doc")
+								<li class="active"><a href="{{ url('doc')}}">Inicio</a></li>
+							@else
+								<li><a href="{{ url('doc')}}">Inicio</a></li>
+							@endif
+
+							@if($_SERVER['REQUEST_URI'] == "/doc/clases")
+								<li class="active"><a href="{{ url('doc/clases')}}">Clases</a></li>
+							@else
+								<li><a href="{{ url('doc/clases')}}">Clases</a></li>
+							@endif
+
+							@if($_SERVER['REQUEST_URI'] == "/doc/salas")
+								<li class="active"><a href="{{ url('doc/salas')}}">Salas</a></li>
+							@else
+								<li><a href="{{ url('doc/salas')}}">Salas</a></li>
+							@endif
 						</ul>
 					</div>
 			  	</div>
