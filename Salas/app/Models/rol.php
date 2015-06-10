@@ -7,6 +7,9 @@ class rol extends Model {
 	protected $table = 'roles';
     protected $fillable = ['nombre','descripcion'];
 
-    
+    /*public function roles_usuarios()
+    {
+    	return $this->hasMany('rol_usuario');
+    }*/
 
 }

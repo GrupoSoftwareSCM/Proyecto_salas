@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class facultad extends Model {
 
-	//
+	protected $table = 'fecultades'
+	protected $fillable = ['nombre','descripcion'];
 
 }
