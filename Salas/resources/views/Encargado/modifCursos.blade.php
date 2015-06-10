@@ -14,7 +14,7 @@
 					<input type="radio" name="sex" value="male" checked>Primer semestre
 					<br>
 					<input type="radio" name="sex" value="female">Segundo semestre
-					</form>
+				
 				    </div>
 				    </div>
 					<br>
@@ -160,7 +160,12 @@
                     </div>
                     <br><br>
 					<br><br>
-
+                    <div class="form-group">
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="seccion" placeholder="SECCION" min="1" max="10">
+					</div></div>
+					 <br><br>
+					<br><br>
 					<div class="col-md-8">
 					<button type="submit" class="btn btn-danger">ELIMINAR</button>
 					</div>
