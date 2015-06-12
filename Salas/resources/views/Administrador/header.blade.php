@@ -44,6 +44,12 @@
 	@yield('content')
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	-->
+
+	{!!Html::script('js/bootstrap.min.js')!!}
+	{!!Html::script('js/jquery-2.1.4.min.js')!!}
+	{!!Html::script('js/jquery.min.js')!!}
+	<!--<script src="{{URL::asset('js/bootstrap.min.js')}}"></script>-->
 </body>
 </html>
