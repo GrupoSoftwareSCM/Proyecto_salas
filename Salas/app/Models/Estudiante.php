@@ -2,32 +2,21 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class curso extends Model {
+class Estudiante extends Model {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'cursos';
+	protected $table = 'estudiantes';
 
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['semestre','anio','seccion'];
-
-	/*
-	|Para relacionar la tabla padre con la tabla hija usaremos la función:
-	|
-    |           $this->hasMany('tabla_hija','clave_foranea','clave_local');
-	|
-	*/
-	public function horario()
-	{
-		return $this->hasMany('horarios','id_cursos');
-	}
+	protected $fillable = ['rut','nombres','apellidos','email'];
 
 	/*
 	|	En este tipo de relaciones se hace uso de una tabla intermedia o pivote para hacer las relaciones y en ambas 
@@ -36,23 +25,20 @@ class curso extends Model {
     |           $this->belongsToMany('tabla_relacionada','tabla_pivote','clave_primera_tabla','clave_segunda_tabla');
 	*/
 
-    public function estudiante()
+    public function curso()
     {
-    	return $this->belongsToMany('estudiantes','asignaturas_cursadas','id_cursos','id_estudiante'); 
+    	return $this->belongsToMany('cursos','asignaturas_cursadas','id_estudiante','id_cursos'); 
     }
-
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:
 	|
     |            $this->belongsTo('tabla_padre');
     */
-	public function asignatura()
+	public function escuela() //RALACION 1:N
 	{
-		return $this->belongsTo('asignaturas');
+		return $this->belongsTo('escuelas'); 
 	}
 
-	public function docente()
-	{
-		return $this->belongsTo('docentes');
-	}
+
+
 }

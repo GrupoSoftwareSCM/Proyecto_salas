@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class rol extends Model {
+class Rol extends Model {
 
 	/**
 	 * The database table used by the model.

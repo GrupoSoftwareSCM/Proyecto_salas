@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class asignatura_cursada extends Model {
+class Asignatura_Cursada extends Model {
 
 	protected $table = 'asignaturas_cursadas'
 

@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class escuela extends Model {
+class Tipo_Sala extends Model {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'escuelas';
+	protected $table = 'tipos_salas'
 
 	/**
 	 * The attributes that are mass assignable.
@@ -18,26 +18,15 @@ class escuela extends Model {
 	 */
 	protected $fillable = ['nombre','descripcion'];
 
-
 	/*
 	|Para relacionar la tabla padre con la tabla hija usaremos la función:
 	|
     |           $this->hasMany('tabla_hija','clave_foranea','clave_local');
 	|
 	*/
-	public function carrera()
+	public function sala()
 	{
-		return $this->hasOne('carreras','id_escuelas');
+		return $this->hasOne('salas','id_tipos_salas');
 	}
 
-	
-	/*
-	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:
-	|
-    |            $this->belongsTo('tabla_padre');
-    */
-	public function departamento() //RALACION 1:N
-	{
-		return $this->belongsTo('departamentos'); 
-	}
 }

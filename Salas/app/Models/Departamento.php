@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class sala extends Model {
+class Departamento extends Model {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'salas';
+	protected $table = 'departamentos';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -25,9 +25,25 @@ class sala extends Model {
     |           $this->hasMany('tabla_hija','clave_foranea','clave_local');
 	|
 	*/
-	public function horario()
+
+	public function escuela() //RALACION 1:N
 	{
-		return $this->hasOne('horarios','id_salas');
+		return $this->hasMany('escuelas','id_departamentos');
+	}
+
+	public function docente() //RALACION 1:N
+	{
+		return $this->hasMany('docentes','id_departamentos');
+	}
+
+	public function asignatura() //RALACION 1:N
+	{
+		return $this->hasMany('asignaturas','id_departamentos');
+	}
+
+	public function funcionario() //RALACION 1:N
+	{
+		return $this->hasMany('funcionarios','id_departamentos');
 	}
 
 	
@@ -36,14 +52,8 @@ class sala extends Model {
 	|
     |            $this->belongsTo('tabla_padre');
     */
-	public function campus() //RALACION 1:N
+	public function facultad() //RALACION 1:N
 	{
-		return $this->belongsTo('campus'); 
+		return $this->belongsTo('facultades'); 
 	}
-
-	public function tipo_sala() //RALACION 1:N
-	{
-		return $this->belongsTo('tipos_salas'); 
-	}
-
 }

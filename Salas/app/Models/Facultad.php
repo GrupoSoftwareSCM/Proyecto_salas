@@ -2,21 +2,22 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class docente extends Model {
+class Facultad extends Model {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'docentes';
+	protected $table = 'fecultades';
 
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['rut','nombre','apellidos'];
+	protected $fillable = ['nombre','descripcion'];
+
 
 	/*
 	|Para relacionar la tabla padre con la tabla hija usaremos la función:
@@ -24,19 +25,21 @@ class docente extends Model {
     |           $this->hasMany('tabla_hija','clave_foranea','clave_local');
 	|
 	*/
-	public function curso()
+
+	public function departamento() //RALACION 1:N
 	{
-		return $this->hasMany('cursos','id_docentes');
+		return $this->hasMany('departamentos','id_facultades');
 	}
 
+	
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:
 	|
     |            $this->belongsTo('tabla_padre');
     */
-	public function departamento()
+	public function campus() //RALACION 1:N
 	{
-		return $this->belongsTo('departamentos');
+		return $this->belongsTo('campus'); 
 	}
 
 }

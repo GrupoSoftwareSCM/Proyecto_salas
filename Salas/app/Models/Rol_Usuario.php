@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class rol_usuario extends Model {
+class Rol_Usuario extends Model {
 
 	protected $table = 'roles_usuarios'
 	protected $fillable = ['rut'];

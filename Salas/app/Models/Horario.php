@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class horario extends Model {
+class Horario extends Model {
 
 	/**
 	 * The database table used by the model.
