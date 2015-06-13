@@ -21,7 +21,7 @@ class CreateCampusTable extends Migration {
 			$table->double('longitud')->unique();
 			$table->text('descripcion');
 			$table->integer('rut_encargado');
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

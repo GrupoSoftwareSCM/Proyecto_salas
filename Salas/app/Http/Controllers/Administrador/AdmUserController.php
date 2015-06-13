@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\campus;
+use App\Models\Campus;
 
 use Illuminate\Http\Request;
 
@@ -40,7 +40,7 @@ class AdmUserController extends Controller {
 
 	public function cc()
 	{
-		$Campus = campus::all();
+		$Campus = Campus::all();
 		return dd($Campus);
 		//return view('Administrador.crearAdm');
 	}

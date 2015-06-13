@@ -14,7 +14,7 @@ public function run()
       \DB::table('roles')->insert(array(
        
         'nombre'        =>$faker->unique()->firstName,
-        'text'          =>$faker->text
+        'descripcion'          =>$faker->text
       	));
      }
 }
