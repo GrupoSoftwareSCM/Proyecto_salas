@@ -18,11 +18,14 @@ class AdmUserController extends Controller {
 	{
 		//$this->middleware('auth');
 	}
+
+
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
+	
 	public function index()
 	{
 		return view('Administrador.homeAdm');
@@ -40,9 +43,9 @@ class AdmUserController extends Controller {
 
 	public function cc()
 	{
-		$Campus = Campus::all();
-		return dd($Campus);
-		//return view('Administrador.crearAdm');
+		//$Campus = Campus::all();
+		//return dd($Campus);
+		return view('Administrador.crearAdm');
 	}
 
 	public function aec()
@@ -64,6 +67,8 @@ class AdmUserController extends Controller {
 	{
 		return view('Administrador.modificarAdm');
 	}
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -72,6 +77,11 @@ class AdmUserController extends Controller {
 	public function create()
 	{
 		
+	}
+
+	public function createNewCampus()
+	{
+		return 'echo';
 	}
 
 	/**
