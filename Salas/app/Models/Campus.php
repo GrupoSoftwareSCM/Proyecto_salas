@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campus extends Model {
 
+	protected $primaryKey = 'id_campus';
 	/**
 	 * The database table used by the model.
 	 *

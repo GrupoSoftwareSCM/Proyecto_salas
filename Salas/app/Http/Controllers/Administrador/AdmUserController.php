@@ -3,8 +3,9 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Campus;
+use Request;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 class AdmUserController extends Controller {
 
@@ -74,24 +75,46 @@ class AdmUserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		
-	}
+		public function create()
+		{
+			
+		}
 
-	public function createNewCampus()
-	{
-		return 'echo';
-	}
+		public function createNewCampus()
+		{
+			return 'echo';
+		}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function storeAPUI()
 	{
-		//
+		$input = Request::all();
+		return $input; 
+	}
+
+	public function storeCC()
+	{
+		//{"Campus":"macul","Direccion":"qweqweq","latitud":"0.011","longitud":"0.007","Descripcion":"hola"}
+		$input = Request::all();
+
+		$Campus = new Campus();
+
+		$Campus->nombre 	   = (string)$input['Campus'];
+		$Campus->direccion 	   = (string)$input['Direccion'];
+		$Campus->latitud 	   = (double)$input['latitud'];
+		$Campus->longitud 	   = (double)$input['longitud'];
+		$Campus->descripcion   = (string)$input['Descripcion'];
+		$Campus->rut_encargado = (int)$input['Rut_Encargado'];
+
+
+		$Campus->save();
+		$error = 0;
+		//return "probando"; 
+		return view('Administrador.crearAdm',$error);
 	}
 
 	/**

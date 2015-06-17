@@ -5,35 +5,13 @@
 @if($_SERVER['REQUEST_URI'] == "/adm/crear/apui")
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2"> 
-			{!!Form::open()!!}
-			<!--<form role="form" method="POST">--><!-- EL ACTION LO VEMOS DESPUES -->
-				<div class="form-group">
-					<div class="col-md-5">
-						<label>Ingrese un tipo de usuario</label>
-					</div>
-					
-					<div class="col-md-7">
-						{!!Form::text('usuarios','',array('Alumnos','Funcionario','Encargado'))!!}
-						<!--<input list="Usuarios" name="Usuarios">-->
-						<datalist id="usuarios">
-							<option value="Alumnos">
-							<option value="Docente">
-							<option value="Encargado">
-						</datalist>
-					</div>
-				</div>
-				<br>
+			{!!Form::open(['url' => 'asignarPerfilInd'])!!}
 				<div class="form-group">
 					<div class="col-md-5">
 						<label>Ingrese el RUT del usuario</label>
 					</div>
 					<div class="col-md-7">
-						<input list="RUT_usuario" name="RUT_usuario">
-						<datalist id="RUT_usuario">
-							<option value="RUT_1"> <!-- ACA VAMOS A COLOCAR UN FOREACH PARA  BUSCAR LOS DISTINTOS-->
-							<option value="RUT_2"> <!-- 	RUT QUE NOS PUEDAN -->
-							<option value="RUT_3">
-						</datalist>
+						{!!Form::input('text','Rut_usuario')!!}
 					</div>
 				</div>
 				<br>
@@ -42,13 +20,10 @@
 						<label>Asignar perfil</label>
 					</div>
 					<div class="col-md-7">
-						<input list="Perfil" name="Perfil">
-						<datalist id="Perfil">
-							<option value="Administrador"> 
-							<option value="Encardo de campus"> 
-							<option value="Docente">
-							<option value="Alumno">
-						</datalist>
+						{!!Form::select('user',['Administrador' => 'Administrador',
+											    'Encargado_campus' => 'Encargado de campus',
+											    'Estudiante' => 'Estudiante',
+											    'Docente' => 'Docente'])!!}
 					</div>
 				</div>
 				<div class="col-md-5">
@@ -87,39 +62,41 @@
 
 @if($_SERVER['REQUEST_URI'] == "/adm/crear/cc")
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2"> 
-			<form role="form" method="POST"> <!-- EL ACTION LO VEMOS DESPUES -->
+		<div class="col-md-8 col-md-offset-2">
+			@if($error == 0)
+				<div class="alert alert-success">
+					datos ingresados correctamente
+				</div>
+			@endif
+
+			{!!Form::open(['url' => 'crearCampus'])!!}
 				<div class="form-group">
-					<div class="col-md-7">
-						<input type="text" class="form-control" name="NombCampu" placeholder="Nombre Campus">
-					</div>
-					<br>
-					<br>
-					<div class="col-md-7">
-						<input type="text" class="form-control" name="Direccion" placeholder="Direccion">
-					</div>
-					<br>
-					<br>
-					<div class="col-md-7">
-						<input type="number" step="0.001" class="form-control" name="Latitud" placeholder="latitud">
-					</div>
-					<br>
-					<br>
-					<div class="col-md-7">
-						<input type="number" step="0.001" class="form-control" name="Longitud" placeholder="longitud">
-					</div>
-					<br>
-					<br>
-					<div class="col-md-7">
-						<input type="text" class="form-control" name="Descripcion" placeholder="Descripcion" size="50">
-					</div>
-					<br>
-					<br>
+
+						{!!Form::label('Nombre_campus','Nombre Campus',['class' => 'col-md-5'])!!}
+						{!!Form::text('Campus','',['class' => 'col-md-7'])!!}
+
+						{!!Form::label('Rut_Encargado','Rut Encargado',['class' => 'col-md-5'])!!}
+						{!!Form::text('Rut_Encargado','',['class' => 'col-md-7'])!!}
+
+						{!!Form::label('direccion','Dirección',['class' => 'col-md-5'])!!}
+						{!!Form::text('Direccion','',['class' => 'col-md-7'])!!}	
+
+						{!!Form::label('latitud','Latitud',['class' => 'col-md-5'])!!}
+						{!!Form::number('latitud','',['class' => 'col-md-7','step' => '0.001'])!!}			
+
+						{!!Form::label('longitud','Longitud',['class' => 'col-md-5'])!!}
+						{!!Form::number('longitud','',['class' => 'col-md-7','step' => '0.001'])!!}		
+
+
+						{!!Form::label('descripcion','Descripcion',['class' => 'col-md-5'])!!}
+						{!!Form::textarea('Descripcion','',['class' => 'col-md-7'])!!}
+
 				</div>
 				<div class="col-md-7">
-					<button type="submit" class="btn btn-danger">Actualizar</button>
+					<br>
+						{!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
 				</div>
-			</form>
+			{!!Form::close()!!}
 		</div>
 	</div>
 @endif
