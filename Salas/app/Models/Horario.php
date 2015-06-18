@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Horario extends Model {
 
+    protected $primaryKey = 'id_horarios';
 	/**
 	 * The database table used by the model.
 	 *
@@ -26,17 +27,17 @@ class Horario extends Model {
     */
 	public function sala()
 	{
-		return $this->belongsTo('salas');
+		return $this->belongsTo('app\Models\Sala');
 	}
 
 	public function periodo()
 	{
-		return $this->belongsTo('periodos');
+		return $this->belongsTo('app\Models\Periodo');
 	}
 
 	public function curso()
 	{
-		return $this->belongsTo('cursos');
+		return $this->belongsTo('app\Models\Curso');
 	}
 
 }

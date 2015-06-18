@@ -4,12 +4,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tipo_Sala extends Model {
 
-	/**
+    protected $primaryKey = 'id_tipos_salas';
+    /**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'tipos_salas'
+	protected $table = 'tipos_salas';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -26,7 +27,7 @@ class Tipo_Sala extends Model {
 	*/
 	public function sala()
 	{
-		return $this->hasOne('salas','id_tipos_salas');
+		return $this->hasOne('app\Models\Sala','id_tipos_salas');
 	}
 
 }

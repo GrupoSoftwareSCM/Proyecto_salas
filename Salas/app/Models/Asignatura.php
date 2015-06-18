@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asignatura extends Model {
 
+    protected $primaryKey = 'id_asignaturas';
 	/**
 	 * The database table used by the model.
 	 *
@@ -26,7 +27,7 @@ class Asignatura extends Model {
 	*/
 	public function curso()
 	{
-		return $this->hasMany('cursos','id_asignaturas');
+		return $this->hasMany('app\Models\Curso','id_asignaturas');
 	}
 
 
@@ -38,7 +39,7 @@ class Asignatura extends Model {
     */
 	public function departamento()
 	{
-		return $this->belongsTo('departamentos');
+		return $this->belongsTo('app\Models\Departamento');
 	}
 
 }

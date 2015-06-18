@@ -59,7 +59,7 @@ Route::get('adm/crear',   'Administrador\AdmUserController@index');
 	Route::post('asignarPerfilInd','Administrador\AdmUserController@storeAPUI');
 	Route::get('adm/crear/apum','Administrador\AdmUserController@apum');
 	Route::get('adm/crear/cc',  'Administrador\AdmUserController@cc');
-	Route::post('crearCampus','Administrador\AdmUserController@storeCC');
+	Route::post('adm/crear/cc','Administrador\AdmUserController@storeCC');
 	Route::get('adm/crear/aec', 'Administrador\AdmUserController@aec');
 
 

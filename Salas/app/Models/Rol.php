@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model {
 
+    protected $primaryKey = 'id_roles';
 	/**
 	 * The database table used by the model.
 	 *
@@ -18,11 +19,16 @@ class Rol extends Model {
 	 */
     protected $fillable = ['nombre','descripcion'];
 
-
-    
-    /*public function roles_usuarios()
+    /*
+	|Para relacionar la tabla padre con la tabla hija usaremos la función:
+	|
+    |           $this->hasMany('tabla_hija','clave_foranea','clave_local');
+	|
+	*/
+    public function roles_usuarios()
     {
-    	return $this->hasMany('rol_usuario');
-    }*/
+        return $this->hasMany('app\Models\rol_Usuario','id_roles');
+    }
+
 
 }

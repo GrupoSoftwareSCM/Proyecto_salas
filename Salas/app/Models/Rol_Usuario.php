@@ -4,12 +4,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol_Usuario extends Model {
 
-	protected $table = 'roles_usuarios'
+    protected $primaryKey = 'id_roles_usuarios';
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+	protected $table = 'roles_usuarios';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
 	protected $fillable = ['rut'];
 
-	/*public function roles()
-	{
-		return $this->belongsTo('rol','id_roles');
-	}*/
+	/*
+	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:
+	|
+    |            $this->belongsTo('tabla_padre');
+    */
+	public function rol()
+    {
+        return $this->belongsTo('app\Models\Rol');
+    }
 
 }

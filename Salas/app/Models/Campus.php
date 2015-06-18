@@ -28,11 +28,11 @@ class Campus extends Model {
 
 	public function facultad() //RELACION 1:N
 	{
-		return $this->hasMany('facultades','id_campus');
+		return $this->hasMany('app\Models\Facultad','id_campus');
 	}
 
 	public function sala() //RELACION 1:N
 	{
-		return $this->hasMany('salas','id_campus');
+		return $this->hasMany('app\Models\Sala','id_campus');
 	}
 }

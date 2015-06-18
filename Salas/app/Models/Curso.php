@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curso extends Model {
 
+    protected $primaryKey = 'id_cursos';
 	/**
 	 * The database table used by the model.
 	 *
@@ -26,7 +27,7 @@ class Curso extends Model {
 	*/
 	public function horario()
 	{
-		return $this->hasMany('horarios','id_cursos');
+		return $this->hasMany('app\Models\Horario','id_cursos');
 	}
 
 	/*
@@ -38,7 +39,7 @@ class Curso extends Model {
 
     public function estudiante()
     {
-    	return $this->belongsToMany('estudiantes','asignaturas_cursadas','id_cursos','id_estudiante'); 
+    	return $this->belongsToMany('app\Models\Estudiante','app\Models\Asignaturas_Cursada','id_cursos','id_estudiante');
     }
 
 	/*
@@ -48,11 +49,11 @@ class Curso extends Model {
     */
 	public function asignatura()
 	{
-		return $this->belongsTo('asignaturas');
+		return $this->belongsTo('app\Models\Asignatura');
 	}
 
 	public function docente()
 	{
-		return $this->belongsTo('docentes');
+		return $this->belongsTo('app\Models\Docente');
 	}
 }

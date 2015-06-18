@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Funcionario extends Model {
 
+    protected $primaryKey = 'id_funcionarios';
 	/**
 	 * The database table used by the model.
 	 *
@@ -25,7 +26,7 @@ class Funcionario extends Model {
     */
 	public function departamento()
 	{
-		return $this->belongsTo('departamentos');
+		return $this->belongsTo('app\Models\Departamento');
 	}
 
 }

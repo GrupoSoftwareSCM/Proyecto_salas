@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sala extends Model {
 
+    protected $primaryKey = 'id_salas';
 	/**
 	 * The database table used by the model.
 	 *
@@ -27,7 +28,7 @@ class Sala extends Model {
 	*/
 	public function horario()
 	{
-		return $this->hasOne('horarios','id_salas');
+		return $this->hasOne('app\Models\Horario','id_salas');
 	}
 
 	
@@ -38,12 +39,12 @@ class Sala extends Model {
     */
 	public function campus() //RALACION 1:N
 	{
-		return $this->belongsTo('campus'); 
+		return $this->belongsTo('app\Models\Campus');
 	}
 
 	public function tipo_sala() //RALACION 1:N
 	{
-		return $this->belongsTo('tipos_salas'); 
+		return $this->belongsTo('app\Models\Tipos_Salas');
 	}
 
 }

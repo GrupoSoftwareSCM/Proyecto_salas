@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2"> 
+		<div class="col-md-10 col-md-offset-1">
 			<br>
 			<div class="panel panel-primary">
 				<div class="panel-heading">

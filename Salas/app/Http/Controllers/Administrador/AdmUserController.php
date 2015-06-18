@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Campus;
+use App\Models\Facultad;
 use Request;
 
 //use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class AdmUserController extends Controller {
 	{
 		//$Campus = Campus::all();
 		//return dd($Campus);
-		return view('Administrador.crearAdm');
+		return view('Administrador.crearAdm',array('mensaje' => null, 'error' => null));
 	}
 
 	public function aec()
@@ -90,32 +91,39 @@ class AdmUserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function storeAPUI()
-	{
-		$input = Request::all();
-		return $input; 
-	}
+    public function storeAPUI()
+    {
+        $input = Request::all();
+        return $input;
+    }
 
-	public function storeCC()
-	{
-		//{"Campus":"macul","Direccion":"qweqweq","latitud":"0.011","longitud":"0.007","Descripcion":"hola"}
-		$input = Request::all();
-
-		$Campus = new Campus();
-
-		$Campus->nombre 	   = (string)$input['Campus'];
-		$Campus->direccion 	   = (string)$input['Direccion'];
-		$Campus->latitud 	   = (double)$input['latitud'];
-		$Campus->longitud 	   = (double)$input['longitud'];
-		$Campus->descripcion   = (string)$input['Descripcion'];
-		$Campus->rut_encargado = (int)$input['Rut_Encargado'];
+    public function storeCC()
+    {
+        //{"Campus":"macul","Direccion":"qweqweq","latitud":"0.011","longitud":"0.007","Descripcion":"hola"}
+        $input = Request::all();
 
 
-		$Campus->save();
-		$error = 0;
-		//return "probando"; 
-		return view('Administrador.crearAdm',$error);
-	}
+
+        $Campus = new Campus();
+        $Facultad = new Facultad();
+
+        $Campus->nombre 	   = (string)$input['Campus'];
+        $Campus->direccion 	   = (string)$input['Direccion'];
+        $Campus->latitud 	   = (double)$input['latitud'];
+        $Campus->longitud 	   = (double)$input['longitud'];
+        $Campus->descripcion   = (string)$input['Descripcion_campus'];
+        $Campus->rut_encargado = (int)$input['Rut_Encargado'];
+
+        //$Campus->save();
+
+        //$Facultad->campus();
+
+        $Campus->facultad();
+
+        //$query = Campus::where('nombre',(string)$input['Campus'])->first();
+        return ;
+        //return view('Administrador.crearAdm',array('mensaje' => $query, 'error' => null));
+    }
 
 	/**
 	 * Display the specified resource.
