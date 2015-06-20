@@ -131,14 +131,47 @@
         @endif
     @else
         <div class="row">
-            <div class="col-md-8">
-                {!!Form::open(['url' => 'adm/crear/Facult')!!}
+            <div class="col-md-12">
+                @foreach($campus as $camp)
+                    {!!$camp!!}
+                @endforeach
+                {!!Form::open(['url' => 'adm/crear/Facult'])!!}
                     <div class="form-group">
                         {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-3'])!!}
-                        {!!Form::number('numero_facultad','',['class' => 'col-md-5'])!!}
-                        {!!Form::button('Generar',['class' => 'btn btn-danger col-md-3 col-md-offset-1','type' => 'submit'])!!}
+                        {!!Form::number('numero_facultad','',['class' => 'col-md-3'])!!}
+
+                        {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-3'])!!}
+
                     </div>
                 {!!Form::close()!!}
+                @if($facultades > 3 && $facultades != null)
+                    <div class="alert alert-danger col-md-8 col-md-offset-2">
+                        OOOpss
+                        <ul>
+                            <li type="disc">No se pueden ingresar mas de 3 facultades</li>
+                        </ul>
+                    </div>
+                @else
+                    <br>
+                    <br>
+                    {!!Form::open(['url' => 'adm/crear/Facults'])!!}
+                        @for($i = 0;$i < $facultades;$i++)
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {!!Form::label('Nombre_facultad_'.$i.'','Nombre Campus',['class' => 'col-md-2'])!!}
+                                    {!!Form::text('Nombre_facultad_'.$i.'','',['class' => 'col-md-3'])!!}
+
+                                    {!!Form::label('descripcion_facultad_'.$i.'','Descripcion',['class' => 'col-md-2'])!!}
+                                    {!!Form::textarea('Descripcion_facultad_'.$i.'','',['class' => 'col-md-3',
+                                                                                        'rows' => '3'])!!}
+                                </div>
+                            </div>
+                        <br/>
+                        @endfor
+                        {!!Form::hidden('numero_facultad',$facultades)!!}
+                        {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-4','type' => 'submit'])!!}
+                    {!!Form::close()!!}
+                @endif
             </div>
         </div>
     @endif

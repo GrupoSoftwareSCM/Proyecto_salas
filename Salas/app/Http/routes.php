@@ -67,6 +67,8 @@ Route::get('adm/crear',   'Administrador\AdmUserController@index');
 	Route::get('adm/crear/aec', 'Administrador\AdmUserController@aec');
 
     Route::get('adm/crear/Facult', 'Administrador\AdmUserController@Facult');
+    Route::post('adm/crear/Facult', 'Administrador\AdmUserController@Facult');
+    Route::post('adm/crear/Facults', 'Administrador\AdmUserController@storeFacult');
 
     Route::get('adm/crear/Escuela', 'Administrador\AdmUserController@Escuela');
 

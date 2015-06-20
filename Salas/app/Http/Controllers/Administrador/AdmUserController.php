@@ -56,11 +56,27 @@ class AdmUserController extends Controller {
 
     public function Facult()
     {
+        $input = Request::all();
         $numero_campus = Campus::all()->count();
-        return view('Administrador.crearAdm',array(
-            'numero_campus' => $numero_campus,
-            'error' => array()
-        ));
+        $campus = Campus::query()->select('nombre');
+        if( $input == null)
+        {
+            return view('Administrador.crearAdm',array(
+                'numero_campus' => $numero_campus,
+                'error' => array(),
+                'facultades' => null,
+                'campus' => $campus
+            ));
+        }
+        else
+        {
+            return view('Administrador.crearAdm',array(
+                'numero_campus' => $numero_campus,
+                'error' => array(),
+                'facultades' => $input['numero_facultad'],
+                'campus' => $campus
+            ));
+        }
     }
 
     public function Depto()
@@ -146,6 +162,18 @@ class AdmUserController extends Controller {
 
         $query = Campus::where('nombre',(string)$input['Campus'])->first();
         return view('Administrador.crearAdm',array('mensaje' => $query, 'error' => null));
+    }
+
+    public function storeFacult()
+    {
+        /*
+         * {"_token":"F3nPend2hzRGbx31KMfrieK1A4XBgOsIsbnlyi29","Nombre_facultad_0":"qwe\u00baq",
+         * "Descripcion_facultad_0":"qweqwe","Nombre_facultad_1":"rtyrtyrty","Descripcion_facultad_1":"fdfgdghfgg",
+         * "Nombre_facultad_2":"rbfgnngf","Descripcion_facultad_2":"ererert","numero_facultad":"3"}
+         * */
+        $input = Request::all();
+
+        //return $input;
     }
 
 	/**
