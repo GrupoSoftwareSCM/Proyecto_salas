@@ -58,14 +58,16 @@ class AdmUserController extends Controller {
     {
         $input = Request::all();
         $numero_campus = Campus::all()->count();
-        $campus = Campus::query()->select('nombre');
+        $campus = Campus::lists('nombre');
         if( $input == null)
         {
             return view('Administrador.crearAdm',array(
                 'numero_campus' => $numero_campus,
                 'error' => array(),
                 'facultades' => null,
-                'campus' => $campus
+                'campus' => $campus,
+                'nombre_campus' => null,
+                'mensaje' => null
             ));
         }
         else
@@ -74,7 +76,9 @@ class AdmUserController extends Controller {
                 'numero_campus' => $numero_campus,
                 'error' => array(),
                 'facultades' => $input['numero_facultad'],
-                'campus' => $campus
+                'campus' => $campus,
+                'nombre_campus' => $input['nombre_campus'],
+                'mensaje' => null
             ));
         }
     }
@@ -167,13 +171,30 @@ class AdmUserController extends Controller {
     public function storeFacult()
     {
         /*
-         * {"_token":"F3nPend2hzRGbx31KMfrieK1A4XBgOsIsbnlyi29","Nombre_facultad_0":"qwe\u00baq",
-         * "Descripcion_facultad_0":"qweqwe","Nombre_facultad_1":"rtyrtyrty","Descripcion_facultad_1":"fdfgdghfgg",
-         * "Nombre_facultad_2":"rbfgnngf","Descripcion_facultad_2":"ererert","numero_facultad":"3"}
+         * "Nombre_facultad_0":"","Descripcion_facultad_0":"","Nombre_facultad_1":"","Descripcion_facultad_1":"",
+         * "numero_facultad":"2","nombre_campus":"Macul"}
          * */
         $input = Request::all();
+        $numero_campus = Campus::all()->count();
+        $campus = Campus::lists('nombre');
 
-        //return $input;
+        for($i = 0;$i<$input['numero_facultad'];$i++){
+            $Facultad = new Facultad();
+
+            $Facultad->nombre = (string)$input['Nombre_facultad_'.$i];
+            $Facultad->descripcion = (string)$input['Descripcion_facultad_'.$i];
+
+
+        }
+
+        return view('Administrador.crearAdm',array(
+            'numero_campus' => $numero_campus,
+            'error' => array(),
+            'facultades' => $input['numero_facultad'],
+            'campus' => $campus,
+            'nombre_campus' => $input['nombre_campus'],
+            'mensaje' => "Facultad ingresada correctamente"
+        ));
     }
 
 	/**

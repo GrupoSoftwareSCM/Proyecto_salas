@@ -116,7 +116,7 @@
 	</div>
 @endif
 
-@if($_SERVER['REQUEST_URI'] == "/adm/crear/Facult")
+@if($_SERVER['REQUEST_URI'] == "/adm/crear/Facult" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facults")
     @if($numero_campus == 0)
         <?php array_push($error,"Hay que ingresar primero un campus"); ?>
         @if(count($error) > 0)
@@ -132,15 +132,30 @@
     @else
         <div class="row">
             <div class="col-md-12">
+                @if($mensaje != null)
+                    <div class="alert alert-success col-md-8 col-md-offset-2">
+                        <center>{{$mensaje}}</center>
+                    </div>
+                @endif
+                <?php $Camp = array();?>
                 @foreach($campus as $camp)
-                    {!!$camp!!}
+                    <?php $Camp[$camp] = $camp?>
                 @endforeach
                 {!!Form::open(['url' => 'adm/crear/Facult'])!!}
                     <div class="form-group">
-                        {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-3'])!!}
-                        {!!Form::number('numero_facultad','',['class' => 'col-md-3'])!!}
+                        @if($facultades == null && $nombre_campus == null)
+                            {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-3'])!!}
+                            {!!Form::number('numero_facultad','',['class' => 'col-md-3'])!!}
 
-                        {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-3'])!!}
+                            {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-2'])!!}
+                            {!!Form::select('nombre_campus',$Camp,null,['class' => 'col-md-3'])!!}
+                        @else
+                            {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-3'])!!}
+                            {!!Form::number('numero_facultad',$facultades,['class' => 'col-md-3'])!!}
+
+                            {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-2'])!!}
+                            {!!Form::select('nombre_campus',$Camp,$nombre_campus,['class' => 'col-md-3'])!!}
+                        @endif
 
                     </div>
                 {!!Form::close()!!}
@@ -166,10 +181,13 @@
                                                                                         'rows' => '3'])!!}
                                 </div>
                             </div>
-                        <br/>
+                            <br/>
+                            @if(($i+1) == $facultades)
+                                {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-4','type' => 'submit'])!!}
+                            @endif
                         @endfor
                         {!!Form::hidden('numero_facultad',$facultades)!!}
-                        {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-4','type' => 'submit'])!!}
+                        {!!Form::hidden('nombre_campus',$nombre_campus)!!}
                     {!!Form::close()!!}
                 @endif
             </div>
