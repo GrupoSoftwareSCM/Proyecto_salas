@@ -56,11 +56,21 @@ Route::get('adm/archivar','Administrador\AdmUserController@index');
 Route::get('adm/crear',   'Administrador\AdmUserController@index');
 	//SUB-RUTAS PARA CREAR
 	Route::get('adm/crear/apui','Administrador\AdmUserController@apui');
+
 	Route::post('asignarPerfilInd','Administrador\AdmUserController@storeAPUI');
+
 	Route::get('adm/crear/apum','Administrador\AdmUserController@apum');
+
 	Route::get('adm/crear/cc',  'Administrador\AdmUserController@cc');
 	Route::post('adm/crear/cc','Administrador\AdmUserController@storeCC');
+
 	Route::get('adm/crear/aec', 'Administrador\AdmUserController@aec');
+
+    Route::get('adm/crear/Facult', 'Administrador\AdmUserController@Facult');
+
+    Route::get('adm/crear/Escuela', 'Administrador\AdmUserController@Escuela');
+
+    Route::get('adm/crear/Depto' , 'Administrador\AdmUserController@Depto');
 
 
 Route::controllers([

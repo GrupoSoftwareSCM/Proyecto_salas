@@ -78,34 +78,32 @@
 		<div class="col-md-12">
 			{!!Form::open(['url' => 'adm/crear/cc'])!!}
 				<div class="form-group">
-                    <div class="row"> <!--CAMPUS Y FACULTAD-->
-                        <div class="col-md-6">
+                    <div class="row"> <!--CAMPUS-->
+                        <div class="col-md-8 col-md-offset-2">
                             {!!Form::label('Nombre_campus','Nombre Campus',['class' => 'col-md-6'])!!}
                             {!!Form::text('Campus','',['class' => 'col-md-6'])!!}
+                            <br>
 
                             {!!Form::label('Rut_Encargado','Rut Encargado',['class' => 'col-md-6'])!!}
                             {!!Form::text('Rut_Encargado','',['class' => 'col-md-6'])!!}
+                            <br>
 
                             {!!Form::label('direccion','Dirección',['class' => 'col-md-6'])!!}
                             {!!Form::text('Direccion','',['class' => 'col-md-6'])!!}
+                            <br>
 
                             {!!Form::label('latitud','Latitud',['class' => 'col-md-6'])!!}
                             {!!Form::number('latitud','',['class' => 'col-md-6','step' => '0.001'])!!}
+                            <br>
 
                             {!!Form::label('longitud','Longitud',['class' => 'col-md-6'])!!}
                             {!!Form::number('longitud','',['class' => 'col-md-6','step' => '0.001'])!!}
+                            <br>
 
 
                             {!!Form::label('descripcion_campus','Descripcion',['class' => 'col-md-6'])!!}
                             {!!Form::textarea('Descripcion_campus','',['class' => 'col-md-6'])!!}
-                        </div>
-                        <div class="col-md-6">
-                            {!!Form::label('Nombre_facultad','Nombre facultad',['class' => 'col-md-6'])!!}
-                            {!!Form::text('facultad','',['class' => 'col-md-6'])!!}
-
-                            {!!Form::label('descripcion_facultad','Descripcion',['class' => 'col-md-6'])!!}
-                            {!!Form::textarea('Descripcion_facultad','',['class' => 'col-md-6'])!!}
-
+                            <br>
                         </div>
                     </div>
 				</div>
@@ -118,7 +116,80 @@
 	</div>
 @endif
 
-@if($_SERVER['REQUEST_URI'] == "/adm/crear/aec")
-	estamos en asignar encargados a campus
+@if($_SERVER['REQUEST_URI'] == "/adm/crear/Facult")
+    @if($numero_campus == 0)
+        <?php array_push($error,"Hay que ingresar primero un campus"); ?>
+        @if(count($error) > 0)
+            <div class="alert alert-danger col-md-8 col-md-offset-2">
+                OOOpss
+                <ul>
+                    @foreach($error as $err)
+                        <li type="disc">{{$err}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    @else
+        <div class="row">
+            <div class="col-md-8">
+                {!!Form::open(['url' => 'adm/crear/Facult')!!}
+                    <div class="form-group">
+                        {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-3'])!!}
+                        {!!Form::number('numero_facultad','',['class' => 'col-md-5'])!!}
+                        {!!Form::button('Generar',['class' => 'btn btn-danger col-md-3 col-md-offset-1','type' => 'submit'])!!}
+                    </div>
+                {!!Form::close()!!}
+            </div>
+        </div>
+    @endif
+@endif
+
+@if($_SERVER['REQUEST_URI'] == "/adm/crear/Depto")
+    @if($numero_campus == 0 || $numero_facultad == 0)
+        @if($numero_campus == 0)
+            <?php array_push($error,"Hay que ingresar primero un campus"); ?>
+        @endif
+        @if($numero_facultad == 0)
+            <?php array_push($error,"Hay que ingresar primero una facultad"); ?>
+        @endif
+        @if(count($error) > 0)
+            <div class="alert alert-danger col-md-8 col-md-offset-2">
+                OOOpss
+                <ul>
+                    @foreach($error as $err)
+                        <li type="disc">{{$err}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    @endif
+@endif
+@if($_SERVER['REQUEST_URI'] == "/adm/crear/Escuela")
+
+    @if($numero_campus == 0 || $numero_facultad == 0 || $numero_departamento == 0)
+        @if($numero_campus == 0)
+            <?php array_push($error,"Hay que ingresar primero un campus"); ?>
+        @endif
+        @if($numero_facultad == 0)
+            <?php array_push($error,"Hay que ingresar primero una facultad"); ?>
+        @endif
+        @if($numero_departamento == 0)
+            <?php array_push($error,"Hay que ingresar primero un departamento"); ?>
+        @endif
+        @if(count($error) > 0)
+            <div class="alert alert-danger col-md-8 col-md-offset-2">
+                OOOpss
+                <ul>
+                @foreach($error as $err)
+                    <li type="disc">{{$err}}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+    @else
+
+    @endif
+
+
 @endif
 @endsection

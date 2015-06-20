@@ -4,12 +4,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Campus;
 use App\Models\Facultad;
+use App\Models\Departamento;
 use Request;
+use DB;
 
 //use Illuminate\Http\Request;
 
 class AdmUserController extends Controller {
-
 
 	/**
 	 * Create a new controller instance.
@@ -29,7 +30,7 @@ class AdmUserController extends Controller {
 	 */
 	
 	public function index()
-	{
+    {
 		return view('Administrador.homeAdm');
 	}
 
@@ -45,15 +46,45 @@ class AdmUserController extends Controller {
 
 	public function cc()
 	{
-		//$Campus = Campus::all();
-		//return dd($Campus);
-		return view('Administrador.crearAdm',array('mensaje' => null, 'error' => null));
+		return view('Administrador.crearAdm',array('mensaje' => null, 'error' => null,));
 	}
 
 	public function aec()
 	{
 		return view('Administrador.crearAdm');
 	}
+
+    public function Facult()
+    {
+        $numero_campus = Campus::all()->count();
+        return view('Administrador.crearAdm',array(
+            'numero_campus' => $numero_campus,
+            'error' => array()
+        ));
+    }
+
+    public function Depto()
+    {
+        $numero_campus = Campus::all()->count();
+        $numero_facultad = Facultad::all()->count();
+        return view('Administrador.crearAdm',array(
+            'numero_campus' => $numero_campus,
+            'numero_facultad' => $numero_facultad,
+            'error' => array()
+        ));
+    }
+    public function Escuela()
+    {
+        $numero_campus = Campus::all()->count();
+        $numero_facultad = Facultad::all()->count();
+        $numero_departamento = Departamento::all()->count();
+        return view('Administrador.crearAdm',array(
+            'numero_campus' => $numero_campus,
+            'numero_facultad' => $numero_facultad,
+            'numero_departamento' => $numero_departamento,
+            'error' => array()
+        ));
+    }
 
 	public function perfuser()
 	{
@@ -69,6 +100,7 @@ class AdmUserController extends Controller {
 	{
 		return view('Administrador.modificarAdm');
 	}
+
 
 
 	/**
@@ -99,13 +131,9 @@ class AdmUserController extends Controller {
 
     public function storeCC()
     {
-        //{"Campus":"macul","Direccion":"qweqweq","latitud":"0.011","longitud":"0.007","Descripcion":"hola"}
         $input = Request::all();
 
-
-
         $Campus = new Campus();
-        $Facultad = new Facultad();
 
         $Campus->nombre 	   = (string)$input['Campus'];
         $Campus->direccion 	   = (string)$input['Direccion'];
@@ -114,15 +142,10 @@ class AdmUserController extends Controller {
         $Campus->descripcion   = (string)$input['Descripcion_campus'];
         $Campus->rut_encargado = (int)$input['Rut_Encargado'];
 
-        //$Campus->save();
+        $Campus->save();
 
-        //$Facultad->campus();
-
-        $Campus->facultad();
-
-        //$query = Campus::where('nombre',(string)$input['Campus'])->first();
-        return ;
-        //return view('Administrador.crearAdm',array('mensaje' => $query, 'error' => null));
+        $query = Campus::where('nombre',(string)$input['Campus'])->first();
+        return view('Administrador.crearAdm',array('mensaje' => $query, 'error' => null));
     }
 
 	/**

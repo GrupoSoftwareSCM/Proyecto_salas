@@ -10,7 +10,7 @@ class Facultad extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'fecultades';
+	protected $table = 'facultades';
 
 	/**
 	 * The attributes that are mass assignable.
