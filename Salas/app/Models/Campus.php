@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Monolog\Handler\NullHandlerTest;
 
 class Campus extends Model {
 
@@ -35,4 +36,10 @@ class Campus extends Model {
 	{
 		return $this->hasMany('app\Models\Sala','id_campus');
 	}
+
+    public function id_campus($nombre = null)
+    {
+        $query = Campus::id_campus();
+        return $query['id_campus'];
+    }
 }

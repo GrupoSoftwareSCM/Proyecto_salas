@@ -58,7 +58,7 @@ class AdmUserController extends Controller {
     {
         $input = Request::all();
         $numero_campus = Campus::all()->count();
-        $campus = Campus::lists('nombre');
+        $campus = Campus::lists('nombre','id_campus');
         if( $input == null)
         {
             return view('Administrador.crearAdm',array(
@@ -66,8 +66,8 @@ class AdmUserController extends Controller {
                 'error' => array(),
                 'facultades' => null,
                 'campus' => $campus,
-                'nombre_campus' => null,
-                'mensaje' => null
+                'id_campus' => null,
+                'mensaje' => null,
             ));
         }
         else
@@ -75,10 +75,10 @@ class AdmUserController extends Controller {
             return view('Administrador.crearAdm',array(
                 'numero_campus' => $numero_campus,
                 'error' => array(),
-                'facultades' => $input['numero_facultad'],
+                'facultades' => (int)$input['numero_facultad'],
                 'campus' => $campus,
-                'nombre_campus' => $input['nombre_campus'],
-                'mensaje' => null
+                'id_campus' => $input['id_campus'],
+                'mensaje' => null,
             ));
         }
     }
@@ -170,13 +170,9 @@ class AdmUserController extends Controller {
 
     public function storeFacult()
     {
-        /*
-         * "Nombre_facultad_0":"","Descripcion_facultad_0":"","Nombre_facultad_1":"","Descripcion_facultad_1":"",
-         * "numero_facultad":"2","nombre_campus":"Macul"}
-         * */
         $input = Request::all();
         $numero_campus = Campus::all()->count();
-        $campus = Campus::lists('nombre');
+        $campus = Campus::lists('nombre','id_campus');
 
         for($i = 0;$i<$input['numero_facultad'];$i++){
             $Facultad = new Facultad();
@@ -184,7 +180,10 @@ class AdmUserController extends Controller {
             $Facultad->nombre = (string)$input['Nombre_facultad_'.$i];
             $Facultad->descripcion = (string)$input['Descripcion_facultad_'.$i];
 
+            //ACA TIENE QUE IR UN SAVE() PERO ME FALTA ENLAZAR FK DE CAMPUS
+            $Facultad->campus_id = $input['id_campus'];
 
+            $Facultad->save();
         }
 
         return view('Administrador.crearAdm',array(
@@ -192,8 +191,8 @@ class AdmUserController extends Controller {
             'error' => array(),
             'facultades' => $input['numero_facultad'],
             'campus' => $campus,
-            'nombre_campus' => $input['nombre_campus'],
-            'mensaje' => "Facultad ingresada correctamente"
+            'id_campus' => $input['id_campus'],
+            'mensaje' => "Facultad(es) ingresada(s) correctamente"
         ));
     }
 

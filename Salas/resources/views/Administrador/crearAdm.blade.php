@@ -136,27 +136,46 @@
                     <div class="alert alert-success col-md-8 col-md-offset-2">
                         <center>{{$mensaje}}</center>
                     </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                 @endif
                 <?php $Camp = array();?>
-                @foreach($campus as $camp)
-                    <?php $Camp[$camp] = $camp?>
+                @foreach($campus as $clave => $valor)
+                    <?php $Camp[$clave] = $valor;?>
                 @endforeach
+                <div class="alert alert-info">
+                    <strong>Informacion!</strong> <br/>
+                    Ingrese el numero de facultad, seguido ingrese el Campus a cual desea agregar la facultad y luego presione
+                    el boton "Generar"<br/>
+                    <strong>Ojo!</strong> <br/>
+                    Si desea cambiar el campus o ingresar denuevo el numero de facultades debe oprimir el boton "Generar"
+                </div>
                 {!!Form::open(['url' => 'adm/crear/Facult'])!!}
-                    <div class="form-group">
-                        @if($facultades == null && $nombre_campus == null)
-                            {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-3'])!!}
-                            {!!Form::number('numero_facultad','',['class' => 'col-md-3'])!!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @if($facultades == null && $nombre_campus == null)
 
-                            {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-2'])!!}
-                            {!!Form::select('nombre_campus',$Camp,null,['class' => 'col-md-3'])!!}
-                        @else
-                            {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-3'])!!}
-                            {!!Form::number('numero_facultad',$facultades,['class' => 'col-md-3'])!!}
+                                    {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-2'])!!}
+                                    {!!Form::number('numero_facultad','',['class' => 'col-md-2'])!!}
 
-                            {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-2'])!!}
-                            {!!Form::select('nombre_campus',$Camp,$nombre_campus,['class' => 'col-md-3'])!!}
-                        @endif
+                                    {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-2'])!!}
+                                    {!!Form::select('id_campus',$Camp,null,['class' => 'col-md-2'])!!}
 
+                                @else
+                                    {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-2'])!!}
+                                    {!!Form::number('numero_facultad',$facultades,['class' => 'col-md-2'])!!}
+
+                                    {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-2'])!!}
+                                    {!!Form::select('id_campus',$Camp,$id_campus,['class' => 'col-md-2'])!!}
+                                @endif
+
+                                {!!Form::button('Generar',['class' => 'btn btn-danger col-md-1 col-md-offset-2','type' => 'submit'])!!}
+
+                            </div>
+                        </div>
                     </div>
                 {!!Form::close()!!}
                 @if($facultades > 3 && $facultades != null)
@@ -167,6 +186,10 @@
                         </ul>
                     </div>
                 @else
+                    <br/>
+                    <div class="alert alert-info">
+                        Ahora ingrese el nombre de la(s) facultad(es) y la descripcion
+                    </div>
                     <br>
                     <br>
                     {!!Form::open(['url' => 'adm/crear/Facults'])!!}
@@ -187,7 +210,7 @@
                             @endif
                         @endfor
                         {!!Form::hidden('numero_facultad',$facultades)!!}
-                        {!!Form::hidden('nombre_campus',$nombre_campus)!!}
+                        {!!Form::hidden('id_campus',$id_campus)!!}
                     {!!Form::close()!!}
                 @endif
             </div>
