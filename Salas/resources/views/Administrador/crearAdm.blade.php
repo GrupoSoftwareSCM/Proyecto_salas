@@ -173,7 +173,7 @@
                         @for($i = 0;$i < $facultades;$i++)
                             <div class="row">
                                 <div class="col-md-12">
-                                    {!!Form::label('Nombre_facultad_'.$i.'','Nombre Campus',['class' => 'col-md-2'])!!}
+                                    {!!Form::label('Nombre_facultad_'.$i.'','Nombre Facultad '.($i+1).'',['class' => 'col-md-2'])!!}
                                     {!!Form::text('Nombre_facultad_'.$i.'','',['class' => 'col-md-3'])!!}
 
                                     {!!Form::label('descripcion_facultad_'.$i.'','Descripcion',['class' => 'col-md-2'])!!}
