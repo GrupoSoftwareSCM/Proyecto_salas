@@ -17,7 +17,7 @@ class Funcionario extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['rut','nombres','apellidos'];
+	protected $fillable = ['rut','nombres','apellidos','departamento_id'];
 
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:

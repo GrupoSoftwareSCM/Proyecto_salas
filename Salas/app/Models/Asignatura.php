@@ -17,7 +17,7 @@ class Asignatura extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['codigo','nombre','descripcion'];
+	protected $fillable = ['codigo','nombre','descripcion','departamento_id'];
 
 	/*
 	|Para relacionar la tabla padre con la tabla hija usaremos la función:

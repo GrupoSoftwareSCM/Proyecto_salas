@@ -17,7 +17,7 @@ class Estudiante extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['rut','nombres','apellidos','email'];
+	protected $fillable = ['rut','nombres','apellidos','email','carrera_id'];
 
 	/*
 	|	En este tipo de relaciones se hace uso de una tabla intermedia o pivote para hacer las relaciones y en ambas 

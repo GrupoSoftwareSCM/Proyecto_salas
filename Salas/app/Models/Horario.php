@@ -17,7 +17,7 @@ class Horario extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['fecha'];
+	protected $fillable = ['fecha','curso_id','sala_id','periodo_id'];
 
 
 	/*

@@ -156,7 +156,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                @if($facultades == null && $nombre_campus == null)
+                                @if($facultades == null && $id_campus == null)
 
                                     {!!Form::label('numero_facultad','Numero de facultad(es)',['class' => 'col-md-2'])!!}
                                     {!!Form::number('numero_facultad','',['class' => 'col-md-2'])!!}

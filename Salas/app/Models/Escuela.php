@@ -17,7 +17,7 @@ class Escuela extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['nombre','descripcion'];
+	protected $fillable = ['nombre','descripcion','departamento_id'];
 
 
 	/*

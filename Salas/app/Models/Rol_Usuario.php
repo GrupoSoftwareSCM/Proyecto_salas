@@ -17,7 +17,7 @@ class Rol_Usuario extends Model {
      *
      * @var array
      */
-	protected $fillable = ['rut'];
+	protected $fillable = ['rut','rol_id'];
 
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:

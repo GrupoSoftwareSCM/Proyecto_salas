@@ -17,7 +17,7 @@ class Curso extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['semestre','anio','seccion'];
+	protected $fillable = ['semestre','anio','seccion','docente_id','asignatura_id'];
 
 	/*
 	|Para relacionar la tabla padre con la tabla hija usaremos la función:

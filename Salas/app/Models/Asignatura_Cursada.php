@@ -12,6 +12,15 @@ class Asignatura_Cursada extends Model {
      */
 	protected $table = 'asignaturas_cursadas';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['carrera_id','curso_id'];
+
+
+
 
 
 }
