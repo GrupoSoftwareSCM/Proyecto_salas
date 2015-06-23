@@ -2,8 +2,9 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Models\Campus;
+//use Illuminate\Http\Request;
+use Request;
 
 class EncarUserController extends Controller {
 
@@ -65,6 +66,41 @@ class EncarUserController extends Controller {
     	return view('Encargado.modifEstu');
     }
 
+
+    public function Modificar()
+    {
+
+
+        $input = Request::all();
+        $campus = Campus::paginate();
+        $campu = Campus::paginate();
+
+        if($input == null){
+            return view("Encargado.homeEncar",array(
+                'Campus' => $campus,
+                'Campu'=> $campu
+            ));
+        }
+        else{
+            /*return view("Encargado.homeEncar",array(
+                'Campus' => $campus
+            ));*/
+            return $input;
+            //return view("Encargado.homeEncar");
+            /*$result = \DB::table('campus')
+                ->get();
+            dd($result);
+            return $result;*/
+        }
+
+
+    }
+/* $profiles = DB::table('profiles')->paginate(5);
+		$profiles =
+		[
+		    'profiles' => $profiles
+	    ];
+        return View::make('crud.index', $profiles);*/
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -74,6 +110,10 @@ class EncarUserController extends Controller {
 	{
 		//
 	}
+    public function Salas()
+    {
+
+    }
 
 	/**
 	 * Store a newly created resource in storage.

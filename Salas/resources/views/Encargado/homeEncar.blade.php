@@ -1,16 +1,7 @@
 @extends('Encargado.header')
 
 @section('content')
-<style>
-form {
-  width: 550px;
-  margin: 0 0 0 0 ;
-  padding: 50px 60px;
-  background-color: #15CAD7;
-  border-radius: 20px;
-}
 
-</style>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2"> 
 		<div class="panel panel-default">
@@ -26,7 +17,53 @@ form {
 
 				@if($_SERVER['REQUEST_URI'] == "/encar/modif")
 					<h3>MODIFICAR SALAS</h3>
-					<div class="row">
+                <div class="row"> <!-- PARA LOS FORMULARIO -->
+                    <div class="col-md-12">
+                        <?php $array = array();?>
+                        @foreach($Campus as $camp)
+
+                            <?php $array[$camp->id_campus] = $camp->nombre?>
+                        @endforeach
+                        {!!Form::open(['url' => 'encar/modif'])!!}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-2'])!!}
+                                    {!!Form::select('nombre_campus',$array,null,['class' => 'col-md-3'])!!}
+                                    <br><br><br>
+                                    <div class="panel-heading">SALAS</div>
+                                    <div class="panel-body">
+                                        <table class="table table-striped">
+                                            <tr>
+                                              <th>#</th>
+                                              <th>Nombre</th>
+                                              <th>Capacidad</th>
+                                              <th>Acciones</th>
+                                            </tr>
+
+                                           @foreach($Campu as $campu)
+                                            <tr>
+                                                <td>{{$campu-> id_campus }}</td>
+                                                <td>{{$campu-> nombre}}</td>
+                                                <td>{{$campu-> direccion}}</td>
+                                                <td><a href="">Editar</td>
+
+                                            </tr>
+                                           @endforeach
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <br>
+                          <!--  {!!Form::button('Modificar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                      -->  </div>
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+
+				<!--	<div class="row">
 						 <br><br>
 						
 						<div class="col-md-8 col-md-offset-2"> 
@@ -65,6 +102,7 @@ form {
 						
 					</div>
 				@endif
+				-->
                     <!-- MENU INGRESAR DATOS ACADEMICOS -->
 				@if($_SERVER['REQUEST_URI'] == "/encar/ingre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu/agre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu/modi" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu/elim" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos/agre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos/modi" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos/elim" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig/agre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig/modi" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig/elim")
                                	<div class="panel-body">
