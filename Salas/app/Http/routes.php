@@ -23,7 +23,8 @@ Route::get('doc/salas','Docente\DocUserController@clases');
 //RUTAS PARA EL ENCARGADO DE CAMPUS
 Route::get('encar','Encargado\EncarUserController@index');
 Route::get('encar/asig','Encargado\EncarUserController@index');
-Route::get('encar/modif','Encargado\EncarUserController@index');
+Route::get('encar/modif','Encargado\EncarUserController@Modificar');
+Route::post('encar/modif','Encargado\EncarUserController@Modificar');
 Route::get('encar/ingre','Encargado\EncarUserController@index');
 Route::get('encar/ingre/cursos','Encargado\EncarUserController@cursos');
 Route::get('encar/ingre/asig','Encargado\EncarUserController@asig');
