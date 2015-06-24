@@ -85,13 +85,33 @@ class AdmUserController extends Controller {
 
     public function Depto()
     {
+        $input = Request::all();
         $numero_campus = Campus::all()->count();
         $numero_facultad = Facultad::all()->count();
-        return view('Administrador.crearAdm',array(
-            'numero_campus' => $numero_campus,
-            'numero_facultad' => $numero_facultad,
-            'error' => array()
-        ));
+        $facultades = Facultad::lists('nombre','id_facultades');
+        if($input == null){
+            return view('Administrador.crearAdm',array(
+                'numero_campus' => $numero_campus,
+                'numero_facultad' => $numero_facultad,
+                'Facultades' => $facultades,
+                'error' => array(),
+                'mensaje' => null,
+                'numero_departamento' => null,
+                'id_facultad' => null
+            ));
+        }
+        else
+        {
+            return view('Administrador.crearAdm',array(
+                'numero_campus' => $numero_campus,
+                'numero_facultad' => $numero_facultad,
+                'Facultades' => $facultades,
+                'error' => array(),
+                'mensaje' => null,
+                'numero_departamento' => $input['numero_departamento'],
+                'id_facultad' => (int)$input['id_facultad']
+            ));
+        }
     }
     public function Escuela()
     {
@@ -183,7 +203,7 @@ class AdmUserController extends Controller {
             //ACA TIENE QUE IR UN SAVE() PERO ME FALTA ENLAZAR FK DE CAMPUS
             $Facultad->campus_id = $input['id_campus'];
 
-            $Facultad->save();
+            //$Facultad->save();
         }
 
         return view('Administrador.crearAdm',array(
@@ -194,6 +214,36 @@ class AdmUserController extends Controller {
             'id_campus' => $input['id_campus'],
             'mensaje' => "Facultad(es) ingresada(s) correctamente"
         ));
+    }
+
+    public function storeDepto()
+    {
+        $input = Request::all();
+        $facultades = Facultad::lists('nombre','id_facultades');
+
+        for($i = 0;$i<$input['numero_departamento'];$i++){
+            $depto = new Departamento();
+
+            $depto->nombre = (string)$input['Nombre_depto_'.$i];
+            $depto->descripcion = (string)$input['Descripcion_depto_'.$i];
+
+            $depto->facultad_id = $input['id_facultad'];
+
+            //$depto->save();
+
+        }
+
+
+        return view('Administrador.crearAdm',array(
+            'numero_campus' => $input['numero_campus'],
+            'numero_facultad' => $input['numero_facultad'],
+            'Facultades' => $facultades,
+            'error' => array(),
+            'mensaje' => "Se han ingresado correctamente",
+            'numero_departamento' => $input['numero_departamento'],
+            'id_facultad' => (int)$input['id_facultad']
+        ));
+
     }
 
 	/**

@@ -24,7 +24,7 @@
 								<li><a href="{{ url('adm')}}">Inicio</a></li>
 							@endif
 
-							@if($_SERVER['REQUEST_URI'] == "/adm/crear" || $_SERVER['REQUEST_URI'] == "/adm/crear/apu" || $_SERVER['REQUEST_URI'] == "/adm/crear/cc" || $_SERVER['REQUEST_URI'] == "/adm/crear/aec" || $_SERVER['REQUEST_URI'] == "/adm/crear/apui" || $_SERVER['REQUEST_URI'] == "/adm/crear/apum")
+							@if($_SERVER['REQUEST_URI'] == "/adm/crear/Deptos" || $_SERVER['REQUEST_URI'] == "/adm/crear" || $_SERVER['REQUEST_URI'] == "/adm/crear/apu" || $_SERVER['REQUEST_URI'] == "/adm/crear/cc" || $_SERVER['REQUEST_URI'] == "/adm/crear/aec" || $_SERVER['REQUEST_URI'] == "/adm/crear/apui" || $_SERVER['REQUEST_URI'] == "/adm/crear/apum" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facult" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facults" || $_SERVER['REQUEST_URI'] == "/adm/crear/Depto" || $_SERVER['REQUEST_URI'] == "/adm/crear/Escuela")
 								<li class="active"><a href="{{ url('adm/crear')}}">Crear</a></li>
 							@else
 								<li><a href="{{ url('adm/crear')}}">Crear</a></li>
@@ -34,7 +34,7 @@
 							@else
 								<li><a href="{{ url('adm/modif')}}">Modificar</a></li>
 							@endif
-							<li><a href="{{ url('adm/archivar')}}">Archivar</a></li>
+							<li><a href="{{ url('adm/archivar')}}">Exportar</a></li>
 						</ul>
 					</div>
 			  	</div>
@@ -50,6 +50,7 @@
 	{!!Html::script('js/bootstrap.min.js')!!}
 	{!!Html::script('js/jquery-2.1.4.min.js')!!}
 	{!!Html::script('js/jquery.min.js')!!}
+    {!!Html::script('js/alert.js')!!}
 	<!--<script src="{{URL::asset('js/bootstrap.min.js')}}"></script>-->
 </body>
 </html>
