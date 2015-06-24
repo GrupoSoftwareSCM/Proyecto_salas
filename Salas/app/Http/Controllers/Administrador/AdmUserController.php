@@ -35,27 +35,22 @@ class AdmUserController extends Controller {
 		return view('Administrador.homeAdm');
 	}
 
-	public function apui()
+	public function crearApui()
 	{
 		return view('Administrador.crearAdm');
 	}
 
-	public function apum()
+	public function crearApum()
 	{
 		return view('Administrador.crearAdm');
 	}
 
-	public function cc()
+	public function crearCampus()
 	{
 		return view('Administrador.crearAdm',array('mensaje' => null, 'error' => null,));
 	}
 
-	public function aec()
-	{
-		return view('Administrador.crearAdm');
-	}
-
-    public function Facult()
+    public function crearFacult()
     {
         $input = Request::all();
         $numero_campus = Campus::all()->count();
@@ -84,7 +79,7 @@ class AdmUserController extends Controller {
         }
     }
 
-    public function Depto()
+    public function crearDepto()
     {
         $input = Request::all();
         $numero_campus = Campus::all()->count();
@@ -114,7 +109,8 @@ class AdmUserController extends Controller {
             ));
         }
     }
-    public function Escuela()
+
+    public function crearEscuela()
     {
         $input = Request::all();
         $numero_campus = Campus::all()->count();
@@ -206,7 +202,7 @@ class AdmUserController extends Controller {
         return $input;
     }
 
-    public function storeCC()
+    public function storeCampus()
     {
         $input = Request::all();
 

@@ -63,25 +63,25 @@ Route::get('adm/modif',   'Administrador\AdmUserController@index');
 Route::get('adm/Exportar','Administrador\AdmUserController@index');
 Route::get('adm/crear',   'Administrador\AdmUserController@index');
 	//SUB-RUTAS PARA CREAR
-	Route::get('adm/crear/apui','Administrador\AdmUserController@apui');
+	Route::get('adm/crear/apui','Administrador\AdmUserController@crearApui');
 
 	Route::post('asignarPerfilInd','Administrador\AdmUserController@storeAPUI');
 
-	Route::get('adm/crear/apum','Administrador\AdmUserController@apum');
+	Route::get('adm/crear/apum','Administrador\AdmUserController@crearApum');
 
-	Route::get('adm/crear/cc',  'Administrador\AdmUserController@cc');
-	Route::post('adm/crear/cc','Administrador\AdmUserController@storeCC');
+	Route::get('adm/crear/cc',  'Administrador\AdmUserController@crearCampus');
+	Route::post('adm/crear/cc','Administrador\AdmUserController@storeCampus');
 
-    Route::get('adm/crear/Facult', 'Administrador\AdmUserController@Facult');
-    Route::post('adm/crear/Facult', 'Administrador\AdmUserController@Facult');
+    Route::get('adm/crear/Facult', 'Administrador\AdmUserController@crearFacult');
+    Route::post('adm/crear/Facult', 'Administrador\AdmUserController@crearFacult');
     Route::post('adm/crear/Facults', 'Administrador\AdmUserController@storeFacult');
 
-    Route::get('adm/crear/Escuela', 'Administrador\AdmUserController@Escuela');
-    Route::post('adm/crear/Escuela', 'Administrador\AdmUserController@Escuela');
+    Route::get('adm/crear/Escuela', 'Administrador\AdmUserController@crearEscuela');
+    Route::post('adm/crear/Escuela', 'Administrador\AdmUserController@crearEscuela');
     Route::post('adm/crear/Escuelas', 'Administrador\AdmUserController@storeEscuela');
 
-    Route::get('adm/crear/Depto' , 'Administrador\AdmUserController@Depto');
-    Route::post('adm/crear/Depto' , 'Administrador\AdmUserController@Depto');
+    Route::get('adm/crear/Depto' , 'Administrador\AdmUserController@crearDepto');
+    Route::post('adm/crear/Depto' , 'Administrador\AdmUserController@crearDepto');
     Route::post('adm/crear/Deptos' , 'Administrador\AdmUserController@storeDepto');
 
 Route::get('adm/Eliminar','Administrador\AdmUserController@index');
