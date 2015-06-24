@@ -13,7 +13,7 @@
 			<br>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-			  		<center>Título del panel con estilo normal</center>
+			  		<center>Bienvenido Administrador</center>
 			  	</div>
 			  	<div class="panel-body">
 			  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -24,17 +24,18 @@
 								<li><a href="{{ url('adm')}}">Inicio</a></li>
 							@endif
 
-							@if($_SERVER['REQUEST_URI'] == "/adm/crear/Deptos" || $_SERVER['REQUEST_URI'] == "/adm/crear" || $_SERVER['REQUEST_URI'] == "/adm/crear/apu" || $_SERVER['REQUEST_URI'] == "/adm/crear/cc" || $_SERVER['REQUEST_URI'] == "/adm/crear/aec" || $_SERVER['REQUEST_URI'] == "/adm/crear/apui" || $_SERVER['REQUEST_URI'] == "/adm/crear/apum" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facult" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facults" || $_SERVER['REQUEST_URI'] == "/adm/crear/Depto" || $_SERVER['REQUEST_URI'] == "/adm/crear/Escuela")
+							@if($_SERVER['REQUEST_URI'] == "/adm/crear/Escuelas" || $_SERVER['REQUEST_URI'] == "/adm/crear/Deptos" || $_SERVER['REQUEST_URI'] == "/adm/crear" || $_SERVER['REQUEST_URI'] == "/adm/crear/apu" || $_SERVER['REQUEST_URI'] == "/adm/crear/cc" || $_SERVER['REQUEST_URI'] == "/adm/crear/aec" || $_SERVER['REQUEST_URI'] == "/adm/crear/apui" || $_SERVER['REQUEST_URI'] == "/adm/crear/apum" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facult" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facults" || $_SERVER['REQUEST_URI'] == "/adm/crear/Depto" || $_SERVER['REQUEST_URI'] == "/adm/crear/Escuela")
 								<li class="active"><a href="{{ url('adm/crear')}}">Crear</a></li>
 							@else
 								<li><a href="{{ url('adm/crear')}}">Crear</a></li>
 							@endif
-							@if($_SERVER['REQUEST_URI'] == "/adm/modif" || $_SERVER['REQUEST_URI'] == "/adm/modif/perfuser" || $_SERVER['REQUEST_URI'] == "/adm/modif/camp" || $_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
+							@if($_SERVER['REQUEST_URI'] == "/adm/modif/Escuela" || $_SERVER['REQUEST_URI'] == "/adm/modif/Depto" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultad" || $_SERVER['REQUEST_URI'] == "/adm/modif" || $_SERVER['REQUEST_URI'] == "/adm/modif/perfuser" || $_SERVER['REQUEST_URI'] == "/adm/modif/camp" || $_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
 								<li class="active"><a href="{{ url('adm/modif')}}">Modificar</a></li>
 							@else
 								<li><a href="{{ url('adm/modif')}}">Modificar</a></li>
 							@endif
-							<li><a href="{{ url('adm/archivar')}}">Exportar</a></li>
+                            <li><a href="{{ url('adm/Eliminar')}}">Eliminar</a></li>
+							<li><a href="{{ url('adm/Exportar')}}">Exportar</a></li>
 						</ul>
 					</div>
 			  	</div>

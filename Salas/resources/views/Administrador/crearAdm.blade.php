@@ -279,7 +279,7 @@
                             <div class="col-md-12">
                                 <div class="alert alert-info">
                                     <strong>Informacion!</strong> <br/>
-                                    Ingrese el numero de escuelas, seguido ingrese la Facultad a cual desea agregar la escuela y luego presione
+                                    Ingrese el numero de deptos, seguido ingrese la Facultad a cual desea agregar la escuela y luego presione
                                     el boton "Generar"<br/>
                                     <strong>Ojo!</strong> <br/>
                                     Si desea cambiar el campus o ingresar denuevo el numero de facultades debe oprimir el boton "Generar"
@@ -291,21 +291,21 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         @if($numero_departamento == null && $id_facultad == null)
-                                            {!!Form::label('numero_departamento','Numero de Depto(s)',['class' => 'col-md-2'])!!}
+                                            {!!Form::label('numero_departamento','Numero de Depto(s)',['class' => 'col-md-3'])!!}
                                             {!!Form::number('numero_departamento','',['class' => 'col-md-2'])!!}
 
-                                            {!!Form::label('numero_facultad','Seleccione Facultad',['class' => 'col-md-2'])!!}
+                                            {!!Form::label('numero_facultad','Seleccione Facultad',['class' => 'col-md-3'])!!}
                                             {!!Form::select('id_facultad',$Facultades,null,['class' => 'col-md-2'])!!}
                                         @else
-                                            {!!Form::label('numero_departamento','Numero de Depto(s)',['class' => 'col-md-2'])!!}
+                                            {!!Form::label('numero_departamento','Numero de Depto(s)',['class' => 'col-md-3'])!!}
                                             {!!Form::number('numero_departamento',$numero_departamento,['class' => 'col-md-2'])!!}
 
-                                            {!!Form::label('numero_facultad','Seleccione Facultad',['class' => 'col-md-2'])!!}
+                                            {!!Form::label('numero_facultad','Seleccione Facultad',['class' => 'col-md-3'])!!}
                                             {!!Form::select('id_facultad',$Facultades,$id_facultad,['class' => 'col-md-2'])!!}
                                         @endif
 
 
-                                        {!!Form::button('Generar',['class' => 'btn btn-danger col-md-1 col-md-offset-2','type' => 'submit'])!!}
+                                        {!!Form::button('Generar',['class' => 'btn btn-danger col-md-1 col-md-offset-1','type' => 'submit'])!!}
 
                                     </div>
                                 </div>
@@ -325,7 +325,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="alert alert-info">
-                                            Ahora ingrese el nombre de la(s) escuela(s) y la descripcion
+                                            Ahora ingrese el nombre de lo(s) depto(s) y la descripcion
                                         </div>
                                     </div>
                                 </div>
@@ -367,7 +367,7 @@
     </div>
 @endif
 
-@if($_SERVER['REQUEST_URI'] == "/adm/crear/Escuela")
+@if($_SERVER['REQUEST_URI'] == "/adm/crear/Escuela" || $_SERVER['REQUEST_URI'] == "/adm/crear/Escuelas")
     <div class="panel panel-success">
         <div class="panel-body">
             @if($numero_campus == 0 || $numero_facultad == 0 || $numero_departamento == 0)
@@ -381,17 +381,118 @@
                     <?php array_push($error,"Hay que ingresar primero un departamento"); ?>
                 @endif
                 @if(count($error) > 0)
-                    <div class="alert alert-danger col-md-8 col-md-offset-2">
-                        OOOpss
-                        <ul>
-                        @foreach($error as $err)
-                            <li type="disc">{{$err}}</li>
-                        @endforeach
-                        </ul>
+                    <div class="row">
+                        <div class="alert alert-danger col-md-8 col-md-offset-2">
+                            OOOpss
+                            <ul>
+                                @foreach($error as $err)
+                                    <li type="disc">{{$err}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 @endif
             @else
-                hola estamos en crear escuela
+                <div class="row">
+                    <div class="col-md-12">
+                        @if($mensaje != null)
+                            <div class="row">
+                                <div class="alert alert-success fade in col-md-8 col-md-offset-2">
+                                    <a class= "close" href="#" data-dismiss="alert">x</a>
+                                    <strong>Felicidades </strong>
+                                    {{$mensaje}}
+                                </div>
+                            </div>
+                        @endif
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <strong>Informacion!</strong> <br/>
+                                    Ingrese el numero de escuelas, seguido ingrese el depto a cual desea agregar la escuela y luego presione
+                                    el boton "Generar"<br/>
+                                    <strong>Ojo!</strong> <br/>
+                                    Si desea cambiar el depto o ingresar denuevo el numero de escuelas debe oprimir el boton "Generar"
+                                </div>
+                            </div>
+                        </div>
+                            {!!Form::open(['url' => 'adm/crear/Escuela'])!!}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @if($numero_escuela == null && $id_depto == null)
+                                            {!!Form::label('numero_escuela','Numero de Escuela(s)',['class' => 'col-md-3'])!!}
+                                            {!!Form::number('numero_escuela','',['class' => 'col-md-2'])!!}
+
+                                            {!!Form::label('id_depto','Seleccione Depto',['class' => 'col-md-3'])!!}
+                                            {!!Form::select('id_depto',$depto,null,['class' => 'col-md-2'])!!}
+                                        @else
+                                            {!!Form::label('numero_escuela','Numero de Escuela(s)',['class' => 'col-md-3'])!!}
+                                            {!!Form::number('numero_escuela',$numero_escuela,['class' => 'col-md-2'])!!}
+
+                                            {!!Form::label('id_depto','Seleccione Facultad',['class' => 'col-md-3'])!!}
+                                            {!!Form::select('id_depto',$depto,$id_depto,['class' => 'col-md-2'])!!}
+                                        @endif
+
+
+                                        {!!Form::button('Generar',['class' => 'btn btn-danger col-md-1 col-md-offset-1','type' => 'submit'])!!}
+
+                                    </div>
+                                </div>
+                            </div>
+                            {!!Form::close()!!}
+                            @if($numero_escuela != null && $id_depto != null)
+                                @if($numero_escuela > 3)
+                                    <div class="row">
+                                        <div class="alert alert-danger col-md-8 col-md-offset-2">
+                                            OOOpss
+                                            <ul>
+                                                <li type="disc">No se pueden ingresar mas de 3 facultades</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="alert alert-info">
+                                                Ahora ingrese el nombre de la(s) Escuela(s) y la descripcion
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {!!Form::open(['url' => 'adm/crear/Escuelas'])!!}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    @for($i=0;$i<$numero_escuela;$i++)
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                {!!Form::label('Nombre_escuela_'.$i.'','Nombre Escuela '.($i+1).'',['class' => 'col-md-3'])!!}
+                                                                {!!Form::text('Nombre_escuela_'.$i.'','',['class' => 'col-md-3'])!!}
+
+                                                                {!!Form::label('descripcion_escuela_'.$i.'','Descripcion',['class' => 'col-md-3'])!!}
+                                                                {!!Form::textarea('Descripcion_escuela_'.$i.'','',['class' => 'col-md-3','rows' => '3'])!!}
+                                                            </div>
+                                                        </div>
+                                                        @if(($i+1) == $numero_escuela)
+                                                            <div class="row">
+                                                                <div class="col-md-12">{!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-4','type' => 'submit'])!!}</div>
+                                                            </div>
+
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {!!Form::hidden('numero_escuela',$numero_escuela)!!}
+                                        {!!Form::hidden('id_depto',$id_depto)!!}
+                                        {!!Form::hidden('numero_campus',$numero_campus)!!}
+                                        {!!Form::hidden('numero_facultad',$numero_facultad)!!}
+                                        {!!Form::hidden('numero_departamento',$numero_departamento)!!}
+                                    {!!Form::close()!!}
+                                @endif
+
+                            @endif
+                    </div>
+                </div>
             @endif
         </div>
     </div>

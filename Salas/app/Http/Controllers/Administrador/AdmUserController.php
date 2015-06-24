@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campus;
 use App\Models\Facultad;
 use App\Models\Departamento;
+use App\Models\Escuela;
 use Request;
 use DB;
 
@@ -108,41 +109,77 @@ class AdmUserController extends Controller {
                 'Facultades' => $facultades,
                 'error' => array(),
                 'mensaje' => null,
-                'numero_departamento' => $input['numero_departamento'],
-                'id_facultad' => (int)$input['id_facultad']
+                'numero_departamento' => (int)$input['numero_departamento'],
+                'id_facultad' => $input['id_facultad']
             ));
         }
     }
     public function Escuela()
     {
+        $input = Request::all();
         $numero_campus = Campus::all()->count();
         $numero_facultad = Facultad::all()->count();
         $numero_departamento = Departamento::all()->count();
-        return view('Administrador.crearAdm',array(
-            'numero_campus' => $numero_campus,
-            'numero_facultad' => $numero_facultad,
-            'numero_departamento' => $numero_departamento,
-            'error' => array()
-        ));
+
+        $depto = Departamento::lists('nombre','id_departamentos');
+
+        if($input == null){
+            return view('Administrador.crearAdm',array(
+                'numero_campus' => $numero_campus,
+                'numero_facultad' => $numero_facultad,
+                'numero_departamento' => $numero_departamento,
+                'depto' => $depto,
+                'numero_escuela' => null,
+                'id_depto' => null,
+                'error' => array(),
+                'mensaje' => null
+            ));
+        }
+        else{
+            //return dd($input);
+            return view('Administrador.crearAdm',array(
+                'numero_campus' => $numero_campus,
+                'numero_facultad' => $numero_facultad,
+                'numero_departamento' => $numero_departamento,
+                'depto' => $depto,
+                'numero_escuela' => (int)$input['numero_escuela'],
+                'id_depto' => $input['id_depto'],
+                'error' => array(),
+                'mensaje' => null
+            ));
+        }
     }
 
-	public function perfuser()
+    /*FUNCIONES PARA MODIFICAR*/
+	public function Modifperfuser()
 	{
 		return view('Administrador.modificarAdm');
 	}
 
-	public function camp()
+	public function Modifcamp()
 	{
 		return view('Administrador.modificarAdm');
 	}
 
-	public function encamp()
+	public function Modifencamp()
 	{
 		return view('Administrador.modificarAdm');
 	}
 
+    public function ModifFacult()
+    {
+        return view('Administrador.modificarAdm');
+    }
 
+    public function ModifDepto()
+    {
+        return view('Administrador.modificarAdm');
+    }
 
+    public function ModifEscuela()
+    {
+        return view('Administrador.modificarAdm');
+    }
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -246,7 +283,36 @@ class AdmUserController extends Controller {
 
     }
 
-	/**
+    public function storeEscuela()
+    {
+        $input = Request::all();
+        $depto = Departamento::lists('nombre','id_departamentos');
+
+        for($i=0;$i<$input['numero_escuela'];$i++){
+            $escuela = new Escuela();
+
+            $escuela->nombre = (string)$input['Nombre_escuela_'.$i];
+            $escuela->descripcion = (string)$input['Descripcion_escuela_'.$i];
+
+            $escuela->departamento_id = $input['id_depto'];
+
+            $escuela->save();
+        }
+
+        return view('Administrador.crearAdm',array(
+            'numero_campus' => $input['numero_campus'],
+            'numero_facultad' => $input['numero_facultad'],
+            'numero_departamento' => $input['numero_departamento'],
+            'depto' => $depto,
+            'numero_escuela' => null,
+            'id_depto' => null,
+            'error' => array(),
+            'mensaje' => "Escuela(s) ingresada(s) correctamente"
+        ));
+
+    }
+
+    /**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id

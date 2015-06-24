@@ -52,10 +52,15 @@ Route::get('alum/salas',  'Alumnos\AlumUserController@index');
 //RUTAS PARA EL ADMINISTRADOR
 Route::get('adm',         'Administrador\AdmUserController@index');
 Route::get('adm/modif',   'Administrador\AdmUserController@index');
-	Route::get('adm/modif/perfuser','Administrador\AdmUserController@perfuser');
-	Route::get('adm/modif/camp',    'Administrador\AdmUserController@camp');
-	Route::get('adm/modif/encamp',  'Administrador\AdmUserController@encamp');
-Route::get('adm/archivar','Administrador\AdmUserController@index');
+    //SUB-RUTAS PARA Modificar
+	Route::get('adm/modif/perfuser','Administrador\AdmUserController@Modifperfuser');
+	Route::get('adm/modif/camp',    'Administrador\AdmUserController@Modifcamp');
+    Route::get('adm/modif/Facultad', 'Administrador\AdmUserController@ModifFacult');
+	Route::get('adm/modif/encamp',  'Administrador\AdmUserController@Modifencamp');
+    Route::get('adm/modif/Depto', 'Administrador\AdmUserController@ModifDepto');
+    Route::get('adm/modif/Escuela', 'Administrador\AdmUserController@ModifEscuela');
+
+Route::get('adm/Exportar','Administrador\AdmUserController@index');
 Route::get('adm/crear',   'Administrador\AdmUserController@index');
 	//SUB-RUTAS PARA CREAR
 	Route::get('adm/crear/apui','Administrador\AdmUserController@apui');
@@ -67,17 +72,19 @@ Route::get('adm/crear',   'Administrador\AdmUserController@index');
 	Route::get('adm/crear/cc',  'Administrador\AdmUserController@cc');
 	Route::post('adm/crear/cc','Administrador\AdmUserController@storeCC');
 
-	Route::get('adm/crear/aec', 'Administrador\AdmUserController@aec');
-
     Route::get('adm/crear/Facult', 'Administrador\AdmUserController@Facult');
     Route::post('adm/crear/Facult', 'Administrador\AdmUserController@Facult');
     Route::post('adm/crear/Facults', 'Administrador\AdmUserController@storeFacult');
 
     Route::get('adm/crear/Escuela', 'Administrador\AdmUserController@Escuela');
+    Route::post('adm/crear/Escuela', 'Administrador\AdmUserController@Escuela');
+    Route::post('adm/crear/Escuelas', 'Administrador\AdmUserController@storeEscuela');
 
     Route::get('adm/crear/Depto' , 'Administrador\AdmUserController@Depto');
     Route::post('adm/crear/Depto' , 'Administrador\AdmUserController@Depto');
     Route::post('adm/crear/Deptos' , 'Administrador\AdmUserController@storeDepto');
+
+Route::get('adm/Eliminar','Administrador\AdmUserController@index');
 
 
 Route::controllers([
