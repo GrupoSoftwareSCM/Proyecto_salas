@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Campus;
+use App\Models\Sala;
 //use Illuminate\Http\Request;
 use Request;
 
@@ -67,25 +68,24 @@ class EncarUserController extends Controller {
     }
 
 
-    public function Modificar()
+   public function Modificar()
     {
 
 
         $input = Request::all();
         $campus = Campus::paginate();
-        $campu = Campus::paginate();
-
+    
         if($input == null){
             return view("Encargado.homeEncar",array(
-                'Campus' => $campus,
-                'Campu'=> $campu
+                'Campus' => $campus
+               
             ));
         }
         else{
             /*return view("Encargado.homeEncar",array(
                 'Campus' => $campus
             ));*/
-            return $input;
+           return $input;
             //return view("Encargado.homeEncar");
             /*$result = \DB::table('campus')
                 ->get();
@@ -94,7 +94,7 @@ class EncarUserController extends Controller {
         }
 
 
-    }
+    }  
 /* $profiles = DB::table('profiles')->paginate(5);
 		$profiles =
 		[

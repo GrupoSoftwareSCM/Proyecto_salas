@@ -41,11 +41,11 @@
                                               <th>Acciones</th>
                                             </tr>
 
-                                           @foreach($Campu as $campu)
+                                           @foreach($Salas as $salas)
                                             <tr>
-                                                <td>{{$campu-> id_campus }}</td>
-                                                <td>{{$campu-> nombre}}</td>
-                                                <td>{{$campu-> direccion}}</td>
+                                                <td>{{$salas-> id_salas }}</td>
+                                                <td>{{$salas-> nombre}}</td>
+                                                <td>{{$salas-> descripcion}}</td>
                                                 <td><a href="">Editar</td>
 
                                             </tr>
