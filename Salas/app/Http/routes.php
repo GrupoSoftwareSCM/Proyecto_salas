@@ -60,6 +60,7 @@ Route::get('adm/modif',   'Administrador\AdmUserController@index');
     Route::post('adm/modif/camps',    'Administrador\AdmUserController@updateCamps');
 
     Route::get('adm/modif/Facultad', 'Administrador\AdmUserController@ModifFacult');
+    Route::post('adm/modif/Facultad', 'Administrador\AdmUserController@ModifFacult');
 
 	Route::get('adm/modif/encamp',  'Administrador\AdmUserController@Modifencamp');
 

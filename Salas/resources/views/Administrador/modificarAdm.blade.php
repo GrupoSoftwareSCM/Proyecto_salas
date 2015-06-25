@@ -94,6 +94,34 @@
 @if($_SERVER['REQUEST_URI'] == "/adm/modif/Facultad")
     <div class="panel panel-success">
         <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <strong>Informacion!</strong> <br/>
+                                Seleccione la facultad en el cual usted quira realizar modificaciones<br/>
+                            </div>
+                        </div>
+                    </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
+                    {!!Form::open(['url' => 'adm/modif/Facultad'])!!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if($facultad_select == null)
+                                {!!Form::label('id_facultad','Seleccione Facultad',['class' => 'col-md-3'])!!}
+                                {!!Form::select('id_faculad',$Facultad,'',['class' => 'col-md-3'])!!}
+                            @else
+                                {!!Form::label('id_facultad','Seleccione Facultad',['class' => 'col-md-3'])!!}
+                                {!!Form::select('id_faculad',$Facultad,$facultad_select,['class' => 'col-md-3'])!!}
+                            @endif
+
+                            {!!Form::button('Generar',['class' => 'btn btn-danger col-md-3 col-md-offset-1','type' => 'submit'])!!}
+
+                        </div>
+                    </div>
+                    {!!Form::close()!!}
+                </div>
+            </div>
         </div>
     </div>
 @endif

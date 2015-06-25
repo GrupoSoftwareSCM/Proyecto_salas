@@ -186,7 +186,13 @@ class AdmUserController extends Controller {
 
     public function ModifFacult()
     {
-        return view('Administrador.modificarAdm');
+        $Facultad = Facultad::lists('nombre','id_facultades');
+        return view('Administrador.modificarAdm',array(
+            'Facultad' => $Facultad,
+            'facultad_select' => null,
+            'error' => null,
+            'mensaje' => null
+        ));
     }
 
     public function ModifDepto()
