@@ -186,13 +186,33 @@ class AdmUserController extends Controller {
 
     public function ModifFacult()
     {
+        $input = Request::all();
         $Facultad = Facultad::lists('nombre','id_facultades');
-        return view('Administrador.modificarAdm',array(
-            'Facultad' => $Facultad,
-            'facultad_select' => null,
-            'error' => null,
-            'mensaje' => null
-        ));
+
+        if($input == null){
+            return view('Administrador.modificarAdm',array(
+                'Facultad' => $Facultad,
+                'facultad_select' => null,
+                'datos_facultad' => null,
+                'nombre_campus' => null,
+                'error' => null,
+                'mensaje' => null
+            ));
+        }
+        else{
+            $datos_facultad = Facultad::find($input['id_facultad']);
+            $campus = Campus::find($datos_facultad['campus_id']);
+
+
+            return view('Administrador.modificarAdm',array(
+                'Facultad' => $Facultad,
+                'facultad_select' => $input['id_facultad'],
+                'datos_facultad' => $datos_facultad,
+                'nombre_campus' => $campus['nombre'],
+                'error' => null,
+                'mensaje' => null
+            ));
+        }
     }
 
     public function ModifDepto()
@@ -367,7 +387,6 @@ class AdmUserController extends Controller {
 	public function updateCamps($id = null)
 	{
         $input = Request::all();
-        $Campus = Campus::lists('nombre','id_campus');
 
 
         $campus = Campus::find($input['id_campus']);
@@ -381,14 +400,39 @@ class AdmUserController extends Controller {
 
         $campus->save();
 
+        $Campus = Campus::lists('nombre','id_campus');
+
         return view('Administrador.modificarAdm', array(
         'Campus' => $Campus,
         'datos_campus' => null,
         'error' => null,
-        'mensaje' => null
+        'mensaje' => 'Campus actualizado correctamente'
     ));
 
 	}
+
+    public function updateFacult($id = null)
+    {
+        $input = Request::all();
+
+        $Facultad = Facultad::find($input['id_facultad']);
+
+        $Facultad->nombre = (string)$input['Nombre_facultad'];
+        $Facultad->descripcion = (string)$input['Descripcion_facultad'];
+
+        $Facultad->save();
+
+        $facultad = Facultad::lists('nombre','id_facultades');
+
+        return view('Administrador.modificarAdm',array(
+            'Facultad' => $facultad,
+            'facultad_select' => null,
+            'datos_facultad' => null,
+            'nombre_campus' => null,
+            'error' => null,
+            'mensaje' => 'Facultad actualizada correctamente'
+        ));
+    }
 
 	/**
 	 * Remove the specified resource from storage.

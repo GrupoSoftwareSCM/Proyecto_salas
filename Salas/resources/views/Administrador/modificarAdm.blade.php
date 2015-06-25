@@ -16,6 +16,15 @@
     <div class="panel panel-success">
         <div class="panel-body">
             <div class="row">
+                @if($mensaje != null)
+                    <div class="row">
+                        <div class="alert alert-success fade in col-md-8 col-md-offset-2">
+                            <a class= "close" href="#" data-dismiss="alert">x</a>
+                            <strong>Felicidades </strong>
+                            {{$mensaje}}
+                        </div>
+                    </div>
+                @endif
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12">
@@ -91,11 +100,20 @@
 @endif
 
 <!--	MODIFICAR FACULTAD	-->
-@if($_SERVER['REQUEST_URI'] == "/adm/modif/Facultad")
+@if($_SERVER['REQUEST_URI'] == "/adm/modif/Facultad" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultads")
     <div class="panel panel-success">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-12">
+                    @if($mensaje != null)
+                        <div class="row">
+                            <div class="alert alert-success fade in col-md-8 col-md-offset-2">
+                                <a class= "close" href="#" data-dismiss="alert">x</a>
+                                <strong>Felicidades </strong>
+                                {{$mensaje}}
+                            </div>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-12">
                             <div class="alert alert-info">
@@ -109,10 +127,10 @@
                         <div class="col-md-12">
                             @if($facultad_select == null)
                                 {!!Form::label('id_facultad','Seleccione Facultad',['class' => 'col-md-3'])!!}
-                                {!!Form::select('id_faculad',$Facultad,'',['class' => 'col-md-3'])!!}
+                                {!!Form::select('id_facultad',$Facultad,'',['class' => 'col-md-3'])!!}
                             @else
                                 {!!Form::label('id_facultad','Seleccione Facultad',['class' => 'col-md-3'])!!}
-                                {!!Form::select('id_faculad',$Facultad,$facultad_select,['class' => 'col-md-3'])!!}
+                                {!!Form::select('id_facultad',$Facultad,$facultad_select,['class' => 'col-md-3'])!!}
                             @endif
 
                             {!!Form::button('Generar',['class' => 'btn btn-danger col-md-3 col-md-offset-1','type' => 'submit'])!!}
@@ -120,6 +138,33 @@
                         </div>
                     </div>
                     {!!Form::close()!!}
+                    @if($datos_facultad != null)
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <strong>Informacion!</strong> <br/>
+                                    Ahora usted puede modificar la facultad del campus <b>{{$nombre_campus}}</b> elegida<br/>
+                                </div>
+                            </div>
+                        </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                {!!Form::open(['url' => 'adm/modif/Facultads'])!!}
+
+                                    {!!Form::label('Nombre_facultad','Nombre Facultad',['class' => 'col-md-3'])!!}
+                                    {!!Form::text('Nombre_facultad','',['class' => 'col-md-3','placeholder' => $datos_facultad['nombre']])!!}
+
+                                    {!!Form::label('descripcion_facultad','Descripcion',['class' => 'col-md-3'])!!}
+                                    {!!Form::textarea('Descripcion_facultad','',['class' => 'col-md-3','rows' => '3','placeholder' => $datos_facultad['descripcion']])!!}
+
+                                    {!!Form::button('Actualizar',['class' => 'btn btn-danger col-md-3 col-md-offset-4','type' => 'submit'])!!}
+                                    {!!Form::hidden('id_facultad',$datos_facultad['id_facultades'])!!}
+
+                                {!!Form::close()!!}
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

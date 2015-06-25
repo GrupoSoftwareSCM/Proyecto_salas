@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Campus;
 
 class Facultad extends Model {
 
@@ -42,5 +43,6 @@ class Facultad extends Model {
 	{
 		return $this->belongsTo('app\Models\Campus');
 	}
+
 
 }
