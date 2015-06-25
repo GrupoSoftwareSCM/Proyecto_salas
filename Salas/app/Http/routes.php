@@ -54,11 +54,19 @@ Route::get('adm',         'Administrador\AdmUserController@index');
 Route::get('adm/modif',   'Administrador\AdmUserController@index');
     //SUB-RUTAS PARA Modificar
 	Route::get('adm/modif/perfuser','Administrador\AdmUserController@Modifperfuser');
+
 	Route::get('adm/modif/camp',    'Administrador\AdmUserController@Modifcamp');
+    Route::post('adm/modif/camp',    'Administrador\AdmUserController@Modifcamp');
+    Route::post('adm/modif/camps',    'Administrador\AdmUserController@updateCamps');
+
     Route::get('adm/modif/Facultad', 'Administrador\AdmUserController@ModifFacult');
+
 	Route::get('adm/modif/encamp',  'Administrador\AdmUserController@Modifencamp');
+
     Route::get('adm/modif/Depto', 'Administrador\AdmUserController@ModifDepto');
+
     Route::get('adm/modif/Escuela', 'Administrador\AdmUserController@ModifEscuela');
+
 
 Route::get('adm/Exportar','Administrador\AdmUserController@index');
 Route::get('adm/crear',   'Administrador\AdmUserController@index');

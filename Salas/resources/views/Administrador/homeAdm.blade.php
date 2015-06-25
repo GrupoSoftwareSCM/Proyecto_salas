@@ -112,7 +112,7 @@
 
 
 				<!--	MENU PARA MODIFICAR	-->
-				@if($_SERVER['REQUEST_URI'] == "/adm/modif/Escuela" || $_SERVER['REQUEST_URI'] == "/adm/modif/Depto" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultad" || $_SERVER['REQUEST_URI'] == "/adm/modif" || $_SERVER['REQUEST_URI'] == "/adm/modif/perfuser" || $_SERVER['REQUEST_URI'] == "/adm/modif/camp" || $_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
+				@if($_SERVER['REQUEST_URI'] == "/adm/modif/camps" || $_SERVER['REQUEST_URI'] == "/adm/modif/Escuela" || $_SERVER['REQUEST_URI'] == "/adm/modif/Depto" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultad" || $_SERVER['REQUEST_URI'] == "/adm/modif" || $_SERVER['REQUEST_URI'] == "/adm/modif/perfuser" || $_SERVER['REQUEST_URI'] == "/adm/modif/camp" || $_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
                     <div class="col-md-2 col-md-offset-1">
                         <div class="panel panel-info">
                             <div class="panel-heading">Menú</div>
@@ -143,7 +143,7 @@
                                                 <li><a href="{{url('adm/modif/Depto')}}">Modificar Departamento</a></li>
                                             @endif
 
-                                            @if($_SERVER['REQUEST_URI'] == "/adm/modif/Escuela")
+                                            @if($_SERVER['REQUEST_URI'] == "/adm/modif/camps" || $_SERVER['REQUEST_URI'] == "/adm/modif/Escuela")
                                                 <li class="active"><a href="{{url('adm/modif/Escuela')}}">Modificar Escuela</a></li>
                                             @else
                                                 <li><a href="{{url('adm/modif/Escuela')}}">Modificar Escuela</a></li>

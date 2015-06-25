@@ -154,7 +154,29 @@ class AdmUserController extends Controller {
 
 	public function Modifcamp()
 	{
-		return view('Administrador.modificarAdm');
+        $input = Request::all();
+        $Campus = Campus::lists('nombre','id_campus');
+        if($input == null){
+            return view('Administrador.modificarAdm', array(
+                'Campus' => $Campus,
+                'datos_campus' => null,
+                'campus_select' => null,
+                'error' => null,
+                'mensaje' => null
+            ));
+        }
+        else{
+            //return dd($datos_campus);
+            $datos_campus = Campus::find($input['id_campus']); // FIND BUSCA POR ID
+            return view('Administrador.modificarAdm', array(
+                'Campus' => $Campus,
+                'datos_campus' => $datos_campus,
+                'campus_select' => $input['id_campus'],
+                'error' => null,
+                'mensaje' => null
+            ));
+        }
+
 	}
 
 	public function Modifencamp()
@@ -336,9 +358,30 @@ class AdmUserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function updateCamps($id = null)
 	{
-		//
+        $input = Request::all();
+        $Campus = Campus::lists('nombre','id_campus');
+
+
+        $campus = Campus::find($input['id_campus']);
+
+        $campus->nombre = $input['Nombre_campus'];
+        $campus->direccion = $input['Direccion'];
+        $campus->latitud = $input['latitud'];
+        $campus->longitud = $input['longitud'];
+        $campus->descripcion = $input['Descripcion_campus'];
+        $campus->rut_encargado = $input['Rut_Encargado'];
+
+        $campus->save();
+
+        return view('Administrador.modificarAdm', array(
+        'Campus' => $Campus,
+        'datos_campus' => null,
+        'error' => null,
+        'mensaje' => null
+    ));
+
 	}
 
 	/**
