@@ -217,12 +217,63 @@ class AdmUserController extends Controller {
 
     public function ModifDepto()
     {
-        return view('Administrador.modificarAdm');
+        $input = Request::all();
+        $Depto = Departamento::lists('nombre','id_departamentos');
+
+        if($input == null){
+            return view('Administrador.modificarAdm',array(
+                'Depto' => $Depto,
+                'depto_select' => null,
+                'datos_depto' => null,
+                'nombre_facultad' => null,
+                'error' => null,
+                'mensaje' => null
+            ));
+        }
+        else{
+            $datos_depto = Departamento::find($input['id_Depto']);
+            $nombre_facultad = Facultad::find($datos_depto['facultad_id']);
+
+            return view('Administrador.modificarAdm',array(
+                'Depto' => $Depto,
+                'depto_select' => $input['id_Depto'],
+                'datos_depto' => $datos_depto,
+                'nombre_facultad' => $nombre_facultad['nombre'],
+                'error' => null,
+                'mensaje' => null
+            ));
+        }
     }
 
     public function ModifEscuela()
     {
-        return view('Administrador.modificarAdm');
+        $input = Request::all();
+        $escuela = Escuela::lists('nombre','id_escuelas');
+
+        if($input == null){
+            return view('Administrador.modificarAdm',array(
+                'escuela' => $escuela,
+                'escuela_select' => null,
+                'datos_escuela' => null,
+                'nombre_depto' => null,
+                'error' => null,
+                'mensaje' => null
+            ));
+        }
+        else{
+            $datos_escuela = Escuela::find($input['id_escuela']);
+            $nombre_depto = Departamento::find($datos_escuela['departamento_id']);
+
+            return view('Administrador.modificarAdm',array(
+                'escuela' => $escuela,
+                'escuela_select' => $input['id_escuela'],
+                'datos_escuela' => $datos_escuela,
+                'nombre_depto' => $nombre_depto['nombre'],
+                'error' => null,
+                'mensaje' => null
+            ));
+        }
+
     }
 	/**
 	 * Show the form for creating a new resource.
@@ -284,7 +335,7 @@ class AdmUserController extends Controller {
             //ACA TIENE QUE IR UN SAVE() PERO ME FALTA ENLAZAR FK DE CAMPUS
             $Facultad->campus_id = $input['id_campus'];
 
-            //$Facultad->save();
+            $Facultad->save();
         }
 
         return view('Administrador.crearAdm',array(
@@ -310,7 +361,7 @@ class AdmUserController extends Controller {
 
             $depto->facultad_id = $input['id_facultad'];
 
-            //$depto->save();
+            $depto->save();
 
         }
 
@@ -431,6 +482,50 @@ class AdmUserController extends Controller {
             'nombre_campus' => null,
             'error' => null,
             'mensaje' => 'Facultad actualizada correctamente'
+        ));
+    }
+
+    public function updateDepto($id = null)
+    {
+        $input = Request::all();
+
+        $Departamento = Departamento::find($input['id_Depto']);
+
+        $Departamento->nombre = (string)$input['Nombre_depto'];
+        $Departamento->descripcion = (string)$input['Descripcion_depto'];
+
+        $Departamento->save();
+
+        $Depto = Departamento::lists('nombre','id_departamentos');
+        return view('Administrador.modificarAdm',array(
+            'Depto' => $Depto,
+            'depto_select' => $input['id_Depto'],
+            'datos_depto' => null,
+            'nombre_facultad' => null,
+            'error' => null,
+            'mensaje' => 'Departamentos actualizada correctamente'
+        ));
+    }
+
+    public function updateEscuela($id = null)
+    {
+        $input = Request::all();
+
+        $Escuela = Escuela::find($input['id_escuela']);
+
+        $Escuela->nombre = (string)$input['Nombre_escuela'];
+        $Escuela->descripcion = (string)$input['Descripcion_escuela'];
+
+        $Escuela->save();
+
+        $escuela = Escuela::lists('nombre','id_escuelas');
+        return view('Administrador.modificarAdm',array(
+            'escuela' => $escuela,
+            'escuela_select' => $input['id_escuela'],
+            'datos_escuela' => null,
+            'nombre_depto' => null,
+            'error' => null,
+            'mensaje' => 'Escuela actualizada correctamente'
         ));
     }
 

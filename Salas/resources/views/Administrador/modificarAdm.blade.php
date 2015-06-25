@@ -144,7 +144,7 @@
                             <div class="col-md-12">
                                 <div class="alert alert-info">
                                     <strong>Informacion!</strong> <br/>
-                                    Ahora usted puede modificar la facultad del campus <b>{{$nombre_campus}}</b> elegida<br/>
+                                    Ahora usted puede modificar la facultad <b>{{$datos_facultad['nombre']}}</b> del campus <b>{{$nombre_campus}}</b> elegida<br/>
                                 </div>
                             </div>
                         </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
@@ -172,17 +172,148 @@
 @endif
 
 <!--	MODIFICAR DEPARTAMENTO	-->
-@if($_SERVER['REQUEST_URI'] == "/adm/modif/Depto")
+@if($_SERVER['REQUEST_URI'] == "/adm/modif/Depto" || $_SERVER['REQUEST_URI'] == "/adm/modif/Deptos")
     <div class="panel panel-success">
         <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @if($mensaje != null)
+                        <div class="row">
+                            <div class="alert alert-success fade in col-md-8 col-md-offset-2">
+                                <a class= "close" href="#" data-dismiss="alert">x</a>
+                                <strong>Felicidades </strong>
+                                {{$mensaje}}
+                            </div>
+                        </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <strong>Informacion!</strong> <br/>
+                                Seleccione el Departamento en el cual usted quira realizar modificaciones<br/>
+                            </div>
+                        </div>
+                    </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
+                    {!!Form::open(['url' => 'adm/modif/Depto'])!!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if($depto_select == null)
+                                {!!Form::label('id_facultad','Seleccione Departamento',['class' => 'col-md-3'])!!}
+                                {!!Form::select('id_Depto',$Depto,'',['class' => 'col-md-3'])!!}
+                            @else
+                                {!!Form::label('id_facultad','Seleccione Departamento',['class' => 'col-md-3'])!!}
+                                {!!Form::select('id_Depto',$Depto,$depto_select,['class' => 'col-md-3'])!!}
+                            @endif
+
+                            {!!Form::button('Generar',['class' => 'btn btn-danger col-md-3 col-md-offset-1','type' => 'submit'])!!}
+
+                        </div>
+                    </div>
+                    {!!Form::close()!!}
+                    @if($datos_depto != null)
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <strong>Informacion!</strong> <br/>
+                                    Ahora usted puede modificar el Departamento <b>{{$datos_depto['nombre']}}</b> de la facultad <b>{{$nombre_facultad}}</b><br/>
+                                </div>
+                            </div>
+                        </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                {!!Form::open(['url' => 'adm/modif/Deptos'])!!}
+
+                                {!!Form::label('Nombre_depto','Nombre Departamento',['class' => 'col-md-3'])!!}
+                                {!!Form::text('Nombre_depto','',['class' => 'col-md-3','placeholder' => $datos_depto['nombre']])!!}
+
+                                {!!Form::label('descripcion_depto','Descripcion',['class' => 'col-md-3'])!!}
+                                {!!Form::textarea('Descripcion_depto','',['class' => 'col-md-3','rows' => '3','placeholder' => $datos_depto['descripcion']])!!}
+
+                                {!!Form::button('Actualizar',['class' => 'btn btn-danger col-md-3 col-md-offset-4','type' => 'submit'])!!}
+                                {!!Form::hidden('id_Depto',$datos_depto['id_departamentos'])!!}
+
+                                {!!Form::close()!!}
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 @endif
 
 <!--	MODIFICAR ESCUELA	-->
-@if($_SERVER['REQUEST_URI'] == "/adm/modif/Escuela")
+@if($_SERVER['REQUEST_URI'] == "/adm/modif/Escuela" || $_SERVER['REQUEST_URI'] == "/adm/modif/Escuelas")
     <div class="panel panel-success">
         <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @if($mensaje != null)
+                        <div class="row">
+                            <div class="alert alert-success fade in col-md-8 col-md-offset-2">
+                                <a class= "close" href="#" data-dismiss="alert">x</a>
+                                <strong>Felicidades </strong>
+                                {{$mensaje}}
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <strong>Informacion!</strong> <br/>
+                                Seleccione la Escuela en el cual usted quira realizar modificaciones<br/>
+                            </div>
+                        </div>
+                    </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
+
+                    {!!Form::open(['url' => 'adm/modif/Escuela'])!!}
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if($escuela_select == null)
+                                    {!!Form::label('id_escuela','Seleccione Escuela',['class' => 'col-md-3'])!!}
+                                    {!!Form::select('id_escuela',$escuela,'',['class' => 'col-md-3'])!!}
+                                @else
+                                    {!!Form::label('id_escuela','Seleccione Escuela',['class' => 'col-md-3'])!!}
+                                    {!!Form::select('id_escuela',$escuela,$escuela_select,['class' => 'col-md-3'])!!}
+                                @endif
+
+                                {!!Form::button('Generar',['class' => 'btn btn-danger col-md-3 col-md-offset-1','type' => 'submit'])!!}
+
+                            </div>
+                        </div>
+                    {!!Form::close()!!}
+
+                        @if($datos_escuela != null)
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-info">
+                                        <strong>Informacion!</strong> <br/>
+                                        Ahora usted puede modificar la Escuela de <b>{{$datos_escuela['nombre']}}</b> del Departamento de <b>{{$nombre_depto}}</b><br/>
+                                    </div>
+                                </div>
+                            </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {!!Form::open(['url' => 'adm/modif/Escuelas'])!!}
+
+                                        {!!Form::label('Nombre_escuela','Nombre Escuela',['class' => 'col-md-3'])!!}
+                                        {!!Form::text('Nombre_escuela','',['class' => 'col-md-3','placeholder' => $datos_escuela['nombre']])!!}
+
+                                        {!!Form::label('descripcion_escuela','Descripcion',['class' => 'col-md-3'])!!}
+                                        {!!Form::textarea('Descripcion_escuela','',['class' => 'col-md-3','rows' => '3','placeholder' => $datos_escuela['descripcion']])!!}
+
+                                        {!!Form::button('Actualizar',['class' => 'btn btn-danger col-md-3 col-md-offset-4','type' => 'submit'])!!}
+                                        {!!Form::hidden('id_escuela',$datos_escuela['id_escuelas'])!!}
+
+                                    {!!Form::close()!!}
+                                </div>
+                            </div>
+                        @endif
+                </div>
+            </div>
         </div>
     </div>
 @endif
