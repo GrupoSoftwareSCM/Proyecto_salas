@@ -25,6 +25,7 @@ Route::get('encar','Encargado\EncarUserController@index');
 Route::get('encar/asig','Encargado\EncarUserController@index');
 Route::get('encar/modif','Encargado\EncarUserController@Modificar');
 Route::get('encar/modif/salas','Encargado\SalasController@show');
+Route::get('encar/modif/salas/{id}','Encargado\SalasController@show');
 Route::get('encar/ingre','Encargado\EncarUserController@index');
 Route::get('encar/ingre/cursos','Encargado\EncarUserController@cursos');
 Route::get('encar/ingre/asig','Encargado\EncarUserController@asig');
