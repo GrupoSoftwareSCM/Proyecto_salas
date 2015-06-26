@@ -2,14 +2,11 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Sala;
-use App\Models\Campus;
+use App\Models\Asignatura;
+use App\Models\Departamento;
 //use Illuminate\Http\Request;
-use Request;
-
-
-
-class SalasController extends Controller {
+use Illuminate\Support\Facades\Request;
+class asigController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -18,28 +15,19 @@ class SalasController extends Controller {
 	 */
 	public function index()
 	{
-		$salas = Sala::paginate(); // Cambiar esto, si la db es muy grande queda la escoba
-		return view('Encargado.homeEncar',array(
-                'Salas' => $salas
-            ));
-			
+		$asignatura = Asignatura::with('departamento')->paginate();
+
+		return view('Encargado.modifAsig',compact('asignatura'));
 	}
-  /*
-return view('Administrador.CampusCrud.listaCampus', compact('campus'));
-
-
-$salas = Salas::where('campus_id','=','la id del campus')->paginate();
-  */
-
 
 	/**
 	 * Show the form for creating a new resource.
-	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+		$departamento=Departamento::lists('nombre','id_departamentos');
+		return view('Encargado.modifAsig')->with('departamento',$departamento);
 	}
 
 	/**
@@ -49,7 +37,10 @@ $salas = Salas::where('campus_id','=','la id del campus')->paginate();
 	 */
 	public function store()
 	{
-		//
+		$data= Request::all();         //obtenos los datos y luego es llamado abajo
+        $asigna = Asignatura::create($data);
+        $asigna->save();
+        return redirect()->route('asigController.index');
 	}
 
 	/**
@@ -60,9 +51,7 @@ $salas = Salas::where('campus_id','=','la id del campus')->paginate();
 	 */
 	public function show($id)
 	{
-		$campus = Campus::find($id);
-		$salas = $campus->salas()->paginate();
-        return view('Encargado.modifSalas',compact('salas'));
+		//
 	}
 
 	/**

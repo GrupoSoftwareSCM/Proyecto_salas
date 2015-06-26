@@ -85,7 +85,7 @@
 										<ul class="dropdown-menu">
 											<li><a href="{{url('/encar/ingre/asig/agre')}}">Agregar</a></li>
 											<li><a href="{{url('/encar/ingre/asig/modi')}}">Modificar</a></li>
-											<li><a href="{{url('/encar/ingre/asig/elim')}}">Eliminar</a></li>
+										
 
 										</ul>
 									</li>
@@ -98,7 +98,7 @@
 										<ul class="dropdown-menu">
 											<li><a href="{{url('/encar/ingre/asig/agre')}}">Agregar</a></li>
 											<li><a href="{{url('/encar/ingre/asig/modi')}}">Modificar</a></li>
-											<li><a href="{{url('/encar/ingre/asig/elim')}}">Eliminar</a></li>
+																																																																																																																																																																												
 										</ul>
 									</li>
 								@endif

@@ -27,7 +27,7 @@ class Asignatura extends Model {
 	*/
 	public function curso()
 	{
-		return $this->hasMany('app\Models\Curso','id_asignaturas');
+		return $this->hasMany('App\Models\Curso','id_asignaturas');
 	}
 
 
@@ -39,7 +39,7 @@ class Asignatura extends Model {
     */
 	public function departamento()
 	{
-		return $this->belongsTo('app\Models\Departamento');
+		return $this->belongsTo('App\Models\Departamento');
 	}
 
 }
