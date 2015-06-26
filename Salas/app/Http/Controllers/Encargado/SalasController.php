@@ -3,7 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Sala;
-use Illuminate\Http\Request;
+use App\Models\Campus;
+//use Illuminate\Http\Request;
+use Request;
+
+
 
 class SalasController extends Controller {
 
@@ -15,11 +19,18 @@ class SalasController extends Controller {
 	public function index()
 	{
 		$salas = Sala::paginate(); // Cambiar esto, si la db es muy grande queda la escoba
-		return view("Encargado.homeEncar",array(
+		return view('Encargado.homeEncar',array(
                 'Salas' => $salas
             ));
 			
 	}
+  /*
+return view('Administrador.CampusCrud.listaCampus', compact('campus'));
+
+
+$salas = Salas::where('campus_id','=','la id del campus')->paginate();
+  */
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -49,7 +60,8 @@ class SalasController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$salas= Sala::where('campus_id','=',$id)->paginate();
+        return view('Encargado.modifSalas',compact('salas'));
 	}
 
 	/**

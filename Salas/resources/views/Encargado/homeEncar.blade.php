@@ -31,78 +31,18 @@
                                     {!!Form::label('nombre_campus','Ingrese campus',['class' => 'col-md-2'])!!}
                                     {!!Form::select('nombre_campus',$array,null,['class' => 'col-md-3'])!!}
                                     <br><br><br>
-                                    <div class="panel-heading">SALAS</div>
-                                    <div class="panel-body">
-                                        <table class="table table-striped">
-                                            <tr>
-                                              <th>#</th>
-                                              <th>Nombre</th>
-                                              <th>Capacidad</th>
-                                              <th>Acciones</th>
-                                            </tr>
-
-                                           @foreach($Salas as $salas)
-                                            <tr>
-                                                <td>{{$salas-> id_salas }}</td>
-                                                <td>{{$salas-> nombre}}</td>
-                                                <td>{{$salas-> descripcion}}</td>
-                                                <td><a href="">Editar</td>
-
-                                            </tr>
-                                           @endforeach
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-7">
                             <br>
-                          <!--  {!!Form::button('Modificar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
-                      -->  </div>
+                            {!!Form::button('Siguiente',['class' => 'btn btn-primary col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        </div>
                         {!!Form::close()!!}
                     </div>
-                </div>
+                </div> 
 
-				<!--	<div class="row">
-						 <br><br>
-						
-						<div class="col-md-8 col-md-offset-2"> 
-			            <form role="form" method="POST">
-                        <div class="form-group">
-                        <div class="col-md-8"><b>SALA</b></div>
-                         <div class="col-md-8"> <datalist id="salas">
-                            <option value="M1....">
-                            <option value="M2....">
-                            <option value="M3....">
-                            <option value="M4....">
-                         </datalist>
-                    <input name="SALA" list="salas">
-                        </div>
-                        <br><br><br>
-
-                        </div>
-                        <div class="form-group">
-                        <div class="col-md-8"><label for="date">CAPACIDAD</label></div>
-                        <div class="col-md-8"><input type="number" value="1" min="1" max="50"></div>
-                        </div>
-                        <br><br><br><br>
-                        <div class="form-group">
- 						<div class="col-md-8"><label for="date">NOMBRE</label></div>
-						<div class="col-md-8"><input type="text"</div>
-						</div>
-						</div>
-						<br>
-						<br><br>
-						 <div class="btn-group">
-						 <br><br><br>
-                         <div class="col-md-8"><button type="button" class="btn btn-primary">ACEPTAR</button>
-
-                        </div>
-						</form>
-						
-					</div>
-				@endif
-				-->
+@endif
                     <!-- MENU INGRESAR DATOS ACADEMICOS -->
 				@if($_SERVER['REQUEST_URI'] == "/encar/ingre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu/agre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu/modi" || $_SERVER['REQUEST_URI'] == "/encar/ingre/estu/elim" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos/agre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos/modi" || $_SERVER['REQUEST_URI'] == "/encar/ingre/cursos/elim" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig/agre" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig/modi" || $_SERVER['REQUEST_URI'] == "/encar/ingre/asig/elim")
                                	<div class="panel-body">

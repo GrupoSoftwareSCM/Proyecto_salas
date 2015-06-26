@@ -77,8 +77,7 @@ class EncarUserController extends Controller {
     
         if($input == null){
             return view("Encargado.homeEncar",array(
-                'Campus' => $campus
-               
+                'Campus' => $campus  
             ));
         }
         else{
