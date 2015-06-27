@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group"> <!-- Esto no me funciona -->
                          {!! Form::label('Nombre','Pertenece a departamento')!!}
-                         {!! Form::select('departamento_id',$departamento)!!}
+                         {!! Form::select('departamento_id,$departamento)!!}
                          </div>
                          <button type="submit" class="btn btn-success">Crear</button>
                   
@@ -42,9 +42,9 @@
             </div>  
         </div>     
 @endif
-@if($_SERVER['REQUEST_URI'] == "/encar/ingre/asig/modi")
 
-                         {!!Form::open(['url' => 'encar/ingre/asig/modi'])!!}
+
+                         {!!Form::open(['route' => 'encar.ingre.asig.agre.index', 'method' => 'GET'])!!}
                                <div id="dataTables-example_wrapper" 
                                 class="dataTables_wrapper form-inline dt-bootstrap no-footer"
   								<div class="panel-heading">Asignaturas</div>
@@ -71,12 +71,11 @@
                                            @endforeach
                                         </table>
                                         {!! $asignatura->render()!!}
-
                                     </div>
                                     </div>
 {!!Form::close()!!}
 
-@endif
+
 @if($_SERVER['REQUEST_URI'] == "/encar/ingre/asig/elim")
     <div class="row">
 		<div class="col-md-8 col-md-offset-2"> 
