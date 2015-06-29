@@ -30,8 +30,6 @@ class Asignatura extends Model {
 		return $this->hasMany('App\Models\Curso','id_asignaturas');
 	}
 
-
-
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:
 	|

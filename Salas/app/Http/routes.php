@@ -22,14 +22,13 @@ Route::get('doc/salas','Docente\DocUserController@clases');
 
 //RUTAS PARA EL ENCARGADO DE CAMPUS
 Route::get('encar','Encargado\EncarUserController@index');
-Route::get('encar/asig','Encargado\EncarUserController@index');
+//Route::get('encar/asig','Encargado\EncarUserController@index');
 //Route::get('encar/modif','Encargado\EncarUserController@Modificar');
 //Route::get('encar/modif/salas','Encargado\SalasController@show');
 //Route::get('encar/modif/salas/{id}','Encargado\SalasController@show');
 Route::get('encar/ingre','Encargado\EncarUserController@index');
 Route::get('encar/ingre/cursos','Encargado\EncarUserController@cursos');
-Route::get('encar/ingre/asig','Encargado\EncarUserController@asig');
-Route::get('encar/ingre/estu','Encargado\EncarUserController@estu');
+
       //SUB-RUTAS PARA EL INGRESO DE DATOS ACADEMICOS
       Route::get('/encar/ingre/cursos/agre','Encargado\EncarUserController@agrecurso');
     //  Route::get('/encar/ingre/cursos/modi','Encargado\EncarUserController@modicurso');
@@ -106,8 +105,11 @@ Route::controllers([
 
 //PROBANDO RESOURCE PARA ASIGNATURAS
 
-Route::resource('encar/ingre/asig/modi','Encargado\asigController');
-Route::resource('encar/ingre/asig/agre','Encargado\asigController');
+Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
+    Route::resource('asig/modi','asigController');
+
+});
+
 
 
 

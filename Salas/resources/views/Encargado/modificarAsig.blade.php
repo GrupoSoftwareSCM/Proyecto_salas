@@ -1,0 +1,45 @@
+@extends('Encargado.homeEncar')
+
+@section('content')
+
+
+{!!Form::open(['route' => 'encar.asig.modi.index', 'method' => 'GET'])!!}
+                                
+                               <div id="dataTables-example_wrapper" 
+                                class="dataTables_wrapper form-inline dt-bootstrap no-footer"
+  								<div class="panel-heading">Asignaturas</div>
+                                    <div class="panel-body">
+                                    <p>
+                                    	<a class="btn btn-info" href="modi/create" role="button">
+
+                                    	Nueva asignatura</a>
+                                    </p>
+                                    <p>Hay {{ $asignatura->total() }} Registros</p>
+                                        <table class="table table-striped">
+                                            <tr>
+                                              <th>#</th>
+                                              <th>Nombre</th>
+                                              <th>Codigo</th>
+                                              <th>Pertenece a departamento</th>
+                                              <th>Accion</th>
+                                              <th>Accion</th>
+                                            </tr>
+
+                                           @foreach($asignatura as $Asig)
+                                            <tr>
+                                                <td>{{$Asig-> id_asignaturas }}</td>
+                                                <td>{{$Asig-> nombre}}</td>
+                                                <td>{{$Asig-> codigo}}</td>
+                                                <td>{{$Asig-> departamento->nombre}}</td>
+                                                <td><a href="">Editar</td><td><a href="">Eliminar</td>
+                                                 
+                                            </tr>
+                                           @endforeach
+                                        </table>
+                                        {!! $asignatura->render()!!}
+                                    </div>
+                                    </div>
+                                    </div>
+                                  
+{!!Form::close()!!}
+@endsection

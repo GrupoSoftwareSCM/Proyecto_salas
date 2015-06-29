@@ -5,7 +5,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Asignatura;
 use App\Models\Departamento;
 //use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Request;
+//use Illuminate\Support\Facades\Request;
+use Request;
+
+
 class asigController extends Controller {
 
 	/**
@@ -15,33 +18,55 @@ class asigController extends Controller {
 	 */
 	public function index()
 	{
+		$asignatura = Asignatura::paginate();
+
+		return view('Encargado.modificarAsig',compact('asignatura'));
+	}
+
+    public function create()
+	{
+		$departamento=Departamento::paginate();
+		return view('Encargado.agregarSalas',compact('departamento'));
+	}
+		public function store()
+	{
+		$data= Request::all();  
+		$asigna = Asignatura::create($data);
+		$asigna->save();
+		\Redirect::route('Encargado.modificarAsig');
+		
+	}
+/*
+public function index()
+	{
 		$asignatura = Asignatura::with('departamento')->paginate();
 
 		return view('Encargado.modifAsig',compact('asignatura'));
 	}
 
+*/
 	/**
 	 * Show the form for creating a new resource.
 	 * @return Response
 	 */
-	public function create()
+	/*public function create()
 	{
 		$departamento=Departamento::lists('nombre','id_departamentos');
 		return view('Encargado.modifAsig')->with('departamento',$departamento);
 	}
-
+*/
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store()
+	/*public function store()
 	{
-		$data= Request::all();         //obtenos los datos y luego es llamado abajo
+		$data= Request::all();     																										    //obtenos los datos y luego es llamado abajo
         $asigna = Asignatura::create($data);
         $asigna->save();
         return redirect()->route('asigController.index');
-	}
+	}*/
 
 	/**
 	 * Display the specified resource.

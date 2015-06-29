@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group"> <!-- Esto no me funciona -->
                          {!! Form::label('Nombre','Pertenece a departamento')!!}
-                         {!! Form::select('departamento_id,$departamento)!!}
+                         {!! Form::select('id_departamentos,$departamento)!!}
                          </div>
                          <button type="submit" class="btn btn-success">Crear</button>
                   

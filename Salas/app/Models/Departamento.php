@@ -29,22 +29,22 @@ class Departamento extends Model {
 
 	public function escuela() //RALACION 1:N
 	{
-		return $this->hasMany('app\Models\Escuela','id_departamentos');
+		return $this->hasMany('App\Models\Escuela','id_departamentos');
 	}
 
 	public function docente() //RALACION 1:N
 	{
-		return $this->hasMany('app\Models\Docente','id_departamentos');
+		return $this->hasMany('App\Models\Docente','id_departamentos');
 	}
 
 	public function asignatura() //RALACION 1:N
 	{
-		return $this->hasMany('app\Models\Asignatura','id_departamentos');
+		return $this->hasMany('App\Models\Asignatura','id_departamentos');
 	}
 
 	public function funcionario() //RALACION 1:N
 	{
-		return $this->hasMany('app\Models\Funcionario','id_departamentos');
+		return $this->hasMany('App\Models\Funcionario','id_departamentos');
 	}
 
 	
