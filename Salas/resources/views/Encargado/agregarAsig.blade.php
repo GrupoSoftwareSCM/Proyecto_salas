@@ -32,8 +32,8 @@
                         </div>
                        
                          <div class="form-group"> <!-- Esto no me funciona -->
-                         {!! Form::label('depa','Pertenece a departamento')!!}
-                         {!! Form::select('depa',$array)!!}
+                         {!! Form::label('departamento_id','Pertenece a departamento')!!}
+                         {!! Form::select('departamento_id',$array)!!}
                          </div>
                         
                         <div>

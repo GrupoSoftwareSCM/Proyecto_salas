@@ -32,7 +32,7 @@ class asigController extends Controller {
 		$departamento=Departamento::paginate();
 		return view('Encargado.agregarAsig',compact('departamento'));
 	}
-		public function store()
+		/*public function store()
 	{
 		$data= Request::all();  
 		
@@ -50,7 +50,7 @@ class asigController extends Controller {
 		$asigna->save();
 		return redirect('encar/asig/modi');
 		
-	}
+	}*/
 
 	/**
 	 * Show the form for creating a new resource.
@@ -63,13 +63,13 @@ class asigController extends Controller {
 	 *
 	 * @return Response
 	 */
-	/*public function store()
+	public function store()
 	{
-		$data= Request::all();     																										    //obtenos los datos y luego es llamado abajo
+		$data= Request::only(['nombre','codigo','descripcion','departamento_id']);     																										    //obtenos los datos y luego es llamado abajo
         $asigna = Asignatura::create($data);
         $asigna->save();
-        return redirect()->route('asigController.index');
-	}*/
+        return redirect('encar/asig/modi');
+	}
 
 	/**
 	 * Display the specified resource.

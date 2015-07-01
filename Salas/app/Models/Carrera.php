@@ -27,7 +27,7 @@ class Carrera extends Model {
 	*/
 	public function estudiante()
 	{
-		return $this->hasMany('app\Models\Estudiante','id_carreras');
+		return $this->hasMany('App\Models\Estudiante','id_carreras');
 	}
 
 	/*
@@ -37,7 +37,7 @@ class Carrera extends Model {
     */
 	public function escuela()
 	{
-		return $this->belongsTo('app\Models\Escuela');
+		return $this->belongsTo('App\Models\Escuela');
 	}
 
 }

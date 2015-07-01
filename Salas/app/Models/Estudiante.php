@@ -28,16 +28,16 @@ class Estudiante extends Model {
 
     public function curso()
     {
-    	return $this->belongsToMany('app\Models\Cursos','app\Models\Asignatura_Cursada','id_estudiantes','id_cursos');
+    	return $this->belongsToMany('App\Models\Cursos','app\Models\Asignatura_Cursada','id_estudiantes','id_cursos');
     }
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:
 	|
     |            $this->belongsTo('tabla_padre');
     */
-	public function escuela() //RALACION 1:N
+	public function carrera() //RALACION 1:N
 	{
-		return $this->belongsTo('app\Models\Escuela');
+		return $this->belongsTo('App\Models\Carrera');
 	}
 
 
