@@ -22,7 +22,7 @@
                                               <th>Codigo</th>
                                               <th>Pertenece a departamento</th>
                                               <th>Accion</th>
-                                              <th>Accion</th>
+                                              
                                             </tr>
 
                                            @foreach($asignatura as $Asig)
@@ -31,8 +31,7 @@
                                                 <td>{{$Asig-> nombre}}</td>
                                                 <td>{{$Asig-> codigo}}</td>
                                                 <td>{{$Asig-> departamento->nombre}}</td>
-                                                <td><a href="">Editar</td><td><a href="">Eliminar</td>
-                                                 
+                                                <td><a href="{{ route('encar.asig.modi.edit', $Asig ) }}">Editar</td>      
                                             </tr>
                                            @endforeach
                                         </table>
@@ -42,4 +41,6 @@
                                     </div>
                                   
 {!!Form::close()!!}
+
 @endsection
+       

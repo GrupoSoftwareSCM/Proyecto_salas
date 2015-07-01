@@ -7,6 +7,10 @@ use App\Models\Departamento;
 //use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Request;
 use Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 
 class asigController extends Controller {
@@ -26,35 +30,34 @@ class asigController extends Controller {
     public function create()
 	{
 		$departamento=Departamento::paginate();
-		return view('Encargado.agregarSalas',compact('departamento'));
+		return view('Encargado.agregarAsig',compact('departamento'));
 	}
 		public function store()
 	{
 		$data= Request::all();  
-		$asigna = Asignatura::create($data);
+		
+		//dd($data);	
+		//$asigna = Asignatura::create($data);
+			
+		$asigna = new Asignatura();
+
+		$asigna->nombre = (string)$data['nombre'];
+		$asigna->codigo = (string)$data['codigo'];
+		$asigna->descripcion = (string)$data['descripcion'];
+
+		$asigna->departamento_id = (string)$data['depa'];
+
 		$asigna->save();
-		\Redirect::route('Encargado.modificarAsig');
+		return redirect('encar/asig/modi');
 		
 	}
-/*
-public function index()
-	{
-		$asignatura = Asignatura::with('departamento')->paginate();
 
-		return view('Encargado.modifAsig',compact('asignatura'));
-	}
-
-*/
 	/**
 	 * Show the form for creating a new resource.
 	 * @return Response
 	 */
-	/*public function create()
-	{
-		$departamento=Departamento::lists('nombre','id_departamentos');
-		return view('Encargado.modifAsig')->with('departamento',$departamento);
-	}
-*/
+
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -87,7 +90,9 @@ public function index()
 	 */
 	public function edit($id)
 	{
-		//
+		 $asig = Asignatura::findOrFail($id);
+		 $depa = Departamento::lists('nombre','id_departamentos');
+		return view('Encargado.editarAsig', compact('asig','depa'));
 	}
 
 	/**
@@ -98,7 +103,12 @@ public function index()
 	 */
 	public function update($id)
 	{
-		//
+		$asig = Asignatura::findOrFail($id);
+		$asig->fill(Request::all());
+		$asig->save();
+		
+		return redirect('encar/asig/modi');
+
 	}
 
 	/**
@@ -109,7 +119,10 @@ public function index()
 	 */
 	public function destroy($id)
 	{
-		//
+		$asig = Asignatura::find($id);
+		$asig->delete();
+		Session::flash('message', 'El curso '. $asig->nombre. ' fue eliminado');
+	    return redirect('encar/asig/modi');
 	}
 
 }
