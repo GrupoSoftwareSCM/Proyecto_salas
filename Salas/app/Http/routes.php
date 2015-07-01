@@ -101,7 +101,7 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::group(['prefix' =>  'adm', 'namespace' => 'Administrador'], function(){
+Route::group(['prefix' =>  'adm', 'namespace' => 'Administrador', 'middleware' => 'auth'], function(){
     Route::resource('Campus','CampusController');
 
 });
