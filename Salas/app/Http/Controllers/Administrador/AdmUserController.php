@@ -14,17 +14,6 @@ use DB;
 class AdmUserController extends Controller {
 
 	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		//$this->middleware('auth');
-	}
-
-
-	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -33,21 +22,6 @@ class AdmUserController extends Controller {
 	public function index()
     {
 		return view('Administrador.homeAdm');
-	}
-
-	public function crearApui()
-	{
-		return view('Administrador.crearAdm');
-	}
-
-	public function crearApum()
-	{
-		return view('Administrador.crearAdm');
-	}
-
-	public function crearCampus()
-	{
-		return view('Administrador.crearAdm',array('mensaje' => null, 'error' => null,));
 	}
 
     public function crearFacult()
@@ -280,45 +254,26 @@ class AdmUserController extends Controller {
 	 *
 	 * @return Response
 	 */
-		public function create()
-		{
-			
-		}
+    public function create()
+    {
+        return view('Administrador.homeAdm');
+    }
 
-		public function createNewCampus()
-		{
-			return 'echo';
-		}
+    public function createNewCampus()
+    {
+        return 'echo';
+    }
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-    public function storeAPUI()
+    public function store()
     {
-        $input = Request::all();
-        return $input;
+       //
     }
 
-    public function storeCampus()
-    {
-        $input = Request::all();
-
-        $Campus = new Campus();
-
-        $Campus->nombre 	   = (string)$input['Campus'];
-        $Campus->direccion 	   = (string)$input['Direccion'];
-        $Campus->latitud 	   = (double)$input['latitud'];
-        $Campus->longitud 	   = (double)$input['longitud'];
-        $Campus->descripcion   = (string)$input['Descripcion_campus'];
-        $Campus->rut_encargado = (int)$input['Rut_Encargado'];
-
-        $Campus->save();
-
-        $query = Campus::where('nombre',(string)$input['Campus'])->first();
-        return view('Administrador.crearAdm',array('mensaje' => $query, 'error' => null));
-    }
 
     public function storeFacult()
     {

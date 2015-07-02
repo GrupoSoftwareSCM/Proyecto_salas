@@ -24,10 +24,10 @@
 								<li><a href="{{ url('adm')}}">Inicio</a></li>
 							@endif
 
-							@if($_SERVER['REQUEST_URI'] == "/adm/crear/Escuelas" || $_SERVER['REQUEST_URI'] == "/adm/crear/Deptos" || $_SERVER['REQUEST_URI'] == "/adm/crear" || $_SERVER['REQUEST_URI'] == "/adm/crear/apu" || $_SERVER['REQUEST_URI'] == "/adm/crear/cc" || $_SERVER['REQUEST_URI'] == "/adm/crear/aec" || $_SERVER['REQUEST_URI'] == "/adm/crear/apui" || $_SERVER['REQUEST_URI'] == "/adm/crear/apum" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facult" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facults" || $_SERVER['REQUEST_URI'] == "/adm/crear/Depto" || $_SERVER['REQUEST_URI'] == "/adm/crear/Escuela")
-								<li class="active"><a href="{{ url('adm/crear')}}">Crear</a></li>
+							@if($_SERVER['REQUEST_URI'] == "/adm/create" || $_SERVER['REQUEST_URI'] == "/adm/Campus")
+								<li class="active"><a href="{{ url('adm/create')}}">Crear</a></li>
 							@else
-								<li><a href="{{ url('adm/crear')}}">Crear</a></li>
+								<li><a href="{{ url('adm/create')}}">Crear</a></li>
 							@endif
 							@if($_SERVER['REQUEST_URI'] == "/adm/modif/Escuelas" || $_SERVER['REQUEST_URI'] == "/adm/modif/Deptos" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultads" || $_SERVER['REQUEST_URI'] == "/adm/modif/camps" || $_SERVER['REQUEST_URI'] == "/adm/modif/Escuela" || $_SERVER['REQUEST_URI'] == "/adm/modif/Depto" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultad" || $_SERVER['REQUEST_URI'] == "/adm/modif" || $_SERVER['REQUEST_URI'] == "/adm/modif/perfuser" || $_SERVER['REQUEST_URI'] == "/adm/modif/camp" || $_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
 								<li class="active"><a href="{{ url('adm/modif')}}">Modificar</a></li>

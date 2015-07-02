@@ -11,7 +11,7 @@
 				@endif
 
 				<!--	MENU PARA CREAR	-->
-				@if($_SERVER['REQUEST_URI'] == "/adm/crear/Escuelas" || $_SERVER['REQUEST_URI'] == "/adm/crear/Deptos" || $_SERVER['REQUEST_URI'] == "/adm/crear" || $_SERVER['REQUEST_URI'] == "/adm/crear/cc" || $_SERVER['REQUEST_URI'] == "/adm/crear/aec" || $_SERVER['REQUEST_URI'] == "/adm/crear/apui" || $_SERVER['REQUEST_URI'] == "/adm/crear/apum" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facult" || $_SERVER['REQUEST_URI'] == "/adm/crear/Escuela" || $_SERVER['REQUEST_URI'] == "/adm/crear/Depto" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facults")
+				@if($_SERVER['REQUEST_URI'] == "/adm/create" || $_SERVER['REQUEST_URI'] == "/adm/Campus")
                     <div class="col-md-2 col-md-offset-1">
                         <div class="panel panel-info">
                             <div class="panel-heading">Menú</div>
@@ -42,10 +42,10 @@
                                             </li>
                                         @endif
 
-                                        @if($_SERVER['REQUEST_URI'] == "/adm/crear/cc")
-                                            <li class="active"><a href="{{url('adm/crear/cc')}}">Crear campus</a></li>
+                                        @if($_SERVER['REQUEST_URI'] == "/adm/Campus")
+                                            <li class="active"><a href="{{url('/adm/Campus')}}">Crear campus</a></li>
                                         @else
-                                            <li><a href="{{url('adm/crear/cc')}}">Crear campus</a></li>
+                                            <li><a href="{{url('/adm/Campus')}}">Crear campus</a></li>
                                         @endif
 
                                         @if($_SERVER['REQUEST_URI'] == "/adm/crear/Facult" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facults")

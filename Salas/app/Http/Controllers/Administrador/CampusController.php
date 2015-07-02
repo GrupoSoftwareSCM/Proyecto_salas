@@ -2,8 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Request;
+use App\Models\Campus;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 class CampusController extends Controller {
 
@@ -14,7 +16,7 @@ class CampusController extends Controller {
 	 */
 	public function index()
 	{
-		return "asdasds";
+        return view('Administrador.crearAdm',array('mensaje' => null, 'error' => null,));
 	}
 
 	/**
@@ -34,7 +36,13 @@ class CampusController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $input = Request::only(['nombre','rut_encargado','direccion','latitud','longitud','descripcion']);
+        $Campus = Campus::create($input);
+        $Campus->save();
+        return view('Administrador.crearAdm',array(
+            'mensaje' => 'asdasd',
+            'error' => null,
+            ));
 	}
 
 	/**

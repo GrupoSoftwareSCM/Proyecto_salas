@@ -62,14 +62,14 @@
 
 @endif
 
-@if($_SERVER['REQUEST_URI'] == "/adm/crear/cc")
+@if($_SERVER['REQUEST_URI'] == "/adm/Campus")
     <div class="panel panel-success">
         <div class="panel-body">
             <div class="row"> <!-- PARA LOS MENSAJES DE ERROR O DE INGRESO CORRECTO-->
                 <div class="col-md-8 col-md-offset-2 ">
                     @if($mensaje != null && $error == null)
                         <div class="alert alert-success">
-                            <center>Campus {{$mensaje['nombre']}} Ingresado correctamente</center>
+                            <center>Campus Ingresado correctamente</center>
                         </div>
                     @elseif($error != null)
                         <div class="alert alert-danger">
@@ -78,22 +78,30 @@
                     @endif
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        <strong>Bienvenido</strong>
+                        <br/>Aqui usted podra crear el campus, en donde podra agregarle nombre, asignarle a un encargado, direccion, etc.
+                    </div>
+                </div>
+            </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
             <div class="row"> <!-- PARA LOS FORMULARIO -->
                 <div class="col-md-12">
-                    {!!Form::open(['url' => 'adm/crear/cc'])!!}
+                    {!!Form::open(['route' => 'adm.Campus.store', 'method' => 'POST'])!!}
                         <div class="form-group">
                             <div class="row"> <!--CAMPUS-->
                                 <div class="col-md-8 col-md-offset-2">
-                                    {!!Form::label('Nombre_campus','Nombre Campus',['class' => 'col-md-6'])!!}
-                                    {!!Form::text('Campus','',['class' => 'col-md-6'])!!}
+                                    {!!Form::label('nombre','Nombre Campus',['class' => 'col-md-6'])!!}
+                                    {!!Form::text('nombre','',['class' => 'col-md-6'])!!}
                                     <br>
 
-                                    {!!Form::label('Rut_Encargado','Rut Encargado',['class' => 'col-md-6'])!!}
-                                    {!!Form::text('Rut_Encargado','',['class' => 'col-md-6'])!!}
+                                    {!!Form::label('rut_encargado','Rut Encargado',['class' => 'col-md-6'])!!}
+                                    {!!Form::text('rut_encargado','',['class' => 'col-md-6'])!!}
                                     <br>
 
                                     {!!Form::label('direccion','Dirección',['class' => 'col-md-6'])!!}
-                                    {!!Form::text('Direccion','',['class' => 'col-md-6'])!!}
+                                    {!!Form::text('direccion','',['class' => 'col-md-6'])!!}
                                     <br>
 
                                     {!!Form::label('latitud','Latitud',['class' => 'col-md-6'])!!}
@@ -105,8 +113,8 @@
                                     <br>
 
 
-                                    {!!Form::label('descripcion_campus','Descripcion',['class' => 'col-md-6'])!!}
-                                    {!!Form::textarea('Descripcion_campus','',['class' => 'col-md-6'])!!}
+                                    {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
+                                    {!!Form::textarea('descripcion','',['class' => 'col-md-6'])!!}
                                     <br>
                                 </div>
                             </div>
