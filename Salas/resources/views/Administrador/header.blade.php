@@ -18,28 +18,27 @@
 			  	<div class="panel-body">
 			  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav nav-pills">
-							@if($_SERVER['REQUEST_URI'] == "/Admin")
-								<li class="active"><a href="{{ url('Admin')}}">Inicio</a></li>
+							@if($_SERVER['REQUEST_URI'] == "/Admin/home")
+                                <li class="active">{!!Html::link('Admin/home','Home',['route' => 'Admin.home.index'])!!}</li>
 							@else
-								<li><a href="{{ url('Admin')}}">Inicio</a></li>
+                                <li>{!!Html::link('Admin/home','Home',['route' => 'Admin.home.index'])!!}</li>
 							@endif
 
-							@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/create" || $_SERVER['REQUEST_URI'] == "/Admin/create")
-								<li class="active"><a href="{{ url('Admin/create')}}">Crear</a></li>
+							@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/create" || $_SERVER['REQUEST_URI'] == "/Admin/home/1")
+                                <li class="active">{!!Html::link('Admin/home/1','Crear',['route' => 'Admin.home.show'])!!}</li>
 							@else
-								<li><a href="{{ url('Admin/create')}}">Crear</a></li>
+                                <li>{!!Html::link('Admin/home/1','Crear',['route' => 'Admin.home.show'])!!}</li>
 							@endif
-							<!--@if($_SERVER['REQUEST_URI'] == "/adm/create/1/edit")
-								<li class="active"><a href="{{url('adm/create/1/edit')}}">Modificar</a></li>
+							@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/2" || $_SERVER['REQUEST_URI'] == "/Admin/home/2")
+                                <li class="active">{!!Html::link('Admin/home/2','Modificar',['route' => 'Admin.home.show'])!!}</li>
 							@else
-								<li><a href="{{url('adm/create/1/edit')}}">Modificar</a></li>
+                                <li>{!!Html::link('Admin/home/2','Modificar',['route' => 'Admin.home.show'])!!}</li>
 							@endif
-                            @if($_SERVER['REQUEST_URI'] == "/adm/create/1")
-                                <li class="active"><a href="{{url('adm/create/1')}}">Eliminar</a></li>
+                            @if($_SERVER['REQUEST_URI'] == "/adm/create/3")
+                                <li class="active">{!!Html::link('Admin/home/3','Eliminar',['route' => 'Admin.home.show'])!!}</li>
                             @else
-                                <li><a href="{{url('adm/create/1')}}">Eliminar</a></li>
+                                <li>{!!Html::link('Admin/home/3','Eliminar',['route' => 'Admin.home.show'])!!}</li>
                             @endif
-							<li><a href="{{ url('adm/Exportar')}}">Exportar</a></li>-->
 						</ul>
 					</div>
 			  	</div>

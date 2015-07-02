@@ -62,14 +62,18 @@
 
 @endif
 
-@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/create")
+@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/1")
     <div class="panel panel-success">
         <div class="panel-body">
             <div class="row"> <!-- PARA LOS MENSAJES DE ERROR O DE INGRESO CORRECTO-->
                 <div class="col-md-8 col-md-offset-2 ">
-                    @if($mensaje != null)
-                        <div class="alert alert-success">
-                            <center>Campus Ingresado correctamente</center>
+                    @if(session()->has('mensaje'))
+                        <div class="row">
+                            <div class="alert alert-success fade in col-md-8 col-md-offset-2">
+                                <a class= "close" href="#" data-dismiss="alert">x</a>
+                                <strong>Felicidades </strong>
+                                <center>Campus {{session()->get('mensaje')}} Ingresado correctamente</center>
+                            </div>
                         </div>
                     @endif
                 </div>

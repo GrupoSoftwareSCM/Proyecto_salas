@@ -12,86 +12,72 @@
 
 
 <!--	MODIFICAR CAMPUS	-->
-@if($_SERVER['REQUEST_URI'] == "/adm/modif/camp" || $_SERVER['REQUEST_URI'] == "/adm/modif/camps")
+@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/2")
     <div class="panel panel-success">
         <div class="panel-body">
             <div class="row">
-                @if($mensaje != null)
-                    <div class="row">
-                        <div class="alert alert-success fade in col-md-8 col-md-offset-2">
-                            <a class= "close" href="#" data-dismiss="alert">x</a>
-                            <strong>Felicidades </strong>
-                            {{$mensaje}}
-                        </div>
-                    </div>
-                @endif
                 <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info">
-                                <strong>Informacion!</strong> <br/>
-                                Seleccione el campus en el cual usted quira realizar modificaciones<br/>
+                    @if($numero_campus == 0)
+                        <?php array_push($error,"Hay que ingresar por lo menos un Campus para modificarlo"); ?>
+                        @if(count($error) > 0)
+                            <div class="row">
+                                <div class="alert alert-danger col-md-8 col-md-offset-2">
+                                    OOOpss
+                                    <ul>
+                                        @foreach($error as $err)
+                                            <li type="disc">{{$err}}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
-                    {!!Form::open(['url' => 'adm/modif/camp'])!!}
-                        <div class="row">
-                            <div class="col-md-12">
-                                @if($campus_select == null)
-                                    {!!Form::label('id_campus','Seleccione Campus',['class' => 'col-md-3'])!!}
-                                    {!!Form::select('id_campus',$Campus,'',['class' => 'col-md-3'])!!}
-                                @else
-                                    {!!Form::label('id_campus','Seleccione Campus',['class' => 'col-md-3'])!!}
-                                    {!!Form::select('id_campus',$Campus,$campus_select,['class' => 'col-md-3'])!!}
-                                @endif
-
-                                {!!Form::button('Generar',['class' => 'btn btn-danger col-md-3 col-md-offset-1','type' => 'submit'])!!}
-
-                            </div>
-                        </div>
-                    {!!Form::close()!!}
-
-                    @if($datos_campus != null)
-                        <br>
+                        @endif
+                    @else
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="alert alert-info">
-                                    <strong>Informacion!</strong> <br/>
-                                    Ahora usted puede modificar el campus elegido<br/>
+                                    <strong>Bienvenido</strong>
+                                    <br/>Aqui usted podra Modificar un campus.
                                 </div>
                             </div>
                         </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
-                        {!!Form::open(['url' => 'adm/modif/camps'])!!}
+                        <div class="row"> <!-- PARA el FORMULARIO -->
+                            <div class="col-md-12">
+                                {!! Form::open(array('route' => array('Admin.Campus.edit',$campus), 'method' => 'put')) !!}
+                                <div class="form-group">
+                                    <div class="row"> <!--CAMPUS-->
+                                        <div class="col-md-8 col-md-offset-2">
+                                            {!!Form::label('id_campus','Nombre Campus',['class' => 'col-md-6'])!!}
+                                            {!!Form::select('id_campus',$campus,null,['class' => 'col-md-2'])!!}
+                                            <br>
 
-                            {!!Form::label('Nombre_campus','Nombre Campus',['class' => 'col-md-3 col-md-offset-2'])!!}
-                            {!!Form::text('Nombre_campus','',['class' => 'col-md-5', 'placeholder' => $datos_campus['nombre']])!!}
-                            <br>
+                                            {!!Form::label('rut_encargado','Rut Encargado',['class' => 'col-md-6'])!!}
+                                            {!!Form::text('rut_encargado','',['class' => 'col-md-6'])!!}
+                                            <br>
 
-                            {!!Form::label('Rut_Encargado','Rut Encargado',['class' => 'col-md-3 col-md-offset-2'])!!}
-                            {!!Form::text('Rut_Encargado','',['class' => 'col-md-5','placeholder' => $datos_campus['rut_encargado']])!!}
-                            <br>
+                                            {!!Form::label('direccion','Dirección',['class' => 'col-md-6'])!!}
+                                            {!!Form::text('direccion','',['class' => 'col-md-6'])!!}
+                                            <br>
 
-                            {!!Form::label('direccion','Dirección',['class' => 'col-md-3 col-md-offset-2'])!!}
-                            {!!Form::text('Direccion','',['class' => 'col-md-5','placeholder' => $datos_campus['direccion']])!!}
-                            <br>
+                                            {!!Form::label('latitud','Latitud',['class' => 'col-md-6'])!!}
+                                            {!!Form::number('latitud','',['class' => 'col-md-6','step' => '0.001'])!!}
+                                            <br>
 
-                            {!!Form::label('latitud','Latitud',['class' => 'col-md-3 col-md-offset-2'])!!}
-                            {!!Form::number('latitud','',['class' => 'col-md-5','step' => '0.001','placeholder' => $datos_campus['latitud']])!!}
-                            <br>
-
-                            {!!Form::label('longitud','Longitud',['class' => 'col-md-3 col-md-offset-2'])!!}
-                            {!!Form::number('longitud','',['class' => 'col-md-5','step' => '0.001','placeholder' => $datos_campus['longitud']])!!}
-                            <br>
+                                            {!!Form::label('longitud','Longitud',['class' => 'col-md-6'])!!}
+                                            {!!Form::number('longitud','',['class' => 'col-md-6','step' => '0.001'])!!}
+                                            <br>
 
 
-                            {!!Form::label('descripcion_campus','Descripcion',['class' => 'col-md-3 col-md-offset-2'])!!}
-                            {!!Form::textarea('Descripcion_campus','',['class' => 'col-md-5','placeholder' => $datos_campus['descripcion']])!!}
-
-                            <br>
-                            {!!Form::button('Actualizar',['class' => 'btn btn-danger col-md-3 col-md-offset-4','type' => 'submit'])!!}
-
-                            {!!Form::hidden('id_campus',$datos_campus['id_campus'])!!}
-                        {!!Form::close()!!}
+                                            {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
+                                            {!!Form::textarea('descripcion','',['class' => 'col-md-6'])!!}
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <br>
+                                    {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                                </div>
+                                {!!Form::close()!!}-->
                     @endif
                 </div>
             </div>

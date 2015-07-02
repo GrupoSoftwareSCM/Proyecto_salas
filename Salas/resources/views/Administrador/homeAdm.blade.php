@@ -6,12 +6,12 @@
 
 
 
-				@if($_SERVER['REQUEST_URI'] == "/adm")
+				@if($_SERVER['REQUEST_URI'] == "/Admin/home")
 						Bienvenido admnistrador, en esta pagina usted podra ..............................
 				@endif
 
 				<!--	MENU PARA CREAR	-->
-				@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/create" || $_SERVER['REQUEST_URI'] == "/Admin/create")
+				@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/1" || $_SERVER['REQUEST_URI'] == "/Admin/home/1")
                     <div class="col-md-2 col-md-offset-1">
                         <div class="panel panel-info">
                             <div class="panel-heading">Menú</div>
@@ -19,10 +19,10 @@
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav nav-tabs">
 
-                                        @if($_SERVER['REQUEST_URI'] == "/Admin/Campus/create")
-                                            <li class="active"><a href="{{url('/Admin/Campus/create')}}">Crear campus</a></li>
+                                        @if($_SERVER['REQUEST_URI'] == "/Admin/Campus/1")
+                                            <li class="active">{!!Html::link('Admin/Campus/1','Crear campus',['route' => 'Admin.Campus.show '])!!}</li>
                                         @else
-                                            <li><a href="{{url('/Admin/Campus/create')}}">Crear campus</a></li>
+                                            <li>{!!Html::link('Admin/Campus/1','Crear campus',['route' => 'Admin.Campus.show '])!!}</li>
                                         @endif
 
                                         <!--
@@ -90,10 +90,32 @@
 
 
 				<!--	MENU PARA MODIFICAR	-->
+                @if($_SERVER['REQUEST_URI'] == "/Admin/Campus/2" || $_SERVER['REQUEST_URI'] == "/Admin/home/2")
+                <div class="col-md-2 col-md-offset-1">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Menú</div>
+                        <div class="panel-body">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav nav-tabs">
 
+                                    @if($_SERVER['REQUEST_URI'] == "/Admin/Campus/2")
+                                        <li class="active">{!!Html::link('Admin/Campus/2','Modificar campus',['route' => 'Admin.Campus.show '])!!}</li>
+                                    @else
+                                        <li>{!!Html::link('Admin/Campus/2','Modificar campus',['route' => 'Admin.Campus.show '])!!}</li>
+                                    @endif
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    @yield('modificar')
+                </div>
+                @endif
 
 				<!--	MENU PARA Eliminar	-->
-				@if($_SERVER['REQUEST_URI'] == "/adm/create/1")
+				@if($_SERVER['REQUEST_URI'] == "/Admin/home/3")
 				@endif
 
 </div>

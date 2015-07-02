@@ -40,15 +40,10 @@ class CampusController extends Controller {
 	public function store()
 	{
         $input = Request::only(['nombre','rut_encargado','direccion','latitud','longitud','descripcion']);
-        $msn = "asasdda";
+        $msn = $input['nombre'];
         //$Campus = Campus::create($input);
         //$Campus->save();
-        /*return view('Administrador.crearAdm',array(
-            'mensaje' => 'asdasd',
-            'error' => null,
-            ));*/
-
-        return redirect('Admin/Campus/create')->with('mensaje', ['mensaje resivido']);
+        return redirect('Admin/Campus/1')->with('mensaje', $msn);
 	}
 
 	/**
@@ -59,7 +54,30 @@ class CampusController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		/*
+		 * $id = 1 Crear
+		 * $id = 2 MOdificar
+		 * $id = 3 eliminar
+		 *
+		 * */
+        if($id == 1){
+            return view('Administrador.crearAdm',array(
+                'mensaje' => null,
+                'error' => null,
+            ));
+        }
+        elseif($id == 2){
+            $data_campus = Campus::lists('nombre','id_campus');
+            $numero_campus = Campus::all()->count();
+            return view('Administrador.modificarAdm', array(
+                'numero_campus' => $numero_campus,
+                'campus' => $data_campus,
+                'id_campus' => null,
+                'mensaje' => null,
+                'error' => null,
+            ));
+
+        }
 	}
 
 	/**

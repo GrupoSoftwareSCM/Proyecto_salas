@@ -102,7 +102,7 @@ Route::controllers([
 ]);
 //Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
-        Route::resource('/','AdmUserController');
+        Route::resource('home','AdmUserController');
         Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
 
     });
