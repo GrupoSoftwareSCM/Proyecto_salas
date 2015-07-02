@@ -62,18 +62,14 @@
 
 @endif
 
-@if($_SERVER['REQUEST_URI'] == "/adm/Campus")
+@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/create")
     <div class="panel panel-success">
         <div class="panel-body">
             <div class="row"> <!-- PARA LOS MENSAJES DE ERROR O DE INGRESO CORRECTO-->
                 <div class="col-md-8 col-md-offset-2 ">
-                    @if($mensaje != null && $error == null)
+                    @if($mensaje != null)
                         <div class="alert alert-success">
                             <center>Campus Ingresado correctamente</center>
-                        </div>
-                    @elseif($error != null)
-                        <div class="alert alert-danger">
-                            {{$error}}
                         </div>
                     @endif
                 </div>
@@ -88,7 +84,7 @@
             </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
             <div class="row"> <!-- PARA LOS FORMULARIO -->
                 <div class="col-md-12">
-                    {!!Form::open(['route' => 'adm.Campus.store', 'method' => 'POST'])!!}
+                    {!!Form::open(['route' => 'Admin.Campus.store', 'method' => 'POST'])!!}
                         <div class="form-group">
                             <div class="row"> <!--CAMPUS-->
                                 <div class="col-md-8 col-md-offset-2">

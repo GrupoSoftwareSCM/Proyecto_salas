@@ -11,43 +11,21 @@
 				@endif
 
 				<!--	MENU PARA CREAR	-->
-				@if($_SERVER['REQUEST_URI'] == "/adm/create" || $_SERVER['REQUEST_URI'] == "/adm/Campus")
+				@if($_SERVER['REQUEST_URI'] == "/Admin/Campus/create" || $_SERVER['REQUEST_URI'] == "/Admin/create")
                     <div class="col-md-2 col-md-offset-1">
                         <div class="panel panel-info">
                             <div class="panel-heading">Menú</div>
                             <div class="panel-body">
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav nav-tabs">
-                                        @if($_SERVER['REQUEST_URI'] == "/adm/crear/apui" || $_SERVER['REQUEST_URI'] == "/adm/crear/apum")
-                                            <li class="active" class="dropdown">
-                                                <a class="dropdown-toggle" data-toggle="dropdown">
-                                                    Asignar perfiles a usuarios
-                                                    <span class="caret"></span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="{{url('/adm/crear/apui')}}">Individual</a></li>
-                                                    <li><a href="{{url('/adm/crear/apum')}}">Masivo</a></li>
-                                                </ul>
-                                            </li>
+
+                                        @if($_SERVER['REQUEST_URI'] == "/Admin/Campus/create")
+                                            <li class="active"><a href="{{url('/Admin/Campus/create')}}">Crear campus</a></li>
                                         @else
-                                            <li class="dropdown">
-                                                <a class="dropdown-toggle" data-toggle="dropdown">
-                                                    Asignar perfiles a usuarios
-                                                    <span class="caret"></span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="{{url('/adm/crear/apui')}}">Individual</a></li>
-                                                    <li><a href="{{url('/adm/crear/apum')}}">Masivo</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="{{url('/Admin/Campus/create')}}">Crear campus</a></li>
                                         @endif
 
-                                        @if($_SERVER['REQUEST_URI'] == "/adm/Campus")
-                                            <li class="active"><a href="{{url('/adm/Campus')}}">Crear campus</a></li>
-                                        @else
-                                            <li><a href="{{url('/adm/Campus')}}">Crear campus</a></li>
-                                        @endif
-
+                                        <!--
                                         @if($_SERVER['REQUEST_URI'] == "/adm/crear/Facult" || $_SERVER['REQUEST_URI'] == "/adm/crear/Facults")
                                             <li class="active"><a href="{{url('adm/crear/Facult')}}">Crear Facultad(es)</a></li>
                                         @else
@@ -64,13 +42,13 @@
                                             <li class="active"><a href="{{url('adm/crear/Escuela')}}">Crear Escuela(s)</a></li>
                                         @else
                                             <li><a href="{{url('adm/crear/Escuela')}}">Crear Escuela(s)</a></li>
-                                        @endif
+                                        @endif -->
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @if($_SERVER['REQUEST_URI'] == "/adm/crear")
+                    @if($_SERVER['REQUEST_URI'] == "/Admin/create") <!-- mesaje principio -->
                         <div class="col-md-8">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
@@ -112,71 +90,10 @@
 
 
 				<!--	MENU PARA MODIFICAR	-->
-				@if($_SERVER['REQUEST_URI'] == "/adm/modif/Escuelas" || $_SERVER['REQUEST_URI'] == "/adm/modif/Deptos" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultads" || $_SERVER['REQUEST_URI'] == "/adm/modif/camps" || $_SERVER['REQUEST_URI'] == "/adm/modif/Escuela" || $_SERVER['REQUEST_URI'] == "/adm/modif/Depto" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultad" || $_SERVER['REQUEST_URI'] == "/adm/modif" || $_SERVER['REQUEST_URI'] == "/adm/modif/perfuser" || $_SERVER['REQUEST_URI'] == "/adm/modif/camp" || $_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
-                    <div class="col-md-2 col-md-offset-1">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">Menú</div>
-                                <div class="panel-body">
-                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                        <ul class="nav navbar-nav nav-tabs">
-                                            @if($_SERVER['REQUEST_URI'] == "/adm/modif/perfuser")
-                                                <li class="active"><a href="{{url('adm/modif/perfuser')}}">Modificar perfiles de usuarios</a></li>
-                                            @else
-                                                <li><a href="{{url('adm/modif/perfuser')}}">Modificar perfiles de usuarios</a></li>
-                                            @endif
 
-                                            @if($_SERVER['REQUEST_URI'] == "/adm/modif/camps" || $_SERVER['REQUEST_URI'] == "/adm/modif/camp")
-                                                <li class="active"><a href="{{url('adm/modif/camp')}}">Modificar campus</a></li>
-                                            @else
-                                                <li><a href="{{url('adm/modif/camp')}}">Modificar campus</a></li>
-                                            @endif
 
-                                            @if($_SERVER['REQUEST_URI'] == "/adm/modif/Facultads" || $_SERVER['REQUEST_URI'] == "/adm/modif/Facultad")
-                                                <li class="active"><a href="{{url('adm/modif/Facultad')}}">Modificar Facultad</a></li>
-                                            @else
-                                                <li><a href="{{url('adm/modif/Facultad')}}">Modificar Facultad</a></li>
-                                            @endif
-
-                                            @if($_SERVER['REQUEST_URI'] == "/adm/modif/Deptos" || $_SERVER['REQUEST_URI'] == "/adm/modif/Depto")
-                                                <li class="active"><a href="{{url('adm/modif/Depto')}}">Modificar Departamento</a></li>
-                                            @else
-                                                <li><a href="{{url('adm/modif/Depto')}}">Modificar Departamento</a></li>
-                                            @endif
-
-                                            @if($_SERVER['REQUEST_URI'] == "/adm/modif/Escuelas" || $_SERVER['REQUEST_URI'] == "/adm/modif/Escuela")
-                                                <li class="active"><a href="{{url('adm/modif/Escuela')}}">Modificar Escuela</a></li>
-                                            @else
-                                                <li><a href="{{url('adm/modif/Escuela')}}">Modificar Escuela</a></li>
-                                            @endif
-
-                                            @if($_SERVER['REQUEST_URI'] == "/adm/modif/encamp")
-                                                <li class="active"><a href="{{url('/adm/modif/encamp')}}">Modificar encargado a campus</a></li>
-                                            @else
-                                                <li><a href="{{url('/adm/modif/encamp')}}">Modificar encargado a campus</a></li>
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @if($_SERVER['REQUEST_URI'] == "/adm/modif")
-                    <div class="col-md-8">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                Bienvenido a la seccion Modificar
-                            </div>
-                            <div class="panel-body">
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    <div class="col-md-8">
-				  	    @yield('modificar')
-                    </div>
-				@endif
-
-				<!--	MENU PARA ARCHIVAR	-->
-				@if($_SERVER['REQUEST_URI'] == "/adm/Exportar")
+				<!--	MENU PARA Eliminar	-->
+				@if($_SERVER['REQUEST_URI'] == "/adm/create/1")
 				@endif
 
 </div>

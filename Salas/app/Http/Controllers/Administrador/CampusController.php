@@ -16,7 +16,7 @@ class CampusController extends Controller {
 	 */
 	public function index()
 	{
-        return view('Administrador.crearAdm',array('mensaje' => null, 'error' => null,));
+        //
 	}
 
 	/**
@@ -26,7 +26,10 @@ class CampusController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('Administrador.crearAdm',array(
+            'mensaje' => null,
+            'error' => null,
+        ));
 	}
 
 	/**
@@ -37,12 +40,15 @@ class CampusController extends Controller {
 	public function store()
 	{
         $input = Request::only(['nombre','rut_encargado','direccion','latitud','longitud','descripcion']);
-        $Campus = Campus::create($input);
-        $Campus->save();
-        return view('Administrador.crearAdm',array(
+        $msn = "asasdda";
+        //$Campus = Campus::create($input);
+        //$Campus->save();
+        /*return view('Administrador.crearAdm',array(
             'mensaje' => 'asdasd',
             'error' => null,
-            ));
+            ));*/
+
+        return redirect('Admin/Campus/create')->with('mensaje', ['mensaje resivido']);
 	}
 
 	/**
@@ -64,7 +70,7 @@ class CampusController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        return $_SERVER['REQUEST_URI'];
 	}
 
 	/**
