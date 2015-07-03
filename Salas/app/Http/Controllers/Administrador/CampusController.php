@@ -16,7 +16,8 @@ class CampusController extends Controller {
 	 */
 	public function index()
 	{
-        //
+        $data_campu = Campus::paginate();
+        return view('Administrador.bodyAdm')->with('campus',$data_campu);
 	}
 
 	/**
@@ -26,10 +27,7 @@ class CampusController extends Controller {
 	 */
 	public function create()
 	{
-        return view('Administrador.crearAdm',array(
-            'mensaje' => null,
-            'error' => null,
-        ));
+        return view('Administrador.crearAdm');
 	}
 
 	/**
@@ -39,11 +37,10 @@ class CampusController extends Controller {
 	 */
 	public function store()
 	{
-        $input = Request::only(['nombre','rut_encargado','direccion','latitud','longitud','descripcion']);
-        $msn = $input['nombre'];
-        $Campus = Campus::create($input);
-        $Campus->save();
-        return redirect('Admin/Campus/1')->with('mensaje', $msn);
+        $datos_nuevo_campus = Request::only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
+        Campus::create($datos_nuevo_campus);
+
+        return redirect('Admin/Campus');
 	}
 
 	/**
@@ -54,41 +51,20 @@ class CampusController extends Controller {
 	 */
 	public function show($id)
 	{
-		/*
-		 * $id = 1 Crear
-		 * $id = 2 MOdificar
-		 * $id = 3 eliminar
-		 *
-		 * */
-        if($id == 1){
-            return view('Administrador.crearAdm',array(
-                'mensaje' => null,
-                'error' => null,
-            ));
-        }
-        elseif($id == 2){
-            $data_campus = Campus::lists('nombre','id_campus');
-            $numero_campus = Campus::all()->count();
-            return view('Administrador.modificarAdm', array(
-                'numero_campus' => $numero_campus,
-                'campus' => $data_campus,
-                'id_campus' => null,
-                'mensaje' => null,
-                'error' => null,
-            ));
-
-        }
+        //
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
+     * Muestra formulario de edicion
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-        return $_SERVER['REQUEST_URI'];
+        $Campus = Campus::find($id);
+        return view('Administrador.editarAdm')->with('Campus',$Campus);
 	}
 
 	/**
@@ -99,7 +75,18 @@ class CampusController extends Controller {
 	 */
 	public function update($id)
 	{
-		return "campus con id: ".$id;
+        $Campus = Campus::find($id);
+        if($Campus){
+            $datos_edit_campus = Request::only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
+            $Campus->fill($datos_edit_campus);
+            $Campus->save();
+
+            return redirect()->route('Admin.Campus.index')->with('mensaje','Campus editado correctamente');
+
+        }
+        else{
+            abort(404);
+        }
 	}
 
 	/**
@@ -110,7 +97,9 @@ class CampusController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        $Campus = Campus::find($id);
+        $Campus->delete();
+        return redirect()->route('Admin.Campus.index')->with('mensaje','Campus editado correctamente');
 	}
 
 }
