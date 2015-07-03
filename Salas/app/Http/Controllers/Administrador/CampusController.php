@@ -41,8 +41,8 @@ class CampusController extends Controller {
 	{
         $input = Request::only(['nombre','rut_encargado','direccion','latitud','longitud','descripcion']);
         $msn = $input['nombre'];
-        //$Campus = Campus::create($input);
-        //$Campus->save();
+        $Campus = Campus::create($input);
+        $Campus->save();
         return redirect('Admin/Campus/1')->with('mensaje', $msn);
 	}
 
@@ -99,7 +99,7 @@ class CampusController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		return "campus con id: ".$id;
 	}
 
 	/**

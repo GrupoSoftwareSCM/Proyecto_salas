@@ -42,7 +42,8 @@
                         </div> <!-- PARA LE MENSAJE PRINCIPAL, INFORMACION -->
                         <div class="row"> <!-- PARA el FORMULARIO -->
                             <div class="col-md-12">
-                                {!! Form::open(array('route' => array('Admin.Campus.edit',$campus), 'method' => 'put')) !!}
+                                <?php $llave = key($campus);?>
+                                {!! Form::open(array('route' => array('Admin.Campus.update', $llave), 'method' => 'put')) !!}
                                 <div class="form-group">
                                     <div class="row"> <!--CAMPUS-->
                                         <div class="col-md-8 col-md-offset-2">
@@ -77,7 +78,7 @@
                                     <br>
                                     {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
                                 </div>
-                                {!!Form::close()!!}-->
+                                {!!Form::close()!!}
                     @endif
                 </div>
             </div>
