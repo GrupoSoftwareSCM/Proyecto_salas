@@ -6,7 +6,7 @@ use App\Models\Asignatura;
 use App\Models\Departamento;
 //use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Request;
-use Request;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;

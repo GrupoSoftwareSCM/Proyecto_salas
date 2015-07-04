@@ -2,8 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Request;
+use App\Models\Campus;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 class CampusController extends Controller {
 
@@ -14,7 +16,8 @@ class CampusController extends Controller {
 	 */
 	public function index()
 	{
-		return "asdasds";
+        $data_campu = Campus::paginate();
+        return view('Administrador.bodyAdm')->with('campus',$data_campu);
 	}
 
 	/**
@@ -24,7 +27,7 @@ class CampusController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('Administrador.crearAdm');
 	}
 
 	/**
@@ -34,7 +37,10 @@ class CampusController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $datos_nuevo_campus = Request::only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
+        Campus::create($datos_nuevo_campus);
+
+        return redirect('Admin/Campus');
 	}
 
 	/**
@@ -45,18 +51,20 @@ class CampusController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        //
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
+     * Muestra formulario de edicion
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-		//
+        $Campus = Campus::find($id);
+        return view('Administrador.editarAdm')->with('Campus',$Campus);
 	}
 
 	/**
@@ -67,7 +75,18 @@ class CampusController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $Campus = Campus::find($id);
+        if($Campus){
+            $datos_edit_campus = Request::only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
+            $Campus->fill($datos_edit_campus);
+            $Campus->save();
+
+            return redirect()->route('Admin.Campus.index')->with('mensaje','Campus editado correctamente');
+
+        }
+        else{
+            abort(404);
+        }
 	}
 
 	/**
@@ -78,7 +97,9 @@ class CampusController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        $Campus = Campus::find($id);
+        $Campus->delete();
+        return redirect()->route('Admin.Campus.index')->with('mensaje','Campus editado correctamente');
 	}
 
 }

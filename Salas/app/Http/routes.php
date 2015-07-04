@@ -15,6 +15,7 @@
 
 Route::get('/', 'HomeController@index');
 
+/*
 //RUTAS PARA EL DOCENTE
 Route::get('doc','Docente\DocUserController@index');
 Route::get('doc/clases','Docente\DocUserController@clases');
@@ -45,7 +46,7 @@ Route::get('alum/horario','Alumnos\AlumUserController@index');
 Route::get('alum/salas',  'Alumnos\AlumUserController@index');
 
 //RUTAS PARA EL ADMINISTRADOR
-Route::get('adm',         'Administrador\AdmUserController@index');
+
 Route::get('adm/modif',   'Administrador\AdmUserController@index');
     //SUB-RUTAS PARA Modificar
 	Route::get('adm/modif/perfuser','Administrador\AdmUserController@Modifperfuser');
@@ -70,7 +71,6 @@ Route::get('adm/modif',   'Administrador\AdmUserController@index');
 
 
 Route::get('adm/Exportar','Administrador\AdmUserController@index');
-Route::get('adm/crear',   'Administrador\AdmUserController@index');
 	//SUB-RUTAS PARA CREAR
 	Route::get('adm/crear/apui','Administrador\AdmUserController@crearApui');
 
@@ -94,25 +94,28 @@ Route::get('adm/crear',   'Administrador\AdmUserController@index');
     Route::post('adm/crear/Deptos' , 'Administrador\AdmUserController@storeDepto');
 
 Route::get('adm/Eliminar','Administrador\AdmUserController@index');
-
+*/
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+//Route::group(['middleware' => 'auth'], function(){
+    Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+        Route::resource('home','AdmUserController');
+        Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
 
-Route::group(['prefix' =>  'adm', 'namespace' => 'Administrador', 'middleware' => 'auth'], function(){
-    Route::resource('Campus','CampusController');
+    });
+//});
 
-});
 
 //PROBANDO RESOURCE PARA ASIGNATURAS
 
 Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('asig/modi','asigController');
     Route::resource('estu/modi','estuController');
-    Route::resource('curs/modi','cursController');
-    Route::resource('salas/modi','salController');
+    //Route::resource('curs/modi','cursController');
+    //Route::resource('salas/modi','salController');
 
 });
 
