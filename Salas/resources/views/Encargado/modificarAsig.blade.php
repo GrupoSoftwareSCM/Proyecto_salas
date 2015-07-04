@@ -15,9 +15,9 @@
                                     	Nueva asignatura</a>
                                     </p>
                                     <p>Hay {{ $asignatura->total() }} Registros</p>
-                                        <table class="table table-striped">
+                                        <table class="table table-bordered">
                                             <tr>
-                                              <th>#</th>
+                                              <th>Id</th>
                                               <th>Nombre</th>
                                               <th>Codigo</th>
                                               <th>Pertenece a departamento</th>

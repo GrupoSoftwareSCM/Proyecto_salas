@@ -1,23 +1,30 @@
-@extends('Encargado.homeEncar')
+@extends('Encargado.header')
 
 @section('content')
 
-<div id="page-wrapper" style="min-height: 586px;">
-            <div class="container-fluid">
+     <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Editar Asignatura</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-
+                    <div class="col-md-10 col-md-offset-1">
+                       <div class="panel panel-default">
+                        <h1 class="page-header"> Editar Asignatura</h1>
+                    <div class="panel-body">
+                     @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                 <p>Complete los campos</p>
+                    <ul>
+                         @foreach($errors->all() as $error)
+                         <li>{{ $error }} </li>
+                          @endforeach
+                      </ul>
+                       </div>
+                      @endif
                   
                 {!! Form::model($asig, ['route' => ['encar.asig.modi.update', $asig],'method' => 'PUT']) !!}
                     <form role="form">            
                         <div class="form-group">
 
                          {!! Form::label('nombre', 'Pertenece al departamento: ') !!}
-                         {!! Form::select('id_departamentos', $depa) !!}
+                         {!! Form::select('departamento_id', $depa) !!}
                         
                         </div>
                          <div class="form-group">
@@ -37,21 +44,24 @@
                         </div>
                         
                         
-                        <div>
-                         <button type="submit" class="btn btn-success">Modificar</button>
-                         </div>
-                         <div>
-                         <a class="btn btn-danger" href="{{ URL::previous() }}" role="button">Cancelar
-                         </a></div>
+                        
+                         <button type="submit" class="btn btn-info">Actualizar datos</button>
+                         
+                         
+                         <a class="btn btn-danger" href="{{url('encar/asig/modi')}}" role="button">Cancelar</a>
 
                       {!! Form::close() !!}
                       </form>
-            </div>  
-        </div>
-        {!! Form::open(['route' => ['encar.asig.modi.destroy', $asig], 'method' => 'DELETE']) !!}
+                   {!! Form::open(['route' => ['encar.asig.modi.destroy', $asig], 'method' => 'DELETE']) !!}
                       
-                    <button type="submit" onclick="return confirm('Seguro que desea eliminar el curso?')"
+                    <button type="submit" onclick="return confirm('Seguro que desea eliminar la asignatura?')"
                    class="btn btn-danger">Eliminar </button>
 
-                    {!! Form::close() !!}     
+                    {!! Form::close() !!}    
+                     </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+ 
 @endsection

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 
 
+
 class asigController extends Controller {
 
 	/**
@@ -32,25 +33,7 @@ class asigController extends Controller {
 		$departamento=Departamento::paginate();
 		return view('Encargado.agregarAsig',compact('departamento'));
 	}
-		/*public function store()
-	{
-		$data= Request::all();  
 		
-		//dd($data);	
-		//$asigna = Asignatura::create($data);
-			
-		$asigna = new Asignatura();
-
-		$asigna->nombre = (string)$data['nombre'];
-		$asigna->codigo = (string)$data['codigo'];
-		$asigna->descripcion = (string)$data['descripcion'];
-
-		$asigna->departamento_id = (string)$data['depa'];
-
-		$asigna->save();
-		return redirect('encar/asig/modi');
-		
-	}*/
 
 	/**
 	 * Show the form for creating a new resource.
@@ -64,8 +47,24 @@ class asigController extends Controller {
 	 * @return Response
 	 */
 	public function store()
-	{
-		$data= Request::only(['nombre','codigo','descripcion','departamento_id']);     																										    //obtenos los datos y luego es llamado abajo
+	{   
+		$data= Request::only(['nombre','codigo','descripcion','departamento_id']); 
+		
+		$rules=array(
+			'nombre' => 'required',
+			'codigo' => 'required',
+			'descripcion'=> 'required',
+			'departamento_id' => 'required'
+ 		);    				
+
+ 		$val=Validator::make($data,$rules);	
+
+ 		if($val->fails())
+ 		{
+            return redirect()->back()
+            ->withErrors($val->errors())
+            ->withInput();
+ 		}								
         $asigna = Asignatura::create($data);
         $asigna->save();
         return redirect('encar/asig/modi');
@@ -103,7 +102,7 @@ class asigController extends Controller {
 	 */
 	public function update($id)
 	{
-		$asig = Asignatura::findOrFail($id);
+		$asig = Asignatura::findOrFail($id);		
 		$asig->fill(Request::all());
 		$asig->save();
 		
@@ -121,7 +120,6 @@ class asigController extends Controller {
 	{
 		$asig = Asignatura::find($id);
 		$asig->delete();
-		Session::flash('message', 'El curso '. $asig->nombre. ' fue eliminado');
 	    return redirect('encar/asig/modi');
 	}
 

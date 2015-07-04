@@ -27,7 +27,7 @@ class Curso extends Model {
 	*/
 	public function horario()
 	{
-		return $this->hasMany('app\Models\Horario','id_cursos');
+		return $this->hasMany('App\Models\Horario','id_cursos');
 	}
 
 	/*
@@ -39,7 +39,7 @@ class Curso extends Model {
 
     public function estudiante()
     {
-    	return $this->belongsToMany('app\Models\Estudiante','app\Models\Asignaturas_Cursada','id_cursos','id_estudiante');
+    	return $this->belongsToMany('App\Models\Estudiante','App\Models\Asignaturas_Cursada','id_cursos','id_estudiante');
     }
 
 	/*
@@ -49,11 +49,11 @@ class Curso extends Model {
     */
 	public function asignatura()
 	{
-		return $this->belongsTo('app\Models\Asignatura');
+		return $this->belongsTo('App\Models\Asignatura');
 	}
 
 	public function docente()
 	{
-		return $this->belongsTo('app\Models\Docente');
+		return $this->belongsTo('App\Models\Docente');
 	}
 }

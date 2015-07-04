@@ -2,14 +2,26 @@
 
 @section('content')
 
-<div id="page-wrapper" style="min-height: 586px;">
-            <div class="container-fluid">
+
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Crear Asignatura</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
+                    <div class="col-md-10 col-md-offset-1">
+                       <div class="panel panel-default">
+                        <h1 class="page-header"> Crear Asignatura</h1>
+                    <div class="panel-body">
+               
+               @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                 <p>Complete los campos</p>
+                    <ul>
+                         @foreach($errors->all() as $error)
+                         <li>{{ $error }} </li>
+                          @endforeach
+                      </ul>
+                       </div>
+                      @endif
+                  
+                   
               @foreach($departamento as $Depa)
                      <?php $array[$Depa->id_departamentos] = $Depa->nombre?>
              @endforeach
@@ -31,20 +43,22 @@
                              'placeholder' => 'Ingrese la descripcion']) !!}
                         </div>
                        
-                         <div class="form-group"> <!-- Esto no me funciona -->
+                         <div class="form-group"> 
                          {!! Form::label('departamento_id','Pertenece a departamento')!!}
                          {!! Form::select('departamento_id',$array)!!}
                          </div>
                         
-                        <div>
-                         <button type="submit" class="btn btn-success">Crear</button>
-                         </div>
-                         <div>
-                         <a class="btn btn-danger" href="{{ URL::previous() }}" role="button">Cancelar
-                         </a></div>
+                        
+                         <button type="submit" class="btn btn-info">Crear</button>
+                         
+                        
+                         <a class="btn btn-danger" href="{{url('encar/asig/modi')}}" role="button">Cancelar
+                         </a>
 
                       {!! Form::close() !!}
                       </form>
             </div>  
-        </div>     
+          </div>
+          </div>
+          </div>
 	@endsection

@@ -2,16 +2,17 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Request;
-use App\Models\Estudiante;
-use App\Models\Carrera;
 //use Illuminate\Http\Request;
+use App\Models\Docente;
+use App\Models\Asignatura;
+use App\Models\Curso;
 use Illuminate\Http\RedirectResponse;
+use Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 
-class estuController extends Controller {
+class cursController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -20,8 +21,8 @@ class estuController extends Controller {
 	 */
 	public function index()
 	{
-		$estu = Estudiante::paginate();
-  		return view('Encargado.modificarEstu',compact('estu'));
+		$cursos=Curso::with('docente','asignatura')->paginate();
+		return view('Encargado.modificarCurso', compact('cursos'));
 	}
 
 	/**
@@ -31,8 +32,11 @@ class estuController extends Controller {
 	 */
 	public function create()
 	{
-		$carreras= Carrera::paginate();		
-		return view('Encargado.agregarEstu',compact('carreras'));
+		$asignaturas=Asignatura::lists('nombre','id_asignaturas');
+	    $docentes=Docente::lists('nombres','id_docentes');
+		return view('Encargado.agregarCurs')
+		->with('asignaturas', $asignaturas)
+		->with('docentes', $docentes);
 	}
 
 	/**
@@ -42,12 +46,12 @@ class estuController extends Controller {
 	 */
 	public function store()
 	{
-		$data= Request::only(['nombres','apellidos','rut','email','carrera_id']);   
-		$rules=array(
-			'nombres' => 'required',
-			'apellidos' => 'required',
-			'rut'=> 'required',
-			'email'=> 'required'
+		$data= Request::only('asignatura_id','docente_id','semestre','anio','seccion');
+         // dd($data);  
+         $rules=array(
+			'semestre' => 'required',
+			'anio' => 'required',
+			'seccion'=> 'required',
 			
  		);    				
 
@@ -58,10 +62,11 @@ class estuController extends Controller {
             return redirect()->back()
             ->withErrors($val->errors())
             ->withInput();
- 		}		  																										    //obtenos los datos y luego es llamado abajo
-        $estu = Estudiante::create($data);
-        $estu->save();
-        return redirect('encar/estu/modi');
+ 		}				 
+         $cursos=Curso::create($data);
+         $cursos->save();
+
+       	 return redirect('encar/curs/modi');
 	}
 
 	/**
@@ -83,9 +88,11 @@ class estuController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$estu=Estudiante::findOrFail($id);
-		$carre=Carrera::lists('nombre','id_carreras');
-		return view('Encargado.editarEstu', compact('estu','carre'));
+	    $cursos=Curso::findOrFail($id);
+		$asignaturas=Asignatura::lists('nombre','id_asignaturas');
+		$docentes=Docente::lists('nombres','id_docentes');
+
+       return view('Encargado.editarCurs', compact('cursos','asignaturas','docentes'));
 	}
 
 	/**
@@ -96,10 +103,11 @@ class estuController extends Controller {
 	 */
 	public function update($id)
 	{
-		$estu= Estudiante::findOrFail($id);
-		$estu->fill(Request::all());
-		$estu->save();
-		return redirect('encar/estu/modi');
+		$cursos=Curso::findOrFail($id);
+		$cursos->fill(Request::all());
+	    $cursos->save();
+	
+	   return redirect('encar/curs/modi');
 	}
 
 	/**
@@ -110,9 +118,10 @@ class estuController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$estu= Estudiante::findOrFail($id);
-		$estu->delete();
-		return redirect('encar/estu/modi');
+		$curso=Curso::findOrFail($id);
+		$curso->delete();
+		return redirect('encar/curs/modi');
 	}
 
 }
+

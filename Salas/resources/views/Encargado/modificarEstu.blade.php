@@ -14,9 +14,9 @@
                                     	Nuevo Estudiante</a>
                                     </p>
                                     <p>Hay {{ $estu->total() }} Registros</p>
-                                        <table class="table table-striped">
+                                        <table class="table table-bordered">
                                             <tr>
-                                              <th>#</th>
+                                              <th>Id</th>
                                               <th>Nombres</th>
                                               <th>Rut</th>
                                               <th>Apellidos</th>
