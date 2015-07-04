@@ -1,4 +1,4 @@
-@extends('Encargado.homeEncar2')
+@extends('Encargado.homeEncar')
 
 @section('content3')
 

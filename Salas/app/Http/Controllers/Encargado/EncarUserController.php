@@ -16,7 +16,7 @@ class EncarUserController extends Controller {
 	 */
 	public function index()
 	{
-		return view('Encargado.homeEncar2');
+		return view('Encargado.homeEncar');
 	}
 
 	/**
