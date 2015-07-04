@@ -16,90 +16,9 @@ class EncarUserController extends Controller {
 	 */
 	public function index()
 	{
-		return view('Encargado.homeEncar');
+		return view('Encargado.homeEncar2');
 	}
-    public function cursos()
-    {
-    	return view('Encargado.homeEncar');
-    }
-    public function asig()
-    {
-    	return view('Encargado.homeEncar');
-    }
-    public function estu()
-    {
-    	return view('Encargado.homeEncar');
-    }
-     public function agrecurso()
-    {
-    	return view('Encargado.modifCursos');
-    }
-     public function modicurso()
-    {
-    	return view('Encargado.modifCursos');
-    }
-     public function elimcurso()
-    {
-    	return view('Encargado.modifCursos');
-    }
-    public function agreasig()
-    {
-    	return view('Encargado.modifAsig');
-    }
-    public function modiasig()
-    {
-    	return view('Encargado.modifAsig');
-    }
-    public function elimasig()
-    {
-    	return view('Encargado.modifAsig');
-    }
-    public function agreestu()
-    {
-    	return view('Encargado.modifEstu');
-    }
-    public function modiestu()
-    {
-    	return view('Encargado.modifEstu');
-    }
-    public function elimestu()
-    {
-    	return view('Encargado.modifEstu');
-    }
 
-
-   public function Modificar()
-    {
-
-
-        $input = Request::all();
-        $campus = Campus::paginate();
-    
-        if($input == null){
-            return view("Encargado.homeEncar",array(
-                'Campus' => $campus  
-            ));
-        }
-        else{
-            /*return view("Encargado.homeEncar",array(
-                'Campus' => $campus
-            ));*/
-           return $input;
-            //return view("Encargado.homeEncar");
-            /*$result = \DB::table('campus')
-                ->get();
-            dd($result);
-            return $result;*/
-        }
-
-
-    }  
-/* $profiles = DB::table('profiles')->paginate(5);
-		$profiles =
-		[
-		    'profiles' => $profiles
-	    ];
-        return View::make('crud.index', $profiles);*/
 	/**
 	 * Show the form for creating a new resource.
 	 *

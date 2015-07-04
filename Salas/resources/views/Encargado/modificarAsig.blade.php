@@ -1,13 +1,14 @@
-@extends('Encargado.homeEncar')
+@extends('Encargado.homeEncar2')
 
-@section('content')
+@section('content2')
+ 
 
 
 {!!Form::open(['route' => 'encar.asig.modi.index', 'method' => 'GET'])!!}
                                 
                                <div id="dataTables-example_wrapper" 
                                 class="dataTables_wrapper form-inline dt-bootstrap no-footer"
-  								<div class="panel-heading">Asignaturas</div>
+  								<div class="panel-heading"><h1>ASIGNATURAS</h1></div>
                                     <div class="panel-body">
                                     <p>
                                     	<a class="btn btn-info" href="modi/create" role="button">

@@ -1,4 +1,4 @@
-@extends('Encargado.header')
+@extends('Encargado.header2')
 
 @section('content')
 
