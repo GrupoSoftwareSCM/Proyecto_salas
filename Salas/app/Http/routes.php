@@ -104,6 +104,7 @@ Route::controllers([
     Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
         Route::resource('home','AdmUserController');
         Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
+        Route::resource('Facultad','FacultadController'); //CRUD PARA CAMPUS
 
     });
 //});
@@ -115,7 +116,7 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('asig/modi','asigController');
     Route::resource('estu/modi','estuController');
     Route::resource('curs/modi','cursController');
-    Route::resource('salas/modi','salController');
+    //Route::resource('salas/modi','salController');
     Route::resource('home','EncarUserController');
 
 });
