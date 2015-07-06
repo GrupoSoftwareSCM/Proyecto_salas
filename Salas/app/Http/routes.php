@@ -104,7 +104,8 @@ Route::controllers([
     Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
         Route::resource('home','AdmUserController');
         Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
-        Route::resource('Facultad','FacultadController'); //CRUD PARA CAMPUS
+        Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
+        Route::resource('Depto','DepartamentoController'); //CRUD PARA Facultad
 
     });
 //});

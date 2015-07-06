@@ -37,9 +37,9 @@
                 </div>
             </div>
         </div>
-    @endif
 
-    @if(strpos($_SERVER['REQUEST_URI'],'/Facultad/') !== false)
+    @elseif(strpos($_SERVER['REQUEST_URI'],'/Facultad/') !== false)
+
         <div class="panel panel-success">
             <div class="panel-body">
                 Editando Facultad
@@ -66,5 +66,35 @@
                 </div>
             </div>
         </div>
+
+    @elseif(strpos($_SERVER['REQUEST_URI'],'/Depto/') !== false)
+
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Editando Departamentos
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        {!! Form::model($Departamento,array('route' => array('Admin.Depto.update',$Departamento->id_departamentos), 'method' => 'PUT')) !!}
+                        <div class="form-group">
+
+                            {!!Form::label('facultad_id','Ingrese Facultad',['class' => 'col-md-6'])!!}
+                            {!!Form::select('facultad_id',$Facultad,$Departamento->facultad_id,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('nombre','Nombre Departamentos',['class' => 'col-md-6'])!!}
+                            {!!Form::text('nombre',$Departamento->nombre,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
+                            {!!Form::textarea('descripcion',$Departamento->descripcion,['class' => 'col-md-6'])!!}
+
+                        </div>
+                        {!!Form::button('Editar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     @endif
 @endsection

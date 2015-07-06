@@ -38,9 +38,8 @@
                 </div>
             </div>
         </div>
-    @endif
 
-    @if($_SERVER['REQUEST_URI'] == "/Admin/Facultad/create")
+    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Facultad/create")
         <div class="panel panel-success">
             <div class="panel-body">
                 Facultad
@@ -55,6 +54,33 @@
                             {!!Form::select('campus_id',$campus,'',['class' => 'col-md-6'])!!}
 
                             {!!Form::label('nombre','Nombre Facultad',['class' => 'col-md-6'])!!}
+                            {!!Form::text('nombre','',['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
+                            {!!Form::textarea('descripcion','',['class' => 'col-md-6'])!!}
+
+                        </div>
+                        {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Depto/create")
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Departamento
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        {!!Form::open(['route' => 'Admin.Depto.store','method' => 'POST'])!!}
+                        <div class="form-group">
+
+                            {!!Form::label('facultad_id','Ingrese Campus',['class' => 'col-md-6'])!!}
+                            {!!Form::select('facultad_id',$Facultad,'',['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('nombre','Nombre Departamentos',['class' => 'col-md-6'])!!}
                             {!!Form::text('nombre','',['class' => 'col-md-6'])!!}
 
                             {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
