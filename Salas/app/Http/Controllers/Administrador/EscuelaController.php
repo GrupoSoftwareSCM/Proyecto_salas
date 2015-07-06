@@ -2,7 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Models\Departamento;
+use App\Models\Escuela;
 use Illuminate\Http\Request;
 
 class EscuelaController extends Controller {
@@ -14,8 +15,12 @@ class EscuelaController extends Controller {
 	 */
 	public function index()
 	{
-		//
-	}
+        /*$data_escuela = Escuela::paginate();
+        return var_export($data_escuela);
+        //return view('Administrador.bodyAdm')->with('Escuelas', $data_escuela);
+	    */
+        return "hola";
+    }
 
 	/**
 	 * Show the form for creating a new resource.

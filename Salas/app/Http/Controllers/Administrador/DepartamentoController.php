@@ -65,9 +65,15 @@ class DepartamentoController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $Departamento = Facultad::find($id);
-        $Facultad = Facultad::lists('nombre','id_facultades');
-        return view('Administrador.editarAdm')->with('Departamento',$Departamento)->with('Facultad',$Facultad);
+
+        $Departamento = Departamento::find($id);
+        if($Departamento){
+            $Facultad = Facultad::lists('nombre','id_facultades');
+            return view('Administrador.editarAdm')->with('Departamento',$Departamento)->with('Facultad',$Facultad);
+        }
+        else{
+            abort(404,'id no encontrado');
+        }
 	}
 
 	/**
@@ -78,7 +84,18 @@ class DepartamentoController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $Departamento = Departamento::find($id);
+        if($Departamento){
+            $datos_edit_Departamento = Request::only(['nombre','descripcion','departamento_id']);
+            $Departamento->fill($datos_edit_Departamento);
+            $Departamento->save();
+
+            return redirect()->route('Admin.Depto.index')->with('mensaje','Campus editado correctamente');
+
+        }
+        else{
+            abort(404,'id no encontrado');
+        }
 	}
 
 	/**
@@ -89,7 +106,15 @@ class DepartamentoController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        $Departamento = Departamento::find($id);
+        if($Departamento){
+            $Departamento->delete();
+            return redirect()->route('Admin.Depto.index')->with('mensaje','Campus Eliminado correctamente');
+        }
+        else{
+            return redirect()->route('Admin.Depto.index')->with('mensaje','Campus No encontrado');
+        }
+
 	}
 
 }

@@ -159,7 +159,7 @@
                                         <a class="btn glyphicon glyphicon-pencil" href="Depto/{{$Departamento->id_departamentos}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
                                     <th class="center">
-                                        {!!Form::open(array('route' => array('Admin.Facultad.destroy',$Departamento->id_facultades), 'method' => 'DELETE'))!!}
+                                        {!!Form::open(array('route' => array('Admin.Depto.destroy',$Departamento->id_departamentos), 'method' => 'DELETE'))!!}
 
                                         <button class="btn glyphicon glyphicon-remove" type="submit"></button>
 
@@ -178,5 +178,64 @@
                 </div>
             </div>
         </div>
+
+    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Escuela")
+        {{--<div class="panel panel-success">
+            <div class="panel-body">
+                Escuela
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+
+                        <nav class="navbar navbar-right">
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Escuela/create" role="button" aria-label="Left Align">
+                                Crear Escuela
+                            </a>
+                        </nav>
+
+                        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="center">Nombre</th>
+                                <th class="center">Descripcion</th>
+                                <th class="center">Departamentos perteneciente</th>
+                                <th class="center">Editar</th>
+                                <th class="center">Eliminar</th>
+
+                            </tr>
+
+                            </thead>
+                            <tbody>
+
+                            @foreach($Escuelas as $Escuela)
+                                <tr>
+                                    <th class="center">{{$Escuela->nombre}}</th>
+                                    <th class="center">{{$Escuela->descripcion}}</th>
+                                    <th class="center">{{$Escuela->departamento_id}}</th>
+                                    <th class="center">
+                                        <a class="btn glyphicon glyphicon-pencil" href="Depto/{{$Escuela->id_escuelas}}/edit" role="button" aria-label="Left Align"></a>
+                                    </th>
+                                    <th class="center">
+                                        {!!Form::open(array('route' => array('Admin.Escuela.destroy',$Escuela->id_escuelas), 'method' => 'DELETE'))!!}
+
+                                        <button class="btn glyphicon glyphicon-remove" type="submit"></button>
+
+                                        {!!Form::close()!!}
+                                    </th>
+                                </tr>
+                            @endforeach
+
+
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>--}}
+
     @endif
 @endsection

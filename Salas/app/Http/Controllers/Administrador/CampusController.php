@@ -99,7 +99,7 @@ class CampusController extends Controller {
 	{
         $Campus = Campus::find($id);
         $Campus->delete();
-        return redirect()->route('Admin.Campus.index')->with('mensaje','Campus editado correctamente');
+        return redirect()->route('Admin.Campus.index')->with('mensaje','Campus eliminado correctamente');
 	}
 
 }
