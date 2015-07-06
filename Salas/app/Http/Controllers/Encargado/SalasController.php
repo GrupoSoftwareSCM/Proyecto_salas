@@ -19,18 +19,9 @@ class SalasController extends Controller {
 	public function index()
 	{
 		$salas = Sala::paginate(); // Cambiar esto, si la db es muy grande queda la escoba
-		return view('Encargado.homeEncar',array(
-                'Salas' => $salas
-            ));
+		return view('Encargado.modifSalas',compact('salas'));
 			
 	}
-  /*
-return view('Administrador.CampusCrud.listaCampus', compact('campus'));
-
-
-$salas = Salas::where('campus_id','=','la id del campus')->paginate();
-  */
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -60,9 +51,7 @@ $salas = Salas::where('campus_id','=','la id del campus')->paginate();
 	 */
 	public function show($id)
 	{
-		$campus = Campus::find($id);
-		$salas = $campus->salas()->paginate();
-        return view('Encargado.modifSalas',compact('salas'));
+		//
 	}
 
 	/**

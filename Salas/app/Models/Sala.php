@@ -28,7 +28,7 @@ class Sala extends Model {
 	*/
 	public function horario()
 	{
-		return $this->hasOne('app\Models\Horario','id_salas');
+		return $this->hasOne('App\Models\Horario','id_salas');
 	}
 
 	
@@ -39,12 +39,12 @@ class Sala extends Model {
     */
 	public function campus() //RALACION 1:N
 	{
-		return $this->belongsTo('app\Models\Campus');
+		return $this->belongsTo('App\Models\Campus');
 	}
 
 	public function tipo_sala() //RALACION 1:N
 	{
-		return $this->belongsTo('app\Models\Tipos_Salas');
+		return $this->belongsTo('App\Models\Tipo_Sala');
 	}
 
 }

@@ -21,6 +21,9 @@
                      <ul class="nav nav-sidebar">
                         <li>{!!Html::linkRoute('encar.curs.modi.index','Cursos')!!}</li>
                     </ul>
+                     <ul class="nav nav-sidebar">
+                        <li>{!!Html::linkRoute('encar.salas.modi.index','Salas')!!}</li>
+                    </ul>
                 </div>
             </div>
 
@@ -35,6 +38,9 @@
          @endif
          @if($_SERVER['REQUEST_URI'] == "/encar/curs/modi")
                 @yield('content3')
+         @endif
+          @if($_SERVER['REQUEST_URI'] == "/encar/salas/modi")
+                @yield('content5')
          @endif
 
         </div>

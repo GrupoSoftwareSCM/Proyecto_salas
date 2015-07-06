@@ -1,32 +1,42 @@
-@extends('Encargado.header')
+@extends('Encargado.homeEncar')
 
-@section('content')
+@section('content5')
 	
-
-@if($_SERVER['REQUEST_URI'] == "/encar/modif/salas")
-
-{!!Form::open(['url' => 'encar/modif/salas'])!!}
-  								<div class="panel-heading">SALAS</div>
+{!!Form::open(['route' => 'encar.salas.modi.index', 'method' => 'GET'])!!}
+                                
+                               <div id="dataTables-example_wrapper" 
+                                class="dataTables_wrapper form-inline dt-bootstrap no-footer"
+                  <div class="panel-heading"><h1>SALAS</h1></div>
                                     <div class="panel-body">
-                                        <table class="table table-striped">
+                                    <p>
+                                    </p>
+                                    <p>Hay {{ $salas->total() }} Registros</p>
+                                        <table class="table table-bordered">
                                             <tr>
-                                              <th>#</th>
+                                              <th>Id</th>
                                               <th>Nombre</th>
-                                              <th>Capacidad</th>
-                                              <th>Acciones</th>
+                                              <th>Descripcion</th>
+                                              <th>Pertenece a campus</th>
+                                              <th>Pertenece a tipo de salas</th>
+                                              <th>Accion</th>
+                                              
                                             </tr>
 
-                                           @foreach($salas as $Salas)
+                                           @foreach($salas as $Sal)
                                             <tr>
-                                                <td>{{$Salas-> id_salas }}</td>
-                                                <td>{{$Salas-> nombre}}</td>
-                                                <td>{{$Salas-> descripcion}}</td>
-                                                <td><a href="">Editar</td>
-
+                                                <td>{{$Sal-> id_salas }}</td>
+                                                <td>{{$Sal-> nombre}}</td>
+                                                <td>{{$Sal-> descripcion}}</td>
+                                                <td>{{$Sal-> Campus->nombre}}</td>
+                                                <th>{{$Sal-> Tipo_Sala->nombre}}</th>
+                                                <td><a href="{{ route('encar.salas.modi.edit', $Sal ) }}">Editar</td>      
                                             </tr>
                                            @endforeach
                                         </table>
                                         {!! $salas->render()!!}
                                     </div>
+                                    </div>
+                                    </div>
+                                  
 {!!Form::close()!!}
-@endif
+@endsection
