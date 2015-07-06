@@ -117,7 +117,7 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('asig/modi','asigController');
     Route::resource('estu/modi','estuController');
     Route::resource('curs/modi','cursController');
-    //Route::resource('salas/modi','salController');
+    Route::resource('salas/modi','SalasController');
     Route::resource('home','EncarUserController');
 
 });
