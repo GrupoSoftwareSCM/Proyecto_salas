@@ -86,7 +86,7 @@ class DepartamentoController extends Controller {
 	{
         $Departamento = Departamento::find($id);
         if($Departamento){
-            $datos_edit_Departamento = Request::only(['nombre','descripcion','departamento_id']);
+            $datos_edit_Departamento = Request::only(['nombre','descripcion','facultad_id']);
             $Departamento->fill($datos_edit_Departamento);
             $Departamento->save();
 

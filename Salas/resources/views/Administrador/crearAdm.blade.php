@@ -93,5 +93,32 @@
                 </div>
             </div>
         </div>
+    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Escuela/create")
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Escuela
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        {!!Form::open(['route' => 'Admin.Escuela.store','method' => 'POST'])!!}
+                        <div class="form-group">
+
+                            {!!Form::label('departamento_id','Ingrese Campus',['class' => 'col-md-6'])!!}
+                            {!!Form::select('departamento_id',$Departamento,'',['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('nombre','Nombre Escuela',['class' => 'col-md-6'])!!}
+                            {!!Form::text('nombre','',['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
+                            {!!Form::textarea('descripcion','',['class' => 'col-md-6'])!!}
+
+                        </div>
+                        {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
 @endsection

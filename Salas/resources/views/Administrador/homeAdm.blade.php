@@ -26,7 +26,7 @@
             {{$_SERVER['REQUEST_URI']}}
             @if($_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
                 @yield('body')
-            @elseif($_SERVER['REQUEST_URI'] == "/Admin/Depto/create" || $_SERVER['REQUEST_URI'] == "/Admin/Campus/create" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad/create")
+            @elseif($_SERVER['REQUEST_URI'] == "/Admin/Escuela/create" ||$_SERVER['REQUEST_URI'] == "/Admin/Depto/create" || $_SERVER['REQUEST_URI'] == "/Admin/Campus/create" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad/create")
                 @yield('createBody')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/edit') !== false)
                 @yield('editBody')

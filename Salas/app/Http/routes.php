@@ -106,7 +106,7 @@ Route::controllers([
         Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
         Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
         Route::resource('Depto','DepartamentoController'); //CRUD PARA Depto
-        Route::resource('Escuela','DepartamentoController'); //CRUD PARA Escuela
+        Route::resource('Escuela','EscuelaController'); //CRUD PARA Escuela
     });
 //});
 

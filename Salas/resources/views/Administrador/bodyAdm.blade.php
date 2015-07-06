@@ -180,7 +180,8 @@
         </div>
 
     @elseif($_SERVER['REQUEST_URI'] == "/Admin/Escuela")
-        {{--<div class="panel panel-success">
+
+        <div class="panel panel-success">
             <div class="panel-body">
                 Escuela
             </div>
@@ -214,7 +215,7 @@
                                     <th class="center">{{$Escuela->descripcion}}</th>
                                     <th class="center">{{$Escuela->departamento_id}}</th>
                                     <th class="center">
-                                        <a class="btn glyphicon glyphicon-pencil" href="Depto/{{$Escuela->id_escuelas}}/edit" role="button" aria-label="Left Align"></a>
+                                        <a class="btn glyphicon glyphicon-pencil" href="Escuela/{{$Escuela->id_escuelas}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
                                     <th class="center">
                                         {!!Form::open(array('route' => array('Admin.Escuela.destroy',$Escuela->id_escuelas), 'method' => 'DELETE'))!!}
@@ -235,7 +236,7 @@
                     </div>
                 </div>
             </div>
-        </div>--}}
+        </div>
 
     @endif
 @endsection
