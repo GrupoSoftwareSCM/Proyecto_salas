@@ -17,6 +17,8 @@
                         <li>{!!Html::linkRoute('Admin.Facultad.index','Facultad')!!}</li>
                         <li>{!!Html::linkRoute('Admin.Depto.index','Departamento')!!}</li>
                         <li>{!!Html::linkRoute('Admin.Escuela.index','Escuela')!!}</li>
+                        <li>{!!Html::linkRoute('Admin.TpoSala.index','Tipos de sala')!!}</li>
+                        <li>{!!Html::linkRoute('Admin.Salas.index','Salas')!!}</li>
                     </ul>
                 </div>
             </div>
@@ -24,9 +26,9 @@
         </div>
         <div class="col-md-9">
             {{$_SERVER['REQUEST_URI']}}
-            @if($_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
+            @if($_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
                 @yield('body')
-            @elseif($_SERVER['REQUEST_URI'] == "/Admin/Escuela/create" ||$_SERVER['REQUEST_URI'] == "/Admin/Depto/create" || $_SERVER['REQUEST_URI'] == "/Admin/Campus/create" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad/create")
+            @elseif(strpos($_SERVER['REQUEST_URI'],'/create') !== false)
                 @yield('createBody')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/edit') !== false)
                 @yield('editBody')
