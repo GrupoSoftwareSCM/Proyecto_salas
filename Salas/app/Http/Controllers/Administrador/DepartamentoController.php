@@ -18,7 +18,8 @@ class DepartamentoController extends Controller {
 	public function index()
 	{
         $data_depto = Departamento::paginate();
-        return view('Administrador.bodyAdm')->with('Departamentos', $data_depto);
+        $data_Facultad = Facultad::lists('nombre','id_facultades');
+        return view('Administrador.bodyAdm')->with('Departamentos', $data_depto)->with('Facultad', $data_Facultad);
 	}
 
 	/**

@@ -26,6 +26,7 @@
                                         <th class="center">Direccion</th>
                                         <th class="center">Editar</th>
                                         <th class="center">Eliminar</th>
+                                        <th class="center">+ info</th>
 
                                     </tr>
 
@@ -47,6 +48,9 @@
 
                                                     {!!Form::close()!!}
                                                 </th>
+                                                <th class="center">
+                                                    <a class="btn glyphicon glyphicon-inbox" href="Campus/{{$camp->id_campus}}" role="button" aria-label="Center Align"></a>
+                                                </th>
                                             </tr>
                                         @endforeach
 
@@ -65,7 +69,7 @@
 
         <div class="panel panel-success">
             <div class="panel-body">
-                Facultades
+                Facultad
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -95,7 +99,11 @@
                                 <tr>
                                     <th class="center">{{$facultad->nombre}}</th>
                                     <th class="center">{{$facultad->descripcion}}</th>
-                                    <th class="center">{{$facultad->campus_id}}</th>
+                                    @foreach($Campus as $key => $value)
+                                        @if($key == $facultad->campus_id)
+                                            <th class="center">{{$value}}</th>
+                                        @endif
+                                    @endforeach
                                     <th class="center">
                                         <a class="btn glyphicon glyphicon-pencil" href="Facultad/{{$facultad->id_facultades}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
@@ -154,7 +162,11 @@
                                 <tr>
                                     <th class="center">{{$Departamento->nombre}}</th>
                                     <th class="center">{{$Departamento->descripcion}}</th>
-                                    <th class="center">{{$Departamento->facultad_id}}</th>
+                                    @foreach($Facultad as $key => $value)
+                                        @if($key == $Departamento->facultad_id)
+                                            <th class="center">{{$value}}</th>
+                                        @endif
+                                    @endforeach
                                     <th class="center">
                                         <a class="btn glyphicon glyphicon-pencil" href="Depto/{{$Departamento->id_departamentos}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
@@ -200,7 +212,7 @@
                             <tr>
                                 <th class="center">Nombre</th>
                                 <th class="center">Descripcion</th>
-                                <th class="center">Departamentos perteneciente</th>
+                                <th class="center">Departamento perteneciente</th>
                                 <th class="center">Editar</th>
                                 <th class="center">Eliminar</th>
 
@@ -213,7 +225,13 @@
                                 <tr>
                                     <th class="center">{{$Escuela->nombre}}</th>
                                     <th class="center">{{$Escuela->descripcion}}</th>
-                                    <th class="center">{{$Escuela->departamento_id}}</th>
+
+                                    @foreach($Depto as $key => $value)
+                                        @if($key == $Escuela->departamento_id)
+                                            <th class="center">{{$value}}</th>
+                                        @endif
+                                    @endforeach
+
                                     <th class="center">
                                         <a class="btn glyphicon glyphicon-pencil" href="Escuela/{{$Escuela->id_escuelas}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
@@ -296,7 +314,6 @@
         </div>
 
     @elseif($_SERVER['REQUEST_URI'] == "/Admin/Salas")
-        {{--var_dump($Campus)--}}
 
         <div class="panel panel-success">
             <div class="panel-body">
@@ -315,7 +332,7 @@
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th class="center">Nombre</th>
+                                <th class="center">Nombre sala</th>
                                 <th class="center">Descripcion</th>
                                 <th class="center">Campus</th>
                                 <th class="center">Tpo Sala</th>
@@ -331,8 +348,18 @@
                                 <tr>
                                     <th class="center">{{$Sala->nombre}}</th>
                                     <th class="center">{{$Sala->descripcion}}</th>
-                                    <th class="center">{{$Sala->campus_id}}</th>
-                                    <th class="center">{{$Sala->tipo_sala_id}}</th>
+
+                                    @foreach($Campus as $key => $camp)
+                                        @if($key == $Sala->campus_id)
+                                            <th class="center">{{$camp}}</th>
+                                        @endif
+                                    @endforeach
+
+                                    @foreach($Tposala as $key => $value)
+                                        @if($key == $Sala->tipo_sala_id)
+                                            <th class="center">{{$value}}</th>
+                                        @endif
+                                    @endforeach
                                     <th class="center">
                                         <a class="btn glyphicon glyphicon-pencil" href="Salas/{{$Sala->id_salas}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>

@@ -18,8 +18,8 @@ class SalasController extends Controller {
 	 */
 	public function index()
 	{
-        $data_campus = Campus::paginate();
-        $data_tposala = Tipo_Sala::paginate();
+        $data_campus = Campus::lists('nombre','id_campus');
+        $data_tposala = Tipo_Sala::lists('nombre','id_tipos_salas');
         $data_salas = Sala::paginate();
 
         return view('Administrador.bodyAdm')->with('Campus',$data_campus)->with('Tposala',$data_tposala)->with('Salas',$data_salas);

@@ -4,7 +4,9 @@
     @if(strpos($_SERVER['REQUEST_URI'],'/Campus/') !== false)
         <div class="panel panel-success">
             <div class="panel-body">
-                Editando Campus
+                Campus
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -42,7 +44,9 @@
 
         <div class="panel panel-success">
             <div class="panel-body">
-                Editando Facultad
+                Facultad
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -71,7 +75,9 @@
 
         <div class="panel panel-success">
             <div class="panel-body">
-                Editando Departamentos
+                Departamentos
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -100,7 +106,9 @@
 
         <div class="panel panel-success">
             <div class="panel-body">
-                Editando Escuela
+                Escuela
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -129,7 +137,9 @@
 
         <div class="panel panel-success">
             <div class="panel-body">
-                Editando tipo salas
+                Tipo salas
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -155,7 +165,9 @@
 
         <div class="panel panel-success">
             <div class="panel-body">
-                Editando salas
+                Salas
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
             </div>
             <div class="panel-footer">
                 <div class="row">

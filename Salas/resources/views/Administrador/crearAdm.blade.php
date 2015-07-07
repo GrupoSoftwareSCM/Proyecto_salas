@@ -6,6 +6,8 @@
         <div class="panel panel-success">
             <div class="panel-body">
                 Campus
+                <a class="glyphicon glyphicon-menu-right"></a>
+                crear
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -43,6 +45,8 @@
         <div class="panel panel-success">
             <div class="panel-body">
                 Facultad
+                <a class="glyphicon glyphicon-menu-right"></a>
+                crear
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -70,6 +74,8 @@
         <div class="panel panel-success">
             <div class="panel-body">
                 Departamento
+                <a class="glyphicon glyphicon-menu-right"></a>
+                crear
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -99,6 +105,8 @@
         <div class="panel panel-success">
             <div class="panel-body">
                 Escuela
+                <a class="glyphicon glyphicon-menu-right"></a>
+                crear
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -127,6 +135,8 @@
         <div class="panel panel-success">
             <div class="panel-body">
                 Tipo sala
+                <a class="glyphicon glyphicon-menu-right"></a>
+                crear
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -152,6 +162,8 @@
         <div class="panel panel-success">
             <div class="panel-body">
                 sala
+                <a class="glyphicon glyphicon-menu-right"></a>
+                crear
             </div>
             <div class="panel-footer">
                 <div class="row">

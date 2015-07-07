@@ -17,7 +17,8 @@ class FacultadController extends Controller {
 	public function index()
 	{
         $data_facultad = Facultad::paginate();
-		return view('Administrador.bodyAdm')->with('facultades', $data_facultad);
+        $data_Campus = Campus::lists('nombre','id_campus');
+		return view('Administrador.bodyAdm')->with('facultades', $data_facultad)->with('Campus', $data_Campus);
 	}
 
 	/**

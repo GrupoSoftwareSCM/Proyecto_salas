@@ -51,7 +51,8 @@ class CampusController extends Controller {
 	 */
 	public function show($id)
 	{
-        //
+        $Campus = Campus::find($id);
+        return view('Administrador.showAdm')->with('show', true)->with('Campus', $Campus);
 	}
 
 	/**

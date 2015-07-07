@@ -18,7 +18,8 @@ class EscuelaController extends Controller {
 	public function index()
 	{
         $data_escuela = Escuela::paginate();
-        return view('Administrador.bodyAdm')->with('Escuelas', $data_escuela);
+        $data_Depto = Departamento::lists('nombre','id_departamentos');
+        return view('Administrador.bodyAdm')->with('Escuelas', $data_escuela)->with('Depto', $data_Depto);
     }
 
 	/**
