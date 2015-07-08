@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Sala;
 use App\Models\Campus;
+use App\Models\Tipo_Sala;
 //use Illuminate\Http\Request;
 use Request;
 
@@ -62,7 +63,10 @@ class SalasController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		 $sala =Sala::findOrFail($id);
+		 $tipo_sala = Tipo_Sala::lists('nombre','id_tipos_salas');
+		 $campus=Campus::lists('nombre','id_campus');
+		return view('Encargado.editarSalas',compact('sala','tipo_sala','campus'));
 	}
 
 	/**
@@ -73,7 +77,11 @@ class SalasController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$sala = Sala::findOrFail($id);		
+		$sala->fill(Request::all());
+		$sala->save();
+		
+		return redirect('encar/salas/modi');
 	}
 
 	/**
