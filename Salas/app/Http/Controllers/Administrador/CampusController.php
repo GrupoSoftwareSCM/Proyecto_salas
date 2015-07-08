@@ -35,9 +35,9 @@ class CampusController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\StoreCampusRequest $request)
 	{
-        $datos_nuevo_campus = Request::only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
+        $datos_nuevo_campus = $request->only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
         Campus::create($datos_nuevo_campus);
 
         return redirect('Admin/Campus');

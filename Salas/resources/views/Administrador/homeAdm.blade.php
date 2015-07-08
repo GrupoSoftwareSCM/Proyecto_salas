@@ -30,8 +30,6 @@
                 @yield('createBody')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/edit') !== false)
                 @yield('editBody')
-            @elseif($show)
-                @yield('showBody')
             @endif
 
         </div>

@@ -28,7 +28,7 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
-								<input type="email" class="form-control" name="email" placeholder="RUT">
+								<input type="text" class="form-control" name="email" placeholder="RUT">
 							</div>
 						</div>
 
