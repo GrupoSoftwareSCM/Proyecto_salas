@@ -25,7 +25,7 @@
                         {!!Form::open(['route' => 'Admin.Campus.store','method' => 'POST'])!!}
                             <div class="form-group">
 
-                                {!!Form::label('nombre','Nombre Campus',['class' => 'col-md-6'])!!}
+                                {!!Form::label('nombre campus','Nombre Campus',['class' => 'col-md-6'])!!}
                                 {!!Form::text('nombre','',['class' => 'col-md-6'])!!}
 
                                 {!!Form::label('direccion','Direccion',['class' => 'col-md-6'])!!}
