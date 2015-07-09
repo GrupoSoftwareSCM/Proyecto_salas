@@ -17,8 +17,8 @@
                                         <table class="table table-bordered">
                                             <tr>
                                               <th>Id</th>
-                                              <th>Nombres</th>
                                               <th>Rut</th>
+                                              <th>Nombres</th>
                                               <th>Apellidos</th>
                                               <th>Email</th>
                                               <th>Carrera</th>
@@ -29,9 +29,9 @@
 
                                            @foreach($estu as $Estu)
                                             <tr>
-                                                <td>{{$Estu-> id_estudiantes }}</td>
-                                                <td>{{$Estu-> nombres}}</td>
+                                                <td>{{$Estu-> id }}</td>
                                                 <td>{{$Estu-> rut}}</td>
+                                                <td>{{$Estu-> nombres}}</td>
                                                 <td>{{$Estu-> apellidos}}</td>
                                                 <td>{{$Estu-> email}}</td>
                                                 <td>{{$Estu-> carrera->nombre}}</td>

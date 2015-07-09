@@ -64,8 +64,8 @@ class SalasController extends Controller {
 	public function edit($id)
 	{
 		 $sala =Sala::findOrFail($id);
-		 $tipo_sala = Tipo_Sala::lists('nombre','id_tipos_salas');
-		 $campus=Campus::lists('nombre','id_campus');
+		 $tipo_sala = Tipo_Sala::lists('nombre','id');
+		 $campus=Campus::lists('nombre','id');
 		return view('Encargado.editarSalas',compact('sala','tipo_sala','campus'));
 	}
 

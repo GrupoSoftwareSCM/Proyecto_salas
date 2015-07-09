@@ -25,7 +25,7 @@
 
                                            @foreach($salas as $Sal)
                                             <tr>
-                                                <td>{{$Sal-> id_salas }}</td>
+                                                <td>{{$Sal-> id }}</td>
                                                 <td>{{$Sal-> nombre}}</td>
                                                 <td>{{$Sal-> descripcion}}</td>
                                                 <td>{{$Sal-> capacidad}}</td>

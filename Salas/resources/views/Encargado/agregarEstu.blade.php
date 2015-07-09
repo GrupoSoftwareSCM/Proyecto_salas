@@ -17,7 +17,7 @@
                </div>
                @endif
               @foreach($carreras as $Carre)
-                     <?php $array[$Carre->id_carreras] = $Carre->nombre?>
+                     <?php $array[$Carre->id] = $Carre->nombre?>
              @endforeach
                  {!! Form::open(['route' => 'encar.estu.modi.store', 'method' => 'POST']) !!}
                     <form role="form">            

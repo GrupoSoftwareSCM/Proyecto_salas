@@ -90,7 +90,7 @@ class asigController extends Controller {
 	public function edit($id)
 	{
 		 $asig = Asignatura::findOrFail($id);
-		 $depa = Departamento::lists('nombre','id_departamentos');
+		 $depa = Departamento::lists('nombre','id');
 		return view('Encargado.editarAsig', compact('asig','depa'));
 	}
 

@@ -32,8 +32,8 @@ class cursController extends Controller {
 	 */
 	public function create()
 	{
-		$asignaturas=Asignatura::lists('nombre','id_asignaturas');
-	    $docentes=Docente::lists('nombres','id_docentes');
+		$asignaturas=Asignatura::lists('nombre','id');
+	    $docentes=Docente::lists('nombres','id');
 		return view('Encargado.agregarCurs')
 		->with('asignaturas', $asignaturas)
 		->with('docentes', $docentes);
@@ -89,8 +89,8 @@ class cursController extends Controller {
 	public function edit($id)
 	{
 	    $cursos=Curso::findOrFail($id);
-		$asignaturas=Asignatura::lists('nombre','id_asignaturas');
-		$docentes=Docente::lists('nombres','id_docentes');
+		$asignaturas=Asignatura::lists('nombre','id');
+		$docentes=Docente::lists('nombres','id');
 
        return view('Encargado.editarCurs', compact('cursos','asignaturas','docentes'));
 	}

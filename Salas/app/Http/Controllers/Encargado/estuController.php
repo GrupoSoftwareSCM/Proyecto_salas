@@ -84,7 +84,7 @@ class estuController extends Controller {
 	public function edit($id)
 	{
 		$estu=Estudiante::findOrFail($id);
-		$carre=Carrera::lists('nombre','id_carreras');
+		$carre=Carrera::lists('nombre','id');
 		return view('Encargado.editarEstu', compact('estu','carre'));
 	}
 

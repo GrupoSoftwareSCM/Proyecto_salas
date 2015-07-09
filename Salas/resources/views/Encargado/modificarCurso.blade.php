@@ -32,7 +32,7 @@
                                          @foreach($cursos as $cur)
                                           <tr>
                                             
-                                            <td>{{ $cur->id_cursos}}</td>
+                                            <td>{{ $cur->id}}</td>
                                             <td>{{ $cur->asignatura->nombre}}</td>
                                             <td>{{ $cur->docente->nombres}}</td>
                                             <td>{{ $cur->semestre}}</td>

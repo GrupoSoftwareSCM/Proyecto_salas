@@ -28,7 +28,7 @@
 
                                            @foreach($asignatura as $Asig)
                                             <tr>
-                                                <td>{{$Asig-> id_asignaturas }}</td>
+                                                <td>{{$Asig-> id}}</td>
                                                 <td>{{$Asig-> nombre}}</td>
                                                 <td>{{$Asig-> codigo}}</td>
                                                 <td>{{$Asig-> departamento->nombre}}</td>

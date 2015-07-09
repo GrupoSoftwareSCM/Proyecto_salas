@@ -23,7 +23,7 @@
                   
                    
               @foreach($departamento as $Depa)
-                     <?php $array[$Depa->id_departamentos] = $Depa->nombre?>
+                     <?php $array[$Depa->id] = $Depa->nombre?>
              @endforeach
                  {!! Form::open(['route' => 'encar.asig.modi.store', 'method' => 'POST']) !!}
                     <form role="form">            
