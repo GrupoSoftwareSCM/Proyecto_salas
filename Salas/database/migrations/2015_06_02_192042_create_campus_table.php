@@ -20,7 +20,7 @@ class CreateCampusTable extends Migration {
 			$table->double('latitud')->unique();
 			$table->double('longitud')->unique();
 			$table->text('descripcion');
-			$table->string('rut_encargado',13)->unique();
+			$table->string('rut_encargado',13);
 			$table->nullableTimestamps();
 		});
 	}
