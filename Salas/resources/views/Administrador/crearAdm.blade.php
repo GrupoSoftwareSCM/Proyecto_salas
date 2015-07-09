@@ -12,7 +12,7 @@
             <div class="panel-footer">
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -59,6 +59,16 @@
                 crear
             </div>
             <div class="panel-footer">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6">
                         {!!Form::open(['route' => 'Admin.Facultad.store','method' => 'POST'])!!}
@@ -88,6 +98,16 @@
                 crear
             </div>
             <div class="panel-footer">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6">
                         {!!Form::open(['route' => 'Admin.Depto.store','method' => 'POST'])!!}
@@ -119,6 +139,16 @@
                 crear
             </div>
             <div class="panel-footer">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6">
                         {!!Form::open(['route' => 'Admin.Escuela.store','method' => 'POST'])!!}
@@ -149,6 +179,16 @@
                 crear
             </div>
             <div class="panel-footer">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6">
                         {!!Form::open(['route' => 'Admin.TpoSala.store','method' => 'POST'])!!}
@@ -176,6 +216,16 @@
                 crear
             </div>
             <div class="panel-footer">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6">
                         {!!Form::open(['route' => 'Admin.Salas.store','method' => 'POST'])!!}

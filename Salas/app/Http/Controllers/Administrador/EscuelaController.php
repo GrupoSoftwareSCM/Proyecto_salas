@@ -38,9 +38,9 @@ class EscuelaController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\StoreEscuelaRequest $request)
 	{
-        $datos_nuevo_escuela = Request::only(['nombre','descripcion','departamento_id']);
+        $datos_nuevo_escuela = $request->only(['nombre','descripcion','departamento_id']);
         Escuela::create($datos_nuevo_escuela);
 
         return redirect()->route('Admin.Escuela.index');

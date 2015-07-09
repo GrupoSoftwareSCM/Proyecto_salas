@@ -39,9 +39,9 @@ class DepartamentoController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\StoreDepartamentoRequest $request)
 	{
-        $datos_nuevo_depto = Request::only(['nombre','descripcion','facultad_id']);
+        $datos_nuevo_depto = $request->only(['nombre','descripcion','facultad_id']);
         Departamento::create($datos_nuevo_depto);
 
         return redirect()->route('Admin.Depto.index');

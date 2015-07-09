@@ -21,14 +21,16 @@ class StoreCampusRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			'nombre' => 'required|between:3,25',
-            'direccion' => 'required|between:3,25',
-            'latitud' => 'required|numeric',
-            'longitud' => 'required|numeric',
-            'rut_encargado' => 'required|integer',
-            'descripcion' => 'required|between:3,25'
-		];
+        switch($this->method()) {
+        case 'POST':
+            return [
+                'nombre' => 'required|between:3,25|alpha',
+                'direccion' => 'required|between:3,25',
+                'latitud' => 'required|numeric',
+                'longitud' => 'required|numeric',
+                'rut_encargado' => 'required|integer',
+                'descripcion' => 'required|between:3,25'];
+        }
 	}
 
 }

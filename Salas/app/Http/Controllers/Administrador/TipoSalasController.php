@@ -35,9 +35,9 @@ class TipoSalasController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\StoreTposalaRequest $request)
 	{
-        $datos_nuevo_tposala = Request::only(['nombre','descripcion']);
+        $datos_nuevo_tposala = $request->only(['nombre','descripcion']);
         Tipo_Sala::create($datos_nuevo_tposala);
 
         return redirect()->route('Admin.TpoSala.index');
