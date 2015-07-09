@@ -28,7 +28,7 @@ class StoreCampusRequest extends Request {
                 'direccion' => 'required|between:3,25',
                 'latitud' => 'required|numeric',
                 'longitud' => 'required|numeric',
-                'rut_encargado' => 'required|integer',
+                'rut_encargado' => 'required|max:13',
                 'descripcion' => 'required|between:3,25'];
         }
 	}
