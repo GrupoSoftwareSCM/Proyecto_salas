@@ -34,6 +34,11 @@
                             {!! Form::text('descripcion',null,['class' => 'form-control',
                              'placeholder' => '$sala->descripcion']) !!}
                         </div>
+                        <div class="form-group">
+                         {!! Form::label('capacidad', 'Capacidad') !!}
+                            {!! Form::text('capacidad',null,['class' => 'form-control',
+                             'placeholder' => '$sala->capacidad']) !!}
+                        </div>
                         
                         
                         

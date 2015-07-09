@@ -17,7 +17,7 @@ class Sala extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['nombre','descripcion','campus_id','tipo_sala_id'];
+	protected $fillable = ['nombre','descripcion','capacidad','campus_id','tipo_sala_id'];
 
 
 	/*

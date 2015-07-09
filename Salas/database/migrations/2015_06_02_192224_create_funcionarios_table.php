@@ -17,7 +17,7 @@ class CreateFuncionariosTable extends Migration {
 			$table->increments('id_funcionarios');
 			$table->integer('departamento_id')->unsigned();
 			$table->foreign('departamento_id')->references('id_departamentos')->on('departamentos')->onDelete('cascade');
-            $table->integer('rut')->unique();
+            $table->string('rut',13)->unique();
             $table->string('nombres',255);
             $table->string('apellidos',255);
 			$table->timestamps();

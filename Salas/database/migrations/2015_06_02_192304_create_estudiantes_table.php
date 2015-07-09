@@ -17,7 +17,7 @@ class CreateEstudiantesTable extends Migration {
 			$table->increments('id_estudiantes');
 			$table->integer('carrera_id')->unsigned();
 			$table->foreign('carrera_id')->references('id_carreras')->on('carreras')->onDelete('cascade');
-			$table->integer('rut')->unique();
+			$table->string('rut',13)->unique();
 			$table->string('nombres',255);
 			$table->string('apellidos',255);
 			$table->string('email',255);

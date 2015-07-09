@@ -20,6 +20,7 @@ class CreateSalasTable extends Migration {
 			$table->integer('tipo_sala_id')->unsigned();
 			$table->foreign('tipo_sala_id')->references('id_tipos_salas')->on('tipos_salas')->onDelete('cascade')->unique();
 			$table->string('nombre',255)->unique();
+			$table->integer('capacidad');
 			$table->text('descripcion');
 			$table->timestamps();
 		});

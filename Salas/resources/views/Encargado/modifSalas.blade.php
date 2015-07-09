@@ -16,6 +16,7 @@
                                               <th>Id</th>
                                               <th>Nombre</th>
                                               <th>Descripcion</th>
+                                              <th>Capacidad</th>
                                               <th>Pertenece a campus</th>
                                               <th>Pertenece a tipo de salas</th>
                                               <th>Accion</th>
@@ -27,6 +28,7 @@
                                                 <td>{{$Sal-> id_salas }}</td>
                                                 <td>{{$Sal-> nombre}}</td>
                                                 <td>{{$Sal-> descripcion}}</td>
+                                                <td>{{$Sal-> capacidad}}</td>
                                                 <td>{{$Sal-> Campus->nombre}}</td>
                                                 <th>{{$Sal-> Tipo_Sala->nombre}}</th>
                                                 <td><a href="{{ route('encar.salas.modi.edit', $Sal ) }}">Editar</td>      
