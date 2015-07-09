@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Funcionario extends Model {
 
-    protected $primaryKey = 'id_funcionarios';
+    protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *

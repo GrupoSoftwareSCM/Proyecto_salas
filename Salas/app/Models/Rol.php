@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model {
 
-    protected $primaryKey = 'id_roles';
+    protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *
@@ -27,7 +27,7 @@ class Rol extends Model {
 	*/
     public function roles_usuarios()
     {
-        return $this->hasMany('app\Models\rol_Usuario','id_roles');
+        return $this->hasMany('app\Models\rol_Usuario','id');
     }
 
 

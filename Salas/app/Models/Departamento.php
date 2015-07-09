@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Departamento extends Model {
 
-    protected $primaryKey = 'id_departamentos';
+    protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *
@@ -29,22 +29,22 @@ class Departamento extends Model {
 
 	public function escuela() //RALACION 1:N
 	{
-		return $this->hasMany('App\Models\Escuela','id_departamentos');
+		return $this->hasMany('App\Models\Escuela','id');
 	}
 
 	public function docente() //RALACION 1:N
 	{
-		return $this->hasMany('App\Models\Docente','id_departamentos');
+		return $this->hasMany('App\Models\Docente','id');
 	}
 
 	public function asignatura() //RALACION 1:N
 	{
-		return $this->hasMany('App\Models\Asignatura','id_departamentos');
+		return $this->hasMany('App\Models\Asignatura','id');
 	}
 
 	public function funcionario() //RALACION 1:N
 	{
-		return $this->hasMany('App\Models\Funcionario','id_departamentos');
+		return $this->hasMany('App\Models\Funcionario','id');
 	}
 
 	

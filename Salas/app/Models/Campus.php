@@ -5,7 +5,7 @@ use Monolog\Handler\NullHandlerTest;
 
 class Campus extends Model {
 
-	protected $primaryKey = 'id_campus';
+	protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *
@@ -29,17 +29,12 @@ class Campus extends Model {
 
 	public function facultad() //RELACION 1:N
 	{
-		return $this->hasMany('App\Models\Facultad','id_campus');
+		return $this->hasMany('App\Models\Facultad','id');
 	}
 
 	public function salas() //RELACION 1:N
 	{
-		return $this->hasMany('App\Models\Sala','campus_id', 'id_campus');
+		return $this->hasMany('App\Models\Sala','campus_id', 'id');
 	}
 
-    public function id_campus($nombre = null)
-    {
-        $query = Campus::id_campus();
-        return $query['id_campus'];
-    }
 }

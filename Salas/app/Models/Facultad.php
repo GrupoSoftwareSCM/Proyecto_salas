@@ -5,7 +5,7 @@ use App\Models\Campus;
 
 class Facultad extends Model {
 
-    protected $primaryKey = 'id_facultades';
+    protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *
@@ -30,7 +30,7 @@ class Facultad extends Model {
 
 	public function departamento() //RALACION 1:N
 	{
-		return $this->hasMany('app\Models\Departamento','id_facultades');
+		return $this->hasMany('app\Models\Departamento','id');
 	}
 
 	

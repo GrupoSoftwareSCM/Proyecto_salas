@@ -64,7 +64,7 @@ class cursController extends Controller {
             ->withInput();
  		}				 
          $cursos=Curso::create($data);
-         $cursos->save();
+       //  $cursos->save();
 
        	 return redirect('encar/curs/modi');
 	}

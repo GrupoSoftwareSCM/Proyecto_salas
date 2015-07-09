@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 
 class Asignatura_Cursada extends Model {
-    protected $primaryKey = 'id_asignaturas_cursadas';
+    protected $primaryKey = 'id';
 
     /**
      * The database table used by the model.
@@ -17,7 +17,7 @@ class Asignatura_Cursada extends Model {
      *
      * @var array
      */
-    protected $fillable = ['carrera_id','curso_id'];
+    protected $fillable = ['estudiante_id','curso_id'];
 
 
 

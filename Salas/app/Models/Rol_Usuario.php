@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol_Usuario extends Model {
 
-    protected $primaryKey = 'id_roles_usuarios';
+    protected $primaryKey = 'id';
     /**
      * The database table used by the model.
      *

@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sala extends Model {
 
-    protected $primaryKey = 'id_salas';
+    protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *
@@ -28,7 +28,7 @@ class Sala extends Model {
 	*/
 	public function horario()
 	{
-		return $this->hasOne('App\Models\Horario','id_salas');
+		return $this->hasOne('App\Models\Horario','id');
 	}
 
 	

@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Horario extends Model {
 
-    protected $primaryKey = 'id_horarios';
+    protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *

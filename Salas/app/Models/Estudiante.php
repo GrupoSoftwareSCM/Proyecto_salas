@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estudiante extends Model {
 
-    protected $primaryKey = 'id_estudiantes';
+    protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *
@@ -28,7 +28,7 @@ class Estudiante extends Model {
 
     public function curso()
     {
-    	return $this->belongsToMany('App\Models\Cursos','app\Models\Asignatura_Cursada','id_estudiantes','id_cursos');
+    	return $this->belongsToMany('App\Models\Cursos','app\Models\Asignatura_Cursada','estudiante_id','curso_id');
     }
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:

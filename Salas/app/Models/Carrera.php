@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carrera extends Model {
 
-    protected $primaryKey = 'id_carreras';
+    protected $primaryKey = 'id';
 	/**
 	 * The database table used by the model.
 	 *
@@ -27,7 +27,7 @@ class Carrera extends Model {
 	*/
 	public function estudiante()
 	{
-		return $this->hasMany('App\Models\Estudiante','id_carreras');
+		return $this->hasMany('App\Models\Estudiante','id');
 	}
 
 	/*
