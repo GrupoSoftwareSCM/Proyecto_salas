@@ -38,10 +38,10 @@
                                                 <th class="center">{{$camp->nombre}}</th>
                                                 <th class="center">{{$camp->direccion}}</th>
                                                 <th class="center">
-                                                    <a class="btn glyphicon glyphicon-pencil" href="Campus/{{$camp->id_campus}}/edit" role="button" aria-label="Left Align"></a>
+                                                    <a class="btn glyphicon glyphicon-pencil" href="Campus/{{$camp->id}}/edit" role="button" aria-label="Left Align"></a>
                                                 </th>
                                                 <th class="center">
-                                                    {!!Form::open(array('route' => array('Admin.Campus.destroy',$camp->id_campus), 'method' => 'DELETE'))!!}
+                                                    {!!Form::open(array('route' => array('Admin.Campus.destroy',$camp->id), 'method' => 'DELETE'))!!}
 
                                                         <button class="glyphicon glyphicon-remove" type="submit">
                                                         </button>
@@ -49,7 +49,7 @@
                                                     {!!Form::close()!!}
                                                 </th>
                                                 <th class="center">
-                                                    <a class="btn glyphicon glyphicon-inbox" href="Campus/{{$camp->id_campus}}" role="button" aria-label="Center Align"></a>
+                                                    <a class="btn glyphicon glyphicon-inbox" href="Campus/{{$camp->id}}" role="button" aria-label="Center Align"></a>
                                                 </th>
                                             </tr>
                                         @endforeach
@@ -105,13 +105,12 @@
                                         @endif
                                     @endforeach
                                     <th class="center">
-                                        <a class="btn glyphicon glyphicon-pencil" href="Facultad/{{$facultad->id_facultades}}/edit" role="button" aria-label="Left Align"></a>
+                                        <a class="btn glyphicon glyphicon-pencil" href="Facultad/{{$facultad->id}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
                                     <th class="center">
-                                        {!!Form::open(array('route' => array('Admin.Facultad.destroy',$facultad->id_facultades), 'method' => 'DELETE'))!!}
+                                        {!!Form::open(array('route' => array('Admin.Facultad.destroy',$facultad->id), 'method' => 'DELETE'))!!}
 
                                         <button class="btn glyphicon glyphicon-remove" type="submit"></button>
-                                        <!--<a class="btn glyphicon glyphicon-remove" href="Admin/Facultad/{{$facultad->id_facultades}}" role="button"></a>-->
 
                                         {!!Form::close()!!}
                                     </th>
@@ -168,10 +167,10 @@
                                         @endif
                                     @endforeach
                                     <th class="center">
-                                        <a class="btn glyphicon glyphicon-pencil" href="Depto/{{$Departamento->id_departamentos}}/edit" role="button" aria-label="Left Align"></a>
+                                        <a class="btn glyphicon glyphicon-pencil" href="Depto/{{$Departamento->id}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
                                     <th class="center">
-                                        {!!Form::open(array('route' => array('Admin.Depto.destroy',$Departamento->id_departamentos), 'method' => 'DELETE'))!!}
+                                        {!!Form::open(array('route' => array('Admin.Depto.destroy',$Departamento->id), 'method' => 'DELETE'))!!}
 
                                         <button class="btn glyphicon glyphicon-remove" type="submit"></button>
 
@@ -233,10 +232,10 @@
                                     @endforeach
 
                                     <th class="center">
-                                        <a class="btn glyphicon glyphicon-pencil" href="Escuela/{{$Escuela->id_escuelas}}/edit" role="button" aria-label="Left Align"></a>
+                                        <a class="btn glyphicon glyphicon-pencil" href="Escuela/{{$Escuela->id}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
                                     <th class="center">
-                                        {!!Form::open(array('route' => array('Admin.Escuela.destroy',$Escuela->id_escuelas), 'method' => 'DELETE'))!!}
+                                        {!!Form::open(array('route' => array('Admin.Escuela.destroy',$Escuela->id), 'method' => 'DELETE'))!!}
 
                                         <button class="btn glyphicon glyphicon-remove" type="submit"></button>
 
@@ -290,10 +289,10 @@
                                     <th class="center">{{$Tposala->nombre}}</th>
                                     <th class="center">{{$Tposala->descripcion}}</th>
                                     <th class="center">
-                                        <a class="btn glyphicon glyphicon-pencil" href="TpoSala/{{$Tposala->id_tipos_salas}}/edit" role="button" aria-label="Left Align"></a>
+                                        <a class="btn glyphicon glyphicon-pencil" href="TpoSala/{{$Tposala->id}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
                                     <th class="center">
-                                        {!!Form::open(array('route' => array('Admin.TpoSala.destroy',$Tposala->id_tipos_salas), 'method' => 'DELETE'))!!}
+                                        {!!Form::open(array('route' => array('Admin.TpoSala.destroy',$Tposala->id), 'method' => 'DELETE'))!!}
 
                                         <button class="btn glyphicon glyphicon-remove" type="submit"></button>
 
@@ -361,10 +360,10 @@
                                         @endif
                                     @endforeach
                                     <th class="center">
-                                        <a class="btn glyphicon glyphicon-pencil" href="Salas/{{$Sala->id_salas}}/edit" role="button" aria-label="Left Align"></a>
+                                        <a class="btn glyphicon glyphicon-pencil" href="Salas/{{$Sala->id}}/edit" role="button" aria-label="Left Align"></a>
                                     </th>
                                     <th class="center">
-                                        {!!Form::open(array('route' => array('Admin.Salas.destroy',$Sala->id_salas), 'method' => 'DELETE'))!!}
+                                        {!!Form::open(array('route' => array('Admin.Salas.destroy',$Sala->id), 'method' => 'DELETE'))!!}
 
                                         <button class="btn glyphicon glyphicon-remove" type="submit"></button>
 

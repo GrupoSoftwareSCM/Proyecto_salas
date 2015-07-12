@@ -38,7 +38,7 @@ class EscuelaController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Requests\StoreEscuelaRequest $request)
+	public function store(Requests\EscuelaRequest $request)
 	{
         $datos_nuevo_escuela = $request->only(['nombre','descripcion','departamento_id']);
         Escuela::create($datos_nuevo_escuela);

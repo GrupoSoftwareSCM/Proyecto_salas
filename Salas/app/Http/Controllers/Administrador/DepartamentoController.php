@@ -39,7 +39,7 @@ class DepartamentoController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Requests\StoreDepartamentoRequest $request)
+	public function store(Requests\DepartamentoRequest $request)
 	{
         $datos_nuevo_depto = $request->only(['nombre','descripcion','facultad_id']);
         Departamento::create($datos_nuevo_depto);

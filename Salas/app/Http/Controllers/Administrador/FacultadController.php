@@ -37,7 +37,7 @@ class FacultadController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Requests\StoreFacultadRequest $request)
+	public function store(Requests\FacultadRequest $request)
 	{
         $datos_nuevo_facultad = $request->only(['nombre','descripcion','campus_id']);
         Facultad::create($datos_nuevo_facultad);

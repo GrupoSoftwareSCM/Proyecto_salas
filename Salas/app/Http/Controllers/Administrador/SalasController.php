@@ -43,7 +43,7 @@ class SalasController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Requests\StoreSalaRequest $request)
+	public function store(Requests\SalaRequest $request)
 	{
 		$data = $request->only(['nombre','descripcion','campus_id','tipo_sala_id']);
         Sala::create($data);

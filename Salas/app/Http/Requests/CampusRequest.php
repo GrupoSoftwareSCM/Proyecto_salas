@@ -24,7 +24,7 @@ class StoreCampusRequest extends Request {
         switch($this->method()) {
         case 'POST':
             return [
-                'nombre' => 'required|between:3,25|alpha',
+                'nombre' => 'required|between:3,25|alpha_space',
                 'direccion' => 'required|between:3,25',
                 'latitud' => 'required|numeric',
                 'longitud' => 'required|numeric',

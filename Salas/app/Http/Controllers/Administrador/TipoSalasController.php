@@ -35,7 +35,7 @@ class TipoSalasController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Requests\StoreTposalaRequest $request)
+	public function store(Requests\TposalaRequest $request)
 	{
         $datos_nuevo_tposala = $request->only(['nombre','descripcion']);
         Tipo_Sala::create($datos_nuevo_tposala);
