@@ -18,7 +18,7 @@ class DepartamentoController extends Controller {
 	public function index()
 	{
         $data_depto = Departamento::paginate();
-        $data_Facultad = Facultad::lists('nombre','id_facultades');
+        $data_Facultad = Facultad::lists('nombre','id');
         return view('Administrador.bodyAdm')->with('Departamentos', $data_depto)->with('Facultad', $data_Facultad);
 	}
 
@@ -29,7 +29,7 @@ class DepartamentoController extends Controller {
 	 */
 	public function create()
 	{
-        $data_Facultad = Facultad::lists('nombre','id_facultades');
+        $data_Facultad = Facultad::lists('nombre','id');
         return view('Administrador.crearAdm')->with('Facultad',$data_Facultad);
 
 	}
@@ -69,7 +69,7 @@ class DepartamentoController extends Controller {
 
         $Departamento = Departamento::find($id);
         if($Departamento){
-            $Facultad = Facultad::lists('nombre','id_facultades');
+            $Facultad = Facultad::lists('nombre','id');
             return view('Administrador.editarAdm')->with('Departamento',$Departamento)->with('Facultad',$Facultad);
         }
         else{

@@ -18,6 +18,7 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
+    "alpha_space" => "El :atribute nasddsdasasdasddsadasdasasd",
 
     "accepted"             => "El :attribute debe ser aceptado.",
     "active_url"           => "El :attribute no es una URL valida.",

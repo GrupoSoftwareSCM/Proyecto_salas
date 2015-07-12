@@ -11,7 +11,7 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Form::model($Campus,array('route' => array('Admin.Campus.update',$Campus->id_campus), 'method' => 'put')) !!}
+                        {!! Form::model($Campus,array('route' => array('Admin.Campus.update',$Campus->id), 'method' => 'put')) !!}
                         <div class="form-group">
 
                             {!!Form::label('nombre','Nombre Campus',['class' => 'col-md-6'])!!}
@@ -51,7 +51,7 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Form::model($Facultad,array('route' => array('Admin.Facultad.update',$Facultad->id_facultades), 'method' => 'put')) !!}
+                        {!! Form::model($Facultad,array('route' => array('Admin.Facultad.update',$Facultad->id), 'method' => 'put')) !!}
                         <div class="form-group">
 
                             {!!Form::label('id_campus','Ingrese Campus',['class' => 'col-md-6'])!!}
@@ -82,7 +82,7 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Form::model($Departamento,array('route' => array('Admin.Depto.update',$Departamento->id_departamentos), 'method' => 'PUT')) !!}
+                        {!! Form::model($Departamento,array('route' => array('Admin.Depto.update',$Departamento->id), 'method' => 'PUT')) !!}
                         <div class="form-group">
 
                             {!!Form::label('facultad_id','Ingrese Facultad',['class' => 'col-md-6'])!!}
@@ -113,7 +113,7 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Form::model($Escuela,array('route' => array('Admin.Escuela.update',$Escuela->id_escuelas), 'method' => 'PUT')) !!}
+                        {!! Form::model($Escuela,array('route' => array('Admin.Escuela.update',$Escuela->id), 'method' => 'PUT')) !!}
                         <div class="form-group">
 
                             {!!Form::label('departamento_id','Ingrese Facultad',['class' => 'col-md-6'])!!}
@@ -144,7 +144,7 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Form::model($TpoSalas,array('route' => array('Admin.TpoSala.update',$TpoSalas->id_tipos_salas), 'method' => 'PUT')) !!}
+                        {!! Form::model($TpoSalas,array('route' => array('Admin.TpoSala.update',$TpoSalas->id), 'method' => 'PUT')) !!}
                         <div class="form-group">
 
                             {!!Form::label('nombre','Nombre Campus',['class' => 'col-md-6'])!!}
@@ -172,7 +172,7 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Form::model($Salas,array('route' => array('Admin.Salas.update',$Salas->id_salas), 'method' => 'PUT')) !!}
+                        {!! Form::model($Salas,array('route' => array('Admin.Salas.update',$Salas->id), 'method' => 'PUT')) !!}
                         <div class="form-group">
 
                             {!!Form::label('campus_id','Ingrese Campus',['class' => 'col-md-6'])!!}
