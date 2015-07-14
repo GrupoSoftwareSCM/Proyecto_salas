@@ -28,9 +28,9 @@
          otro elemento que se pueda ocultar al minimizar la barra -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="#">REKO</a></li>
-            <li><a href="#">DIRDOC</a></li>
-            <li><a href="#">HOME</a></li>
+            <li><a href="http://reko.utem.cl/portal/">REKO</a></li>
+            <li><a href="http://postulacion.utem.cl/">DIRDOC</a></li>
+            <li>{!!Html::linkRoute('Admin.home.index','Home')!!}</li>
         </ul>
         <!--<form class="navbar-form navbar-left" role="search">
             <div class="form-group">
