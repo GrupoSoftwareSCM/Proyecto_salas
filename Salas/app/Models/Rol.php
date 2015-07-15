@@ -19,15 +19,9 @@ class Rol extends Model {
 	 */
     protected $fillable = ['nombre','descripcion'];
 
-    /*
-	|Para relacionar la tabla padre con la tabla hija usaremos la función:
-	|
-    |           $this->hasMany('tabla_hija','clave_foranea','clave_local');
-	|
-	*/
-    public function roles_usuarios()
+    public function usuarios()
     {
-        return $this->hasMany('app\Models\rol_Usuario','id');
+        return $this->belongsToMany('usuarios', 'roles_usuarios', 'rol_id', 'usuario_rut')->withTimestamps();
     }
 
 

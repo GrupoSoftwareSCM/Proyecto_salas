@@ -151,7 +151,11 @@ return [
         'App\Providers\rut',
         'App\Providers\rules2',
         'App\Providers\email',
+<<<<<<< HEAD
        // 'App\Providers\entre1y50',
+=======
+        //'App\Providers\entre1y50',
+>>>>>>> 3c85f9c9d62ff1cbf460c1fa069b624fe14ebf32
 
         'App\Providers\fecha',
 
