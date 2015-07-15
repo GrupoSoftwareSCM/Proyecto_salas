@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class StoreCampusRequest extends Request {
+class CampusRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class StoreCampusRequest extends Request {
         case 'POST':
             return [
                 'nombre' => 'required|between:3,25|alpha_space',
-                'direccion' => 'required|between:3,25',
+                'direccion' => 'required|between:3,80',
                 'latitud' => 'required|numeric',
                 'longitud' => 'required|numeric',
                 'rut_encargado' => 'required|max:13',
-                'descripcion' => 'required|between:3,25'];
+                'descripcion' => 'required|between:3,500'];
         }
 	}
 

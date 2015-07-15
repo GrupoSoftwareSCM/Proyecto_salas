@@ -48,16 +48,7 @@ class AdmUserController extends Controller {
 	 */
 	public function show($id)
 	{
-        /*
-         *
-         * $id = 1 Crear
-         * $id = 2 Modificar
-         * $id = 3 Eliminar
-         *
-         * */
-
         return view('Administrador.homeAdm');
-
 	}
 
 	/**

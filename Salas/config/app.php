@@ -148,6 +148,12 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
         'App\Providers\rules',
+        'App\Providers\rut',
+        'App\Providers\rules2',
+        'App\Providers\email',
+        'App\Providers\entre1y50',
+
+        'App\Providers\fecha',
 
 	],
 

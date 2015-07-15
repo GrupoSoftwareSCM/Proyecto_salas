@@ -18,7 +18,13 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
-    "alpha_space" => "El :atribute nasddsdasasdasddsadasdasasd",
+
+    "alpha_spaces"         => "El campo :attribute no es valido",
+    "valid_rut"            => "El campo :attribute no es valido",
+    "alpha_spaces_num"     => "El campo :attribute no es valido",
+    "valid_email"          => "El campo :attribute no es valido",
+    "entre1y50"            => "El campo :attribute solo puede contener hasta 50 alumnos",
+    "valid_fecha"          => "El campo :attribute no es valido",
 
     "accepted"             => "El :attribute debe ser aceptado.",
     "active_url"           => "El :attribute no es una URL valida.",

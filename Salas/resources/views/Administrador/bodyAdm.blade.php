@@ -9,56 +9,63 @@
             </div>
             <div class="panel-footer">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-10 col-md-offset-1">
 
+                        <nav class="navbar navbar-right">
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Campus/create" role="button" aria-label="Left Align">
+                                Crear Campus
+                            </a>
+                        </nav>
 
+                        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="center">Nombre</th>
+                                <th class="center">Direccion</th>
+                                <th class="center">Editar</th>
+                                <th class="center">Eliminar</th>
+                                <th class="center">+ info</th>
+                                <th class="center">Descargar</th>
 
-                                <nav class="navbar navbar-right">
-                                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Campus/create" role="button" aria-label="Left Align">
-                                            Crear Campus
-                                        </a>
-                                </nav>
+                            </tr>
 
-                                <table id="sample-table-1" class="table table-striped table-bordered table-hover">
-                                    <thead>
+                            </thead>
+                            <tbody>
+
+                                @foreach($campus as $camp)
                                     <tr>
-                                        <th class="center">Nombre</th>
-                                        <th class="center">Direccion</th>
-                                        <th class="center">Editar</th>
-                                        <th class="center">Eliminar</th>
-                                        <th class="center">+ info</th>
+                                        <th class="center">{{$camp->nombre}}</th>
+                                        <th class="center">{{$camp->direccion}}</th>
+                                        <th class="center">
+                                            <a class="btn glyphicon glyphicon-pencil" href="Campus/{{$camp->id}}/edit" role="button" aria-label="Left Align"></a>
+                                        </th>
+                                        <th class="center">
+                                            {!!Form::open(array('route' => array('Admin.Campus.destroy',$camp->id), 'method' => 'DELETE'))!!}
 
+                                                <button class="glyphicon glyphicon-remove" type="submit">
+                                                </button>
+
+                                            {!!Form::close()!!}
+                                        </th>
+                                        <th class="center">
+                                            <a class="btn glyphicon glyphicon-inbox" href="Campus/{{$camp->id}}" role="button" aria-label="Center Align"></a>
+                                        </th>
+                                        <th class="center">
+                                            <a class="btn glyphicon glyphicon-save" href="downloadCampus/{{$camp->id}}" role="button" aria-label="Left Align"></a>
+                                        </th>
                                     </tr>
-
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach($campus as $camp)
-                                            <tr>
-                                                <th class="center">{{$camp->nombre}}</th>
-                                                <th class="center">{{$camp->direccion}}</th>
-                                                <th class="center">
-                                                    <a class="btn glyphicon glyphicon-pencil" href="Campus/{{$camp->id}}/edit" role="button" aria-label="Left Align"></a>
-                                                </th>
-                                                <th class="center">
-                                                    {!!Form::open(array('route' => array('Admin.Campus.destroy',$camp->id), 'method' => 'DELETE'))!!}
-
-                                                        <button class="glyphicon glyphicon-remove" type="submit">
-                                                        </button>
-
-                                                    {!!Form::close()!!}
-                                                </th>
-                                                <th class="center">
-                                                    <a class="btn glyphicon glyphicon-inbox" href="Campus/{{$camp->id}}" role="button" aria-label="Center Align"></a>
-                                                </th>
-                                            </tr>
-                                        @endforeach
+                                @endforeach
 
 
 
-                                    </tbody>
-                                </table>
+                            </tbody>
+                        </table>
 
+                        <nav class="navbar navbar-right">
+                            <a class="btn glyphicon glyphicon-plus" href="downloadCampus" role="button" aria-label="Left Align">
+                                Descargar Info Campus
+                            </a>
+                        </nav>
 
                     </div>
                 </div>
