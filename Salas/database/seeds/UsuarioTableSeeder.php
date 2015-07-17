@@ -16,8 +16,9 @@ class UsuarioTableSeeder extends  DatabaseSeeder{
 
         $nombres = ['Oscar Eduardo', 'Jean Pierre patria'];
         $apellidos = ['Muñoz Bernales', 'Cid bustos'];
-        $email = ['munoz.bernales.oscar@gmail.com',''];
+        $email = ['munoz.bernales.oscar@gmail.com','Jeanpierre.cid@gmail.com'];
         $rut = ['17.860.032-k','18.028.419-2'];
+
 
 
         for($i=0;$i<2;$i++){
@@ -26,6 +27,8 @@ class UsuarioTableSeeder extends  DatabaseSeeder{
                 'email' => $email[$i],
                 'nombres' => $nombres[$i],
                 'apellidos' => $apellidos[$i],
+                'created_at' => date("Y-m-d G:i:s"),
+                'updated_at' => date("Y-m-d G:i:s")
             ));
         }
 

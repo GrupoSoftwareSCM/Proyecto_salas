@@ -4,8 +4,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
 {
-
-    protected $incrementing = false; // El rut no es autoincrementable .. dah
     protected $primaryKey = 'rut';
     /**
      * The database table used by the model.

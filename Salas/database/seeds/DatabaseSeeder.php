@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder {
 		Model::unguard();
         $this->call('RolesTableSeeder');
         $this->call('TiposalasTableSeeder');
+        $this->call('UsuarioTableSeeder');
+        $this->call('RolesUsuarioTableSeeder');
+
 	}
 
 }

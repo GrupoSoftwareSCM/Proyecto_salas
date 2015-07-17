@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Request;
 use App\Models\Campus;
+use App\Models\Usuario;
 
 //use Illuminate\Http\Request;
 
@@ -53,7 +54,8 @@ class CampusController extends Controller {
 	{
         $Campus = Campus::find($id);
         return view('Administrador.showAdm')->with('show', true)->with('Campus', $Campus);
-	}
+
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
