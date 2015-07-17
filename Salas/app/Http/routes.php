@@ -20,7 +20,7 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-//Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
         Route::resource('home','AdmUserController');
         Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
@@ -32,7 +32,7 @@ Route::controllers([
         Route::resource('downloadCampus','MasivoCampusController');
         //Route::resource('Roluser','RolusuarioController'); //CRUD PARA SALA
     });
-//});
+});
 
 
 //PROBANDO RESOURCE PARA ASIGNATURAS
@@ -45,3 +45,9 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('home','EncarUserController');
 
 });
+
+
+//PROBANDO LO MIDDLEWARE
+Route::get('dirdoc', ['middleware' => 'Dirdoc', function () {
+    return "eres mayor de edad y puedes ver este contenido";
+}]);
