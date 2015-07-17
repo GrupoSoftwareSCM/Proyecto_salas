@@ -49,5 +49,5 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
 
 //PROBANDO LO MIDDLEWARE
 Route::get('dirdoc', ['middleware' => 'Dirdoc', function () {
-    return "eres mayor de edad y puedes ver este contenido";
+    //
 }]);

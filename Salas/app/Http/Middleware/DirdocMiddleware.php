@@ -6,6 +6,12 @@ use Illuminate\Contracts\Auth\Guard;
 class DirdocMiddleware {
 
     protected $auth;
+
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
 	/**
 	 * Handle an incoming request.
 	 *
@@ -15,15 +21,16 @@ class DirdocMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
-       
-            if($request->ajax()){
-                return response('no autorizado',401);
-            }
-            else{
-                return "aqui debe de ir un login";
+        dd($this->auth->guest());
+        if ($this->auth->guest()) {
+
+            if ($request->ajax()) {
+                return response('no autorizado', 401);
+            } else {
+                return redirect()->guest('Login/login');
             }
 
-
+        }
 		return $next($request);
 	}
 
