@@ -3,6 +3,12 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\Usuario;
+use App\Models\Rol_Usuario;
+use App\Models\Rol;
+
+use Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -74,15 +80,26 @@ class LoginAdminController extends Controller {
      */
     public function postLogin(Request $request)
     {
-        //return "asds";
-
         $this->validate($request, [
-           'username' => 'required', //FALTA AGREGAR OTROS VALIDADORES
+           'rut' => 'required', //FALTA AGREGAR OTROS VALIDADORES
            'password' => 'required',
         ]);
 
-        $credentials = $request->only('username', 'password');
-        dd($this->auth);
+        $credentials = $request->only('rut', 'password');
+
+        //dd(Auth::attempt(['rut' => '17860032-K', 'password' => '']));
+
+        if(Auth::attempt(['rut' => $credentials['rut'], 'password' => $credentials['password']])){
+            $query = Rol_Usuario::where('usuario_rut','=',$credentials['rut'])->first();
+            $id_admin = Rol::where('nombre','=','Administrador')->first();
+
+            if($query->rol_id == $id_admin->id){
+                return redirect()->intended($this->redirectPath());
+            }
+
+        }
+
+        return "asd";
         /*
         if ($this->auth->attempt($credentials, $request->has('remember'))) {
            return redirect()->intended($this->redirectPath());
@@ -113,10 +130,9 @@ class LoginAdminController extends Controller {
      */
     public function getLogout()
     {
-       /* $this->auth->logout();
-
+        $this->auth->logout();
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
-    */
+    
     }
 
     /**
@@ -126,15 +142,13 @@ class LoginAdminController extends Controller {
      */
     public function redirectPath()
     {
-        return "entro";
-        /*
         if (property_exists($this, 'redirectPath'))
         {
             return $this->redirectPath;
         }
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
-        */
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : 'dirdoc/home';
+
     }
 
     /**
@@ -144,15 +158,9 @@ class LoginAdminController extends Controller {
      */
     public function loginPath()
     {
-        return property_exists($this, 'loginPath') ? $this->loginPath : '/admin/login';
+        //return property_exists($this, 'loginPath') ? $this->loginPath : '/admin/login';
     }
 
-    public function __construct(Guard $auth, Registrar $registrar)
-    {
-        $this->auth = $auth;
-        $this->registrar = $registrar;
 
-        $this->middleware('guest', ['except' => 'getLogout']);
-    }
 
 }

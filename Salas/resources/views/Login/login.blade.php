@@ -10,7 +10,7 @@
         {!!Form::open(['url' => 'admin/login', 'method'=> 'POST'])!!}
             <h1>UTEM</h1>
             <div>
-                <input type="text" placeholder="Rut Dirdoc" required="" id="username" name="username" />
+                <input type="text" placeholder="Rut Dirdoc" required="" id="username" name="rut" />
             </div>
             <div>
                 <input type="password" placeholder="Password" required="" id="password" name="password"/>

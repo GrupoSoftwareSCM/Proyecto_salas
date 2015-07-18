@@ -13,7 +13,7 @@
 
 //Route::get('/', 'WelcomeController@index');
 
-Route::get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@index');
 
 
 Route::controllers([
@@ -49,8 +49,8 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
 
 
 //PROBANDO LO MIDDLEWARE
-Route::get('dirdoc', ['middleware' => 'Dirdoc', function () {
-    Route::get('/home', function(){
-        return "Entramos";
+Route::group(['middleware' => 'Dirdoc', 'prefix' =>  'dirdoc'], function(){
+    Route::get('home',function(){
+        return "entramos";
     });
-}]);
+});

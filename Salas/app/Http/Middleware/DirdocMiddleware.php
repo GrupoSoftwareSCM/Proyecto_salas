@@ -32,13 +32,13 @@ class DirdocMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
-        //dd($this->auth);
-        if($request->ajax()){
-          abort(404);
-        }
-        else{
-            //dd(redirect()->to('Login/Home'));
-            return redirect()->to('admin/login');
+        if (!$this->auth->guest()){
+            if($request->ajax()){
+              abort(404);
+            }
+            else{
+                return redirect()->to('admin/login');
+            }
         }
 		return $next($request);
 	}
