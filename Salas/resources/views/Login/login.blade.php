@@ -7,13 +7,13 @@
 <body>
 <div class="container">
     <section id="content">
-        {!!Form::open()!!}
+        {!!Form::open(['url' => 'admin/login', 'method'=> 'POST'])!!}
             <h1>UTEM</h1>
             <div>
-                <input type="text" placeholder="Rut Dirdoc" required="" id="username" />
+                <input type="text" placeholder="Rut Dirdoc" required="" id="username" name="username" />
             </div>
             <div>
-                <input type="password" placeholder="Password" required="" id="password" />
+                <input type="password" placeholder="Password" required="" id="password" name="password"/>
             </div>
             <div>
                 <input type="submit" value="Log in" />

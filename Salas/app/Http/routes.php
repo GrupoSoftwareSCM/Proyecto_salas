@@ -13,13 +13,13 @@
 
 //Route::get('/', 'WelcomeController@index');
 
-//Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-    'Dirdoc' => 'Auth\Login\LoginAdminController',
+    'admin' => 'Login\LoginAdminController',
 ]);
 Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
@@ -50,5 +50,7 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
 
 //PROBANDO LO MIDDLEWARE
 Route::get('dirdoc', ['middleware' => 'Dirdoc', function () {
-    //
+    Route::get('/home', function(){
+        return "Entramos";
+    });
 }]);

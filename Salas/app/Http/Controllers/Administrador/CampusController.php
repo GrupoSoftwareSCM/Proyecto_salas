@@ -10,6 +10,7 @@ use App\Models\Usuario;
 
 class CampusController extends Controller {
 
+
 	/**
 	 * Display a listing of the resource.
 	 *
