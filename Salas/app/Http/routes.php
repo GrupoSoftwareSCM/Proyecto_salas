@@ -19,6 +19,7 @@
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
+    'Dirdoc' => 'Auth\Login\LoginAdminController',
 ]);
 Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){

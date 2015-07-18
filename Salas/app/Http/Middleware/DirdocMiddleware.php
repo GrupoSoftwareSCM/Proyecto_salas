@@ -2,15 +2,9 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Routing\Middleware;
 
 class DirdocMiddleware {
-
-    protected $auth;
-
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
 
 	/**
 	 * Handle an incoming request.
@@ -21,15 +15,12 @@ class DirdocMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
-        dd($this->auth->guest());
-        if ($this->auth->guest()) {
-
-            if ($request->ajax()) {
-                return response('no autorizado', 401);
-            } else {
-                return redirect()->guest('Login/login');
-            }
-
+        //dd();
+        if($request->ajax()){
+          abort(404);
+        }
+        else{
+            return redirect()->route('Login.login');
         }
 		return $next($request);
 	}
