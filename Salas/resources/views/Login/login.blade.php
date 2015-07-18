@@ -7,6 +7,16 @@
 <body>
 <div class="container">
     <section id="content">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         {!!Form::open(['url' => 'admin/login', 'method'=> 'POST'])!!}
             <h1>UTEM</h1>
             <div>
@@ -17,8 +27,7 @@
             </div>
             <div>
                 <input type="submit" value="Log in" />
-                <a href="#">Lost your password?</a>
-                <a href="#">Register</a>
+                <a href="#">Olvido su contraseña?</a>
             </div>
         {!!Form::close()!!}
     </section><!-- content -->

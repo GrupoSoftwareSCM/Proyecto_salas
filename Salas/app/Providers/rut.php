@@ -11,7 +11,10 @@ class rut extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+        \Validator::extend('rut', function($attribute, $value, $parameters)
+        {
+            return preg_match('\b\d{1,8}\-[K|k|0-9]', $value);
+        });
 	}
 
 	/**

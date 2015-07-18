@@ -21,7 +21,7 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
     'admin' => 'Login\LoginAdminController',
 ]);
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'Dirdoc'], function(){
     Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
         Route::resource('home','AdmUserController');
         Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
@@ -49,8 +49,8 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
 
 
 //PROBANDO LO MIDDLEWARE
-Route::group(['middleware' => 'Dirdoc', 'prefix' =>  'dirdoc'], function(){
-    Route::get('home',function(){
-        return "entramos";
-    });
-});
+/*
+Route::get('dirdoc', ['middleware' => 'Dirdoc', function () {
+    return "asd";
+}]);
+*/

@@ -32,7 +32,7 @@ class DirdocMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
-        if (!$this->auth->guest()){
+        if ($this->auth->guest()){
             if($request->ajax()){
               abort(404);
             }

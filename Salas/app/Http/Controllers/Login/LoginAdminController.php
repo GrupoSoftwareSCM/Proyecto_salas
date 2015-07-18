@@ -78,13 +78,13 @@ class LoginAdminController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postLogin(Request $request)
+    public function postLogin(Requests\LoginRequest $request)
     {
-        $this->validate($request, [
+        /*$this->validate($request, [
            'rut' => 'required', //FALTA AGREGAR OTROS VALIDADORES
            'password' => 'required',
         ]);
-
+        */
         $credentials = $request->only('rut', 'password');
 
         //dd(Auth::attempt(['rut' => '17860032-K', 'password' => '']));
@@ -99,17 +99,11 @@ class LoginAdminController extends Controller {
 
         }
 
-        return "asd";
-        /*
-        if ($this->auth->attempt($credentials, $request->has('remember'))) {
-           return redirect()->intended($this->redirectPath());
-        }
-
         return redirect($this->loginPath())
            ->withInput($request->only('email', 'remember'))
            ->withErrors([
                'email' => $this->getFailedLoginMessage(),
-           ]);*/
+           ]);
 
     }
 
@@ -130,9 +124,9 @@ class LoginAdminController extends Controller {
      */
     public function getLogout()
     {
-        $this->auth->logout();
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
-    
+        //Auth::logout();
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/admin/login');
+
     }
 
     /**
@@ -147,7 +141,7 @@ class LoginAdminController extends Controller {
             return $this->redirectPath;
         }
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : 'dirdoc/home';
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : 'Admin/home';
 
     }
 

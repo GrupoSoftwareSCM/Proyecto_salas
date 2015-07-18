@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Request;
 use DB;
 
+use App\Models\Usuario;
+
 //use Illuminate\Http\Request;
 
 class AdmUserController extends Controller {
@@ -75,7 +77,21 @@ class AdmUserController extends Controller {
 	 */
 	public function update($id)
 	{
-        //
+        $usuario = Usuario::find($id);
+        if($usuario){
+            $datos = Request::only('nombres','apellidos','email');
+            $usuario->fill($datos);
+            $usuario->save();
+
+            return redirect()->route('Admin.home.index');
+
+            /*$datos_edit_campus = Request::only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
+            $Campus->fill($datos_edit_campus);
+            $Campus->save();*/
+        }
+        else{
+            abort(404);
+        }
 	}
 
 	/**

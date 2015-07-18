@@ -20,7 +20,7 @@ return [
     */
 
     "alpha_spaces"         => "El campo :attribute no es valido",
-    "valid_rut"            => "El campo :attribute no es valido",
+    "rut"            => "El campo :attribute no es valido",
     "alpha_spaces_num"     => "El campo :attribute no es valido",
     "valid_email"          => "El campo :attribute no es valido",
     "entre1y50"            => "El campo :attribute solo puede contener hasta 50 alumnos",
