@@ -5,18 +5,21 @@
     {!!Html::style('css/login.css')!!}
 </head>
 <body>
+@if (count($errors) > 0)
+    <div class="container">
+        <div id="content">
+            <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <br/>
+        </div>
+    </div>
+@endif
 <div class="container">
     <section id="content">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         {!!Form::open(['url' => 'admin/login', 'method'=> 'POST'])!!}
             <h1>UTEM</h1>
             <div>

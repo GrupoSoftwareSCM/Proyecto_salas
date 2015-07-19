@@ -78,18 +78,18 @@ class LoginAdminController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postLogin(Requests\LoginRequest $request)
+    public function postLogin(Request $request)
     {
-        /*$this->validate($request, [
+        $this->validate($request, [
            'rut' => 'required', //FALTA AGREGAR OTROS VALIDADORES
            'password' => 'required',
         ]);
-        */
+
         $credentials = $request->only('rut', 'password');
 
         //dd(Auth::attempt(['rut' => '17860032-K', 'password' => '']));
 
-        if(Auth::attempt(['rut' => $credentials['rut'], 'password' => $credentials['password']])){
+        if(Auth::attempt(['rut' => $credentials['rut'], 'password' => strtoupper($credentials['password'])])){
             $query = Rol_Usuario::where('usuario_rut','=',$credentials['rut'])->first();
             $id_admin = Rol::where('nombre','=','Administrador')->first();
 
@@ -100,9 +100,9 @@ class LoginAdminController extends Controller {
         }
 
         return redirect($this->loginPath())
-           ->withInput($request->only('email', 'remember'))
+           ->withInput($request->except('password'))
            ->withErrors([
-               'email' => $this->getFailedLoginMessage(),
+               'rut' => $this->getFailedLoginMessage(),
            ]);
 
     }
@@ -114,7 +114,7 @@ class LoginAdminController extends Controller {
      */
     protected function getFailedLoginMessage()
     {
-        //return 'These credentials do not match our records.';
+        return 'Su RUT o su contraseña son incorrectos';
     }
 
     /**
@@ -152,7 +152,7 @@ class LoginAdminController extends Controller {
      */
     public function loginPath()
     {
-        //return property_exists($this, 'loginPath') ? $this->loginPath : '/admin/login';
+        return property_exists($this, 'loginPath') ? $this->loginPath : '/admin/login';
     }
 
 
