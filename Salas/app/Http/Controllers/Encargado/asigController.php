@@ -24,8 +24,8 @@ class asigController extends Controller {
 	public function index()
 	{
 		$asignatura = Asignatura::paginate();
-
-		return view('Encargado.modificarAsig',compact('asignatura'));
+        return view('Encargado.modificarAsig',compact('asignatura'));
+		//return view('Encargado.ejemploModificarAsig',compact('asignatura'));
 	}
 
     public function create()
@@ -51,9 +51,9 @@ class asigController extends Controller {
 		$data= Request::only(['nombre','codigo','descripcion','departamento_id']); 
 		
 		$rules=array(
-			'nombre' => 'required',
-			'codigo' => 'required',
-			'descripcion'=> 'required',
+			'nombre' => 'required|between:3,25|alpha_space',
+			'codigo' => 'required|numeric',
+			'descripcion'=> 'required|between:3,500',
 			'departamento_id' => 'required'
  		);    				
 

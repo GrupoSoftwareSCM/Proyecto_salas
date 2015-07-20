@@ -7,6 +7,7 @@ use App\Models\Campus;
 use App\Models\Tipo_Sala;
 //use Illuminate\Http\Request;
 use Request;
+use DB;
 
 
 
@@ -19,8 +20,11 @@ class SalasController extends Controller {
 	 */
 	public function index()
 	{
-		$salas = Sala::paginate(); // Cambiar esto, si la db es muy grande queda la escoba
-		return view('Encargado.modifSalas',compact('salas'));
+		//$salas = Sala::paginate(); // Cambiar esto, si la db es muy grande queda la escoba
+		$campus= Campus::lists('nombre','id');
+		//return view('Encargado.ElegirCampus',compact('salas','campus'));
+				return view('Encargado.ElegirCampus',compact('campus'));
+
 			
 	}
 
@@ -50,9 +54,20 @@ class SalasController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($ide)
 	{
-		//
+	/*	$salas=DB::table('Salas')
+            ->join('campus_id', 'salas.id', '=', 'campus_id.id')
+            ->join('nombre', 'salas.id', '=', 'nombre.id')
+            ->select()
+            ->get();*/ 
+       // dd($salas);
+            
+        $idd = Campus::where('nombre','=','$ide')->lists('id');
+      //  dd($idd);
+        dd($ide);
+        		//$salas = Sala::where('campus_id','=','$id')->paginate();
+		//return dd($salas);
 	}
 
 	/**

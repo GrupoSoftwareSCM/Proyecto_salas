@@ -44,9 +44,9 @@ class estuController extends Controller {
 	{
 		$data= Request::only(['nombres','apellidos','rut','email','carrera_id']);   
 		$rules=array(
-			'nombres' => 'required',
-			'apellidos' => 'required',
-			'rut'=> 'required',
+			'nombres' => 'required|between:3,25|alpha_space',
+			'apellidos' => 'required|between:3,25|alpha_space',
+			'rut'=> 'required|max:13',
 			'email'=> 'required'
 			
  		);    				

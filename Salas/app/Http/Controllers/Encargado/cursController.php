@@ -49,9 +49,9 @@ class cursController extends Controller {
 		$data= Request::only('asignatura_id','docente_id','semestre','anio','seccion');
          // dd($data);  
          $rules=array(
-			'semestre' => 'required',
-			'anio' => 'required',
-			'seccion'=> 'required',
+			'semestre' => 'required|numeric',
+			'anio' => 'required|numeric',
+			'seccion'=> 'required|numeric',
 			
  		);    				
 
@@ -89,9 +89,9 @@ class cursController extends Controller {
 	public function edit($id)
 	{
 	    $cursos=Curso::findOrFail($id);
-		$asignaturas=Asignatura::lists('nombre','id');
+	 	$asignaturas=Asignatura::lists('nombre','id');
 		$docentes=Docente::lists('nombres','id');
-
+       
        return view('Encargado.editarCurs', compact('cursos','asignaturas','docentes'));
 	}
 
