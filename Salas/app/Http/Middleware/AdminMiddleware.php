@@ -4,7 +4,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Routing\Middleware;
 
-class DirdocMiddleware {
+class AdminMiddleware {
 
     /**
      * The Guard implementation.
