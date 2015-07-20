@@ -45,16 +45,11 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('salas/modi','SalasController');
     Route::resource('home','EncarUserController');
 
-    //
-});
-
-
-});
+    });
 
 
 //PROBANDO LO MIDDLEWARE
 /*
 Route::get('dirdoc', ['middleware' => 'Dirdoc', function () {
     return "asd";
-}]);
-*/
+}]}
