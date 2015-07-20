@@ -20,7 +20,7 @@
 @endif
 <div class="container">
     <section id="content">
-        {!!Form::open(['url' => 'admin/login', 'method'=> 'POST'])!!}
+        {!!Form::open(['url' => 'login/login', 'method'=> 'POST'])!!}
             <h1>UTEM</h1>
             <div>
                 <input type="text" placeholder="Rut Dirdoc" required="" id="username" name="rut" />
