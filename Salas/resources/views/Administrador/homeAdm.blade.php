@@ -30,6 +30,59 @@
                 @yield('createBody')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/edit') !== false)
                 @yield('editBody')
+            @elseif($_SERVER['REQUEST_URI']=="/Admin/home")
+                @if(Auth::user()->nombres == null)
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                            home
+                            <a class="glyphicon glyphicon-menu-right"></a>
+                            Datos Personales
+                        </div>
+                        <div class="panel-footer">
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {!! Form::model(null,array('route' => array('Admin.home.update',Auth::user()->rut), 'method' => 'put')) !!}
+                                    <div class="form-group">
+
+                                        {!!Form::label('nombres','Nombres',['class' => 'col-md-6'])!!}
+                                        {!!Form::text('nombres',null,['class' => 'col-md-6'])!!}
+
+                                        {!!Form::label('apellidos','Apellidos',['class' => 'col-md-6'])!!}
+                                        {!!Form::text('apellidos',null,['class' => 'col-md-6'])!!}
+
+                                        {!!Form::label('email','E-mail',['class' => 'col-md-6'])!!}
+                                        {!!Form::text('email',null,['class' => 'col-md-6'])!!}
+
+                                    </div>
+                                    {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                                    {!!Form::close()!!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                            home
+                            <a class="glyphicon glyphicon-menu-right"></a>
+                            Bienvenida
+                        </div>
+                        <div class="panel-footer">
+                            te damos la bienvenida
+                        </div>
+                    </div>
+                @endif
+
             @endif
 
         </div>
