@@ -44,8 +44,7 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('curs/modi','cursController');
     Route::resource('salas/modi','SalasController');
     Route::resource('home','EncarUserController');
-    Route::get('salas/modi/{id}', function(App\Sala $id)
-        {
+
     //
 });
 
