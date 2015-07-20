@@ -20,10 +20,10 @@ class SalasController extends Controller {
 	 */
 	public function index()
 	{
-		//$salas = Sala::paginate(); // Cambiar esto, si la db es muy grande queda la escoba
-		$campus= Campus::lists('nombre','id');
-		//return view('Encargado.ElegirCampus',compact('salas','campus'));
-				return view('Encargado.ElegirCampus',compact('campus'));
+		$salas = Sala::paginate(); // Cambiar esto, si la db es muy grande queda la escoba
+		//$campus= Campus::lists('nombre','id');
+		return view('Encargado.modifSalas',compact('salas'));
+		//		return view('Encargado.ElegirCampus',compact('campus'));
 
 			
 	}
@@ -54,7 +54,7 @@ class SalasController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($ide)
+	public function show($id)
 	{
 	/*	$salas=DB::table('Salas')
             ->join('campus_id', 'salas.id', '=', 'campus_id.id')
@@ -63,9 +63,9 @@ class SalasController extends Controller {
             ->get();*/ 
        // dd($salas);
             
-        $idd = Campus::where('nombre','=','$ide')->lists('id');
+     //   $idd = Campus::where('nombre','=','$ide')->lists('id');
       //  dd($idd);
-        dd($ide);
+        
         		//$salas = Sala::where('campus_id','=','$id')->paginate();
 		//return dd($salas);
 	}

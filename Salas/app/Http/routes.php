@@ -13,15 +13,23 @@
 
 //Route::get('/', 'WelcomeController@index');
 
+/*
 Route::controllers([
-    //'auth' => 'Auth\AuthController',
+    'auth' => 'Auth\AuthController',
     //'password' => 'Auth\PasswordController',
-    'admin' => 'Login\LoginAdminController',
+]);
+*/
+
+Route::controller('auth', 'Auth\AuthController', [
+    'getLogin'  => 'auth.login',
+    'postLogin' => 'auth.doLogin',
+    'getLogout' => 'auth.logout'
 ]);
 
-Route::get('/', function(){
-    return redirect('/admin/login');
-});
+
+Route::get('/home', ['as' => 'home', 'middleware' => ['auth', 'redir'], function(){
+    return 'home';
+}]);
 
 Route::group(['middleware' => 'admin', 'prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('home','AdmUserController');
@@ -38,7 +46,7 @@ Route::group(['middleware' => 'admin', 'prefix' =>  'Admin', 'namespace' => 'Adm
 
 //PROBANDO RESOURCE PARA ASIGNATURAS
 
-Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
+Route::group(['middleware' => 'encar','prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('asig/modi','asigController');
     Route::resource('estu/modi','estuController');
     Route::resource('curs/modi','cursController');
@@ -48,8 +56,10 @@ Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     });
 
 
+Route::resource('users/encargados', 'Encargado\EncarUserController');
+
 //PROBANDO LO MIDDLEWARE
-/*
-Route::get('dirdoc', ['middleware' => 'Dirdoc', function () {
+
+/*Route::get('dirdoc', ['middleware' => 'encar', function () {
     return "asd";
-}]}
+}]);*/

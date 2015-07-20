@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 
-class LoginAdminController extends Controller {
+class LoginEncarController extends Controller {
 
     /**
      * The Guard implementation.
@@ -78,7 +78,7 @@ class LoginAdminController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
+    
     public function postLogin(Request $request)
     {
         $this->validate($request, [
@@ -89,16 +89,17 @@ class LoginAdminController extends Controller {
         $credentials = $request->only('rut', 'password');
 
         //dd(Auth::attempt(['rut' => '17860032-K', 'password' => '']));
-
+        //dd(Auth::attempt(['rut' => $credentials['rut'], 'password' => strtoupper($credentials['password'])]));
         if(Auth::attempt(['rut' => $credentials['rut'], 'password' => strtoupper($credentials['password'])])){
-            $query = Rol_Usuario::where('usuario_rut','=',$credentials['rut'])->first();
-            $id_admin = Rol::where('nombre','=','Administrador')->first();
+            
+                $id_encar = Rol::where('nombre','=','Encargado Campus')->first();
+                $query = Rol_Usuario::where('usuario_rut','=',$credentials['rut'])->first();
 
-            if($query->rol_id == $id_admin->id){
-                return redirect()->intended($this->redirectPath());
-            }
+                if($query->rol_id == $id_encar->id)
+                    return redirect()->intended($this->redirectPath());
 
             
+
         }
 
         return redirect($this->loginPath())
@@ -127,7 +128,7 @@ class LoginAdminController extends Controller {
     public function getLogout()
     {
         //Auth::logout();
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/admin/login');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
 
     }
 
@@ -143,11 +144,10 @@ class LoginAdminController extends Controller {
             return $this->redirectPath;
         }
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : 'Admin/home';
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : 'encar/home';
 
     }
 
-  
 
     /**
      * Get the path to the login route.
@@ -156,7 +156,7 @@ class LoginAdminController extends Controller {
      */
     public function loginPath()
     {
-        return property_exists($this, 'loginPath') ? $this->loginPath : '/admin/login';
+        return property_exists($this, 'loginPath') ? $this->loginPath : 'encar/login';
     }
 
 

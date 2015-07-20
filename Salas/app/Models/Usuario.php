@@ -22,7 +22,7 @@ class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
 
     public function roles()
     {
-        return $this->belongsToMany('Rol', 'roles_usuarios', 'usuario_rut', 'rol_id')->withTimestamps();
+        return $this->belongsToMany('\App\Models\Rol', 'roles_usuarios', 'usuario_rut', 'rol_id');
     }
 
 

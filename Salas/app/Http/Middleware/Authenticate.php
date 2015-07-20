@@ -41,7 +41,6 @@ class Authenticate {
 			}
 			else
 			{
-                dd(redirect()->guest('auth/login'));
 				return redirect()->guest('auth/login');
 			}
 		}
