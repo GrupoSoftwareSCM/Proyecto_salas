@@ -13,26 +13,26 @@
 
 //Route::get('/', 'WelcomeController@index');
 
-//Route::get('/', 'HomeController@index');
-
-
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+    //'auth' => 'Auth\AuthController',
+    //'password' => 'Auth\PasswordController',
     'admin' => 'Login\LoginAdminController',
 ]);
-Route::group(['middleware' => 'Dirdoc'], function(){
-    Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
-        Route::resource('home','AdmUserController');
-        Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
-        Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
-        Route::resource('Depto','DepartamentoController'); //CRUD PARA Depto
-        Route::resource('Escuela','EscuelaController'); //CRUD PARA Escuela
-        Route::resource('TpoSala','TipoSalasController'); //CRUD PARA TIPOS DE SALA
-        Route::resource('Salas','SalasController'); //CRUD PARA SALA
-        Route::resource('downloadCampus','MasivoCampusController');
-        //Route::resource('Roluser','RolusuarioController'); //CRUD PARA SALA
-    });
+
+Route::get('/', function(){
+    return redirect('/admin/login');
+});
+
+Route::group(['middleware' => 'admin', 'prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+    Route::resource('home','AdmUserController');
+    Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
+    Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
+    Route::resource('Depto','DepartamentoController'); //CRUD PARA Depto
+    Route::resource('Escuela','EscuelaController'); //CRUD PARA Escuela
+    Route::resource('TpoSala','TipoSalasController'); //CRUD PARA TIPOS DE SALA
+    Route::resource('Salas','SalasController'); //CRUD PARA SALA
+    Route::resource('downloadCampus','MasivoCampusController');
+    //Route::resource('Roluser','RolusuarioController');
 });
 
 
