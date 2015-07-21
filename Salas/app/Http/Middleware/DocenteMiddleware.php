@@ -2,15 +2,7 @@
 
 use Closure;
 
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Routing\Middleware;
-
-use Auth;
-
-class EncarMiddleware {
-
-	
-protected $auth;
+class DocenteMiddleware {
 
 	/**
 	 * Handle an incoming request.
@@ -23,7 +15,7 @@ protected $auth;
 	{
         $user = Auth::user();
         if($user){
-            if($user->roles()->get()[0]->nombre != 'Encargado Campus')
+            if($user->roles()->get()[0]->nombre != 'Docente')
                 return redirect()->route('auth.login');
         }
         else{

@@ -4,25 +4,10 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Routing\Middleware;
 
+use Auth;
+
 class AdminMiddleware {
 
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
-    protected $auth;
-
-    /**
-     * Create a new filter instance.
-     *
-     * @param  Guard  $auth
-     * @return void
-     */
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
 	/**
 	 * Handle an incoming request.
 	 *
@@ -32,13 +17,13 @@ class AdminMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
-        if ($this->auth->guest()){
-            if($request->ajax()){
-              abort(404);
-            }
-            else{
-                return redirect()->to('admin/login');
-            }
+        $user = Auth::user();
+        if($user){
+            if($user->roles()->get()[0]->nombre != 'Administrador')
+                return redirect()->route('auth.login');
+        }
+        else{
+            return redirect()->route('auth.login');
         }
 		return $next($request);
 	}

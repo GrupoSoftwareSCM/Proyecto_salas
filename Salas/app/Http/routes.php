@@ -30,7 +30,7 @@ Route::get('/home', ['as' => 'home', 'middleware' => ['auth', 'redir'], function
     return 'home';
 }]);
 
-Route::group(['before' => 'is_admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('home','AdmUserController');
     Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
     Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
@@ -45,7 +45,7 @@ Route::group(['before' => 'is_admin','prefix' =>  'Admin', 'namespace' => 'Admin
 
 //PROBANDO RESOURCE PARA ASIGNATURAS
 
-Route::group(['middleware' => 'encar','prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
+Route::group(['middleware' => 'Encar','prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('asig/modi','asigController');
     Route::resource('estu/modi','estuController');
     Route::resource('curs/modi','cursController');
