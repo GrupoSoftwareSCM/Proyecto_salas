@@ -390,5 +390,73 @@
             </div>
         </div>
 
+    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Roluser")
+
+        <div class="panel-body">
+            Asignar Roles
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    {{--<nav class="navbar navbar-right">
+                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Salas/create" role="button" aria-label="Left Align">
+                            Crear salas
+                        </a>--}}
+                    </nav>
+
+                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="center">Nombre sala</th>
+                            <th class="center">RUT</th>
+                            <th class="center">Rol</th>
+                            <th class="center">Editar</th>
+                            <th class="center">Eliminar</th>
+
+                        </tr>
+
+                        </thead>
+                        <tbody>
+
+                        @foreach($Roluser as $roles)
+                            <tr>
+                                <th class="center">{{$roles->nombre}}</th>
+                                <th class="center">{{$roles->rut}}</th>
+
+                                @foreach($Campus as $key => $camp)
+                                    @if($key == $Sala->campus_id)
+                                        <th class="center">{{$camp}}</th>
+                                    @endif
+                                @endforeach
+
+                                @foreach($Tposala as $key => $value)
+                                    @if($key == $Sala->tipo_sala_id)
+                                        <th class="center">{{$value}}</th>
+                                    @endif
+                                @endforeach
+                                <th class="center">
+                                    <a class="btn glyphicon glyphicon-pencil" href="Salas/{{$Sala->id}}/edit" role="button" aria-label="Left Align"></a>
+                                </th>
+                                <th class="center">
+                                    {!!Form::open(array('route' => array('Admin.Salas.destroy',$Sala->id), 'method' => 'DELETE'))!!}
+
+                                    <button class="btn glyphicon glyphicon-remove" type="submit"></button>
+
+                                    {!!Form::close()!!}
+                                </th>
+                            </tr>
+                        @endforeach
+
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+        </div>
     @endif
 @endsection

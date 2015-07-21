@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Request;
 use App\Models\Rol_Usuario;
 use App\Models\Rol;
+use App\Models\Usuario;
+
 //use Illuminate\Http\Request;
 
 class RolusuarioController extends Controller {
@@ -16,7 +18,15 @@ class RolusuarioController extends Controller {
 	 */
 	public function index()
 	{
-        //
+        $data = Usuario::join_usuario_rol();
+        //dd($data);
+        for($i=0;$i<count($data);$i++){
+            echo $data[$i]->nombres.' ';
+            echo $data[$i]->rut.' ';
+            echo $data[$i]->nombres.' ';
+            echo '<br>';
+        }
+        return view('Administrador.bodyAdm')->with('Roluser',$data);
 	}
 
 	/**

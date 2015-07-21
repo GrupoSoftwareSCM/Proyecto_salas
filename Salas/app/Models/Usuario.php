@@ -1,5 +1,6 @@
 <?php namespace App\Models;
 
+use App\Providers\rut;
 use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
@@ -23,6 +24,12 @@ class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
     public function roles()
     {
         return $this->belongsToMany('\App\Models\Rol', 'roles_usuarios', 'usuario_rut', 'rol_id');
+    }
+
+    public static function join_usuario_rol(){
+        return \DB::table('usuarios')->join('roles_usuarios','usuarios.rut','=','roles_usuarios.usuario_rut')
+                                        ->join('roles','roles_usuarios.rol_id','=','roles.id')->get();
+
     }
 
 
