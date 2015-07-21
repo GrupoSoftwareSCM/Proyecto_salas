@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableRolesUsuarios extends Migration {
+class CreateFkUsuarioRolesUsuario extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateTableRolesUsuarios extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('roles_usuarios', function(Blueprint $table)
-		{
+        Schema::table('roles_usuarios', function(Blueprint $table)
+        {
             $table->foreign('usuario_rut')->references('rut')->on('usuarios');
-;
-		});
+            ;
+        });
 	}
 
 	/**
@@ -26,10 +26,7 @@ class CreateTableRolesUsuarios extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('roles_usuarios', function(Blueprint $table)
-		{
-			//
-		});
+		//
 	}
 
 }

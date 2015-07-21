@@ -20,17 +20,16 @@
 @endif
 <div class="container">
     <section id="content">
-        {!!Form::open(['url' => 'login/login', 'method'=> 'POST'])!!}
+        {!!Form::open(['route' => 'auth.login', 'method'=> 'POST'])!!}
             <h1>UTEM</h1>
             <div>
-                <input type="text" placeholder="Rut Dirdoc" required="" id="username" name="rut" />
+                <input type="text" placeholder="Rut Dirdoc" required="" id="rut" name="rut" />
             </div>
             <div>
                 <input type="password" placeholder="Password" required="" id="password" name="password"/>
             </div>
             <div>
                 <input type="submit" value="Log in" />
-                <a href="#">Olvido su contraseña?</a>
             </div>
         {!!Form::close()!!}
     </section><!-- content -->

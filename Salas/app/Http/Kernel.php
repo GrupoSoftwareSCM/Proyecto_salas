@@ -29,7 +29,7 @@ class Kernel extends HttpKernel {
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
         'admin' => 'App\Http\Middleware\AdminMiddleware',
         'encar'=>  'App\Http\Middleware\EncarMiddleware',
-        'redir' => 'App\Http\Middleware\probando',
+        'redir' => 'App\Http\Middleware\RedireccionMiddleware',
 	];
 
 }

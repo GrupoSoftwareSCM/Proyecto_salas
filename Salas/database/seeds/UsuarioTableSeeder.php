@@ -17,7 +17,7 @@ class UsuarioTableSeeder extends  DatabaseSeeder{
         $nombres = ['Oscar Eduardo', 'Jean Pierre patria'];
         $apellidos = ['Muñoz Bernales', 'Cid bustos'];
         //$email = ['munoz.bernales.oscar@gmail.com','Jeanpierre.cid@gmail.com'];
-        $rut = ['17860032-k','18028419-2'];
+        $rut = [17860032,18028419];
 
 
 
