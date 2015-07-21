@@ -50,12 +50,12 @@
                        
                       {!! Form::close() !!}   
 
-                  {!! Form::open(['route' => ['encar.curs.modi.destroy', $cursos], 'method' => 'DELETE']) !!}
+         <!--         {!! Form::open(['route' => ['encar.curs.modi.destroy', $cursos], 'method' => 'DELETE']) !!}
                       
                     <button type="submit" onclick="return confirm('Seguro que desea eliminar el curso?')"
                    class="btn btn-danger">Eliminar </button>
 
-                    {!! Form::close() !!}
+                    {!! Form::close() !!}-->
             </div>  
           </div>
         </div>  

@@ -46,12 +46,12 @@
                       {!! Form::close() !!}
                       </form>
             
-        {!! Form::open(['route' => ['encar.estu.modi.destroy', $estu], 'method' => 'DELETE']) !!}
+     <!--   {!! Form::open(['route' => ['encar.estu.modi.destroy', $estu], 'method' => 'DELETE']) !!}
                       
                     <button type="submit" onclick="return confirm('Seguro que desea eliminar el estudiante?')"
                    class="btn btn-danger">Eliminar </button>
 
-                    {!! Form::close() !!}   
+                    {!! Form::close() !!}   -->
                       </div>  
                  </div>  
             </div>

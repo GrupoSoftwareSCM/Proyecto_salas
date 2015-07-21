@@ -52,12 +52,12 @@
 
                       {!! Form::close() !!}
                       </form>
-                   {!! Form::open(['route' => ['encar.asig.modi.destroy', $asig], 'method' => 'DELETE']) !!}
+          <!--         {!! Form::open(['route' => ['encar.asig.modi.destroy', $asig], 'method' => 'DELETE']) !!}
                       
                     <button type="submit" onclick="return confirm('Seguro que desea eliminar la asignatura?')"
                    class="btn btn-danger">Eliminar </button>
 
-                    {!! Form::close() !!}    
+                    {!! Form::close() !!}    -->
                      </div>  
                 </div>
             </div>
