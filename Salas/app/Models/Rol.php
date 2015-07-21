@@ -21,7 +21,7 @@ class Rol extends Model {
 
     public function usuarios()
     {
-        return $this->belongsToMany('usuarios', 'roles_usuarios', 'rol_id', 'usuario_rut')->withTimestamps();
+        return $this->belongsToMany('\App\Models\Usuarios', 'roles_usuarios', 'rol_id', 'usuario_rut');
     }
 
 

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -31,7 +30,7 @@ Route::get('/home', ['as' => 'home', 'middleware' => ['auth', 'redir'], function
     return 'home';
 }]);
 
-Route::group(['middleware' => 'admin', 'prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+Route::group(['before' => 'is_admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('home','AdmUserController');
     Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
     Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
@@ -64,3 +63,11 @@ Route::resource('users/encargados', 'Encargado\EncarUserController');
 /*Route::get('dirdoc', ['middleware' => 'encar', function () {
     return "asd";
 }]);*/
+
+//PROBANDO LOS FILTERS
+
+Route::filter('is_admin',function(){
+
+    $user = Auth::user();
+    dd($user);
+});
