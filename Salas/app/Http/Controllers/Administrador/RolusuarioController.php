@@ -19,13 +19,6 @@ class RolusuarioController extends Controller {
 	public function index()
 	{
         $data = Usuario::join_usuario_rol();
-        //dd($data);
-        for($i=0;$i<count($data);$i++){
-            echo $data[$i]->nombres.' ';
-            echo $data[$i]->rut.' ';
-            echo $data[$i]->nombres.' ';
-            echo '<br>';
-        }
         return view('Administrador.bodyAdm')->with('Roluser',$data);
 	}
 
@@ -36,7 +29,8 @@ class RolusuarioController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        $data = Rol::lists('nombre','id');
+        return view('Administrador.crearAdm')->with('rol',$data);
 	}
 
 	/**
@@ -46,7 +40,23 @@ class RolusuarioController extends Controller {
 	 */
 	public function store()
 	{
-		//
+
+		$data_usuario = Request::only(['rut','nombres','apellidos','email']);
+
+        //dd(Usuario::paginate()->last());
+        Usuario::create($data_usuario);
+        $query = Usuario::paginate()->last();
+
+        $roluser = new Rol_Usuario();
+
+        $roluser->usuario_rut = $query->rut;
+        $roluser->rol_id = Request::input('rol_id');
+
+        $roluser->save();
+
+
+
+        return redirect()->route('Admin.Roluser.index');
 	}
 
 	/**
@@ -68,7 +78,20 @@ class RolusuarioController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $rol = Rol_Usuario::find($id);
+        if($rol){
+            $data = Rol::lists('nombre','id');
+            $rol_id = Rol::find($rol->rol_id);
+            $usuario = Usuario::find($rol->usuario_rut);
+            //dd($usuario);
+            return view('Administrador.editarAdm')->with('roles_usuario',$rol)->with('rol',$data)->with('rol_id',$rol_id)->with('usuario',$usuario);
+        }
+        else{
+            abort(404,'id no encontrado');
+        }
+
+        //dd(Rol::find($rol->rol_id));
+        //dd(Usuario::find($rol->usuario_rut));
 	}
 
 	/**
@@ -90,7 +113,19 @@ class RolusuarioController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$roluser = Rol_Usuario::find($id);
+        if($roluser){
+            $rut = Rol_Usuario::id_usuario($roluser->usuario_rut);
+            $user = Usuario::find($rut[0]->rut);
+
+
+            $roluser->delete();
+            $user->delete();
+            return redirect()->route('Admin.Roluser.index')->with('mensaje','Usuario Eliminado');
+        }
+        else{
+            return redirect()->route('Admin.Roluser.index')->with('mensaje','Usuario No encontrado');
+        }
 	}
 
 }

@@ -27,8 +27,11 @@ class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
     }
 
     public static function join_usuario_rol(){
-        return \DB::table('usuarios')->join('roles_usuarios','usuarios.rut','=','roles_usuarios.usuario_rut')
-                                        ->join('roles','roles_usuarios.rol_id','=','roles.id')->get();
+        return \DB::table('usuarios')
+                    ->select('usuarios.nombres','usuarios.apellidos','usuarios.rut','roles.nombre','roles_usuarios.id')
+                    ->join('roles_usuarios','usuarios.rut','=','roles_usuarios.usuario_rut')
+                    ->join('roles','roles_usuarios.rol_id','=','roles.id')
+                    ->get();
 
     }
 

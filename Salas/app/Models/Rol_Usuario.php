@@ -19,5 +19,11 @@ class Rol_Usuario extends Model {
      */
 	protected $fillable = ['usuario_rut','rol_id'];
 
-
+    public static function id_usuario($id){
+        return \DB::table('usuarios')
+                    ->select('usuarios.rut')
+                    ->join('roles_usuarios','usuarios.rut','=','roles_usuarios.usuario_rut')
+                    ->where('usuarios.rut','=',$id)
+                    ->get();
+    }
 }

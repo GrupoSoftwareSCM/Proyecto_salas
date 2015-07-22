@@ -397,18 +397,18 @@
         </div>
         <div class="panel-footer">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
 
-                    {{--<nav class="navbar navbar-right">
-                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Salas/create" role="button" aria-label="Left Align">
-                            Crear salas
-                        </a>--}}
+                    <nav class="navbar navbar-right">
+                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Roluser/create" role="button" aria-label="Left Align">
+                            Asignar Roles
+                        </a>
                     </nav>
 
                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th class="center">Nombre sala</th>
+                            <th class="center">Nombres</th>
                             <th class="center">RUT</th>
                             <th class="center">Rol</th>
                             <th class="center">Editar</th>
@@ -421,25 +421,14 @@
 
                         @foreach($Roluser as $roles)
                             <tr>
-                                <th class="center">{{$roles->nombre}}</th>
+                                <th class="center">{{$roles->apellidos.', '.$roles->nombres}}</th>
                                 <th class="center">{{$roles->rut}}</th>
-
-                                @foreach($Campus as $key => $camp)
-                                    @if($key == $Sala->campus_id)
-                                        <th class="center">{{$camp}}</th>
-                                    @endif
-                                @endforeach
-
-                                @foreach($Tposala as $key => $value)
-                                    @if($key == $Sala->tipo_sala_id)
-                                        <th class="center">{{$value}}</th>
-                                    @endif
-                                @endforeach
+                                <th class="center">{{$roles->nombre}}</th>
                                 <th class="center">
-                                    <a class="btn glyphicon glyphicon-pencil" href="Salas/{{$Sala->id}}/edit" role="button" aria-label="Left Align"></a>
+                                    <a class="btn glyphicon glyphicon-pencil" href="Roluser/{{$roles->id}}/edit" role="button" aria-label="Left Align"></a>
                                 </th>
                                 <th class="center">
-                                    {!!Form::open(array('route' => array('Admin.Salas.destroy',$Sala->id), 'method' => 'DELETE'))!!}
+                                    {!!Form::open(array('route' => array('Admin.Roluser.destroy',$roles->id), 'method' => 'DELETE'))!!}
 
                                     <button class="btn glyphicon glyphicon-remove" type="submit"></button>
 

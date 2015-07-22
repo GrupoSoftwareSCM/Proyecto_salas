@@ -194,6 +194,41 @@
                 </div>
             </div>
         </div>
+    @elseif(strpos($_SERVER['REQUEST_URI'],'/Roluser/') !== false)
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Roles
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        {!! Form::model($roles_usuario,array('route' => array('Admin.Roluser.update',$roles_usuario->id), 'method' => 'PUT')) !!}
+                        <div class="form-group">
 
+                            {!!Form::label('nombres','Nombres',['class' => 'col-md-6'])!!}
+                            {!!Form::text('nombres',$usuario->nombres,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('apellidos','Apellidos',['class' => 'col-md-6'])!!}
+                            {!!Form::text('apellidos',$usuario->apellidos,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('email','E-mail',['class' => 'col-md-6'])!!}
+                            {!!Form::text('email',$usuario->email,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('rut','R.U.T.',['class' => 'col-md-6'])!!}
+                            {!!Form::text('rut',$usuario->rut,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('rol_id','Seleccione rol',['class' => 'col-md-6'])!!}
+                            {!!Form::select('rol_id',$rol,$rol_id->id,['class' => 'col-md-6'])!!}
+
+
+                        </div>
+                        {!!Form::button('Editar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
 @endsection

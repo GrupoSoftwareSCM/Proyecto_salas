@@ -208,12 +208,12 @@
             </div>
         </div>
 
-    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Salas/create")
+    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Roluser/create")
         <div class="panel panel-success">
             <div class="panel-body">
-                sala
+                Roles
                 <a class="glyphicon glyphicon-menu-right"></a>
-                crear
+                Asignar
             </div>
             <div class="panel-footer">
                 @if (count($errors) > 0)
@@ -228,27 +228,33 @@
                 @endif
                 <div class="row">
                     <div class="col-md-6">
-                        {!!Form::open(['route' => 'Admin.Salas.store','method' => 'POST'])!!}
+                        {!!Form::open(['route' => 'Admin.Roluser.store','method' => 'POST'])!!}
                         <div class="form-group">
 
-                            {!!Form::label('campus_id','Ingrese Campus',['class' => 'col-md-6'])!!}
-                            {!!Form::select('campus_id',$Campus,'',['class' => 'col-md-6'])!!}
+                            {!!Form::label('nombres','Nombres',['class' => 'col-md-6'])!!}
+                            {!!Form::text('nombres','',['class' => 'col-md-6'])!!}
 
-                            {!!Form::label('tipo_sala_id','Ingrese Tipo de sala',['class' => 'col-md-6'])!!}
-                            {!!Form::select('tipo_sala_id',$Tposala,'',['class' => 'col-md-6'])!!}
+                            {!!Form::label('apellidos','Apellidos',['class' => 'col-md-6'])!!}
+                            {!!Form::text('apellidos','',['class' => 'col-md-6'])!!}
 
-                            {!!Form::label('nombre','Nombre Sala',['class' => 'col-md-6'])!!}
-                            {!!Form::text('nombre','',['class' => 'col-md-6'])!!}
+                            {!!Form::label('email','E-mail',['class' => 'col-md-6'])!!}
+                            {!!Form::text('email','',['class' => 'col-md-6'])!!}
 
-                            {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
-                            {!!Form::textarea('descripcion','',['class' => 'col-md-6'])!!}
+                            {!!Form::label('rut','R.U.T.',['class' => 'col-md-6'])!!}
+                            {!!Form::text('rut','',['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('rol_id','Seleccione rol',['class' => 'col-md-6'])!!}
+                            {!!Form::select('rol_id',$rol,'',['class' => 'col-md-6'])!!}
 
                         </div>
                         {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
                         {!!Form::close()!!}
+
                     </div>
                 </div>
             </div>
         </div>
+
+    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Salas/create")
     @endif
 @endsection
