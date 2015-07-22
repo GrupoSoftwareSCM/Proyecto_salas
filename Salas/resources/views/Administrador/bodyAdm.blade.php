@@ -48,10 +48,10 @@
                                             {!!Form::close()!!}
                                         </th>
                                         <th class="center">
-                                            <a class="btn glyphicon glyphicon-inbox" href="Campus/{{$camp->id}}" role="button" aria-label="Center Align"></a>
+                                            {!!Html::link('bajar/campus/'.$camp->id,'',['class' => 'btn glyphicon glyphicon-inbox', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                         </th>
                                         <th class="center">
-                                            <a class="btn glyphicon glyphicon-save" href="downloadCampus/{{$camp->id}}" role="button" aria-label="Left Align"></a>
+                                            {!!Html::link('files/campus/'.$camp->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                         </th>
                                     </tr>
                                 @endforeach
@@ -61,11 +61,27 @@
                             </tbody>
                         </table>
 
-                        <nav class="navbar navbar-right">
-                            <a class="btn glyphicon glyphicon-plus" href="downloadCampus" role="button" aria-label="Left Align">
-                                Descargar Info Campus
-                            </a>
-                        </nav>
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-9">
+                                <nav class="navbar navbar-right">
+                                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="center">Descargar Campus</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th class="center">
+                                                {!!Html::link('files/campusall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </nav>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

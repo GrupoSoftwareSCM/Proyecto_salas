@@ -102,7 +102,18 @@ class RolusuarioController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		//EL ID QUE RESIVE ES DEL ROL_USUARIO
+        $rol_user = Rol_Usuario::find($id);
+        if($rol_user){
+            $data = Request::only(['rol_id']);
+            $rol_user->fill($data);
+            $rol_user->save();
+            return redirect()->route('Admin.Roluser.index')->with('mensaje', 'Rol editado con exito');
+
+        }
+        else{
+            abort(404,'id no encontrado');
+        }
 	}
 
 	/**

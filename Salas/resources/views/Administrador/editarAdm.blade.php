@@ -208,16 +208,16 @@
                         <div class="form-group">
 
                             {!!Form::label('nombres','Nombres',['class' => 'col-md-6'])!!}
-                            {!!Form::text('nombres',$usuario->nombres,['class' => 'col-md-6'])!!}
+                            {!!Form::label('nombres',$usuario->nombres,['class' => 'col-md-6'])!!}
 
                             {!!Form::label('apellidos','Apellidos',['class' => 'col-md-6'])!!}
-                            {!!Form::text('apellidos',$usuario->apellidos,['class' => 'col-md-6'])!!}
+                            {!!Form::label('apellidos',$usuario->apellidos,['class' => 'col-md-6'])!!}
 
                             {!!Form::label('email','E-mail',['class' => 'col-md-6'])!!}
-                            {!!Form::text('email',$usuario->email,['class' => 'col-md-6'])!!}
+                            {!!Form::label('email',$usuario->email,['class' => 'col-md-6'])!!}
 
                             {!!Form::label('rut','R.U.T.',['class' => 'col-md-6'])!!}
-                            {!!Form::text('rut',$usuario->rut,['class' => 'col-md-6'])!!}
+                            {!!Form::label('rut',$usuario->rut,['class' => 'col-md-6'])!!}
 
                             {!!Form::label('rol_id','Seleccione rol',['class' => 'col-md-6'])!!}
                             {!!Form::select('rol_id',$rol,$rol_id->id,['class' => 'col-md-6'])!!}

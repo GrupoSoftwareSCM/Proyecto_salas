@@ -71,10 +71,6 @@
 	<!--<script src="{{URL::asset('js/bootstrap.min.js')}}"></script>-->
 
     {!! HTML::script('js/jquery.Rut.min.js') !!}
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $("#rut_encargado").Rut();
-        });
-    </script>
+
 </body>
 </html>

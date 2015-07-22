@@ -47,6 +47,17 @@
                         {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
                         {!!Form::close()!!}
                     </div>
+                    <div class="col-md-6">
+                        {!!Form::open(['route' => 'files.Up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
+                            <div class="form-group">
+                                {!!Form::label('file','Adjuntar archivo',['class' => 'col-md-6'])!!}
+                                <br/>
+                                <input type="file" name="file">
+
+                            </div>
+                        {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
+                    </div>
                 </div>
             </div>
         </div>
