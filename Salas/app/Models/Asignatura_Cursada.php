@@ -19,7 +19,13 @@ class Asignatura_Cursada extends Model {
      */
     protected $fillable = ['estudiante_id','curso_id'];
 
-
+    public static function count_alumnos($id)
+    {
+        return \DB::table('asignaturas_cursadas')
+            ->select('estudiante_id')
+            ->where('curso_id','=',$id)
+            ->count();
+    }
 
 
 

@@ -30,7 +30,7 @@ class Facultad extends Model {
 
 	public function departamento() //RALACION 1:N
 	{
-		return $this->hasMany('app\Models\Departamento','id');
+		return $this->hasMany('App\Models\Departamento','id');
 	}
 
 	
@@ -41,7 +41,7 @@ class Facultad extends Model {
     */
 	public function campus() //RALACION 1:N
 	{
-		return $this->belongsTo('app\Models\Campus');
+		return $this->belongsTo('App\Models\Campus');
 	}
 
 

@@ -2,9 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Sala;
+use App\Models\Curso;
+use App\Models\Docente;
 use Illuminate\Http\Request;
-
+use App\Models\Asignatura_Cursada;
 class AsignarSalasController extends Controller {
 
 	/**
@@ -14,8 +15,13 @@ class AsignarSalasController extends Controller {
 	 */
 	public function index()
 	{
-		$salas=Sala::paginate();
-		return view('Encargado.modifSalas',compact('salas'));
+		$cursos=Curso::paginate();
+		$C=Curso::paginate();
+		$cantidad_alumno = array();
+		foreach ($C as $curso) {
+			array_push($cantidad_alumno, Asignatura_Cursada::count_alumnos($curso->id));
+		}
+		return view('Encargado.asignarSala',compact('cursos'))->with('cantidad_alumno', $cantidad_alumno);
 
 	}
 
@@ -24,9 +30,14 @@ class AsignarSalasController extends Controller {
 	 *
 	 * @return Response
 	 */
+	/*public function getSala($cur,$cant){
+     dd($cur);
+
+
+	}*/
 	public function create()
 	{
-		//
+		//	
 	}
 
 	/**
@@ -47,7 +58,13 @@ class AsignarSalasController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$cursoo=Curso::find($id);
+	    $docente=$cursoo->docente;
+	    $departamento=$docente->departamento;
+	    $facultad=$departamento->facultad;
+	    $campus=$facultad->campus;
+	    $sala=$campus->sala;
+	    dd($sala);
 	}
 
 	/**

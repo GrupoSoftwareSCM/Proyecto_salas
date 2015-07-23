@@ -3,8 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Sala;
+use App\Models\Curso;
 use App\Models\Campus;
 use App\Models\Tipo_Sala;
+use App\Models\Docente;
 //use Illuminate\Http\Request;
 use Request;
 use DB;
@@ -56,18 +58,9 @@ class SalasController extends Controller {
 	 */
 	public function show($id)
 	{
-	/*	$salas=DB::table('Salas')
-            ->join('campus_id', 'salas.id', '=', 'campus_id.id')
-            ->join('nombre', 'salas.id', '=', 'nombre.id')
-            ->select()
-            ->get();*/ 
-       // dd($salas);
-            
-     //   $idd = Campus::where('nombre','=','$ide')->lists('id');
-      //  dd($idd);
-        
-        		//$salas = Sala::where('campus_id','=','$id')->paginate();
-		//return dd($salas);
+		//
+
+
 	}
 
 	/**

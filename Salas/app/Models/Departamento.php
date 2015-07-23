@@ -55,6 +55,6 @@ class Departamento extends Model {
     */
 	public function facultad() //RALACION 1:N
 	{
-		return $this->belongsTo('app\Models\Facultad');
+		return $this->belongsTo('App\Models\Facultad');
 	}
 }
