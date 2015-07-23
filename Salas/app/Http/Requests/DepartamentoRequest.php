@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class StoreDepartamentoRequest extends Request {
+class DepartamentoRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -21,10 +21,13 @@ class StoreDepartamentoRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-            'nombre' => 'required|string|between:3,25',
-            'descripcion' => 'required|string|between:3,255'
-		];
+        switch($this->method()) {
+            case 'POST':
+                return [
+                    'nombre' => 'required|string|between:3,25',
+                    'descripcion' => 'required|string|between:3,255'
+                ];
+        }
 	}
 
 }

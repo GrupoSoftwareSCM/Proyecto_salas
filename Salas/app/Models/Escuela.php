@@ -28,7 +28,7 @@ class Escuela extends Model {
 	*/
 	public function carrera()
 	{
-		return $this->hasOne('app\Models\Carrera','id');
+		return $this->hasOne('App\Models\Carrera','id');
 	}
 
 	
@@ -39,6 +39,11 @@ class Escuela extends Model {
     */
 	public function departamento() //RALACION 1:N
 	{
-		return $this->belongsTo('app\Models\Departamento','departamento_id','id');
+		return $this->belongsTo('App\Models\Departamento','departamento_id','id');
 	}
+
+    public static function query_nombre($nombre){
+        return Escuela::select('id')->whereNombre($nombre)->first();
+
+    }
 }

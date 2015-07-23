@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campus;
 use App\Models\Facultad;
 use App\Models\Departamento;
+use App\Models\Escuela;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -83,23 +84,24 @@ class FilesController extends Controller{
         \Excel::load('/storage/public/files/'.$nombre,function($archivo)
         {
             $result = $archivo->get();    //leer todas las filas del archivo
-            dd($result);
             foreach($result as $key => $value)
             {
-                $var = new Facultad();
-                $var->fill([
-                    'nombre'            => $value->nombre_facultad,
-                    'descripcion'       => $value->descripcion,
-                    'campus_id'         => $value->campus_perteneciente
-                ]);
-                $var->save();
+                if(!Facultad::query_nombre($value->nombre_facultad)){
+                    $var = new Facultad();
+                    $var->fill([
+                        'nombre'            => $value->nombre_facultad,
+                        'descripcion'       => $value->descripcion,
+                        'campus_id'         => Campus::query_nombre($value->campus_perteneciente)->id
+                    ]);
+                    $var->save();
+                }
             }
         })->get();
 
 
         \Storage::delete($nombre);
 
-        return redirect()->route('Admin.Campus.index');
+        return redirect()->route('Admin.Facultad.index');
 
     }
 
@@ -148,6 +150,7 @@ class FilesController extends Controller{
 
         })->download('csv');
     }
+
     public function postUpcampusfiles(Request $request){
 
         //obtenemos el campo file definido en el formulario
@@ -163,19 +166,20 @@ class FilesController extends Controller{
         \Excel::load('/storage/public/files/'.$nombre,function($archivo)
         {
             $result = $archivo->get();    //leer todas las filas del archivo
-            dd($result);
             foreach($result as $key => $value)
             {
-                $var = new Campus();
-                $var->fill([
-                    'nombre'         => $value->nombre,
-                    'direccion'      => $value->direccion,
-                    'latitud'        => $value->latitud,
-                    'longitud'       => $value->longitud,
-                    'descripcion'    => $value->descripcion,
-                    'rut_encargado'  => $value->rut_encargado
-                ]);
-                $var->save();
+                if(!Campus::query_nombre($value->campus_perteneciente)){
+                    $var = new Campus();
+                    $var->fill([
+                        'nombre'         => $value->nombre,
+                        'direccion'      => $value->direccion,
+                        'latitud'        => $value->latitud,
+                        'longitud'       => $value->longitud,
+                        'descripcion'    => $value->descripcion,
+                        'rut_encargado'  => $value->rut_encargado
+                    ]);
+                    $var->save();
+                }
             }
         })->get();
 
@@ -183,5 +187,169 @@ class FilesController extends Controller{
         \Storage::delete($nombre);
 
         return redirect()->route('Admin.Campus.index');
+    }
+
+    public function getDepartamento($id){
+        $Depto = Departamento::find($id);
+        if($Depto){
+            $data = array(
+                array('Nombre_Departamento','Facultad_Pertenciente','Descripcion'),
+                array($Depto->nombre,$Depto->facultad->nombre,$Depto->descripcion),
+            );
+
+            Excel::create('Depto_'.$Depto->nombre, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function getDepartamentoall(){
+        $Depto = Departamento::paginate();
+        //dd($Depto);
+        if($Depto){
+            $data = array(
+                array('Nombre_Departamento','Facultad_Pertenciente','Descripcion'),
+            );
+            foreach($Depto as $departamento){
+                //dd($departamento->facultad->nombre);
+                array_push($data,array($departamento->nombre,$departamento->facultad->nombre,$departamento->descripcion));
+
+            }
+            Excel::create('Departamentos', function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+
+        }
+
+    }
+
+    public function postUpdepartamentosfiles(Request $request){
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+
+            foreach($result as $key => $value)
+            {
+                //dd(!Departamento::query_nombre($value->nombre_departamento));
+                if(!Departamento::query_nombre($value->nombre_departamento)){
+                    $var = new Departamento();
+                    $var->fill([
+                        'nombre'        => $value->nombre_departamento,
+                        'descripcion'   => $value->descripcion,
+                        'facultad_id'   => Facultad::query_nombre($value->facultad_pertenciente)->id,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.Depto.index');
+    }
+
+    public function getEscuela($id){
+        $Escuela = Escuela::find($id);
+        //dd($Escuela->departamento->nombre);
+        if($Escuela){
+            $data = array(
+                array('Nombre_Escuela', 'Depto_Perteneciente', 'Descripcion'),
+                array($Escuela->nombre, $Escuela->departamento->nombre, $Escuela->descripcion),
+            );
+
+            Excel::create('Escuela_'.$Escuela->nombre, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function getEscuelall(){
+        $Escuela = Escuela::paginate();
+        //dd($Escuela);
+        if($Escuela){
+            $data = array(
+                array('Nombre_Escuela', 'Depto_Perteneciente', 'Descripcion'),
+            );
+            foreach($Escuela as $escuela){
+                array_push($data,array($escuela->nombre,$escuela->departamento->nombre,$escuela->descripcion));
+
+            }
+
+            Excel::create('Escuelas', function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+
+
+        }
+    }
+
+    public function postUpescuelafiles(Request $request){
+
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $key => $value)
+            {
+
+                if(!Escuela::query_nombre($value->nombre_escuela)){
+                    //dd(Escuela::query_nombre($value->nombre_escuela));
+                    $var = new Escuela();
+                    $var->fill([
+                        'nombre'        => $value->nombre_escuela,
+                        'descripcion'   => $value->descripcion,
+                        'departamento_id'   => Departamento::query_nombre($value->depto_perteneciente)->id,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.Escuela.index');
+
     }
 }

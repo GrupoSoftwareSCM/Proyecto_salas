@@ -19,12 +19,19 @@ Route::controllers([
 ]);
 */
 Route::controller('files','Excel\FilesController',[
-    'getCampus' => 'files.Campus',
-    'getCampusall'=> 'files.Campusall',
-    'postUpcampusfiles' => 'files.campus.Up',
-    'getFacultad' => 'files.Facultad',
-    'getFacultadall' => 'files.Facultadall',
-    'postUpfacultadfiles' => 'files.facultad.up'
+    'getCampus'                 => 'files.Campus',
+    'getCampusall'              => 'files.Campusall',
+    'postUpcampusfiles'         => 'files.campus.Up',
+    'getFacultad'               => 'files.Facultad',
+    'getFacultadall'            => 'files.Facultadall',
+    'postUpfacultadfiles'       => 'files.facultad.up',
+    'getDepartamento'           => 'files.depto',
+    'getDepartamentoall'        => 'files.Departamentoall',
+    'postUpdepartamentosfiles'  => 'files.departamento.up',
+    'getEscuela'                => 'files.Escuela',
+    'getEscuelall'              => 'files.Escuelall',
+    'postUpescuelafiles'        => 'files.Escuela.up'
+
 ]);
 Route::controller('auth', 'Auth\AuthController', [
     'getLogin'  => 'auth.login',
@@ -65,16 +72,3 @@ Route::group(['middleware' => 'Encar','prefix' =>  'encar', 'namespace' => 'Enca
 
 Route::resource('users/encargados', 'Encargado\EncarUserController');
 
-//PROBANDO LO MIDDLEWARE
-
-/*Route::get('dirdoc', ['middleware' => 'encar', function () {
-    return "asd";
-}]);*/
-
-//PROBANDO LOS FILTERS
-
-Route::filter('is_admin',function(){
-
-    $user = Auth::user();
-    dd($user);
-});

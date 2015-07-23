@@ -201,6 +201,7 @@
                                 <th class="center">Facultad perteneciente</th>
                                 <th class="center">Editar</th>
                                 <th class="center">Eliminar</th>
+                                <th class="center">Descargar</th>
 
                             </tr>
 
@@ -226,6 +227,9 @@
 
                                         {!!Form::close()!!}
                                     </th>
+                                    <th>
+                                        {!!Html::link('files/departamento/'.$Departamento->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                    </th>
                                 </tr>
                             @endforeach
 
@@ -233,6 +237,28 @@
 
                             </tbody>
                         </table>
+
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-9">
+                                <nav class="navbar navbar-right">
+                                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="center">Descargar Campus</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th class="center">
+                                                {!!Html::link('files/departamentoall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </nav>
+                            </div>
+                        </div>
 
 
                     </div>
@@ -264,6 +290,7 @@
                                 <th class="center">Departamento perteneciente</th>
                                 <th class="center">Editar</th>
                                 <th class="center">Eliminar</th>
+                                <th class="center">Descargar</th>
 
                             </tr>
 
@@ -291,6 +318,9 @@
 
                                         {!!Form::close()!!}
                                     </th>
+                                    <th class="center">
+                                        {!!Html::link('files/escuela/'.$Escuela->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                    </th>
                                 </tr>
                             @endforeach
 
@@ -298,6 +328,28 @@
 
                             </tbody>
                         </table>
+
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-9">
+                                <nav class="navbar navbar-right">
+                                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="center">Descargar Campus</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th class="center">
+                                                {!!Html::link('files/escuelall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </nav>
+                            </div>
+                        </div>
 
 
                     </div>
@@ -434,61 +486,61 @@
         </div>
 
     @elseif($_SERVER['REQUEST_URI'] == "/Admin/Roluser")
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Asignar Roles
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
 
-        <div class="panel-body">
-            Asignar Roles
-        </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                        <nav class="navbar navbar-right">
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Roluser/create" role="button" aria-label="Left Align">
+                                Asignar Roles
+                            </a>
+                        </nav>
 
-                    <nav class="navbar navbar-right">
-                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Roluser/create" role="button" aria-label="Left Align">
-                            Asignar Roles
-                        </a>
-                    </nav>
-
-                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            <th class="center">Nombres</th>
-                            <th class="center">RUT</th>
-                            <th class="center">Rol</th>
-                            <th class="center">Editar</th>
-                            <th class="center">Eliminar</th>
-
-                        </tr>
-
-                        </thead>
-                        <tbody>
-
-                        @foreach($Roluser as $roles)
+                        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                            <thead>
                             <tr>
-                                <th class="center">{{$roles->apellidos.', '.$roles->nombres}}</th>
-                                <th class="center">{{$roles->rut}}</th>
-                                <th class="center">{{$roles->nombre}}</th>
-                                <th class="center">
-                                    <a class="btn glyphicon glyphicon-pencil" href="Roluser/{{$roles->id}}/edit" role="button" aria-label="Left Align"></a>
-                                </th>
-                                <th class="center">
-                                    {!!Form::open(array('route' => array('Admin.Roluser.destroy',$roles->id), 'method' => 'DELETE'))!!}
+                                <th class="center">Nombres</th>
+                                <th class="center">RUT</th>
+                                <th class="center">Rol</th>
+                                <th class="center">Editar</th>
+                                <th class="center">Eliminar</th>
 
-                                    <button class="btn glyphicon glyphicon-remove" type="submit"></button>
-
-                                    {!!Form::close()!!}
-                                </th>
                             </tr>
-                        @endforeach
+
+                            </thead>
+                            <tbody>
+
+                            @foreach($Roluser as $roles)
+                                <tr>
+                                    <th class="center">{{$roles->apellidos.', '.$roles->nombres}}</th>
+                                    <th class="center">{{$roles->rut}}</th>
+                                    <th class="center">{{$roles->nombre}}</th>
+                                    <th class="center">
+                                        <a class="btn glyphicon glyphicon-pencil" href="Roluser/{{$roles->id}}/edit" role="button" aria-label="Left Align"></a>
+                                    </th>
+                                    <th class="center">
+                                        {!!Form::open(array('route' => array('Admin.Roluser.destroy',$roles->id), 'method' => 'DELETE'))!!}
+
+                                        <button class="btn glyphicon glyphicon-remove" type="submit"></button>
+
+                                        {!!Form::close()!!}
+                                    </th>
+                                </tr>
+                            @endforeach
 
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
 
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     @endif
 @endsection

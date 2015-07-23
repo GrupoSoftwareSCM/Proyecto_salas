@@ -37,4 +37,10 @@ class Campus extends Model {
 		return $this->hasMany('App\Models\Sala','campus_id', 'id');
 	}
 
+    public static function query_nombre($nombre){
+        return Campus::select('id')
+                ->whereNombre($nombre)
+                ->first();
+    }
+
 }

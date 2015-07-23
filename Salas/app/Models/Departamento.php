@@ -57,4 +57,8 @@ class Departamento extends Model {
 	{
 		return $this->belongsTo('App\Models\Facultad','facultad_id','id');
 	}
+
+    public static function query_nombre($nombre){
+        return Departamento::select('id')->whereNombre($nombre)->first();
+    }
 }
