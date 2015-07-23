@@ -37,7 +37,7 @@ class Docente extends Model {
     */
 	public function departamento()
 	{
-		return $this->belongsTo('App\Models\Departamento');
+		return $this->belongsTo('App\Models\Departamento','departamento_id','id');
 	}
 
 }

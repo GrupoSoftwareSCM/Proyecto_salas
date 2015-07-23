@@ -39,6 +39,6 @@ class Escuela extends Model {
     */
 	public function departamento() //RALACION 1:N
 	{
-		return $this->belongsTo('app\Models\Departamento');
+		return $this->belongsTo('app\Models\Departamento','departamento_id','id');
 	}
 }

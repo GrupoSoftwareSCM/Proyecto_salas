@@ -37,7 +37,7 @@ class Estudiante extends Model {
     */
 	public function carrera() //RALACION 1:N
 	{
-		return $this->belongsTo('App\Models\Carrera');
+		return $this->belongsTo('App\Models\Carrera','carrera_id','id');
 	}
 
 

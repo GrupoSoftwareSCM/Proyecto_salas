@@ -26,7 +26,7 @@ class Funcionario extends Model {
     */
 	public function departamento()
 	{
-		return $this->belongsTo('app\Models\Departamento');
+		return $this->belongsTo('app\Models\Departamento','departamento_id','id');
 	}
 
 }

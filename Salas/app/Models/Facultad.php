@@ -41,7 +41,7 @@ class Facultad extends Model {
     */
 	public function campus() //RALACION 1:N
 	{
-		return $this->belongsTo('App\Models\Campus');
+		return $this->belongsTo('App\Models\Campus','campus_id','id');
 	}
 
 
