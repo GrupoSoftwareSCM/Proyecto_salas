@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class StoreFacultadRequest extends Request {
+class FacultadRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.

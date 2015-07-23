@@ -18,10 +18,13 @@ Route::controllers([
     //'password' => 'Auth\PasswordController',
 ]);
 */
-Route::controller('files','Excel\FilesCampusController',[
+Route::controller('files','Excel\FilesController',[
     'getCampus' => 'files.Campus',
     'getCampusall'=> 'files.Campusall',
-    'postUpfiles' => 'files.Up'
+    'postUpcampusfiles' => 'files.campus.Up',
+    'getFacultad' => 'files.Facultad',
+    'getFacultadall' => 'files.Facultadall',
+    'postUpfacultadfiles' => 'files.facultad.up'
 ]);
 Route::controller('auth', 'Auth\AuthController', [
     'getLogin'  => 'auth.login',
