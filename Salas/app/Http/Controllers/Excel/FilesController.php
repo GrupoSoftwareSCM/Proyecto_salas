@@ -12,6 +12,7 @@ use App\Models\Campus;
 use App\Models\Facultad;
 use App\Models\Departamento;
 use App\Models\Escuela;
+use App\Models\Tipo_Sala;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -350,6 +351,56 @@ class FilesController extends Controller{
         \Storage::delete($nombre);
 
         return redirect()->route('Admin.Escuela.index');
+
+    }
+
+    public function getTposala($id){
+        $tipo = Tipo_Sala::find($id);
+        //dd($tipo);
+        if($tipo){
+            $data = array(
+                array('Nombre','Descripcion'),
+                array($tipo->nombre,$tipo->descripcion)
+            );
+
+            Excel::create('Tipo_de_sala_'.$tipo->nombre, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+
+        }
+
+    }
+
+    public function getTposalall(){
+        $tipos = Tipo_Sala::paginate();
+        //dd($tipo);
+        if($tipos){
+            $data = array(
+                array('Nombre','Descripcion'),
+            );
+            foreach($tipos as $tipo){
+                array_push($data,array($tipo->nombre,$tipo->descripcion));
+            }
+
+            Excel::create('Tipo_de_sala_'.$tipo->nombre, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function postTposalafiles(Request $request){
 
     }
 }
