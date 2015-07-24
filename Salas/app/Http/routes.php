@@ -19,11 +19,24 @@ Route::controllers([
 ]);
 */
 Route::controller('files','Excel\FilesController',[
+    'getCampus'                 => 'files.Campus',
+    'getCampusall'              => 'files.Campusall',
     'postUpcampusfiles'         => 'files.campus.Up',
+    'getFacultad'               => 'files.Facultad',
+    'getFacultadall'            => 'files.Facultadall',
     'postUpfacultadfiles'       => 'files.facultad.up',
+    'getDepartamento'           => 'files.Departamento',
+    'getDepartamentoall'        => 'files.Departamentoall',
     'postUpdepartamentosfiles'  => 'files.departamento.up',
+    'getEscuela'                => 'files.Escuela',
+    'getEscuelall'              => 'files.Escuelall',
     'postUpescuelafiles'        => 'files.Escuela.up',
+    'getTposala'                => 'files.Tposala',
+    'getTposalall'              => 'files.Tposalall',
     'postTposalafiles'          => 'files.Tposala.up',
+    'getSala'                   => 'files.Sala',
+    'getSalall'                 => 'files.Salall',
+    'postSalafiles'             => 'files.Salas.up',
 ]);
 
 Route::controller('auth', 'Auth\AuthController', [

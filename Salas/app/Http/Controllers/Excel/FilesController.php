@@ -13,6 +13,7 @@ use App\Models\Facultad;
 use App\Models\Departamento;
 use App\Models\Escuela;
 use App\Models\Tipo_Sala;
+use App\Models\Sala;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -402,5 +403,116 @@ class FilesController extends Controller{
 
     public function postTposalafiles(Request $request){
 
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            foreach($result as $key => $value)
+            {
+                if(!Tipo_Sala::query_nombre($value->nombre)){
+                    $var = new Tipo_Sala();
+                    $var->fill([
+                        'nombre'        => $value->nombre,
+                        'descripcion'   => $value->descripcion,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.TpoSala.index');
+
     }
+
+    public function getSala($id){
+        $sala = Sala::find($id);
+        if($sala){
+            $data = array(
+                array('nombre','campus_perteneciente','tipo_sala','capacidad','descripcion'),
+                array($sala->nombre,$sala->campus->nombre,$sala->tipo_sala->nombre,$sala->capacidad,$sala->descripcion)
+            );
+
+            Excel::create('Sala_'.$sala->nombre, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function getSalall(){
+        $salas = Sala::paginate();
+        if($salas){
+            $data = array(
+                array('nombre','campus_perteneciente','tipo_sala','capacidad','descripcion')
+                );
+            foreach($salas as $sala){
+                array_push($data,array($sala->nombre,$sala->campus->nombre,$sala->tipo_sala->nombre,$sala->capacidad,$sala->descripcion));
+            }
+        }
+
+        Excel::create('Salas', function ($excel) use ($data) {
+
+            $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('csv');
+
+    }
+
+    public function postSalafiles(Request $request){
+
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $key => $value)
+            {
+                if(!Sala::query_nombre($value->nombre)){
+                    $var = new Sala();
+                    $var->fill([
+                        'nombre'        => $value->nombre,
+                        'capacidad'     => $value->capacidad,
+                        'descripcion'   => $value->descripcion,
+                        'campus_id'     => Campus::query_nombre($value->campus_perteneciente)->id,
+                        'tipo_sala_id'  => Tipo_Sala::query_nombre($value->tipo_sala)->id,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.Salas.index');
+
+}
 }

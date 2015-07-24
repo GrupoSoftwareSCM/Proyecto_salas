@@ -45,7 +45,7 @@ class SalasController extends Controller {
 	 */
 	public function store(Requests\SalaRequest $request)
 	{
-		$data = $request->only(['nombre','descripcion','campus_id','tipo_sala_id']);
+		$data = $request->only(['nombre','capacidad','descripcion','campus_id','tipo_sala_id']);
         Sala::create($data);
 
         return redirect()->route('Admin.Salas.index');
