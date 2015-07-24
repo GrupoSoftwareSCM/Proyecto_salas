@@ -37,4 +37,5 @@ class Campus extends Model {
 		return $this->hasMany('App\Models\Sala','campus_id', 'id');
 	}
 
+
 }

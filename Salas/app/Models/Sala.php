@@ -46,5 +46,14 @@ class Sala extends Model {
 	{
 		return $this->belongsTo('App\Models\Tipo_Sala');
 	}
+    public static function mostrar_salas($id)
+    {
+        return Sala::where('campus_id','=',$id)
+            ->get();
+    	 // return \DB::table('salas')
+           // ->select('nombre','id')
+            //->where('campus_id','=',$id)
+            //->get();
+    }
 
 }
