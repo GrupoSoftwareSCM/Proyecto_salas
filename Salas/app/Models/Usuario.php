@@ -36,5 +36,4 @@ class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
     }
 
 
-
 }

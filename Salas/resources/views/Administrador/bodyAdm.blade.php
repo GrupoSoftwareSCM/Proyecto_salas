@@ -561,6 +561,7 @@
                                 <th class="center">Rol</th>
                                 <th class="center">Editar</th>
                                 <th class="center">Eliminar</th>
+                                <th class="center">Descargar</th>
 
                             </tr>
 
@@ -582,6 +583,9 @@
 
                                         {!!Form::close()!!}
                                     </th>
+                                    <th class="center">
+                                        {!!Html::link('files/usuarios/'.$roles->rut,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                    </th>
                                 </tr>
                             @endforeach
 
@@ -589,6 +593,29 @@
 
                             </tbody>
                         </table>
+
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-9">
+                                <nav class="navbar navbar-right">
+                                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="center">Descargar Campus</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th class="center">
+                                                {!!Html::link('files/usuarioall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </nav>
+                            </div>
+                        </div>
+
 
 
                     </div>

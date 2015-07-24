@@ -14,6 +14,9 @@ use App\Models\Departamento;
 use App\Models\Escuela;
 use App\Models\Tipo_Sala;
 use App\Models\Sala;
+use App\Models\Usuario;
+use App\Models\Rol;
+use App\Models\Rol_Usuario;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -515,4 +518,94 @@ class FilesController extends Controller{
         return redirect()->route('Admin.Salas.index');
 
 }
+
+    public function getUsuarios($id){
+        $user = Usuario::find($id);
+        //dd($user->roles[0]->nombre);
+        if($user){
+            if(count($user->roles) > 1){
+                $datos = array($user->nombres,$user->apellidos,$user->rut);
+                $data = array(
+                    array('Nombres','Apellidos','RUT','Rol(es)'),
+                );
+                //dd($data);
+                $roles = '';
+                for($i=0;$i<count($user->roles);$i++){
+                    if($i == 0){
+                        $roles = $user->roles[$i]->nombre;
+                    }
+                    else{
+                        $roles = $roles.'/'.$user->roles[$i]->nombre;
+                    }
+                }
+                //dd($roles);
+                array_push($datos,$roles);
+                array_push($data,$datos);
+
+            }
+            else{
+                $data = array(
+                    array('Nombres','Apellidos','RUT','Rol(es)'),
+                    array($user->nombres,$user->apellidos,$user->rut,$user->roles->nombre),
+                );
+            }
+
+            Excel::create('Usuario_'.$user->rut, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+
+        }
+    }
+
+    public function getUsuarioall(){
+        $users = Usuario::paginate();
+        dd($users);
+        if($users){
+            $data = array(
+                array('Nombres','Apellidos','RUT','Rol(es)'),
+            );
+            if(count($users)>1){
+                foreach($users as $value){
+                    $datos = array($value->nombres,$value->apellidos,$value->rut);
+                    if(count($value->roles)>1){
+                        $roles = '';
+                        for($i=0;$i<count($value->roles);$i++){
+                            if($i == 0){
+                                $roles = $value->roles[$i]->nombre;
+                            }
+                            else{
+                                $roles = $roles."/".$value->roles[$i]->nombre;
+                            }
+                        }
+                        //dd($roles);
+                        array_push($datos,$roles);
+                        array_push($data,$datos);
+                    }
+                    else{
+                        array_push($datos,$value->roles[0]->nombre);
+                        array_push($data,$datos);
+                    }
+                }
+            }
+            else{
+
+
+            }
+            Excel::create('Usuarios', function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
 }

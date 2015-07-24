@@ -37,6 +37,8 @@ Route::controller('files','Excel\FilesController',[
     'getSala'                   => 'files.Sala',
     'getSalall'                 => 'files.Salall',
     'postSalafiles'             => 'files.Salas.up',
+    'getUsuarios'               => 'files.Usuario',
+    'getUsuarioall'             => 'files.Usuarioall',
 ]);
 
 Route::controller('auth', 'Auth\AuthController', [
