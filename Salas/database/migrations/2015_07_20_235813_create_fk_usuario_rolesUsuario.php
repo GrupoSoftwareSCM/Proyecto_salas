@@ -14,8 +14,7 @@ class CreateFkUsuarioRolesUsuario extends Migration {
 	{
         Schema::table('roles_usuarios', function(Blueprint $table)
         {
-            $table->foreign('usuario_rut')->references('rut')->on('usuarios');
-            ;
+            $table->foreign('usuario_rut')->references('rut')->on('usuarios')->onDelete('cascade');
         });
 	}
 

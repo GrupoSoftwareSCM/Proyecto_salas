@@ -42,8 +42,13 @@ class Escuela extends Model {
 		return $this->belongsTo('App\Models\Departamento','departamento_id','id');
 	}
 
-    public static function query_nombre($nombre){
-        return Escuela::select('id')->whereNombre($nombre)->first();
+    public static function Nombre($nombre){
+        $dato = count(Escuela::whereNombre($nombre)->first());
+        if($dato == 0){
+            return false;
+        }
+        else
+            return true;
 
     }
 }

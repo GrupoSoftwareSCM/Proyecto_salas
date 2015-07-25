@@ -10,14 +10,6 @@
 |
 */
 
-//Route::get('/', 'WelcomeController@index');
-
-/*
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    //'password' => 'Auth\PasswordController',
-]);
-*/
 Route::controller('files','Excel\FilesController',[
     'getCampus'                 => 'files.Campus',
     'getCampusall'              => 'files.Campusall',
@@ -39,6 +31,14 @@ Route::controller('files','Excel\FilesController',[
     'postSalafiles'             => 'files.Salas.up',
     'getUsuarios'               => 'files.Usuario',
     'getUsuarioall'             => 'files.Usuarioall',
+    'postUsuariofiles'          => 'files.Usuario.up',
+    'getRoluser'                => 'files.Roluser',
+    'getRoluserall'             => 'files.Roluserall',
+    'postRoluserfile'           => 'files.Roluser.up',
+    'getCarrera'                => 'files.Carrera',
+    'getCarrerall'              => 'files.Carrerall',
+    'postCarrerafiles'          => 'files.Carrera.up',
+
 ]);
 
 Route::controller('auth', 'Auth\AuthController', [
@@ -52,7 +52,8 @@ Route::get('/home', ['as' => 'home', 'middleware' => ['auth', 'redir'], function
     return 'home';
 }]);
 
-Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+//Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('home','AdmUserController');
     Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
     Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
@@ -60,8 +61,9 @@ Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Admin
     Route::resource('Escuela','EscuelaController'); //CRUD PARA Escuela
     Route::resource('TpoSala','TipoSalasController'); //CRUD PARA TIPOS DE SALA
     Route::resource('Salas','SalasController'); //CRUD PARA SALA
-    Route::resource('downloadCampus','MasivoCampusController');
     Route::resource('Roluser','RolusuarioController');
+    Route::resource('User','UsuarioController');
+    Route::resource('Carrera','CarreraController');
 });
 
 

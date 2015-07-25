@@ -35,5 +35,11 @@ class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
 
     }
 
+    public static function query_nombre($nombre){
+        return Usuario::select('rut')
+            ->where('nombres','=',$nombre)
+            ->first();
+    }
+
 
 }

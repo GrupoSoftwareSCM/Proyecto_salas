@@ -578,13 +578,11 @@
                                     </th>
                                     <th class="center">
                                         {!!Form::open(array('route' => array('Admin.Roluser.destroy',$roles->id), 'method' => 'DELETE'))!!}
-
-                                        <button class="btn glyphicon glyphicon-remove" type="submit"></button>
-
+                                            {!!Form::button(null,['class'=>'btn glyphicon glyphicon-remove', 'type'=>'submit'])!!}
                                         {!!Form::close()!!}
                                     </th>
                                     <th class="center">
-                                        {!!Html::link('files/usuarios/'.$roles->rut,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                        {!!Html::link('files/roluser/'.$roles->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                     </th>
                                 </tr>
                             @endforeach
@@ -600,7 +598,90 @@
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th class="center">Descargar Campus</th>
+                                            <th class="center">Descargar Roles Usuarios</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th class="center">
+                                                {!!Html::link('files/roluserall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </nav>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @elseif($_SERVER['REQUEST_URI'] ==  "/Admin/User")
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Usario(s)
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+
+                        <nav class="navbar navbar-right">
+
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/User/create" role="button" aria-label="Left Align">
+                                Crear Usuario
+                            </a>
+                        </nav>
+
+                        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="center">Nombres</th>
+                                <th class="center">Apellidos</th>
+                                <th class="center">RUT</th>
+                                <th class="center">Editar</th>
+                                <th class="center">Eliminar</th>
+                                <th class="center">Descargar</th>
+
+                            </tr>
+
+                            </thead>
+                            <tbody>
+
+                            @foreach($user as $usuario)
+                                <tr>
+                                    <th class="center">{{$usuario->nombres}}</th>
+                                    <th class="center">{{$usuario->apellidos}}</th>
+                                    <th class="center">{{$usuario->rut}}</th>
+                                    <th class="center">{!!Html::link('Admin/User/'.$usuario->rut.'/edit','',['class'=>'btn glyphicon glyphicon-pencil','role'=>'button', 'aria-label'=>'Left Align'])!!}</th>
+                                    <th class="center">
+                                        {!!Form::open(array('route' => array('Admin.User.destroy',$usuario->rut), 'method' => 'DELETE'))!!}
+                                            {!!Form::button(null,['class'=>'btn glyphicon glyphicon-remove', 'type'=>'submit'])!!}
+                                        {!!Form::close()!!}
+                                    </th>
+                                    <th class="center">
+                                        {!!Html::link('files/usuarios/'.$usuario->rut,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                    </th>
+                                </tr>
+                            @endforeach
+
+
+
+                            </tbody>
+                        </table>
+
+
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-9">
+                                <nav class="navbar navbar-right">
+                                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="center">Descargar Usuario</th>
                                         </tr>
 
                                         </thead>
@@ -616,6 +697,86 @@
                             </div>
                         </div>
 
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    @elseif($_SERVER['REQUEST_URI'] ==  "/Admin/Carrera")
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Carrera(s)
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+
+                        <nav class="navbar navbar-right">
+
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Carrera/create" role="button" aria-label="Left Align">
+                                Crear Carrera
+                            </a>
+                        </nav>
+
+                        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="center">Nombres</th>
+                                <th class="center">Codigo</th>
+                                <th class="center">Escuela</th>
+                                <th class="center">Editar</th>
+                                <th class="center">Eliminar</th>
+                                <th class="center">Descargar</th>
+
+                            </tr>
+
+                            </thead>
+                            <tbody>
+
+                            @foreach($Carreras as $carrera)
+                                <tr>
+                                    <th class="center">{{$carrera->nombre}}</th>
+                                    <th class="center">{{$carrera->codigo}}</th>
+                                    <th class="center">{{$carrera->escuela->nombre}}</th>
+                                    <th class="center">{!!Html::link('Admin/Carrera/'.$carrera->id.'/edit','',['class'=>'btn glyphicon glyphicon-pencil','role'=>'button', 'aria-label'=>'Left Align'])!!}</th>
+                                    <th class="center">
+                                        {!!Form::open(array('route' => array('Admin.Carrera.destroy',$carrera->id), 'method' => 'DELETE'))!!}
+                                        {!!Form::button(null,['class'=>'btn glyphicon glyphicon-remove', 'type'=>'submit'])!!}
+                                        {!!Form::close()!!}
+                                    </th>
+                                    <th class="center">
+                                        {!!Html::link('files/carrera/'.$carrera->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                    </th>
+                                </tr>
+                            @endforeach
+
+
+
+                            </tbody>
+                        </table>
+
+
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-9">
+                                <nav class="navbar navbar-right">
+                                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="center">Descargar Usuario</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th class="center">
+                                                {!!Html::link('files/carrerall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </nav>
+                            </div>
+                        </div>
 
 
                     </div>

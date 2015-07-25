@@ -17,6 +17,7 @@ use App\Models\Sala;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Rol_Usuario;
+use App\Models\Carrera;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -339,7 +340,7 @@ class FilesController extends Controller{
             foreach($result as $key => $value)
             {
 
-                if(!Escuela::query_nombre($value->nombre_escuela)){
+                if(Escuela::Nombre($value->nombre_escuela) == false){
                     //dd(Escuela::query_nombre($value->nombre_escuela));
                     $var = new Escuela();
                     $var->fill([
@@ -523,32 +524,10 @@ class FilesController extends Controller{
         $user = Usuario::find($id);
         //dd($user->roles[0]->nombre);
         if($user){
-            if(count($user->roles) > 1){
-                $datos = array($user->nombres,$user->apellidos,$user->rut);
-                $data = array(
-                    array('Nombres','Apellidos','RUT','Rol(es)'),
-                );
-                //dd($data);
-                $roles = '';
-                for($i=0;$i<count($user->roles);$i++){
-                    if($i == 0){
-                        $roles = $user->roles[$i]->nombre;
-                    }
-                    else{
-                        $roles = $roles.'/'.$user->roles[$i]->nombre;
-                    }
-                }
-                //dd($roles);
-                array_push($datos,$roles);
-                array_push($data,$datos);
-
-            }
-            else{
-                $data = array(
-                    array('Nombres','Apellidos','RUT','Rol(es)'),
-                    array($user->nombres,$user->apellidos,$user->rut,$user->roles->nombre),
-                );
-            }
+            $data = array(
+                array('Nombres','Apellidos','RUT'),
+                array($user->nombres,$user->apellidos,$user->rut),
+            );
 
             Excel::create('Usuario_'.$user->rut, function ($excel) use ($data) {
 
@@ -565,37 +544,13 @@ class FilesController extends Controller{
 
     public function getUsuarioall(){
         $users = Usuario::paginate();
-        dd($users);
+        //dd($users);
         if($users){
             $data = array(
-                array('Nombres','Apellidos','RUT','Rol(es)'),
+                array('Nombres','Apellidos','RUT'),
             );
-            if(count($users)>1){
-                foreach($users as $value){
-                    $datos = array($value->nombres,$value->apellidos,$value->rut);
-                    if(count($value->roles)>1){
-                        $roles = '';
-                        for($i=0;$i<count($value->roles);$i++){
-                            if($i == 0){
-                                $roles = $value->roles[$i]->nombre;
-                            }
-                            else{
-                                $roles = $roles."/".$value->roles[$i]->nombre;
-                            }
-                        }
-                        //dd($roles);
-                        array_push($datos,$roles);
-                        array_push($data,$datos);
-                    }
-                    else{
-                        array_push($datos,$value->roles[0]->nombre);
-                        array_push($data,$datos);
-                    }
-                }
-            }
-            else{
-
-
+            foreach($users as $user){
+                array_push($data,array($user->nombres,$user->apellidos,$user->rut));
             }
             Excel::create('Usuarios', function ($excel) use ($data) {
 
@@ -607,5 +562,216 @@ class FilesController extends Controller{
 
             })->download('csv');
         }
+    }
+
+    public function postUsuariofiles(Request $request){
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $key => $value)
+            {
+                if(!Usuario::query_nombre($value->nombres)){
+                    $var = new Usuario();
+                    $var->fill([
+                        'nombres'       => $value->nombres,
+                        'apellidos'     => $value->apellidos,
+                        'rut'           => $value->rut,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.User.index');
+    }
+
+    public function getRoluser($id){
+        $rol_user = Rol_Usuario::find($id);
+        if($rol_user){
+            $rol = Rol::find($rol_user->rol_id);
+            $user = Usuario::find($rol_user->usuario_rut);
+            $data = array(
+                array('Nombres','Apellidos','RUT','ROL'),
+                array($user->nombres,$user->apellidos,$user->rut,$rol->nombre)
+            );
+            Excel::create('Usuario_'.$user->rut, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function getRoluserall(){
+        $rol_user = Rol_Usuario::paginate();
+        if($rol_user){
+            $data = array(
+                array('Nombres','Apellidos','RUT','ROL')
+            );
+            foreach($rol_user as $value){
+                $rol = Rol::find($value->rol_id);
+                $user = Usuario::find($value->usuario_rut);
+                array_push($data,array($user->nombres,$user->apellidos,$user->rut,$rol->nombre));
+            }
+
+            Excel::create('Usuario_'.$user->rut, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function postRoluserfile(Request $request){
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $value)
+            {
+                //dd(Usuario::where('rut','=',$value->rut)->first() != null && Rol::whereNombre($value->rol)->first() != null);
+                if(Usuario::where('rut','=',$value->rut)->first() != null && Rol::whereNombre($value->rol)->first() != null){
+                    if(count(Usuario::find($value->rut)->roles) == 0){
+                        $var = new Rol_Usuario();
+                        $rol_id = Rol::query_nombre($value->rol);
+                        $var->fill([
+                            'usuario_rut'           => $value->rut,
+                            'rol_id'           => $rol_id->id,
+                        ]);
+                        $var->save();
+                    }
+                    else{
+                        $roles = Usuario::find($value->rut)->roles;
+                        foreach($roles as $rol){
+                            if(Rol_Usuario::is_rol($value->rut,$value->rol) == 0){
+                                $var = new Rol_Usuario();
+                                $rol_id = Rol::query_nombre($value->rol);
+                                $var->fill([
+                                    'usuario_rut'           => $value->rut,
+                                    'rol_id'           => $rol_id->id,
+                                ]);
+                                $var->save();
+                            }
+                        }
+                    }
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.Roluser.index');
+    }
+
+    public function getCarrera($id){
+        $carrera = Carrera::find($id);
+        if($carrera){
+            $data = array(
+                array('nombre','codigo','Escuela','descripcion'),
+                array($carrera->nombre,$carrera->codigo,$carrera->escuela->nombre,$carrera->descripcion)
+            );
+            Excel::create('Carrera_'.$carrera->nombre, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function getCarrerall(){
+        $carreras = Carrera::paginate();
+        if($carreras){
+            $data = array(
+                array('nombre','codigo','Escuela','descripcion'),
+            );
+            foreach($carreras as $carrera){
+                array_push($data,array($carrera->nombre,$carrera->codigo,$carrera->escuela->nombre,$carrera->descripcion));
+            }
+            Excel::create('Carreras', function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function postCarrerafiles(Request $request)
+    {
+
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre, \File::get($file));
+
+
+        \Excel::load('/storage/public/files/' . $nombre, function ($archivo) {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach ($result as $key => $value) {
+                //dd($value);
+                $escuela = Escuela::Nombre($value->escuela);
+                $carrera = Carrera::Nombre($value->nombre);
+                //dd((boolean)Escuela::whereNombre('asasda')->get());
+                if ($escuela == true && $carrera == false) {
+                    $var = new Carrera();
+                    $var->fill([
+                        'nombre' => $value->nombre,
+                        'codigo' => $value->codigo,
+                        'escuela_id' => Escuela::whereNombre($value->escuela)->get()[0]->id,
+                        'descripcion' => $value->descripcion,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.Carrera.index');
+
+
     }
 }
