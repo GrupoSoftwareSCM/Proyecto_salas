@@ -31,7 +31,7 @@
                         </div>
                           <div class="form-group">
 
-                         {!! Form::label('nombre', 'Pertenece a  Docente: ') !!}
+                         {!! Form::label('docente_id', 'Pertenece a  Docente: ') !!}
                          {!! Form::select('docente_id', $docentes) !!}
                         
                         </div>

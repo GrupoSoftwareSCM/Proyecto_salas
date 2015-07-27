@@ -11,8 +11,8 @@
                     <div class="panel-body">
 
               <h1>CAMPUS : {{$campus->nombre}}</h1>
-              <h1>CANTIDAD DE ALUMNO: {{$cantidad_alumno}}
-               
+              <h1>CANTIDAD DE ALUMNO: {{$cantidad_alumno}}</h1>
+              <h2>SECCION: {{$cursoo->seccion}}</h2>
               		
               @foreach($salasCampus as $salas)
 
@@ -24,7 +24,9 @@
               <?php $arrays[$pe->id]= $pe->bloque?>
 
               @endforeach
-          {!!Form::open(['route' => 'encar.asignar.modi.edit', 'method' => 'GET'])!!}
+               
+               
+          {!!Form::open(['route' => 'encar.asignar.modi.store', 'method' => 'POST'])!!}
                                 
                                <div id="dataTables-example_wrapper" 
                                 class="dataTables_wrapper form-inline dt-bootstrap no-footer"
@@ -32,15 +34,19 @@
                                     <div class="panel-body">
                                     
                          <div class="form-group"> <!-- Esto no me funciona -->
-                         {!! Form::label('salasa','Salas')!!}
-                         {!! Form::select('salasa',$array)!!}
+                         {!! Form::label('sala_id','Salas')!!}
+                         {!! Form::select('sala_id',$array)!!}
 
                          </div>
                               <div class="form-group"> <!-- Esto no me funciona -->
-                         {!! Form::label('periodo','Periodo')!!}
-                         {!! Form::select('periodo',['-1' => 'Selecciona un Período']+ $probando)!!}
-
+                         {!! Form::label('periodo_id','Periodo')!!}
+                         {!! Form::select('periodo_id',['-1' => 'Selecciona un Período']+ $arrays)!!}
                          </div>
+                         <div>
+                         {!! Form::hidden('curso_id', $cursoo->id)!!}
+                          
+                         </div>
+                         <div>  <button type="submit" class="btn btn-info">Crear</button></div>
                                       
                                     </div>
                                     </div>

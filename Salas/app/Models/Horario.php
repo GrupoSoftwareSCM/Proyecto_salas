@@ -27,17 +27,17 @@ class Horario extends Model {
     */
 	public function sala()
 	{
-		return $this->belongsTo('app\Models\Sala','sala_id','id');
+		return $this->belongsTo('App\Models\Sala','sala_id','id');
 	}
 
 	public function periodo()
 	{
-		return $this->belongsTo('app\Models\Periodo','periodo_id','id');
+		return $this->belongsTo('App\Models\Periodo','periodo_id','id');
 	}
 
 	public function curso()
 	{
-		return $this->belongsTo('app\Models\Curso','curso_id','id');
+		return $this->belongsTo('App\Models\Curso','curso_id','id');
 	}
 
 }
