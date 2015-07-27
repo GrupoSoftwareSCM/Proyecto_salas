@@ -6,6 +6,7 @@ use Request;
 use App\Models\Rol_Usuario;
 use App\Models\Rol;
 use App\Models\Usuario;
+use App\Models\Docente;
 
 //use Illuminate\Http\Request;
 
@@ -43,6 +44,16 @@ class RolusuarioController extends Controller {
 	{
         $data = $request->only(['usuario_rut','rol_id']);
         Rol_Usuario::create($data);
+        if(Rol::where('id',$data['rol_id'])->first()->nombre == 'DOCENTE'){
+            //dd(Rol::where('id',$data['rol_id'])->first()->nombre == 'DOCENTE');
+            $docente = Usuario::find($data['usuario_rut']);
+            //dd($docente->rut);
+            Docente::create([
+                'rut' => $docente->rut,
+                'nombres' => $docente->nombres,
+                'apellidos' => $docente->apellidos,
+            ]);
+        }
         return redirect()->route('Admin.Roluser.index');
 	}
 
