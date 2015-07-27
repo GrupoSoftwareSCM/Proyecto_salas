@@ -23,7 +23,7 @@ protected $auth;
 	{
         $user = Auth::user();
         if($user){
-            if($user->roles()->get()[0]->nombre != 'ENCARGADO_DOCENTE')
+            if($user->roles()->get()[0]->nombre != 'ENCARGADO_CAMPUS')
                 return redirect()->route('auth.login');
         }
         else{

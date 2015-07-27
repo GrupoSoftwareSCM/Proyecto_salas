@@ -37,7 +37,10 @@ class DocenteController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$data= Request::only(['nombres','apellidos','rut','departamento_id']);  
+	    $doce = Docente::create($data);
+        $doce->save();
+        return redirect('encar/doce/modi');
 	}
 
 	/**
