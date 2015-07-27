@@ -19,7 +19,7 @@ class Rol_Usuario extends Model {
      */
 	protected $fillable = ['usuario_rut','rol_id'];
 
-    public function usuarios()
+    /*public function usuarios()
     {
         return $this->belongsTo('App\Models\Usuario','usuario_rut','id');
     }
@@ -28,7 +28,7 @@ class Rol_Usuario extends Model {
     public function roles()
     {
         return $this->belongsTo('App\Models\Rol','rol_id','id');
-    }
+    }*/
 
 
 

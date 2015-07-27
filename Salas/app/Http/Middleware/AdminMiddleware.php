@@ -19,7 +19,7 @@ class AdminMiddleware {
 	{
         $user = Auth::user();
         if($user){
-            if($user->roles()->get()[0]->nombre != 'Administrador')
+            if($user->roles()->get()[0]->nombre != 'ADMINISTRADOR')
                 return redirect()->route('auth.login');
         }
         else{

@@ -15,7 +15,7 @@ class EstudianteMiddleware {
 	{
         $user = Auth::user();
         if($user){
-            if($user->roles()->get()[0]->nombre != 'Estudiante')
+            if($user->roles()->get()[0]->nombre != 'ESTUDIANTE')
                 return redirect()->route('auth.login');
         }
         else{

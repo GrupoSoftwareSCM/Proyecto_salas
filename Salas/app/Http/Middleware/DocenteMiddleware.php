@@ -15,7 +15,7 @@ class DocenteMiddleware {
 	{
         $user = Auth::user();
         if($user){
-            if($user->roles()->get()[0]->nombre != 'Docente')
+            if($user->roles()->get()[0]->nombre != 'DOCENTE')
                 return redirect()->route('auth.login');
         }
         else{

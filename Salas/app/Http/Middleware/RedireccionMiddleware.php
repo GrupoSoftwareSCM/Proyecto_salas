@@ -15,17 +15,17 @@ class RedireccionMiddleware {
 	public function handle($request, Closure $next)
 	{
 		$user = Auth::user();
-        //dd($user->roles()->whereNombre('Administrador')->first());
-		if($user->roles()->whereNombre('Administrador')->first()){
+        //dd();
+		if($user->roles()->whereNombre('ADMINISTRADOR')->first()){
 			return redirect()->route('Admin.home.index');
 		}
-		elseif ($user->roles()->whereNombre('Encargado Campus')->first()){
+		elseif ($user->roles()->whereNombre('ENCARGADO_CAMPUS')->first()){
             return redirect()->route('encar.home.index');
         }
-        elseif($user->roles()->whereNombre('Estudiante')->first()){
+        elseif($user->roles()->whereNombre('ESTUDIANTE')->first()){
             //return redirect()->route('');
         }
-        elseif($user->roles()->whereNombre('Docente')->first()){
+        elseif($user->roles()->whereNombre('DOCENTE')->first()){
             //return redirect()->route('');
         }
 

@@ -32,7 +32,7 @@ class Authenticate {
 	 */
 	public function handle($request, Closure $next)
 	{
-        //dd($this->auth);
+        //dd($request->ajax());
 		if ($this->auth->guest())
 		{
 			if ($request->ajax())
