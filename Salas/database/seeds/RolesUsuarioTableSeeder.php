@@ -18,12 +18,39 @@ class RolesUsuarioTableSeeder extends DatabaseSeeder{
         //ASIGNAMOS LOS ROLES  A LOS USUARIOS
 
         $admin = Usuario::where('nombres','Oscar Eduardo')->first();
-        $encargado = Usuario::where('nombres','Jean Pierre patria')->first();
+        $encargado = Usuario::where('nombres','Jean Pierre patric')->first();
+        $profesor = Usuario::where('nombres','Sebastian')->first();
 
-        $id_admin = Rol::whereNombre('Administrador')->first();
-        $id_encargado = Rol::whereNombre('Encargado Campus')->first();
-        $id_docente = Rol::whereNombre('Docente')->first();
-        $id_estudiante = Rol::whereNombre('Estudiante')->first();
+        $id_admin = Rol::whereNombre('ADMINISTRADOR')->first();
+        $id_encargado = Rol::whereNombre('ENCARGADO_CAMPUS')->first();
+        $id_docente = Rol::whereNombre('ESTUDIANTE')->first();
+        $id_estudiante = Rol::whereNombre('DOCENTE')->first();
+
+
+        \DB::table('roles_usuarios')->insert(array(
+            'usuario_rut' => $profesor->rut,
+            'rol_id' => $id_admin->id,
+        ));
+
+        \DB::table('roles_usuarios')->insert(array(
+            'usuario_rut' => $profesor->rut,
+            'rol_id' => $id_encargado->id,
+        ));
+
+
+        \DB::table('roles_usuarios')->insert(array(
+            'usuario_rut' => $profesor->rut,
+            'rol_id' => $id_docente->id,
+        ));
+
+
+        \DB::table('roles_usuarios')->insert(array(
+            'usuario_rut' => $profesor->rut,
+            'rol_id' => $id_estudiante->id,
+        ));
+
+
+
 
         \DB::table('roles_usuarios')->insert(array(
             'usuario_rut' => $admin->rut,

@@ -19,6 +19,19 @@ class Rol_Usuario extends Model {
      */
 	protected $fillable = ['usuario_rut','rol_id'];
 
+    public function usuarios()
+    {
+        return $this->belongsTo('App\Models\Usuario','usuario_rut','id');
+    }
+
+
+    public function roles()
+    {
+        return $this->belongsTo('App\Models\Rol','rol_id','id');
+    }
+
+
+
     public static function id_usuario($id){
         return \DB::table('usuarios')
                     ->select('usuarios.rut')

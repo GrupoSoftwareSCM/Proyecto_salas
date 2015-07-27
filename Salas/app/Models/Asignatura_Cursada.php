@@ -19,6 +19,19 @@ class Asignatura_Cursada extends Model {
      */
     protected $fillable = ['estudiante_id','curso_id'];
 
+    public function estudiante()
+    {
+        return $this->belongsTo('App\Models\Estudiante','estudiante_id','id');
+    }
+
+
+    public function curso()
+    {
+        return $this->belongsTo('App\Models\Curso','curso_id','id');
+    }
+
+
+
     public static function count_alumnos($id)
     {
         return \DB::table('asignaturas_cursadas')

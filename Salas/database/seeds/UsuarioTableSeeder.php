@@ -14,14 +14,14 @@ class UsuarioTableSeeder extends  DatabaseSeeder{
     public function run(){
         \DB::table('usuarios')->delete();
 
-        $nombres = ['Oscar Eduardo', 'Jean Pierre patria'];
-        $apellidos = ['Muñoz Bernales', 'Cid bustos'];
+        $nombres = ['Oscar Eduardo', 'Jean Pierre patric','Sebastian'];
+        $apellidos = ['Muñoz Bernales', 'Cid bustos','Salazar'];
         //$email = ['munoz.bernales.oscar@gmail.com','Jeanpierre.cid@gmail.com'];
-        $rut = [17860032,18028419];
+        $rut = [17860032,18028419,15997886];
 
 
 
-        for($i=0;$i<2;$i++){
+        for($i=0;$i<3;$i++){
             \DB::table('usuarios')->insert(array(
                 'rut' => $rut[$i],
                 //'email' => $email[$i],
