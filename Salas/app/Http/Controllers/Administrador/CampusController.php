@@ -2,9 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Request;
 use App\Models\Campus;
-use App\Models\Usuario;
+use App\Models\Rol;
 
 //use Illuminate\Http\Request;
 
@@ -29,7 +30,15 @@ class CampusController extends Controller {
 	 */
 	public function create()
 	{
-        return view('Administrador.crearAdm');
+        $encargados = Rol::whereNombre('Encargado Campus')->first();
+        //dd($encargado->usuarios);
+        $encargado = array();
+        foreach($encargados->usuarios as $value){
+            $encargado[$value->rut] = $value->nombres;
+            //array_push($encargado,[$value->rut => $value->nombres]);
+        }
+        //dd($encargado);
+        return view('Administrador.crearAdm')->with('Encargado',$encargado);
 	}
 
 	/**
@@ -39,10 +48,25 @@ class CampusController extends Controller {
 	 */
 	public function store(Requests\CampusRequest $request)
 	{
-        $datos_nuevo_campus = $request->only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
-        Campus::create($datos_nuevo_campus);
-
-        return redirect('Admin/Campus');
+        //dd($request->all());
+        $datos= $request->only(['nombre','direccion','latitud','longitud','descripcion','encargado']);
+        //$error_bd = array();
+        if(count(Campus::whereNombre($datos['nombre'])->first()) > 0){
+            Session::flash('message', 'Nombre de campus ya registrado en la base de datos');
+            //return view('Administrador.crearAdm');
+            return redirect()->route('Admin.Campus.create');
+        }
+        //dd($datos_nuevo_campus);
+        Campus::create([
+            'nombre' => ucwords(strtolower($datos['nombre'])),
+            'direccion' => $datos['direccion'],
+            'latitud' => $datos['latitud'],
+            'longitud' => $datos['longitud'],
+            'descripcion' => $datos['descripcion'],
+            'rut_encargado' => $datos['encargado']
+        ]);
+        Session::flash('message', 'Campùs creado correctamente');
+        return redirect()->route('Admin.Campus.index');
 	}
 
 	/**

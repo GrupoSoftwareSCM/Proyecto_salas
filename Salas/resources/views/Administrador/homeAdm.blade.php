@@ -27,7 +27,6 @@
 
         </div>
         <div class="col-md-9">
-            {{$_SERVER['REQUEST_URI']}}
             @if($_SERVER['REQUEST_URI'] ==  "/Admin/Carrera"  || $_SERVER['REQUEST_URI'] ==  "/Admin/User"  || $_SERVER['REQUEST_URI'] == "/Admin/Roluser" || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
                 @yield('body')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/create') !== false)

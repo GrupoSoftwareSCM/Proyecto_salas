@@ -10,6 +10,16 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
+                        <div class="mensaje">
+                            @if(Session::has('message'))
+                                <div class="alert alert-info">
+                                    <strong>Execelente!</strong><br><br>
+                                    <ul>
+                                        <li>{{ Session::get('message') }}</li>
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
 
                         <nav class="navbar navbar-right">
                             <a class="btn glyphicon glyphicon-plus" href="/Admin/Campus/create" role="button" aria-label="Left Align">

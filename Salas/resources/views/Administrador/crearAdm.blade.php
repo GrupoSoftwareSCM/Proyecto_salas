@@ -10,22 +10,30 @@
                 crear
             </div>
             <div class="panel-footer">
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                <div class="errors">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul></div>
+                    @elseif(Session::has('message'))
+                        <div class="alert alert-danger">
+                            <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                            <ul>
+                                <li>{{ Session::get('message') }}</li>
+                            </ul>
+                        </div>
+                    @endif
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         {!!Form::open(['route' => 'Admin.Campus.store','method' => 'POST'])!!}
                             <div class="form-group">
 
-                                {!!Form::label('nombre campus','Nombre Campus',['class' => 'col-md-6'])!!}
+                                {!!Form::label('nombre','Nombre Campus',['class' => 'col-md-6'])!!}
                                 {!!Form::text('nombre','',['class' => 'col-md-6'])!!}
 
                                 {!!Form::label('direccion','Direccion',['class' => 'col-md-6'])!!}
@@ -37,8 +45,8 @@
                                 {!!Form::label('longitud','Longitud',['class' => 'col-md-6'])!!}
                                 {!!Form::number('longitud','',['class' => 'col-md-6','step' => '0.001'])!!}
 
-                                {!!Form::label('rut_encargado','Rut Encargado',['class' => 'col-md-6'])!!}
-                                {!!Form::text('rut_encargado','',['class' => 'col-md-6'])!!}
+                                {!!Form::label('encargado','Encargado',['class' => 'col-md-6'])!!}
+                                {!!Form::select('encargado',$Encargado,'',['class' => 'col-md-6'])!!}
 
                                 {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
                                 {!!Form::textarea('descripcion','',['class' => 'col-md-6'])!!}
