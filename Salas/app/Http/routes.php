@@ -76,6 +76,8 @@ Route::group(['middleware' => 'Encar','prefix' =>  'encar', 'namespace' => 'Enca
     Route::resource('salas/modi','SalasController');
     Route::resource('home','EncarUserController');
     Route::resource('asignar/modi','AsignarSalasController');
+    Route::resource('doce/modi','DocenteController');
+
 
     });
 

@@ -5,9 +5,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Curso;
 use App\Models\Sala;
 use App\Models\Docente;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Models\Asignatura_Cursada;
 use App\Models\Periodo;
+use App\Models\Horario;
+use Illuminate\Http\RedirectResponse;
+use Request;
+
 class AsignarSalasController extends Controller {
 
 	/**
@@ -49,7 +53,11 @@ class AsignarSalasController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$data= Request::only(['sala_id','periodo_id','curso_id']); 	
+		//dd($data);				
+        $horario = Horario::create($data);
+        $horario->save();
+        return redirect('encar/asignar/modi');
 	}
 
 	/**
@@ -58,6 +66,7 @@ class AsignarSalasController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
 	public function show($id)
 	{
 		$cursoo=Curso::find($id);
@@ -83,7 +92,7 @@ class AsignarSalasController extends Controller {
 		
 	  	//dd($probando);	
 
-	   return view('Encargado.ElegirSala',compact('salasCampus','campus','cantidad_alumno','periodos','probando'));
+	   return view('Encargado.ElegirSala',compact('cursoo','salasCampus','campus','cantidad_alumno','periodos','probando'));
 
 	}
 
