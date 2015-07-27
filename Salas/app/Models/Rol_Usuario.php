@@ -26,4 +26,13 @@ class Rol_Usuario extends Model {
                     ->where('usuarios.rut','=',$id)
                     ->get();
     }
+
+    public static function is_rol($rut,$rol){
+        $value = Rol_Usuario::select('usuario_rut','rol_id')
+                ->join('roles','roles_usuarios.rol_id','=','roles.id')
+                ->where('roles.nombre','=',$rol)
+                ->where('roles_usuarios.usuario_rut','=',$rut)
+                ->get();
+        return count($value);
+    }
 }

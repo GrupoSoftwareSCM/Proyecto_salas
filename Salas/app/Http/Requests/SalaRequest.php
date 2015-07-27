@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class StoreSalaRequest extends Request {
+class SalaRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -21,10 +21,17 @@ class StoreSalaRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-            'nombre' => 'required|string|between:3,25',
-            'descripcion' => 'required|string|between:3,255'
-		];
+        switch($this->method()) {
+            case 'POST':
+             return [
+                 'nombre' => 'required|between:3,25',
+                 'descripcion' => 'required|string|between:3,255',
+                 'capacidad' => 'required',
+             ];
+        }
 	}
+
+
+
 
 }

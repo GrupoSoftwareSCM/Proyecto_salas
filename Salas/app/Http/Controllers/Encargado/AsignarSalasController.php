@@ -81,9 +81,9 @@ class AsignarSalasController extends Controller {
 	    	array_push($probando, $value->inicio.'-'.$value->fin);
 	    }
 		
-	   	dd($probando);	
+	  	//dd($probando);	
 
-	   return view('Encargado.ElegirSala',compact('salasCampus','campus','cantidad_alumno','periodos'));
+	   return view('Encargado.ElegirSala',compact('salasCampus','campus','cantidad_alumno','periodos','probando'));
 
 	}
 

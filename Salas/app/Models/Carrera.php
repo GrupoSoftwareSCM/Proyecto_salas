@@ -37,7 +37,17 @@ class Carrera extends Model {
     */
 	public function escuela()
 	{
-		return $this->belongsTo('App\Models\Escuela');
+		return $this->belongsTo('App\Models\Escuela','escuela_id','id');
 	}
+
+    public static function Nombre($nombre){
+        $info = count(Carrera::whereNombre($nombre)->get());
+        if($info == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
 }

@@ -197,30 +197,83 @@
     @elseif(strpos($_SERVER['REQUEST_URI'],'/Roluser/') !== false)
         <div class="panel panel-success">
             <div class="panel-body">
-                Roles
+                Roles Usuarios
                 <a class="glyphicon glyphicon-menu-right"></a>
                 Editar
             </div>
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Form::model($roles_usuario,array('route' => array('Admin.Roluser.update',$roles_usuario->id), 'method' => 'PUT')) !!}
+                        {!! Form::model($rol_user,array('route' => array('Admin.Roluser.update',$rol_user->id), 'method' => 'PUT')) !!}
+                        <div class="form-group">
+
+                            {!!Form::label('nombres','Rut',['class' => 'col-md-6'])!!}
+                            {!!Form::label('nombres',$rol_user->usuario_rut,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('rol_id','Seleccione rol',['class' => 'col-md-6'])!!}
+                            {!!Form::select('rol_id',$rol,$rol_user->rol_id,['class' => 'col-md-6'])!!}
+
+                        </div>
+                        {!!Form::button('Editar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @elseif(strpos($_SERVER['REQUEST_URI'],'/User/') !== false)
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Usuario
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        {!! Form::model($user,array('route' => array('Admin.User.update',$user->rut), 'method' => 'PUT')) !!}
                         <div class="form-group">
 
                             {!!Form::label('nombres','Nombres',['class' => 'col-md-6'])!!}
-                            {!!Form::label('nombres',$usuario->nombres,['class' => 'col-md-6'])!!}
+                            {!!Form::text('nombres',$user->nombres,['class' => 'col-md-6'])!!}
 
                             {!!Form::label('apellidos','Apellidos',['class' => 'col-md-6'])!!}
-                            {!!Form::label('apellidos',$usuario->apellidos,['class' => 'col-md-6'])!!}
+                            {!!Form::text('apellidos',$user->apellidos,['class' => 'col-md-6'])!!}
 
-                            {!!Form::label('email','E-mail',['class' => 'col-md-6'])!!}
-                            {!!Form::label('email',$usuario->email,['class' => 'col-md-6'])!!}
+                            {!!Form::label('rut','Rut',['class' => 'col-md-6'])!!}
+                            {!!Form::number('rut',$user->rut,['class' => 'col-md-6'])!!}
 
-                            {!!Form::label('rut','R.U.T.',['class' => 'col-md-6'])!!}
-                            {!!Form::label('rut',$usuario->rut,['class' => 'col-md-6'])!!}
 
-                            {!!Form::label('rol_id','Seleccione rol',['class' => 'col-md-6'])!!}
-                            {!!Form::select('rol_id',$rol,$rol_id->id,['class' => 'col-md-6'])!!}
+                        </div>
+                        {!!Form::button('Editar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @elseif(strpos($_SERVER['REQUEST_URI'],'/Carrera/') !== false)
+        <div class="panel panel-success">
+            <div class="panel-body">
+                Carrera
+                <a class="glyphicon glyphicon-menu-right"></a>
+                Editar
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        {!! Form::model($Carrera,array('route' => array('Admin.Carrera.update',$Carrera->id), 'method' => 'PUT')) !!}
+                        <div class="form-group">
+
+                            {!!Form::label('nombre','Nombre',['class' => 'col-md-6'])!!}
+                            {!!Form::text('nombre',$Carrera->nombre,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('codigo','Codigo',['class' => 'col-md-6'])!!}
+                            {!!Form::number('codigo',$Carrera->codigo,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('escuela','Escuela',['class' => 'col-md-6'])!!}
+                            {!!Form::select('escuela',$Escuela,$Carrera->escuela->id,['class' => 'col-md-6'])!!}
+
+                            {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
+                            {!!Form::textarea('descripcion',$Carrera->descripcion,['class' => 'col-md-6'])!!}
 
 
                         </div>

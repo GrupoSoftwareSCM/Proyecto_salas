@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class FacultadRequest extends Request {
+class RolesUsuariosRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -21,10 +21,13 @@ class FacultadRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			'nombre' => 'required|string|between:3,25',
-            'descripcion' => 'required|string|between:3,255'
-		];
+        switch($this->method()) {
+            case 'POST':
+                return [
+                    'usuario_rut' => 'required|numeric',
+                    'rol_id' => 'required|numeric',
+                    ];
+        }
 	}
 
 }

@@ -30,4 +30,10 @@ class Tipo_Sala extends Model {
 		return $this->hasOne('app\Models\Sala','id');
 	}
 
+    public static function query_nombre($nombre){
+        return Tipo_Sala::select('id')
+            ->whereNombre($nombre)
+            ->first();
+    }
+
 }

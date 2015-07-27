@@ -39,12 +39,12 @@ class Sala extends Model {
     */
 	public function campus() //RALACION 1:N
 	{
-		return $this->belongsTo('App\Models\Campus');
+		return $this->belongsTo('App\Models\Campus','campus_id','id');
 	}
 
 	public function tipo_sala() //RALACION 1:N
 	{
-		return $this->belongsTo('App\Models\Tipo_Sala');
+		return $this->belongsTo('App\Models\Tipo_Sala','tipo_sala_id','id');
 	}
     public static function mostrar_salas($id)
     {
@@ -54,6 +54,12 @@ class Sala extends Model {
            // ->select('nombre','id')
             //->where('campus_id','=',$id)
             //->get();
+    }
+
+    public static function query_nombre($nombre){
+        return Sala::select('id')
+            ->whereNombre($nombre)
+            ->first();
     }
 
 }

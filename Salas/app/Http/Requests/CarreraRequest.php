@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class DepartamentoRequest extends Request {
+class CarreraRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class DepartamentoRequest extends Request {
         switch($this->method()) {
             case 'POST':
                 return [
-                    'nombre' => 'required|string|between:3,25',
-                    'descripcion' => 'required|string|between:3,255'
-                ];
+                    'nombre' => 'required|between:3,25|alpha_space',
+                    'codigo' => 'required|numeric',
+                    'escuela' => 'required',
+                    'descripcion' => 'required|between:3,500'];
         }
 	}
 

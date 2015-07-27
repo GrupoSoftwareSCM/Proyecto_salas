@@ -23,7 +23,7 @@ class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
 
     public function roles()
     {
-        return $this->belongsToMany('\App\Models\Rol', 'roles_usuarios', 'usuario_rut', 'rol_id');
+        return $this->belongsToMany('App\Models\Rol', 'roles_usuarios', 'usuario_rut', 'rol_id');
     }
 
     public static function join_usuario_rol(){
@@ -35,6 +35,11 @@ class Usuario extends \UTEM\Dirdoc\Auth\Models\DirdocWSUser
 
     }
 
+    public static function query_nombre($nombre){
+        return Usuario::select('rut')
+            ->where('nombres','=',$nombre)
+            ->first();
+    }
 
 
 }

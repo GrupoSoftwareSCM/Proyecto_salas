@@ -21,7 +21,13 @@ class Rol extends Model {
 
     public function usuarios()
     {
-        return $this->belongsToMany('\App\Models\Usuarios', 'roles_usuarios', 'rol_id', 'usuario_rut');
+        return $this->belongsToMany('App\Models\Usuario', 'roles_usuarios', 'rol_id', 'usuario_rut');
+    }
+
+    public static function query_nombre($nombre){
+        return Rol::select('id')
+            ->whereNombre($nombre)
+            ->first();
     }
 
 

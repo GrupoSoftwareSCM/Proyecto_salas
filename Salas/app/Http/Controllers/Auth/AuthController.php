@@ -35,8 +35,9 @@ class AuthController extends Controller
         ];
 
         $this->validate($request, $rules); // Valida que se envien ambos parametros
+        //dd($this->auth->attempt($credenciales, $request->has('remember')));
 
-        if ($this->auth->attempt($credenciales, $request->has('remember')))
+        if($this->auth->attempt($credenciales, $request->has('remember')))
         { // Login exitoso
             return redirect()->route('home');
         }

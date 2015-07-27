@@ -18,7 +18,7 @@
 
           
               <?php $array[$salas->id] = $salas->nombre?> 
-        
+   
               @endforeach
               @foreach($periodos as $pe)
               <?php $arrays[$pe->id]= $pe->bloque?>
@@ -38,7 +38,7 @@
                          </div>
                               <div class="form-group"> <!-- Esto no me funciona -->
                          {!! Form::label('periodo','Periodo')!!}
-                         {!! Form::select('periodo',$arrays)!!}
+                         {!! Form::select('periodo',['-1' => 'Selecciona un Período']+ $probando)!!}
 
                          </div>
                                       

@@ -17,23 +17,25 @@
                         <li>{!!Html::linkRoute('Admin.Facultad.index','Facultad')!!}</li>
                         <li>{!!Html::linkRoute('Admin.Depto.index','Departamento')!!}</li>
                         <li>{!!Html::linkRoute('Admin.Escuela.index','Escuela')!!}</li>
+                        <li>{!!Html::linkRoute('Admin.Carrera.index','Carrera')!!}</li>
                         <li>{!!Html::linkRoute('Admin.TpoSala.index','Tipos de sala')!!}</li>
                         <li>{!!Html::linkRoute('Admin.Salas.index','Salas')!!}</li>
+                        <li>{!!Html::linkRoute('Admin.User.index','Usuarios')!!}</li>
                         <li>{!!Html::linkRoute('Admin.Roluser.index','Asignar roles a usuarios')!!}</li>
                 </div>
             </div>
 
         </div>
         <div class="col-md-9">
-            {{$_SERVER['REQUEST_URI']}}
-            @if($_SERVER['REQUEST_URI'] == "/Admin/Roluser" || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
+            @if($_SERVER['REQUEST_URI'] ==  "/Admin/Carrera"  || $_SERVER['REQUEST_URI'] ==  "/Admin/User"  || $_SERVER['REQUEST_URI'] == "/Admin/Roluser" || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
                 @yield('body')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/create') !== false)
                 @yield('createBody')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/edit') !== false)
                 @yield('editBody')
             @elseif($_SERVER['REQUEST_URI']=="/Admin/home")
-                @if(Auth::user()->nombres == null)
+                {{--@if(Auth::user()->nombres == null)--}}
+                @if(false)
                     <div class="panel panel-success">
                         <div class="panel-body">
                             home

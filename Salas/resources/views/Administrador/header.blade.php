@@ -71,6 +71,13 @@
 	<!--<script src="{{URL::asset('js/bootstrap.min.js')}}"></script>-->
 
     {!! HTML::script('js/jquery.Rut.min.js') !!}
+<script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout(function() {
+            $(".mensaje").fadeOut(1500);
+        },3000);
+    });
+</script>
 
 </body>
 </html>

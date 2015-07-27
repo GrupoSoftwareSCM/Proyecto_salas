@@ -28,7 +28,7 @@ class Escuela extends Model {
 	*/
 	public function carrera()
 	{
-		return $this->hasOne('app\Models\Carrera','id');
+		return $this->hasOne('App\Models\Carrera','id');
 	}
 
 	
@@ -39,6 +39,16 @@ class Escuela extends Model {
     */
 	public function departamento() //RALACION 1:N
 	{
-		return $this->belongsTo('app\Models\Departamento');
+		return $this->belongsTo('App\Models\Departamento','departamento_id','id');
 	}
+
+    public static function Nombre($nombre){
+        $dato = count(Escuela::whereNombre($nombre)->first());
+        if($dato == 0){
+            return false;
+        }
+        else
+            return true;
+
+    }
 }

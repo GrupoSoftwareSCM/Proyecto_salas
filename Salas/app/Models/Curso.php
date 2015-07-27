@@ -49,7 +49,7 @@ class Curso extends Model {
     */
 	public function asignatura()
 	{
-		return $this->belongsTo('App\Models\Asignatura');
+		return $this->belongsTo('App\Models\Asignatura','asignatura_id','id');
 	}
 
 	public function docente()

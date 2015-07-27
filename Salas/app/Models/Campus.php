@@ -38,4 +38,11 @@ class Campus extends Model {
 	}
 
 
+    public static function query_nombre($nombre){
+        return Campus::select('id')
+                ->whereNombre($nombre)
+                ->first();
+    }
+
+
 }

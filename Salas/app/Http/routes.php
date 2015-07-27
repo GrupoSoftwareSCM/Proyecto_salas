@@ -10,19 +10,37 @@
 |
 */
 
-//Route::get('/', 'WelcomeController@index');
+Route::controller('files','Excel\FilesController',[
+    'getCampus'                 => 'files.Campus',
+    'getCampusall'              => 'files.Campusall',
+    'postUpcampusfiles'         => 'files.campus.Up',
+    'getFacultad'               => 'files.Facultad',
+    'getFacultadall'            => 'files.Facultadall',
+    'postUpfacultadfiles'       => 'files.facultad.up',
+    'getDepartamento'           => 'files.Departamento',
+    'getDepartamentoall'        => 'files.Departamentoall',
+    'postUpdepartamentosfiles'  => 'files.departamento.up',
+    'getEscuela'                => 'files.Escuela',
+    'getEscuelall'              => 'files.Escuelall',
+    'postUpescuelafiles'        => 'files.Escuela.up',
+    'getTposala'                => 'files.Tposala',
+    'getTposalall'              => 'files.Tposalall',
+    'postTposalafiles'          => 'files.Tposala.up',
+    'getSala'                   => 'files.Sala',
+    'getSalall'                 => 'files.Salall',
+    'postSalafiles'             => 'files.Salas.up',
+    'getUsuarios'               => 'files.Usuario',
+    'getUsuarioall'             => 'files.Usuarioall',
+    'postUsuariofiles'          => 'files.Usuario.up',
+    'getRoluser'                => 'files.Roluser',
+    'getRoluserall'             => 'files.Roluserall',
+    'postRoluserfile'           => 'files.Roluser.up',
+    'getCarrera'                => 'files.Carrera',
+    'getCarrerall'              => 'files.Carrerall',
+    'postCarrerafiles'          => 'files.Carrera.up',
 
-/*
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    //'password' => 'Auth\PasswordController',
 ]);
-*/
-Route::controller('files','Excel\FilesCampusController',[
-    'getCampus' => 'files.Campus',
-    'getCampusall'=> 'files.Campusall',
-    'postUpfiles' => 'files.Up'
-]);
+
 Route::controller('auth', 'Auth\AuthController', [
     'getLogin'  => 'auth.login',
     'postLogin' => 'auth.doLogin',
@@ -35,6 +53,7 @@ Route::get('/home', ['as' => 'home', 'middleware' => ['auth', 'redir'], function
 }]);
 
 Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+//Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('home','AdmUserController');
     Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
     Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
@@ -42,8 +61,9 @@ Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Admin
     Route::resource('Escuela','EscuelaController'); //CRUD PARA Escuela
     Route::resource('TpoSala','TipoSalasController'); //CRUD PARA TIPOS DE SALA
     Route::resource('Salas','SalasController'); //CRUD PARA SALA
-    Route::resource('downloadCampus','MasivoCampusController');
     Route::resource('Roluser','RolusuarioController');
+    Route::resource('User','UsuarioController');
+    Route::resource('Carrera','CarreraController');
 });
 
 
@@ -62,16 +82,3 @@ Route::group(['middleware' => 'Encar','prefix' =>  'encar', 'namespace' => 'Enca
 
 Route::resource('users/encargados', 'Encargado\EncarUserController');
 
-//PROBANDO LO MIDDLEWARE
-
-/*Route::get('dirdoc', ['middleware' => 'encar', function () {
-    return "asd";
-}]);*/
-
-//PROBANDO LOS FILTERS
-
-Route::filter('is_admin',function(){
-
-    $user = Auth::user();
-    dd($user);
-});
