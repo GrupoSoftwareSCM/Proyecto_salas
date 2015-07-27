@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4888650c-0408-4ae5-90af-b8faabc4d7ae" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Carrera.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Carrera.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Curso.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Curso.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Departamento.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Departamento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Docente.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Docente.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Escuela.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Escuela.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Estudiante.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Estudiante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Facultad.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Facultad.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Funcionario.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Funcionario.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Horario.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Horario.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Sala.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Sala.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Http/Middleware/AdminMiddleware.php" afterPath="$PROJECT_DIR$/Salas/app/Http/Middleware/AdminMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Http/Middleware/Authenticate.php" afterPath="$PROJECT_DIR$/Salas/app/Http/Middleware/Authenticate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Http/Middleware/DocenteMiddleware.php" afterPath="$PROJECT_DIR$/Salas/app/Http/Middleware/DocenteMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Http/Middleware/EncarMiddleware.php" afterPath="$PROJECT_DIR$/Salas/app/Http/Middleware/EncarMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Http/Middleware/EstudianteMiddleware.php" afterPath="$PROJECT_DIR$/Salas/app/Http/Middleware/EstudianteMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Http/Middleware/RedireccionMiddleware.php" afterPath="$PROJECT_DIR$/Salas/app/Http/Middleware/RedireccionMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Salas/app/Models/Rol_Usuario.php" afterPath="$PROJECT_DIR$/Salas/app/Models/Rol_Usuario.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Proyecto_salas.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,62 +37,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Estudiante.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Estudiante.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Salas/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.541666" vertical-offset="140" max-vertical-offset="765">
-              <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
+            <state vertical-scroll-proportion="-9.375" vertical-offset="450" max-vertical-offset="1215">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Facultad.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Facultad.php">
+      <file leaf-file-name="Authenticate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/Authenticate.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.166666" vertical-offset="146" max-vertical-offset="795">
-              <caret line="43" column="67" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
+            <state vertical-scroll-proportion="-13.125" vertical-offset="180" max-vertical-offset="840">
+              <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Funcionario.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Funcionario.php">
+      <file leaf-file-name="RedireccionMiddleware.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/RedireccionMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="570">
-              <caret line="28" column="79" selection-start-line="28" selection-start-column="79" selection-end-line="28" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Horario.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Horario.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.791666" vertical-offset="110" max-vertical-offset="735">
-              <caret line="39" column="65" selection-start-line="39" selection-start-column="65" selection-end-line="39" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Periodo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Periodo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="585">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rol.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Rol.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="510">
-              <caret line="23" column="102" selection-start-line="23" selection-start-column="102" selection-end-line="23" selection-end-column="102" />
-              <folding />
+            <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="615">
+              <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+              <folding>
+                <element signature="e#38#50#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,38 +72,58 @@
       <file leaf-file-name="Rol_Usuario.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Salas/app/Models/Rol_Usuario.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="525">
-              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+            <state vertical-scroll-proportion="-18.75" vertical-offset="0" max-vertical-offset="855">
+              <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sala.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Sala.php">
+      <file leaf-file-name="DocenteMiddleware.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/DocenteMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.666666" vertical-offset="170" max-vertical-offset="840">
-              <caret line="46" column="73" selection-start-line="46" selection-start-column="73" selection-end-line="46" selection-end-column="73" />
+            <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="495">
+              <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tipo_Sala.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Tipo_Sala.php">
+      <file leaf-file-name="EncarMiddleware.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/EncarMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="585">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="540">
+              <caret line="25" column="69" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Usuario.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Salas/app/Models/Usuario.php">
+      <file leaf-file-name="EstudianteMiddleware.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/EstudianteMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6544" vertical-offset="26" max-vertical-offset="675">
-              <caret line="30" column="117" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
+            <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="495">
+              <caret line="17" column="62" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminMiddleware.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/AdminMiddleware.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.408" vertical-offset="0" max-vertical-offset="625">
+              <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Auth/AuthController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.625" vertical-offset="225" max-vertical-offset="855">
+              <caret line="37" column="57" selection-start-line="37" selection-start-column="57" selection-end-line="37" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -147,57 +137,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/AdmUserController.php" />
-        <option value="$PROJECT_DIR$/Salas/resources/lang/es/validation.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/LoginRequest.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Providers/rut.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Login/LoginAdminController.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/DirdocMiddleware.php" />
-        <option value="$PROJECT_DIR$/Salas/resources/views/Login/login.blade.php" />
-        <option value="$PROJECT_DIR$/Salas/public/css/login.css" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/RedireccionMiddleware.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Auth/AuthController.php" />
-        <option value="$PROJECT_DIR$/Salas/database/migrations/2015_07_20_234900_Import_database_sql.php" />
-        <option value="$PROJECT_DIR$/Salas/database/seeds/UsuarioTableSeeder.php" />
-        <option value="$PROJECT_DIR$/Salas/database/migrations/2015_07_15_165911_create_table_roles_usuarios.php" />
-        <option value="$PROJECT_DIR$/Salas/database/migrations/2015_07_20_235813_create_fk_usuario_rolesUsuario.php" />
-        <option value="$PROJECT_DIR$/Salas/database/migrations/2015_06_27_161305_create_user_table.php" />
-        <option value="$PROJECT_DIR$/Salas/database/salas.sql" />
-        <option value="$PROJECT_DIR$/Salas/app/Models/Rol.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/AdminMiddleware.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/EncarMiddleware.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/DocenteMiddleware.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/EstudianteMiddleware.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/Salas/config/session.php" />
-        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/homeAdm.blade.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Models/Usuario.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Models/Rol_Usuario.php" />
-        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/editarAdm.blade.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/RolusuarioController.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/AgregarMasivo/MasivoCampusController.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Excel/CampusController.php" />
-        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/header.blade.php" />
-        <option value="$PROJECT_DIR$/Salas/config/filesystems.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Excel/DownloadCampusController.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/CampusController.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Excel/FilesCampusController.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/FacultadRequest.php" />
-        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/bodyAdm.blade.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/crearAdm.blade.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Excel/FilesController.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Models/Asignatura.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Models/Carrera.php" />
         <option value="$PROJECT_DIR$/Salas/app/Models/Curso.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Models/Departamento.php" />
         <option value="$PROJECT_DIR$/Salas/app/Models/Docente.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Models/Escuela.php" />
         <option value="$PROJECT_DIR$/Salas/app/Models/Estudiante.php" />
-        <option value="$PROJECT_DIR$/Salas/app/Models/Facultad.php" />
         <option value="$PROJECT_DIR$/Salas/app/Models/Funcionario.php" />
         <option value="$PROJECT_DIR$/Salas/app/Models/Horario.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Campus.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Facultad.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/EscuelaRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/TposalaRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/DepartamentoRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Departamento.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Tipo_Sala.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/LoginRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/SalaRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/SalasController.php" />
         <option value="$PROJECT_DIR$/Salas/app/Models/Sala.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Auth/AuthController.php" />
+        <option value="$PROJECT_DIR$/Salas/database/migrations/2015_07_20_235813_create_fk_usuario_rolesUsuario.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/UsuarioRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/UsuarioController.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/RolesUsuariosRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/RolusuarioController.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/CarreraRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/editarAdm.blade.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/CarreraController.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Carrera.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Escuela.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Excel/FilesController.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Usuario.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Rol.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Requests/CampusRequest.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Providers/rules.php" />
+        <option value="$PROJECT_DIR$/Salas/resources/lang/es/validation.php" />
+        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/crearAdm.blade.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/CampusController.php" />
+        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/header.blade.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/homeAdm.blade.php" />
+        <option value="$PROJECT_DIR$/Salas/resources/views/Administrador/bodyAdm.blade.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Asignatura_Cursada.php" />
+        <option value="$PROJECT_DIR$/Salas/database/salas.sql" />
+        <option value="$PROJECT_DIR$/Salas/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/Salas/database/seeds/UsuarioTableSeeder.php" />
+        <option value="$PROJECT_DIR$/Salas/database/seeds/RolesUsuarioTableSeeder.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/Authenticate.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Models/Rol_Usuario.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/RedireccionMiddleware.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/DocenteMiddleware.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/EncarMiddleware.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/EstudianteMiddleware.php" />
+        <option value="$PROJECT_DIR$/Salas/app/Http/Middleware/AdminMiddleware.php" />
       </list>
     </option>
   </component>
@@ -250,6 +240,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -279,46 +270,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Salas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Proyecto_salas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Proyecto_salas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Salas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Proyecto_salas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Proyecto_salas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Salas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="framework" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -413,6 +364,58 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="es" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="en" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -429,6 +432,90 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seeds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -465,6 +552,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto_salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Salas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Providers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -682,7 +791,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -697,6 +805,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Salas/app/Http/Controllers/Excel" />
       <recent name="$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador" />
       <recent name="$PROJECT_DIR$/Salas/resources/views/Administrador" />
     </key>
@@ -757,7 +866,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29764616" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29764616" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -791,85 +900,250 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Kernel.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Sala.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="645">
-          <caret line="33" column="15" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="245" max-vertical-offset="930">
+          <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/config/session.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Estudiante.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.576" vertical-offset="135" max-vertical-offset="2385">
-          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.7504" vertical-offset="116" max-vertical-offset="765">
+          <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/FacultadController.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Departamento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.288" vertical-offset="180" max-vertical-offset="1635">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8224" vertical-offset="401" max-vertical-offset="1050">
+          <caret line="61" column="18" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/database/seeds/TiposalasTableSeeder.php">
+    <entry file="file://$PROJECT_DIR$/Salas/database/seeds/PeriodosSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="636">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/database/seeds/RolesUsuarioTableSeeder.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Login/LoginAdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="649">
+        <state vertical-scroll-proportion="0.232" vertical-offset="1220" max-vertical-offset="2385">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/storage/framework/views/c2aabce39e02351a306eecbcdd955c76">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8401977" vertical-offset="0" max-vertical-offset="1620">
+          <caret line="34" column="59" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="59" />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Requests/TposalaRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.096" vertical-offset="0" max-vertical-offset="625">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Requests/UsuarioRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="600">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1965">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/database/salas.sql">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Requests/RolesUsuariosRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07512521" vertical-offset="225" max-vertical-offset="3600">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="4" />
+        <state vertical-scroll-proportion="-16.875" vertical-offset="0" max-vertical-offset="585">
+          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/EscuelaController.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Campus.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64" vertical-offset="635" max-vertical-offset="1800">
-          <caret line="73" column="42" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/SalasController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1764706" vertical-offset="720" max-vertical-offset="1725">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/editarAdm.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.25" vertical-offset="2958" max-vertical-offset="3585">
-          <caret line="220" column="0" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/DepartamentoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="37.5" vertical-offset="900" max-vertical-offset="1845">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.688" vertical-offset="140" max-vertical-offset="765">
+          <caret line="39" column="9" selection-start-line="39" selection-start-column="4" selection-end-line="43" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/RolusuarioController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-63.125" vertical-offset="135" max-vertical-offset="2220">
-          <caret line="110" column="102" selection-start-line="110" selection-start-column="102" selection-end-line="110" selection-end-column="102" />
+        <state vertical-scroll-proportion="0.65686274" vertical-offset="1278" max-vertical-offset="1905">
+          <caret line="117" column="31" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Requests/CarreraRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="600">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/storage/framework/views/33c38ac430517b3ef18f8d414c216c29">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.206897" vertical-offset="4275" max-vertical-offset="5670">
+          <caret line="297" column="66" selection-start-line="297" selection-start-column="66" selection-end-line="297" selection-end-column="66" />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/UsuarioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2064" vertical-offset="686" max-vertical-offset="1605">
+          <caret line="100" column="55" selection-start-line="100" selection-start-column="55" selection-end-line="100" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/editarAdm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.75" vertical-offset="3768" max-vertical-offset="4380">
+          <caret line="262" column="107" selection-start-line="262" selection-start-column="107" selection-end-line="262" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/CarreraController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.952" vertical-offset="1130" max-vertical-offset="1890">
+          <caret line="115" column="60" selection-start-line="115" selection-start-column="60" selection-end-line="115" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Carrera.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="260" max-vertical-offset="885">
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Escuela.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.856" vertical-offset="215" max-vertical-offset="900">
+          <caret line="50" column="24" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Curso.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.144" vertical-offset="50" max-vertical-offset="990">
+          <caret line="51" column="75" selection-start-line="51" selection-start-column="75" selection-end-line="51" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Usuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.541667" vertical-offset="11" max-vertical-offset="750">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Rol.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="600">
+          <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Excel/FilesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-102.291664" vertical-offset="1310" max-vertical-offset="4140">
+          <caret line="757" column="60" selection-start-line="757" selection-start-column="60" selection-end-line="757" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.496" vertical-offset="675" max-vertical-offset="3255">
+          <caret line="149" column="22" selection-start-line="149" selection-start-column="12" selection-end-line="149" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Providers/rules.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="555">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/resources/lang/es/validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0416665" vertical-offset="71" max-vertical-offset="1815">
+          <caret line="21" column="79" selection-start-line="21" selection-start-column="79" selection-end-line="21" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/public/js/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6071428" vertical-offset="0" max-vertical-offset="150">
+          <caret line="3" column="10510" selection-start-line="3" selection-start-column="10503" selection-end-line="3" selection-end-column="10510" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/crearAdm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="7500">
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/bodyAdm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="12030">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/CampusController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.44" vertical-offset="0" max-vertical-offset="2085">
+          <caret line="60" column="60" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
+          <folding>
+            <element signature="e#53#75#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/database/migrations/2015_07_20_234900_Import_database_sql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="510">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#7#48#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/database/migrations/2015_07_20_235813_create_fk_usuario_rolesUsuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="540">
+          <caret line="16" column="99" selection-start-line="16" selection-start-column="99" selection-end-line="16" selection-end-column="99" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -877,313 +1151,155 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="630">
           <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/database/migrations/2015_07_20_234900_Import_database_sql.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="495">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/database/migrations/2015_07_20_235813_create_fk_usuario_rolesUsuario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.672" vertical-offset="0" max-vertical-offset="625">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/Authenticate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="215" max-vertical-offset="840">
-          <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/AdminMiddleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="495">
-          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/EncarMiddleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="540">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Login/LoginEncarController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.552" vertical-offset="970" max-vertical-offset="2385">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Login/LoginAdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.791666" vertical-offset="770" max-vertical-offset="2385">
-          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/RedireccionMiddleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="600">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="915">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7794118" vertical-offset="618" max-vertical-offset="1230">
-          <caret line="73" column="3" selection-start-line="73" selection-start-column="3" selection-end-line="73" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/MasivoCampusController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.083334" vertical-offset="91" max-vertical-offset="1950">
-          <caret line="35" column="28" selection-start-line="18" selection-start-column="8" selection-end-line="35" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/config/filesystems.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="530" max-vertical-offset="1155">
-          <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/composer.json">
+    <entry file="file://$PROJECT_DIR$/Salas/database/seeds/RolesTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/homeAdm.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="1485">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.26960784" vertical-offset="0" max-vertical-offset="612">
+          <caret line="17" column="79" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/config/app.php">
+    <entry file="file://$PROJECT_DIR$/Salas/database/seeds/DatabaseSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="22.083334" vertical-offset="2630" max-vertical-offset="3255">
-          <caret line="140" column="0" selection-start-line="139" selection-start-column="10" selection-end-line="140" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="435">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Administrador/CampusController.php">
+    <entry file="file://$PROJECT_DIR$/Salas/database/salas.sql">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.75" vertical-offset="450" max-vertical-offset="1665">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+        <state vertical-scroll-proportion="-5.149533" vertical-offset="304" max-vertical-offset="4770">
+          <caret line="57" column="66" selection-start-line="57" selection-start-column="58" selection-end-line="57" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Requests/FacultadRequest.php">
+    <entry file="file://$PROJECT_DIR$/Salas/database/seeds/UsuarioTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.096" vertical-offset="0" max-vertical-offset="625">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="570">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/database/seeds/RolesUsuarioTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.664" vertical-offset="500" max-vertical-offset="1125">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Asignatura_Cursada.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.792" vertical-offset="0" max-vertical-offset="765">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Salas/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.75" vertical-offset="60" max-vertical-offset="1275">
-          <caret line="26" column="47" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="47" />
+        <state vertical-scroll-proportion="-9.375" vertical-offset="450" max-vertical-offset="1215">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/homeAdm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="1515">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5637255" vertical-offset="405" max-vertical-offset="1335">
+          <caret line="50" column="56" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.625" vertical-offset="225" max-vertical-offset="855">
+          <caret line="37" column="57" selection-start-line="37" selection-start-column="57" selection-end-line="37" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/Authenticate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.125" vertical-offset="180" max-vertical-offset="840">
+          <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/RedireccionMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="615">
+          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
           <folding>
-            <element signature="e#6#391#0#PHP" expanded="true" />
+            <element signature="e#38#50#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/bodyAdm.blade.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Requests/CampusRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.625" vertical-offset="1908" max-vertical-offset="7485">
-          <caret line="165" column="80" selection-start-line="165" selection-start-column="80" selection-end-line="165" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/resources/views/Administrador/crearAdm.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5" vertical-offset="1383" max-vertical-offset="4305">
-          <caret line="101" column="68" selection-start-line="101" selection-start-column="68" selection-end-line="101" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Controllers/Excel/FilesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.666667" vertical-offset="269" max-vertical-offset="1515">
-          <caret line="92" column="71" selection-start-line="92" selection-start-column="71" selection-end-line="92" selection-end-column="71" />
-          <folding>
-            <element signature="e#45#127#0#PHP" expanded="false" />
-            <element signature="e#128#150#0#PHP" expanded="true" />
-            <element signature="e#428#1064#0#PHP" expanded="false" />
-            <element signature="e#1070#1829#0#PHP" expanded="false" />
-            <element signature="e#3009#3735#0#PHP" expanded="false" />
-            <element signature="e#3741#4420#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Asignatura.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625" vertical-offset="90" max-vertical-offset="735">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Campus.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Carrera.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.625" vertical-offset="90" max-vertical-offset="735">
-          <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Curso.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.666666" vertical-offset="5" max-vertical-offset="990">
-          <caret line="51" column="75" selection-start-line="51" selection-start-column="75" selection-end-line="51" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Departamento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.416666" vertical-offset="365" max-vertical-offset="990">
-          <caret line="57" column="66" selection-start-line="57" selection-start-column="66" selection-end-line="57" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Docente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.791666" vertical-offset="110" max-vertical-offset="735">
-          <caret line="39" column="74" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Escuela.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.416666" vertical-offset="125" max-vertical-offset="750">
-          <caret line="41" column="74" selection-start-line="41" selection-start-column="74" selection-end-line="41" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Facultad.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.166666" vertical-offset="146" max-vertical-offset="795">
-          <caret line="43" column="67" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Funcionario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="570">
-          <caret line="28" column="79" selection-start-line="28" selection-start-column="79" selection-end-line="28" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Estudiante.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.541666" vertical-offset="140" max-vertical-offset="765">
-          <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Horario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.791666" vertical-offset="110" max-vertical-offset="735">
-          <caret line="39" column="65" selection-start-line="39" selection-start-column="65" selection-end-line="39" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Periodo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="649">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Rol.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="510">
-          <caret line="23" column="102" selection-start-line="23" selection-start-column="102" selection-end-line="23" selection-end-column="102" />
+        <state vertical-scroll-proportion="0.624" vertical-offset="0" max-vertical-offset="645">
+          <caret line="26" column="62" selection-start-line="26" selection-start-column="62" selection-end-line="26" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Salas/app/Models/Rol_Usuario.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="525">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+        <state vertical-scroll-proportion="-18.75" vertical-offset="0" max-vertical-offset="855">
+          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Sala.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/DocenteMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.666666" vertical-offset="170" max-vertical-offset="840">
-          <caret line="46" column="73" selection-start-line="46" selection-start-column="73" selection-end-line="46" selection-end-column="73" />
+        <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="495">
+          <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Tipo_Sala.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/EncarMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="649">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="540">
+          <caret line="25" column="69" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Salas/app/Models/Usuario.php">
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/EstudianteMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6544" vertical-offset="26" max-vertical-offset="675">
-          <caret line="30" column="117" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
+        <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="495">
+          <caret line="17" column="62" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Salas/app/Http/Middleware/AdminMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.408" vertical-offset="0" max-vertical-offset="625">
+          <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
           <folding />
         </state>
       </provider>
