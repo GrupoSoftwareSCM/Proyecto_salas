@@ -62,6 +62,12 @@ Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Admin
     Route::resource('TpoSala','TipoSalasController'); //CRUD PARA TIPOS DE SALA
     Route::resource('Salas','SalasController'); //CRUD PARA SALA
     Route::resource('Carrera','CarreraController');
+
+    Route::resource('Administrador','AdministradorController');
+    Route::resource('EncargadoCampus','EncargadoCampusController');
+    Route::resource('Alumno','AlumnoController');
+    Route::resource('Docente','DocenteController');
+    Route::resource('Funcionario','FuncionarioController');
 });
 
 

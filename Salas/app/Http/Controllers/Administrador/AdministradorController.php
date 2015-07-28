@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class Docente extends Controller {
+class AdministradorController extends Controller {
 
 	/**
 	 * Display a listing of the resource.

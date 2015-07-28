@@ -28,7 +28,7 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Crear dependencias<b class="caret"></b>
+                                Universidad<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>{!!Html::linkRoute('Admin.Campus.index','Campus')!!}</li>
@@ -42,15 +42,27 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Crear usuarios<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>{!!Html::linkRoute('Admin.Administrador.index','Administrador')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.EncargadoCampus.index','Encargado')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Alumno.index','Estudiante')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Docente.index','Docente')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Funcionario.index','Funcionario')!!}</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Cambiar de perfil<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 {{--dd(Auth::user()->roles)--}}
                                 @foreach(Auth::user()->roles as $perfiles)
                                     @if($perfiles->nombre == 'ADMINISTRADOR')
-                                        <li>{!!Html::linkRoute('Admin.home.index','ADMINISTRADOR')!!}</li>
+                                        <li>{!!Html::linkRoute('Admin.home.index','Administrador')!!}</li>
                                     @elseif($perfiles->nombre == 'ENCARGADO_CAMPUS')
-                                        <li>{!!Html::linkRoute('encar.home.index','ENCARGADO CAMPUS')!!}</li>
+                                        <li>{!!Html::linkRoute('encar.home.index','Encargado Campus')!!}</li>
                                     @endif
                                 @endforeach
                             </ul>
