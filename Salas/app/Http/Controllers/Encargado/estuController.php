@@ -31,7 +31,7 @@ class estuController extends Controller {
 	 */
 	public function create()
 	{
-		$carreras= Carrera::paginate();		
+		$carreras= Carrera::lists('nombre','id');		
 		return view('Encargado.agregarEstu',compact('carreras'));
 	}
 

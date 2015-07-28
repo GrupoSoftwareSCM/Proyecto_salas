@@ -9,9 +9,6 @@
                         <h1 class="page-header"> Crear Docente</h1>
                     <div class="panel-body">
         
-              @foreach($depa as $Depa)
-                     <?php $array[$Depa->id] = $Depa->nombre?>
-             @endforeach
 
                  {!! Form::open(['route' => 'encar.doce.modi.store', 'method' => 'POST']) !!}
                     <form role="form">            
@@ -33,7 +30,7 @@
                                               
                          <div class="form-group"> 
                          {!! Form::label('departamento_id','Departamento')!!}
-                         {!! Form::select('departamento_id',$array)!!}
+                         {!! Form::select('departamento_id',$depa)!!}
                          </div>
                         
                          <button type="submit" class="btn btn-info">Crear</button>

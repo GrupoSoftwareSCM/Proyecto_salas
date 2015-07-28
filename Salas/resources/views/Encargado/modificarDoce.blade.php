@@ -16,7 +16,7 @@
                                     <p>Hay {{ $docentes->total() }} Registros</p>
                                         <table class="table table-bordered">
                                             <tr>
-                                              <th>Id</th>
+                                    
                                               <th>Rut</th>
                                               <th>Nombres</th>
                                               <th>Apellidos</th>
@@ -28,7 +28,7 @@
 
                                            @foreach($docentes as $Doce)
                                             <tr>
-                                                <td>{{$Doce-> id }}</td>
+                                              
                                                 <td>{{$Doce-> rut}}</td>
                                                 <td>{{$Doce-> nombres}}</td>
                                                 <td>{{$Doce-> apellidos}}</td>

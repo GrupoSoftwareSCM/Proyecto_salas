@@ -9,46 +9,41 @@
                         <h1 class="page-header"> Editar Estudiante</h1>
                     <div class="panel-body">
                   
-                {!! Form::model($estu, ['route' => ['encar.estu.modi.update', $estu],'method' => 'PUT']) !!}
+                {!! Form::model($doce, ['route' => ['encar.doce.modi.update', $doce],'method' => 'PUT']) !!}
                     <form role="form">            
                         <div class="form-group">
 
-                         {!! Form::label('nombre', 'Carrera: ') !!}
-                         {!! Form::select('carrera_id', $carre) !!}
+                         {!! Form::label('departamento_id', 'Departamento: ') !!}
+                         {!! Form::select('departamento_id', $depa) !!}
                         
                         </div>
                          <div class="form-group">
                          {!! Form::label('nombres', 'Nombres') !!}
                          {!! Form::text('nombres',null,['class' => 'form-control',
-                             'placeholder' => '$estu->nombres']) !!}
+                             'placeholder' => '$doce->nombres']) !!}
                         </div>
                            <div class="form-group">
                          {!! Form::label('apellidos', 'Apellidos') !!}
                          {!! Form::text('apellidos',null,['class' => 'form-control',
-                             'placeholder' => '$estu->Apellidos']) !!}
+                             'placeholder' => '$doce->Apellidos']) !!}
                         </div>
                           <div class="form-group">
                          {!! Form::label('rut', 'Rut') !!}
                          {!! Form::text('rut',null,['class' => 'form-control',
-                             'placeholder' => '$estu->rut']) !!}
+                             'placeholder' => '$doce->rut']) !!}
                         </div>
-                          <div class="form-group">
-                         {!! Form::label('email', 'Email') !!}
-                         {!! Form::text('email',null,['class' => 'form-control',
-                             'placeholder' => '$estu->email']) !!}
-                        </div>
-                        
+                                                
                         
                          <button type="submit" class="btn btn-info">Actualizar datos</button>
-                         <a class="btn btn-danger" href="{{url('encar/estu/modi')}}" role="button">Cancelar
+                         <a class="btn btn-danger" href="{{url('encar/doce/modi')}}" role="button">Cancelar
                          </a>
 
                       {!! Form::close() !!}
                       </form>
             
-        {!! Form::open(['route' => ['encar.estu.modi.destroy', $estu], 'method' => 'DELETE']) !!}
+       {!! Form::open(['route' => ['encar.doce.modi.destroy', $doce], 'method' => 'DELETE']) !!}
                       
-                    <button type="submit" onclick="return confirm('Seguro que desea eliminar el estudiante?')"
+                    <button type="submit" onclick="return confirm('Seguro que desea eliminar el docente?')"
                    class="btn btn-danger">Eliminar </button>
 
                     {!! Form::close() !!}   

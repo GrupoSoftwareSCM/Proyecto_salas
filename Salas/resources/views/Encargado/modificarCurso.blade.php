@@ -18,7 +18,7 @@
                             <table id="table_id" class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                             
                                             <th>Asignatura</th>
                                             <th>Docente</th>
                                             <th>semestre</th>
@@ -31,8 +31,7 @@
                                     <tbody>
                                          @foreach($cursos as $cur)
                                           <tr>
-                                            
-                                            <td>{{ $cur->id}}</td>
+                               
                                             <td>{{ $cur->asignatura->nombre}}</td>
                                             <td>{{ $cur->docente->nombres}}</td>
                                             <td>{{ $cur->semestre}}</td>

@@ -22,9 +22,7 @@
                       @endif
                   
                    
-              @foreach($departamento as $Depa)
-                     <?php $array[$Depa->id] = $Depa->nombre?>
-             @endforeach
+            
                  {!! Form::open(['route' => 'encar.asig.modi.store', 'method' => 'POST']) !!}
                     <form role="form">            
                         <div class="form-group">
@@ -45,7 +43,7 @@
                        
                          <div class="form-group"> 
                          {!! Form::label('departamento_id','Pertenece a departamento')!!}
-                         {!! Form::select('departamento_id',$array)!!}
+                         {!! Form::select('departamento_id',$departamento)!!}
                          </div>
                         
                         

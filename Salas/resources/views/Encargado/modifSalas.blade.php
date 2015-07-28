@@ -13,7 +13,7 @@
                                     <p>Hay {{ $salas->total() }} Registros</p>
                                         <table class="table table-bordered">
                                             <tr>
-                                              <th>Id</th>
+                                             
                                               <th>Nombre</th>
                                               <th>Descripcion</th>
                                               <th>Capacidad</th>
@@ -25,7 +25,7 @@
 
                                            @foreach($salas as $Sal)
                                             <tr>
-                                                <td>{{$Sal-> id }}</td>
+                                        
                                                 <td>{{$Sal-> nombre}}</td>
                                                 <td>{{$Sal-> descripcion}}</td>
                                                 <td>{{$Sal-> capacidad}}</td>

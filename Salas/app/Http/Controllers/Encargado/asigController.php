@@ -30,7 +30,7 @@ class asigController extends Controller {
 
     public function create()
 	{
-		$departamento=Departamento::paginate();
+		$departamento=Departamento::lists('nombre','id');
 		return view('Encargado.agregarAsig',compact('departamento'));
 	}
 		

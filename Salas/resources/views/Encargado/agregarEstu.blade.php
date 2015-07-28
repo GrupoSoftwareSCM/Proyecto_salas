@@ -16,9 +16,7 @@
                @endforeach
                </div>
                @endif
-              @foreach($carreras as $Carre)
-                     <?php $array[$Carre->id] = $Carre->nombre?>
-             @endforeach
+          
                  {!! Form::open(['route' => 'encar.estu.modi.store', 'method' => 'POST']) !!}
                     <form role="form">            
                         <div class="form-group">
@@ -44,7 +42,7 @@
                        
                          <div class="form-group"> <!-- Esto no me funciona -->
                          {!! Form::label('carrera_id','Carrera')!!}
-                         {!! Form::select('carrera_id',$array)!!}
+                         {!! Form::select('carrera_id',$carreras)!!}
                          </div>
                         
                          <button type="submit" class="btn btn-info">Crear</button>

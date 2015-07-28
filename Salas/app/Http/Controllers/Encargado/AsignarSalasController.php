@@ -53,8 +53,16 @@ class AsignarSalasController extends Controller {
 	 */
 	public function store()
 	{
-		$data= Request::only(['sala_id','periodo_id','curso_id']); 	
-		//dd($data);				
+		$data= Request::only(['sala_id','periodo_id','curso_id','dias']); 	
+		dd($data);	
+	    
+ 		dd($data->dias);			
+	    foreach ($dias as $dia) {
+	    		if($dia->lunes)
+	    		{
+	    			dd($dia);
+	    		}
+	    	}	
         $horario = Horario::create($data);
         $horario->save();
         return redirect('encar/asignar/modi');
@@ -76,23 +84,23 @@ class AsignarSalasController extends Controller {
 	    $campus=$facultad->campus;
 	   // $sala=$campus->sala;
 	    $salass=Sala::mostrar_salas($campus->id);
-	    $sa=Sala::paginate();
-	    $salasCampus= array();
+	    $sa=Sala::lists('nombre','id');
+	    
 		$cantidad_alumno =Asignatura_Cursada::count_alumnos($cursoo->id);
-		$periodos=Periodo::paginate();
+		$periodos=Periodo::lists('bloque','id');
 		
 	    foreach ($salass as $key => $value) {
 	    	$salasCampus[$key] = $value;
 	    }
 	    $probando = array();
-	    foreach ($periodos as $value) {
+	/*    foreach ($periodos as $value) {
 
 	    	array_push($probando, $value->inicio.'-'.$value->fin);
-	    }
+	    }*/
 		
 	  	//dd($probando);	
 
-	   return view('Encargado.ElegirSala',compact('cursoo','salasCampus','campus','cantidad_alumno','periodos','probando'));
+	   return view('Encargado.ElegirSala',compact('cursoo','sa','campus','cantidad_alumno','periodos','probando'));
 
 	}
 

@@ -23,7 +23,7 @@ class SalasController extends Controller {
 	public function index()
 	{
 		$salas = Sala::paginate(); // Cambiar esto, si la db es muy grande queda la escoba
-		//$campus= Campus::lists('nombre','id');
+		
 		return view('Encargado.modifSalas',compact('salas'));
 		//		return view('Encargado.ElegirCampus',compact('campus'));
 

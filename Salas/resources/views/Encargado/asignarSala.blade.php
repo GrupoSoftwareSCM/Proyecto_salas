@@ -13,7 +13,7 @@
                             <table id="table_id" class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                          
                                             <th>Asignatura</th>
                                             <th>Docente</th>
                                             <th>semestre</th>
@@ -29,7 +29,7 @@
                                         @for($i=0;$i<count($cursos);$i++)
                                           <tr>
                                             
-                                            <td>{{ $cursos[$i]->id}}</td>
+                                          
                                             <td>{{ $cursos[$i]->asignatura->nombre}}</td>
                                             <td>{{ $cursos[$i]->docente->nombres}}</td>
                                             <td>{{ $cursos[$i]->semestre}}</td>

@@ -3,8 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Docente;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Models\Departamento;
+use Request;
+use Illuminate\Support\Facades\Session;
+
 
 class DocenteController extends Controller {
 
@@ -26,7 +29,8 @@ class DocenteController extends Controller {
 	 */
 	public function create()
 	{
-		$depa=Departamento::lists('id','nombre');
+		$depa=Departamento::lists('nombre','id');
+
 		return view('Encargado.agregarDoce',compact('depa'));
 	}
 
@@ -36,7 +40,8 @@ class DocenteController extends Controller {
 	 * @return Response
 	 */
 	public function store()
-	{
+	{  
+
 		$data= Request::only(['nombres','apellidos','rut','departamento_id']);  
 	    $doce = Docente::create($data);
         $doce->save();
@@ -62,7 +67,10 @@ class DocenteController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$doce=Docente::findOrFail($id);
+		dd($doce->created_at);
+		$depa=Departamento::lists('nombre','id');
+		return view('Encargado.editarDoce', compact('doce','depa'));
 	}
 
 	/**
@@ -73,7 +81,10 @@ class DocenteController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$doce= Docente::findOrFail($id);
+		$doce->fill(Request::all());
+		$doce->save();
+		return redirect('encar/doce/modi');
 	}
 
 	/**
@@ -84,7 +95,9 @@ class DocenteController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$doce= Docente::findOrFail($id);
+		$doce->delete();
+		return redirect('encar/doce/modi');
 	}
 
 }

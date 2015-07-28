@@ -18,7 +18,7 @@
                                     <p>Hay {{ $asignatura->total() }} Registros</p>
                                         <table class="table table-bordered">
                                             <tr>
-                                              <th>Id</th>
+                                      
                                               <th>Nombre</th>
                                               <th>Codigo</th>
                                               <th>Pertenece a departamento</th>
@@ -28,7 +28,7 @@
 
                                            @foreach($asignatura as $Asig)
                                             <tr>
-                                                <td>{{$Asig-> id}}</td>
+                     
                                                 <td>{{$Asig-> nombre}}</td>
                                                 <td>{{$Asig-> codigo}}</td>
                                                 <td>{{$Asig-> departamento->nombre}}</td>
