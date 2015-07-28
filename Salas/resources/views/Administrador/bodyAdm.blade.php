@@ -634,7 +634,7 @@
     @elseif($_SERVER['REQUEST_URI'] ==  "/Admin/User")
         <div class="panel panel-success">
             <div class="panel-body">
-                Usario(s)
+                Usuario(s)
             </div>
             <div class="panel-footer">
                 <div class="row">

@@ -61,9 +61,13 @@ Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Admin
     Route::resource('Escuela','EscuelaController'); //CRUD PARA Escuela
     Route::resource('TpoSala','TipoSalasController'); //CRUD PARA TIPOS DE SALA
     Route::resource('Salas','SalasController'); //CRUD PARA SALA
-    Route::resource('Roluser','RolusuarioController');
-    Route::resource('User','UsuarioController');
     Route::resource('Carrera','CarreraController');
+
+    Route::resource('Administrador','AdministradorController');
+    Route::resource('EncargadoCampus','EncargadoCampusController');
+    Route::resource('Alumno','AlumnoController');
+    Route::resource('Docente','DocenteController');
+    Route::resource('Funcionario','FuncionarioController');
 });
 
 

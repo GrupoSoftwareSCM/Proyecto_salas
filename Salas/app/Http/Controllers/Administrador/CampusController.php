@@ -30,7 +30,7 @@ class CampusController extends Controller {
 	 */
 	public function create()
 	{
-        $encargados = Rol::whereNombre('Encargado Campus')->first();
+        $encargados = Rol::whereNombre('ENCARGADO_CAMPUS')->first();
         //dd($encargado->usuarios);
         $encargado = array();
         foreach($encargados->usuarios as $value){

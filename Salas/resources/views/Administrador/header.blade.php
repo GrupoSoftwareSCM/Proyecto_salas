@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="{{URL::asset('css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
+    {!!Html::style('css/bootstrap.min.css')!!}
 	<title>Bienvenido</title>
 </head>
 <body>
@@ -78,6 +78,5 @@
         },3000);
     });
 </script>
-
 </body>
 </html>
