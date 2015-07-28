@@ -7,27 +7,62 @@
         <div class="col-md-2">
             <!-- MENU -->
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Menu
+
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- El logotipo y el icono que despliega el menú se agrupan
+                     para mostrarlos mejor en los dispositivos móviles -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Desplegar navegación</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Logotipo</a>
                 </div>
-                <div class="panel-footer">
-                    <ul class="nav nav-sidebar">
-                        <li>{!!Html::linkRoute('Admin.Campus.index','Campus')!!}</li>
-                        <li>{!!Html::linkRoute('Admin.Facultad.index','Facultad')!!}</li>
-                        <li>{!!Html::linkRoute('Admin.Depto.index','Departamento')!!}</li>
-                        <li>{!!Html::linkRoute('Admin.Escuela.index','Escuela')!!}</li>
-                        <li>{!!Html::linkRoute('Admin.Carrera.index','Carrera')!!}</li>
-                        <li>{!!Html::linkRoute('Admin.TpoSala.index','Tipos de sala')!!}</li>
-                        <li>{!!Html::linkRoute('Admin.Salas.index','Salas')!!}</li>
-                        <li>{!!Html::linkRoute('Admin.User.index','Usuarios')!!}</li>
-                        <li>{!!Html::linkRoute('Admin.Roluser.index','Asignar roles a usuarios')!!}</li>
+
+                <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+                     otro elemento que se pueda ocultar al minimizar la barra -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Crear dependencias<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>{!!Html::linkRoute('Admin.Campus.index','Campus')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Facultad.index','Facultad')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Depto.index','Departamento')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Escuela.index','Escuela')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Carrera.index','Carrera')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.TpoSala.index','Tipos de sala')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Salas.index','Salas')!!}</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Cambiar de perfil<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {{--dd(Auth::user()->roles)--}}
+                                @foreach(Auth::user()->roles as $perfiles)
+                                    @if($perfiles->nombre == 'ADMINISTRADOR')
+                                        <li>{!!Html::linkRoute('Admin.home.index','ADMINISTRADOR')!!}</li>
+                                    @elseif($perfiles->nombre == 'ENCARGADO_CAMPUS')
+                                        <li>{!!Html::linkRoute('encar.home.index','ENCARGADO CAMPUS')!!}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+
+            </nav>
 
         </div>
         <div class="col-md-9">
-            @if($_SERVER['REQUEST_URI'] ==  "/Admin/Carrera"  || $_SERVER['REQUEST_URI'] ==  "/Admin/User"  || $_SERVER['REQUEST_URI'] == "/Admin/Roluser" || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
+            @if($_SERVER['REQUEST_URI'] ==  "/Admin/Carrera"  || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
                 @yield('body')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/create') !== false)
                 @yield('createBody')
