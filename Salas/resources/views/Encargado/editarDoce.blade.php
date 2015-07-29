@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                        <div class="panel panel-default">
-                        <h1 class="page-header"> Editar Estudiante</h1>
+                        <h1 class="page-header"> Editar Docente</h1>
                     <div class="panel-body">
                   
                 {!! Form::model($doce, ['route' => ['encar.doce.modi.update', $doce],'method' => 'PUT']) !!}
