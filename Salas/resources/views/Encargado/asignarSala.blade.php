@@ -6,8 +6,6 @@
  <div id="dataTables-example_wrapper" 
                                 class="dataTables_wrapper form-inline dt-bootstrap no-footer"
                   <div class="panel-heading"><h1>CURSOS </h1></div>
-
-                  					{{--dd($cursos[0]->asignatura->nombre)--}}
                                     <div class="panel-body">                                    
                                     <p>Hay {{ $cursos->total() }} Registros</p>
                             <table id="table_id" class="table table-bordered">
@@ -20,6 +18,7 @@
                                             <th>anio</th>
                                             <th>seccion</th>
                                             <th># estudiantes </th>
+                                            <th>accion</th>
                                             <th>accion</th>
 
 
@@ -36,18 +35,19 @@
                                             <td>{{ $cursos[$i]->anio}}</td>
                                             <td>{{ $cursos[$i]->seccion}}</td>
                                             <td>{{ $cantidad_alumno[$i]}}</td>
-                                            
-                                            <td>
-                                         
+                                            <td>                                     
                                             <a href="{{ route('encar.asignar.modi.show',$cursos[$i]) }}">Asignar</a>	
-                                             
-                                             </td>
+                                            </td>
+                                            <td>                                     
+                                            <a href="{{ route('encar.asignar.modi.edit',$cursos[$i]) }}">Editar</a>    
+                                            </td>
                                              
                                         </tr>
                                      
                                       @endfor
                                     </tbody>
                                </table>
+                               {!! $cursos->render()!!}
 
                                 </div>  
                                                       

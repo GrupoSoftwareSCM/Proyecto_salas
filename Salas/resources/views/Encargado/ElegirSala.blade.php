@@ -10,39 +10,52 @@
                         <h1 class="page-header"> Asignar Sala</h1>
                     <div class="panel-body">
 
-              <h1>CAMPUS : {{$campus->nombre}}</h1>
-              <h1>CANTIDAD DE ALUMNOS: {{$cantidad_alumno}}</h1>
-              <h2>SECCION: {{$cursoo->seccion}}</h2>
-          
-          <?php   $Dias= array('lunes'=>'Lunes','martes'=>'Martes','miercoles'=>'Miercoles','jueves'=>'Jueves','viernes'=>'Viernes','sabado'=>'Sabado');?>
-       
-             
-               
-               
-          {!!Form::open(['route' => 'encar.asignar.modi.store', 'method' => 'POST'])!!}
+              <h2>{{$campus->nombre}}</h2>
+              <h2>Cantidad de alumnos: {{$cantidad_alumno}}</h2>
+              <h2>Seccion: {{$cursoo->seccion}}</h2>
+        
+         {!!Form::open(['route' => 'encar.asignar.modi.store', 'method' => 'POST'])!!}
                                 
                                <div id="dataTables-example_wrapper" 
                                 class="dataTables_wrapper form-inline dt-bootstrap no-footer"
-                  <div class="panel-heading"><h1>SALAS</h1></div>
+                  <div class="panel-heading"></div>
                                     <div class="panel-body">
+                                   </div>
+                         <div class="form-group">
+                         {!! Form::label('fecha','Ingrese la fecha de termino de semestre :  ')!!}
+                         {!! Form::date('fecha', \Carbon\Carbon::now())!!}
+                          </div>
                           <div class="form-group">
+                         {!! Form::label('dias','Seleccione los dias: ')!!}
+                         </div>
+                         <div class="form-group">
                          {!! Form::label('dias','Lunes')!!}
                          {!! Form::checkbox('dias[]',0,null,['class' => 'field'])!!}
+                         </div>
+                           <div class="form-group">
                          {!! Form::label('dias','Martes')!!}
                          {!! Form::checkbox('dias[]',1,null,['class' => 'field'])!!}
+                         </div>
+                           <div class="form-group">
                          {!! Form::label('dias','Miercoles')!!}
                          {!! Form::checkbox('dias[]',2,null,['class' => 'field'])!!}
+                         </div>
+                           <div class="form-group">
                          {!! Form::label('dias','Jueves')!!}
                          {!! Form::checkbox('dias[]',3,null,['class' => 'field'])!!}
+                         </div>
+                           <div class="form-group">
                          {!! Form::label('dias','Viernes')!!}
                          {!! Form::checkbox('dias[]',4,null,['class' => 'field'])!!}
+                         </div>
+                           <div class="form-group">
                          {!! Form::label('dias','Sabado')!!}
                          {!! Form::checkbox('dias[]',5,null,['class' => 'field'])!!}
                         
 
                          </div>  
                          <div class="form-group">
-                         {!! Form::label('sala_id','Salas')!!}
+                         {!! Form::label('sala_id','Seleccione la sala')!!}
                          {!! Form::select('sala_id',$sa)!!}
 
                          </div>
@@ -61,10 +74,11 @@
                                     </div>
                                   
 {!!Form::close()!!}
-@endsection
+
             </div>  
           </div>
         </div>  
     </div>
 </div>   
 @endsection
+

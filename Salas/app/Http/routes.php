@@ -71,14 +71,14 @@ Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Admin
 //PROBANDO RESOURCE PARA ASIGNATURAS
 
 Route::group(['middleware' => 'Encar','prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
-    Route::resource('asig/modi','asigController');
-    Route::resource('estu/modi','estuController');
-    Route::resource('curs/modi','cursController');
-    Route::resource('salas/modi','SalasController');
-    Route::resource('home','EncarUserController');
-    Route::resource('asignar/modi','AsignarSalasController');
-    Route::resource('doce/modi','DocenteController');
-
+    Route::resource('asig/modi','asigController'); //CRUD PARA ASIGNATURA
+    Route::resource('estu/modi','estuController');  //CRUD PARA ESTUDIANTE
+    Route::resource('curs/modi','cursController');  //CRUD PARA CURSO
+    Route::resource('salas/modi','SalasController'); //CRUD PARA SALAS
+    Route::resource('home','EncarUserController');  
+    Route::resource('asignar/modi','AsignarSalasController'); //PARA ASIGNAR SALA
+    Route::resource('doce/modi','DocenteController'); //CRUD PARA DOCENTE
+    Route::resource('hora/modi','horarioController'); //CRUD PARA HORARIO
 
     });
 
