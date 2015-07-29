@@ -2,8 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Models\Rol;
+use Request;
 
 class EncargadoCampusController extends Controller {
 
@@ -14,7 +14,8 @@ class EncargadoCampusController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$data = Rol::whereNombre('ENCARGADO_CAMPUS')->first();
+        return view('Administrador.bodyAdm')->with('Encargados',$data->usuarios);
 	}
 
 	/**

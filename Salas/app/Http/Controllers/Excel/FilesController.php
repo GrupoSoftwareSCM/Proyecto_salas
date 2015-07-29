@@ -520,13 +520,13 @@ class FilesController extends Controller{
 
 }
 
-    public function getUsuarios($id){
+    public function getAdministrador($id){
         $user = Usuario::find($id);
         //dd($user->roles[0]->nombre);
         if($user){
             $data = array(
-                array('Nombres','Apellidos','RUT'),
-                array($user->nombres,$user->apellidos,$user->rut),
+                array('Nombres','Apellidos','RUT','E-mail'),
+                array($user->nombres,$user->apellidos,$user->rut,$user->email),
             );
 
             Excel::create('Usuario_'.$user->rut, function ($excel) use ($data) {
@@ -542,17 +542,20 @@ class FilesController extends Controller{
         }
     }
 
-    public function getUsuarioall(){
+    public function getAdministradorall(){
         $users = Usuario::paginate();
         //dd($users);
         if($users){
             $data = array(
-                array('Nombres','Apellidos','RUT'),
+                array('Nombres','Apellidos','RUT','E-mail'),
             );
             foreach($users as $user){
-                array_push($data,array($user->nombres,$user->apellidos,$user->rut));
+                foreach($user->roles as $rol){
+                    if($rol->nombre == 'ADMINISTRADOR')
+                    array_push($data,array($user->nombres,$user->apellidos,$user->rut,$user->email));
+                }
             }
-            Excel::create('Usuarios', function ($excel) use ($data) {
+            Excel::create('Administradores', function ($excel) use ($data) {
 
                 $excel->sheet('Sheetname', function ($sheet) use ($data) {
 
@@ -564,7 +567,7 @@ class FilesController extends Controller{
         }
     }
 
-    public function postUsuariofiles(Request $request){
+    public function postAdministradorfiles(Request $request){
         //obtenemos el campo file definido en el formulario
         $file = $request->file('file');
 
@@ -578,10 +581,11 @@ class FilesController extends Controller{
         \Excel::load('/storage/public/files/'.$nombre,function($archivo)
         {
             $result = $archivo->get();    //leer todas las filas del archivo
-            //dd($result);
+            $id_admin = Rol::whereNombre('ADMINISTRADOR')->first()->id;
             foreach($result as $key => $value)
             {
-                if(!Usuario::query_nombre($value->nombres)){
+                if(count(Usuario::where('rut',$value->rut)->first()) == 0){
+
                     $var = new Usuario();
                     $var->fill([
                         'nombres'       => $value->nombres,
@@ -589,109 +593,20 @@ class FilesController extends Controller{
                         'rut'           => $value->rut,
                     ]);
                     $var->save();
+
+                    $rol_user = new Rol_Usuario();
+                    $rol_user->fill([
+                        'rol_id' => $id_admin,
+                        'usuario_rut' => $value->rut
+                    ]);
+                    $rol_user->save();
                 }
             }
         })->get();
 
         \Storage::delete($nombre);
 
-        return redirect()->route('Admin.User.index');
-    }
-
-    public function getRoluser($id){
-        $rol_user = Rol_Usuario::find($id);
-        if($rol_user){
-            $rol = Rol::find($rol_user->rol_id);
-            $user = Usuario::find($rol_user->usuario_rut);
-            $data = array(
-                array('Nombres','Apellidos','RUT','ROL'),
-                array($user->nombres,$user->apellidos,$user->rut,$rol->nombre)
-            );
-            Excel::create('Usuario_'.$user->rut, function ($excel) use ($data) {
-
-                $excel->sheet('Sheetname', function ($sheet) use ($data) {
-
-                    $sheet->fromArray($data);
-
-                });
-
-            })->download('csv');
-        }
-    }
-
-    public function getRoluserall(){
-        $rol_user = Rol_Usuario::paginate();
-        if($rol_user){
-            $data = array(
-                array('Nombres','Apellidos','RUT','ROL')
-            );
-            foreach($rol_user as $value){
-                $rol = Rol::find($value->rol_id);
-                $user = Usuario::find($value->usuario_rut);
-                array_push($data,array($user->nombres,$user->apellidos,$user->rut,$rol->nombre));
-            }
-
-            Excel::create('Usuario_'.$user->rut, function ($excel) use ($data) {
-
-                $excel->sheet('Sheetname', function ($sheet) use ($data) {
-
-                    $sheet->fromArray($data);
-
-                });
-
-            })->download('csv');
-        }
-    }
-
-    public function postRoluserfile(Request $request){
-        //obtenemos el campo file definido en el formulario
-        $file = $request->file('file');
-
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
-
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
-
-
-        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
-        {
-            $result = $archivo->get();    //leer todas las filas del archivo
-            //dd($result);
-            foreach($result as $value)
-            {
-                //dd(Usuario::where('rut','=',$value->rut)->first() != null && Rol::whereNombre($value->rol)->first() != null);
-                if(Usuario::where('rut','=',$value->rut)->first() != null && Rol::whereNombre($value->rol)->first() != null){
-                    if(count(Usuario::find($value->rut)->roles) == 0){
-                        $var = new Rol_Usuario();
-                        $rol_id = Rol::query_nombre($value->rol);
-                        $var->fill([
-                            'usuario_rut'           => $value->rut,
-                            'rol_id'           => $rol_id->id,
-                        ]);
-                        $var->save();
-                    }
-                    else{
-                        $roles = Usuario::find($value->rut)->roles;
-                        foreach($roles as $rol){
-                            if(Rol_Usuario::is_rol($value->rut,$value->rol) == 0){
-                                $var = new Rol_Usuario();
-                                $rol_id = Rol::query_nombre($value->rol);
-                                $var->fill([
-                                    'usuario_rut'           => $value->rut,
-                                    'rol_id'           => $rol_id->id,
-                                ]);
-                                $var->save();
-                            }
-                        }
-                    }
-                }
-            }
-        })->get();
-
-        \Storage::delete($nombre);
-
-        return redirect()->route('Admin.Roluser.index');
+        return redirect()->route('Admin.Administrador.index');
     }
 
     public function getCarrera($id){

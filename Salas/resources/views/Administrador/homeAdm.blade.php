@@ -74,7 +74,8 @@
 
         </div>
         <div class="col-md-9">
-            @if($_SERVER['REQUEST_URI'] ==  "/Admin/Carrera"  || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
+            {{$_SERVER['REQUEST_URI']}}
+            @if($_SERVER['REQUEST_URI'] ==  "/Admin/EncargadoCampus" || $_SERVER['REQUEST_URI'] ==  "/Admin/Administrador" || $_SERVER['REQUEST_URI'] ==  "/Admin/Carrera"  || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
                 @yield('body')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/create') !== false)
                 @yield('createBody')
