@@ -43,7 +43,6 @@ class RolesUsuarioTableSeeder extends DatabaseSeeder{
             'rol_id' => $id_docente->id,
         ));
 
-
         \DB::table('roles_usuarios')->insert(array(
             'usuario_rut' => $profesor->rut,
             'rol_id' => $id_estudiante->id,
