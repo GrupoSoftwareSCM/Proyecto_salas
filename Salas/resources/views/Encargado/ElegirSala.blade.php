@@ -27,17 +27,17 @@
                                     <div class="panel-body">
                           <div class="form-group">
                          {!! Form::label('dias','Lunes')!!}
-                         {!! Form::checkbox('dias[]',1,null,['class' => 'field'])!!}
+                         {!! Form::checkbox('dias[]',0,null,['class' => 'field'])!!}
                          {!! Form::label('dias','Martes')!!}
-                         {!! Form::checkbox('dias[]',2,null,['class' => 'field'])!!}
+                         {!! Form::checkbox('dias[]',1,null,['class' => 'field'])!!}
                          {!! Form::label('dias','Miercoles')!!}
-                         {!! Form::checkbox('dias[]',3,null,['class' => 'field'])!!}
+                         {!! Form::checkbox('dias[]',2,null,['class' => 'field'])!!}
                          {!! Form::label('dias','Jueves')!!}
-                         {!! Form::checkbox('dias[]',4,null,['class' => 'field'])!!}
+                         {!! Form::checkbox('dias[]',3,null,['class' => 'field'])!!}
                          {!! Form::label('dias','Viernes')!!}
-                         {!! Form::checkbox('dias[]',5,null,['class' => 'field'])!!}
+                         {!! Form::checkbox('dias[]',4,null,['class' => 'field'])!!}
                          {!! Form::label('dias','Sabado')!!}
-                         {!! Form::checkbox('dias[]',6,null,['class' => 'field'])!!}
+                         {!! Form::checkbox('dias[]',5,null,['class' => 'field'])!!}
                         
 
                          </div>  

@@ -11,6 +11,8 @@ use App\Models\Periodo;
 use App\Models\Horario;
 use Illuminate\Http\RedirectResponse;
 use Request;
+use Carbon\Carbon;
+
 
 class AsignarSalasController extends Controller {
 
@@ -53,18 +55,24 @@ class AsignarSalasController extends Controller {
 	 */
 	public function store()
 	{
-		$data= Request::only(['sala_id','periodo_id','curso_id','dias']); 	
-		dd($data);	
-	    
- 		dd($data->dias);			
-	    foreach ($dias as $dia) {
-	    		if($dia->lunes)
-	    		{
-	    			dd($dia);
-	    		}
-	    	}	
-        $horario = Horario::create($data);
-        $horario->save();
+		$data= Request::only(['sala_id','periodo_id','curso_id']);
+	    $dias=Request::get('dias');
+
+        $dato = Carbon::now(); // Fecha actual
+        $lunes= $dato->subDays($dato->dayOfWeek-1); // Lunes de la semana actual
+        
+
+        $fin= Carbon::createFromDate(2015,8,15); // TODO: Cambiame: el fin del semestre actual
+
+      
+	    foreach($dias as $dia) // Iterar por los dias del formulario (lunes = 0 ... sab = 5)
+	    {
+             for($dia=$lunes->copy()->addDays($dia);$dia<$fin;$dia=$dia->copy()->addWeek())
+             {
+             	$data['fecha'] = $dia;
+             	$horario= Horario::create($data);
+             }
+	    }
         return redirect('encar/asignar/modi');
 	}
 
