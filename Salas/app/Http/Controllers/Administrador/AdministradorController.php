@@ -2,8 +2,9 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Models\Rol_Usuario;
+use App\Models\Rol;
+use Request;
 
 class AdministradorController extends Controller {
 
@@ -14,7 +15,8 @@ class AdministradorController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $data = Rol::whereNombre('ADMINISTRADOR')->first();
+        dd($data->usuarios);
 	}
 
 	/**

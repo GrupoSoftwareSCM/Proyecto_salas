@@ -17,7 +17,7 @@ class Docente extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['rut','nombres','apellidos','departamento_id'];
+	protected $fillable = ['rut','nombres','apellidos','email','departamento_id'];
 
 	/*
 	|Para relacionar la tabla padre con la tabla hija usaremos la función:

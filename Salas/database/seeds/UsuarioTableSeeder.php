@@ -16,7 +16,7 @@ class UsuarioTableSeeder extends  DatabaseSeeder{
 
         $nombres = ['Oscar Eduardo', 'Jean Pierre patric','Sebastian'];
         $apellidos = ['Muñoz Bernales', 'Cid bustos','Salazar'];
-        //$email = ['munoz.bernales.oscar@gmail.com','Jeanpierre.cid@gmail.com'];
+        $email = ['munoz.bernales.oscar@gmail.com','Jeanpierre.cid@gmail.com','sebasalazar@gmail.com '];
         $rut = [17860032,18028419,15997886];
 
 
@@ -24,7 +24,7 @@ class UsuarioTableSeeder extends  DatabaseSeeder{
         for($i=0;$i<3;$i++){
             \DB::table('usuarios')->insert(array(
                 'rut' => $rut[$i],
-                //'email' => $email[$i],
+                'email' => $email[$i],
                 'nombres' => $nombres[$i],
                 'apellidos' => $apellidos[$i],
                 'created_at' => date("Y-m-d G:i:s"),
