@@ -47,17 +47,17 @@
                             <ul class="dropdown-menu">
                                 <li>{!!Html::linkRoute('Admin.Administrador.index','Administrador')!!}</li>
                                 <li>{!!Html::linkRoute('Admin.EncargadoCampus.index','Encargado')!!}</li>
-                                <li>{!!Html::linkRoute('Admin.Alumno.index','Estudiante')!!}</li>
+                                <li>{!!Html::linkRoute('Admin.Estudiante.index','Estudiante')!!}</li>
                                 <li>{!!Html::linkRoute('Admin.Docente.index','Docente')!!}</li>
                                 <li>{!!Html::linkRoute('Admin.Funcionario.index','Funcionario')!!}</li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        {{--<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Cambiar de perfil<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                {{--dd(Auth::user()->roles)--}}
+                                dd(Auth::user()->roles)
                                 @foreach(Auth::user()->roles as $perfiles)
                                     @if($perfiles->nombre == 'ADMINISTRADOR')
                                         <li>{!!Html::linkRoute('Admin.home.index','Administrador')!!}</li>
@@ -66,7 +66,7 @@
                                     @endif
                                 @endforeach
                             </ul>
-                        </li>
+                        </li>--}}
                     </ul>
                 </div>
 
@@ -75,7 +75,7 @@
         </div>
         <div class="col-md-9">
             {{$_SERVER['REQUEST_URI']}}
-            @if($_SERVER['REQUEST_URI'] ==  "/Admin/EncargadoCampus" || $_SERVER['REQUEST_URI'] ==  "/Admin/Administrador" || $_SERVER['REQUEST_URI'] ==  "/Admin/Carrera"  || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
+            @if($_SERVER['REQUEST_URI'] ==  "/Admin/Estudiante" || $_SERVER['REQUEST_URI'] ==  "/Admin/EncargadoCampus" || $_SERVER['REQUEST_URI'] ==  "/Admin/Administrador" || $_SERVER['REQUEST_URI'] ==  "/Admin/Carrera"  || $_SERVER['REQUEST_URI'] == "/Admin/Salas" || $_SERVER['REQUEST_URI'] == "/Admin/TpoSala" || $_SERVER['REQUEST_URI'] == "/Admin/Escuela" || $_SERVER['REQUEST_URI'] == "/Admin/Depto" || $_SERVER['REQUEST_URI'] == "/Admin/Campus" || $_SERVER['REQUEST_URI'] == "/Admin/Facultad")
                 @yield('body')
             @elseif(strpos($_SERVER['REQUEST_URI'],'/create') !== false)
                 @yield('createBody')

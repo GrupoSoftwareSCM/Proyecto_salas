@@ -62,7 +62,7 @@ Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Admin
 
     Route::resource('Administrador','AdministradorController');
     Route::resource('EncargadoCampus','EncargadoCampusController');
-    Route::resource('Alumno','AlumnoController');
+    Route::resource('Estudiante','EstudianteController');
     Route::resource('Docente','DocenteController');
     Route::resource('Funcionario','FuncionarioController');
 });
