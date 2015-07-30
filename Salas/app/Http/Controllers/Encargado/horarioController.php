@@ -2,10 +2,13 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Horario;
+//use Illuminate\Http\Request;
+use App\Models\Campus;
+use App\Models\Periodo;
+use Request;
 
-use Illuminate\Http\Request;
-
-class AsignaturasCursadasController extends Controller {
+class horarioController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +17,10 @@ class AsignaturasCursadasController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$horario=Horario::paginate();
+		$campus=Campus::lists('nombre','id');
+		$periodo=Periodo::lists('bloque','id');
+         return view('Encargado.moficHorario',compact('horario','campus','periodo'));
 	}
 
 	/**
@@ -34,7 +40,7 @@ class AsignaturasCursadasController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		dd($datos=Request::only(['campus','fecha','periodo']));
 	}
 
 	/**
@@ -45,7 +51,7 @@ class AsignaturasCursadasController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		
 	}
 
 	/**

@@ -30,6 +30,9 @@
                     <ul class="nav nav-sidebar">
                         <li>{!!Html::linkRoute('encar.doce.modi.index','Docente')!!}</li>
                     </ul>
+                     <ul class="nav nav-sidebar">
+                        <li>{!!Html::linkRoute('encar.hora.modi.index','Horario')!!}</li>
+                    </ul>
                 </div>
             </div>
 
@@ -54,7 +57,9 @@
          @if($_SERVER['REQUEST_URI'] == "/encar/doce/modi")
                 @yield('content7')
          @endif
-
+         @if($_SERVER['REQUEST_URI'] == "/encar/hora/modi")
+                @yield('content9')
+         @endif
         </div>
     </div>
 </div>

@@ -38,11 +38,6 @@ class AsignarSalasController extends Controller {
 	 *
 	 * @return Response
 	 */
-	/*public function getSala($cur,$cant){
-     dd($cur);
-
-
-	}*/
 	public function create()
 	{
 		//	
@@ -57,19 +52,15 @@ class AsignarSalasController extends Controller {
 	{
 		$data= Request::only(['sala_id','periodo_id','curso_id']);
 	    $dias=Request::get('dias');
-
         $dato = Carbon::now(); // Fecha actual
         $lunes= $dato->subDays($dato->dayOfWeek-1); // Lunes de la semana actual
-        
-
-        $fin= Carbon::createFromDate(2015,8,15); // TODO: Cambiame: el fin del semestre actual
-
-      
+        $fin= Request::get('fecha'); // TODO: Cambiame: el fin del semestre actual
 	    foreach($dias as $dia) // Iterar por los dias del formulario (lunes = 0 ... sab = 5)
 	    {
-             for($dia=$lunes->copy()->addDays($dia);$dia<$fin;$dia=$dia->copy()->addWeek())
+             for($dia=$lunes->copy()->addDays($dia);$dia<$fin;$dia=$dia->copy()->addWeek()) //desde el primer dia de la semana, hasta el fin de semestre correspondiente, ahumentando semanalmente
              {
              	$data['fecha'] = $dia;
+             	//VALIDAR PARA NO REPETIR LA SALA 
              	$horario= Horario::create($data);
              }
 	    }
@@ -90,10 +81,8 @@ class AsignarSalasController extends Controller {
 	    $departamento=$docente->departamento;
 	    $facultad=$departamento->facultad;
 	    $campus=$facultad->campus;
-	   // $sala=$campus->sala;
 	    $salass=Sala::mostrar_salas($campus->id);
-	    $sa=Sala::lists('nombre','id');
-	    
+	    $sa=Sala::lists('nombre','id');  
 		$cantidad_alumno =Asignatura_Cursada::count_alumnos($cursoo->id);
 		$periodos=Periodo::lists('bloque','id');
 		
@@ -120,7 +109,14 @@ class AsignarSalasController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$cursos=Curso::find($id);
+		
+		$horario=$cursos->docente;
+		dd($horario);
+	 	$asignaturas=Asignatura::lists('nombre','id');
+		$docentes=Docente::lists('nombres','id');
+       
+       return view('Encargado.editarCurs', compact('cursos','asignaturas','docentes'));
 	}
 
 	/**
