@@ -8,7 +8,10 @@
                                 class="dataTables_wrapper form-inline dt-bootstrap no-footer"
                   <div class="panel-heading"><h1>SALAS</h1></div>
                                     <div class="panel-body">
-                                    <p>
+                                      <p>
+                                      <a class="btn btn-info" href="modi/create" role="button">
+
+                                      Nueva sala</a>
                                     </p>
                                     <p>Hay {{ $salas->total() }} Registros</p>
                                         <table class="table table-bordered">

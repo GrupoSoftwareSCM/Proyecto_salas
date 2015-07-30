@@ -23,7 +23,7 @@ class RedireccionMiddleware {
             return redirect()->route('encar.home.index');
         }
         elseif($user->roles()->whereNombre('ESTUDIANTE')->first()){
-            //return redirect()->route('');
+            return redirect()->route('estu.home.index');
         }
         elseif($user->roles()->whereNombre('DOCENTE')->first()){
             //return redirect()->route('');

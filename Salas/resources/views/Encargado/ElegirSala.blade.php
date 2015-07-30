@@ -67,7 +67,7 @@
                          {!! Form::hidden('curso_id', $cursoo->id)!!}
                           
                          </div>
-                         <div>  <button type="submit" class="btn btn-info">Crear</button></div>
+                         <div>  <button type="submit" class="btn btn-info">Asignar</button></div>
                                       
                                     </div>
                                     </div>
