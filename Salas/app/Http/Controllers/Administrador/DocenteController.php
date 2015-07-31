@@ -88,7 +88,7 @@ class DocenteController extends Controller {
 	{
 		$docente = Docente::find($id);
         if($docente){
-
+                //
         }
         else{
             abort(404,'id no encontrado');
