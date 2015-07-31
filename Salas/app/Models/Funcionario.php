@@ -17,7 +17,7 @@ class Funcionario extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['rut','nombres','apellidos','departamento_id'];
+	protected $fillable = ['rut','nombres','apellidos','departamento_id','email'];
 
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:
@@ -26,7 +26,7 @@ class Funcionario extends Model {
     */
 	public function departamento()
 	{
-		return $this->belongsTo('app\Models\Departamento','departamento_id','id');
+		return $this->belongsTo('App\Models\Departamento','departamento_id','id');
 	}
 
 }

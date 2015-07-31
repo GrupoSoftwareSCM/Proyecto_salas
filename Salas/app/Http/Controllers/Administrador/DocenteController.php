@@ -9,7 +9,7 @@ use App\Models\Departamento;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Session;
 
-use Illuminate\Http\Request;
+use Request;
 
 class DocenteController extends Controller {
 
@@ -88,7 +88,8 @@ class DocenteController extends Controller {
 	{
 		$docente = Docente::find($id);
         if($docente){
-                //
+            $departamento = Departamento::lists('nombre','id');
+            return view('Administrador.editarAdm')->with('docente',$docente)->with('depto',$departamento);
         }
         else{
             abort(404,'id no encontrado');
@@ -103,7 +104,22 @@ class DocenteController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$docente = Docente::find($id);
+        if($docente){
+            $data = Request::only(['nombres','apellidos','email','departamentos']);
+            $docente->fill([
+                'nombres' => $data['nombres'],
+                'apellidos' => $data['apellidos'],
+                'email' => $data['email'],
+                'departamento_id' => $data['departamentos'],
+            ]);
+            $docente->save();
+            Session::flash('message', 'Usuario '.$data['nombres'].' editado correctamente');
+            return redirect()->route('Admin.Docente.index');
+        }
+        else{
+            abort(404,'id no encontrada');
+        }
 	}
 
 	/**
@@ -114,7 +130,22 @@ class DocenteController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$docente = Docente::find($id);
+        if($docente){
+            $usuario = Usuario::find($docente->rut);
+            if($usuario){
+                $usuario->delete();
+                $docente->delete();
+                Session::flash('message', 'Usuario '.$docente->nombres.' eliminado correctamente');
+                return redirect()->route('Admin.Docente.index');
+            }
+            else{
+                abort(404,'id no encontrado');
+            }
+        }
+        else {
+            abort(404,'id no encontrado');
+        }
 	}
 
 }
