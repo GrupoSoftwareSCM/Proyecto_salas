@@ -35,6 +35,11 @@ Route::controller('files','Excel\FilesController',[
     'getCarrera'                => 'files.Carrera',
     'getCarrerall'              => 'files.Carrerall',
     'postCarrerafiles'          => 'files.Carrera.up',
+    'postSalafilesEncar'        => 'files.SalasEncar.up',
+    'postAsigfilesEncar'        => 'files.AsigEncar.up',
+    'postEstufilesEncar'        => 'files.EstuEncar.up',
+    'postDocefileEncar'         => 'files.DoceEncar.up',
+    'postCursfileEncar'         => 'files.CursEncar.up'
 
 ]);
 

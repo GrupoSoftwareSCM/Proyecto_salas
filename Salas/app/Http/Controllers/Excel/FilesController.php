@@ -689,4 +689,42 @@ class FilesController extends Controller{
 
 
     }
+public function postSalafilesEncar(Request $request){
+
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $key => $value)
+            {  
+                if(!Sala::whereNombre($value->nombre)->first()){
+                    $var = new Sala();
+                    $var->fill([
+                        'nombre'        => $value->nombre,
+                        'capacidad'     => $value->capacidad,
+                        'descripcion'   => $value->descripcion,
+                        'campus_id'     => Campus::whereNombre($value->campus_pertenciente)->first()->id,
+                        'tipo_sala_id'  => Tipo_Sala::whereNombre($value->tipo_sala)->first()->id,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('encar.salas.modi.index');
+
+}
+
 }
