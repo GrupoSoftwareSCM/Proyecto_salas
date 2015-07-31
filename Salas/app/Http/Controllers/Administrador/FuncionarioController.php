@@ -2,8 +2,14 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Funcionario;
+use App\Models\Departamento;
 
-use Illuminate\Http\Request;
+
+
+use Illuminate\Support\Facades\Session;
+
+use Request;
 
 class FuncionarioController extends Controller {
 
@@ -14,7 +20,8 @@ class FuncionarioController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$funcionario = Funcionario::paginate();
+        return view('Administrador.bodyAdm')->with('Funcionarios',$funcionario);
 	}
 
 	/**
@@ -24,7 +31,8 @@ class FuncionarioController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        $departamento = Departamento::lists('nombre','id');
+        return view('Administrador.crearAdm')->with('depto',$departamento);
 	}
 
 	/**
@@ -32,9 +40,19 @@ class FuncionarioController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\FuncionarioRequest $request)
 	{
-		//
+		$data = $request->only(['nombres','apellidos','rut','email','departamentos']);
+        Funcionario::create([
+            'nombres'           => $data['nombres'],
+            'apellidos'         => $data['apellidos'],
+            'rut'               => $data['rut'],
+            'email'             => $data['email'],
+            'departamento_id'   => (integer)$data['departamentos'],
+        ]);
+
+        Session::flash('message', 'Funcionario '.$data['nombres'].'Creado correctamente');
+        return redirect()->route('Admin.Funcionario.index');
 	}
 
 	/**
@@ -56,7 +74,14 @@ class FuncionarioController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$funcionario = Funcionario::find($id);
+        if($funcionario){
+            $departamento = Departamento::lists('nombre','id');
+            return view('Administrador.editarAdm')->with('funcionario',$funcionario)->with('depto',$departamento);
+        }
+        else{
+            abort(404,'id no encontrado');
+        }
 	}
 
 	/**
@@ -67,7 +92,23 @@ class FuncionarioController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $funcionario = Funcionario::find($id);
+        if($funcionario){
+            $data = Request::only(['nombres','apellidos','email','departamentos']);
+            //dd($data);
+            $funcionario->fill([
+                'nombres' => $data['nombres'],
+                'apellidos' => $data['apellidos'],
+                'email' => $data['email'],
+                'departamento_id' => (integer)$data['departamentos'],
+            ]);
+            $funcionario->save();
+            Session::flash('message', 'Funcionario '.$data['nombres'].' Editado correctamente');
+            return redirect()->route('Admin.Funcionario.index');
+        }
+        else{
+            abort(404,'id no encontrado');
+        }
 	}
 
 	/**
@@ -78,7 +119,15 @@ class FuncionarioController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$funcionario = Funcionario::find($id);
+        if($funcionario){
+            Session::flash('message', 'Funcionario '.$funcionario->nombres.' Borrado correctamente');
+            $funcionario->delete();
+            return redirect()->route('Admin.Funcionario.index');
+        }
+        else{
+            abort(404,'id no encontrado');
+        }
 	}
 
 }

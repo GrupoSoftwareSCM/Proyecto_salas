@@ -84,6 +84,14 @@ class EstudianteController extends Controller {
 	 */
 	public function edit($id)
 	{
+        $estudiante = Estudiante::find($id);
+        if($estudiante){
+            $carrera = Carrera::lists('nombre','id');
+            return view('Administrador.editarAdm')->with('estudiante',$estudiante)->with('Carreras', $carrera);
+        }
+        else{
+            abort(404,'Estudiante no encontrado');
+        }
 
 	}
 
@@ -95,7 +103,23 @@ class EstudianteController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $estudiante = Estudiante::find($id);
+        if($estudiante){
+            //NO VOY A TOCAR EL RUT
+            $datos = Request::only(['nombres','apellidos','email','carrera']);
+            $estudiante->fill([
+                'nombres' => $datos['nombres'],
+                'apellidos' => $datos['apellidos'],
+                'email' => $datos['email'],
+                'carrera_id' => $datos['carrera'],
+            ]);
+            $estudiante->save();
+            Session::flash('message', 'Usuario Editado correctamente');
+            return redirect()->route('Admin.Estudiante.index');
+        }
+        else{
+            abort(404,'Estudiante no encontrado');
+        }
 	}
 
 	/**
@@ -106,7 +130,12 @@ class EstudianteController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$estudiante = Estudiante::find($id);
+        $usuario = Usuario::find($estudiante->rut);
+        $usuario->delete();
+        $estudiante->delete();
+        Session::flash('message', 'Usuario Eliminado correctamente');
+        return redirect()->route('Admin.Estudiante.index');
 	}
 
 }
