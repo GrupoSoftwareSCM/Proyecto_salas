@@ -1,6 +1,7 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class DocenteMiddleware {
 
@@ -15,8 +16,12 @@ class DocenteMiddleware {
 	{
         $user = Auth::user();
         if($user){
-            if($user->roles()->get()[0]->nombre != 'DOCENTE')
-                return redirect()->route('auth.login');
+            foreach($user->roles as $perfil){
+                if($perfil->nombre == 'DOCENTE'){
+                    return $next($request);
+                }
+            }
+            return redirect()->route('auth.login');
         }
         else{
             return redirect()->route('auth.login');

@@ -52,21 +52,23 @@
                                 <li>{!!Html::linkRoute('Admin.Funcionario.index','Funcionario')!!}</li>
                             </ul>
                         </li>
-                        {{--<li class="dropdown">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Cambiar de perfil<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                dd(Auth::user()->roles)
+                                {{--dd(Auth::user()->roles)--}}
                                 @foreach(Auth::user()->roles as $perfiles)
-                                    @if($perfiles->nombre == 'ADMINISTRADOR')
-                                        <li>{!!Html::linkRoute('Admin.home.index','Administrador')!!}</li>
-                                    @elseif($perfiles->nombre == 'ENCARGADO_CAMPUS')
+                                    @if($perfiles->nombre == 'ENCARGADO_CAMPUS')
                                         <li>{!!Html::linkRoute('encar.home.index','Encargado Campus')!!}</li>
+                                    @elseif($perfiles->nombre == 'DOCENTE')
+                                        <li>{!!Html::linkRoute('Docente.home.index','Docente')!!}</li>
+                                    @elseif($perfiles->nombre == 'ESTUDIANTE')
+                                        <li>{!!Html::linkRoute('estu.home.index','Estudiante')!!}</li>
                                     @endif
                                 @endforeach
                             </ul>
-                        </li>--}}
+                        </li>
                     </ul>
                 </div>
 

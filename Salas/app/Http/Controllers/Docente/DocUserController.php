@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Usuario;
 
 use Illuminate\Http\Request;
 
@@ -15,11 +16,6 @@ class DocUserController extends Controller {
 	public function index()
 	{
 		return view('Docente.homeDoc');
-	}
-
-	public function clases ()
-	{
-		return view('Docente.consultarDoc');	
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -71,7 +67,17 @@ class DocUserController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $usuario = Usuario::find($id);
+        if($usuario){
+            $datos = Request::only('nombres','apellidos','email');
+            $usuario->fill($datos);
+            $usuario->save();
+
+            return redirect()->route('Docente.home.index');
+        }
+        else{
+            abort(404);
+        }
 	}
 
 	/**

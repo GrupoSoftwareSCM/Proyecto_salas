@@ -72,6 +72,13 @@ Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Admin
     Route::resource('Funcionario','FuncionarioController');
 });
 
+Route::group(['middleware' =>'docente','prefix' =>  'Docente', 'namespace' => 'Docente'], function(){
+    Route::resource('home','DocUserController');
+    Route::controller('Asignatura', 'ConsultaSalasController',[
+        'getShowasignatura' => 'Docente.Asignatura.show',
+    ]);
+});
+
 
 //PROBANDO RESOURCE PARA ASIGNATURAS
 
