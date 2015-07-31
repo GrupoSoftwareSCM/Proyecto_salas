@@ -19,11 +19,11 @@
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul></div>
-                    @elseif(Session::has('message'))
-                        <div class="alert alert-danger">
-                            <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                    @elseif(Session::has('alert'))
+                        <div class="alert alert-warning">
+                            <strong>OOpps!</strong><br><br>
                             <ul>
-                                <li>{{ Session::get('message') }}</li>
+                                <li>{{ Session::get('alert') }}</li>
                             </ul>
                         </div>
                     @endif
@@ -85,6 +85,13 @@
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
+                        </ul>
+                    </div>
+                @elseif(Session::has('alert'))
+                    <div class="alert alert-warning">
+                        <strong>OOpps!</strong><br><br>
+                        <ul>
+                            <li>{{ Session::get('alert') }}</li>
                         </ul>
                     </div>
                 @endif
@@ -271,56 +278,6 @@
             </div>
         </div>
 
-    @elseif($_SERVER['REQUEST_URI'] == "/Admin/Roluser/create")
-        <div class="panel panel-success">
-            <div class="panel-body">
-                Roles
-                <a class="glyphicon glyphicon-menu-right"></a>
-                Asignar
-            </div>
-            <div class="panel-footer">
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <div class="row">
-                    <div class="col-md-6">
-                        {!!Form::open(['route' => 'Admin.Roluser.store','method' => 'POST'])!!}
-                        <div class="form-group">
-
-                            {!!Form::label('nombres','Rut',['class' => 'col-md-6'])!!}
-                            {!!Form::select('usuario_rut',$user,'',['class' => 'col-md-6'])!!}
-
-                            {!!Form::label('rol_id','Seleccione rol',['class' => 'col-md-6'])!!}
-                            {!!Form::select('rol_id',$rol,'',['class' => 'col-md-6'])!!}
-
-                        </div>
-                        {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
-                        {!!Form::close()!!}
-
-                    </div>
-
-                    <div class="col-md-6">
-                        {!!Form::open(['route' => 'files.Roluser.up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
-                        <div class="form-group">
-                            {!!Form::label('file','Adjuntar archivo',['class' => 'col-md-6'])!!}
-                            <br/>
-                            <input type="file" name="file">
-
-                        </div>
-                        {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
-                        {!!Form::close()!!}
-                    </div>
-                </div>
-            </div>
-        </div>
-
     @elseif($_SERVER['REQUEST_URI'] == "/Admin/Salas/create")
         <div class="panel panel-success">
             <div class="panel-body">
@@ -381,60 +338,6 @@
             </div>
         </div>
 
-    @elseif($_SERVER['REQUEST_URI'] == "/Admin/User/create")
-        <div class="panel panel-success">
-            <div class="panel-body">
-                Salas
-                <a class="glyphicon glyphicon-menu-right"></a>
-                Crear
-            </div>
-            <div class="panel-footer">
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <div class="row">
-                    <div class="col-md-6">
-                        {!!Form::open(['route' => 'Admin.User.store','method' => 'POST'])!!}
-                        <div class="form-group">
-
-                            {!!Form::label('nombres','Nombres',['class' => 'col-md-6'])!!}
-                            {!!Form::text('nombres','',['class' => 'col-md-6'])!!}
-
-                            {!!Form::label('apellidos','Apellidos',['class' => 'col-md-6'])!!}
-                            {!!Form::text('apellidos','',['class' => 'col-md-6'])!!}
-
-                            {!!Form::label('rut','Rut',['class' => 'col-md-6'])!!}
-                            {!!Form::number('rut','',['class' => 'col-md-6'])!!}
-
-                        </div>
-                        {!!Form::button('Crear',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
-                        {!!Form::close()!!}
-
-
-                    </div>
-
-                    <div class="col-md-6">
-                        {!!Form::open(['route' => 'files.Usuario.up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
-                        <div class="form-group">
-                            {!!Form::label('file','Adjuntar archivo',['class' => 'col-md-6'])!!}
-                            <br/>
-                            <input type="file" name="file">
-
-                        </div>
-                        {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
-                        {!!Form::close()!!}
-                    </div>
-                </div>
-            </div>
-        </div>
-
     @elseif($_SERVER['REQUEST_URI'] == "/Admin/Carrera/create")
         <div class="panel panel-success">
             <div class="panel-body">
@@ -450,6 +353,13 @@
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
+                        </ul>
+                    </div>
+                @elseif(Session::has('alert'))
+                    <div class="alert alert-warning">
+                        <strong>OOpps!</strong><br><br>
+                        <ul>
+                            <li>{{ Session::get('alert') }}</li>
                         </ul>
                     </div>
                 @endif
@@ -522,7 +432,7 @@
                             {!!Form::text('apellidos','',['class' => 'col-md-6'])!!}
 
                             {!!Form::label('rut','RUT',['class' => 'col-md-6'])!!}
-                            {!!Form::number('rut','',['class' => 'col-md-6'])!!}
+                            {!!Form::number('rut','',['class' => 'col-md-6','min'=> '1000000','max'=> '99999999', 'required'=>'required'])!!}
 
                             {!!Form::label('email','E-MAIL',['class' => 'col-md-6'])!!}
                             {!!Form::email('email','',['class' => 'col-md-6'])!!}
@@ -579,7 +489,7 @@
                             {!!Form::text('apellidos','',['class' => 'col-md-6'])!!}
 
                             {!!Form::label('rut','RUT',['class' => 'col-md-6'])!!}
-                            {!!Form::number('rut','',['class' => 'col-md-6'])!!}
+                            {!!Form::number('rut','',['class' => 'col-md-6','min'=> '1000000','max'=> '99999999', 'required'=>'required'])!!}
 
                             {!!Form::label('email','E-MAIL',['class' => 'col-md-6'])!!}
                             {!!Form::email('email','',['class' => 'col-md-6'])!!}
@@ -636,7 +546,7 @@
                             {!!Form::text('apellidos','',['class' => 'col-md-6'])!!}
 
                             {!!Form::label('rut','RUT',['class' => 'col-md-6'])!!}
-                            {!!Form::number('rut','',['class' => 'col-md-6'])!!}
+                            {!!Form::number('rut','',['class' => 'col-md-6','min'=> '1000000','max'=> '99999999', 'required'=>'required'])!!}
 
                             {!!Form::label('email','E-MAIL',['class' => 'col-md-6'])!!}
                             {!!Form::email('email','',['class' => 'col-md-6'])!!}
@@ -696,7 +606,7 @@
                             {!!Form::text('apellidos','',['class' => 'col-md-6'])!!}
 
                             {!!Form::label('rut','RUT',['class' => 'col-md-6'])!!}
-                            {!!Form::number('rut','',['class' => 'col-md-6'])!!}
+                            {!!Form::number('rut','',['class' => 'col-md-6','min'=> '1000000','max'=> '99999999', 'required'=>'required'])!!}
 
                             {!!Form::label('email','E-MAIL',['class' => 'col-md-6'])!!}
                             {!!Form::email('email','',['class' => 'col-md-6'])!!}

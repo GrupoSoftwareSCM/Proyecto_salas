@@ -39,12 +39,21 @@ class EncargadoCampusController extends Controller {
 	{
         $data = $request->only(['nombres','apellidos','rut','email']);
         $id_encargado = Rol::whereNombre('ENCARGADO_CAMPUS')->first()->id;
-        Usuario::create($data);
         $rut_usuario = Usuario::where('nombres',$data['nombres'])->first()->rut;
-        Rol_Usuario::create([
-            'rol_id' => $id_encargado,
-            'usuario_rut' => $rut_usuario
-        ]);
+
+        if(count(Usuario::where('rut',$data['rut'])->first()) == 0)
+            Usuario::create($data);
+
+        if(count(Usuario::where('rut',$data['rut'])->first()->roles()->whereNombre('ENCARGADO_CAMPUS')->first())== 0){
+            Rol_Usuario::create([
+                'rol_id' => $id_encargado,
+                'usuario_rut' => $rut_usuario
+            ]);
+        }
+        else{
+            \Session::flash('message', 'Usuario actualmente creado');
+            return redirect()->route('Admin.EncargadoCampus.index');
+        }
 
         \Session::flash('message', 'Usuario Creado correctamente');
         return redirect()->route('Admin.EncargadoCampus.index');

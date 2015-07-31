@@ -41,7 +41,11 @@ class AdministradorController extends Controller {
 	{
 		$data = $request->only(['nombres','apellidos','rut','email']);
         $id_administrador = Rol::whereNombre('ADMINISTRADOR')->first()->id;
-        Usuario::create($data);
+
+        if(count(Usuario::where('nombres',$data['nombres'])->first()) == 0)
+            Usuario::create($data);
+
+
         $rut_usuario = Usuario::where('nombres',$data['nombres'])->first()->rut;
         Rol_Usuario::create([
             'rol_id' => $id_administrador,

@@ -45,24 +45,34 @@ class DocenteController extends Controller {
         $data = $request->only('nombres','apellidos','email','departamentos','rut');
         $id_departamento = Departamento::where('id',$request->only(['departamentos']))->first()->id;
         //dd($data);
-        Usuario::create([
-            'rut' => (integer)$data['rut'],
-            'nombres' => $data['nombres'],
-            'apellidos' => $data['apellidos'],
-            'email' => $data['email'],
-        ]);
-        Rol_Usuario::create([
-            'rol_id' => $id_departamento,
-            'usuario_rut' => (integer)$data['rut'],
-        ]);
 
-        Docente::create([
-            'nombres' => $data['nombres'],
-            'apellidos' => $data['apellidos'],
-            'email' => $data['email'],
-            'rut' => (integer)$data['rut'],
-            'departamento_id' => (integer)$data['departamentos']
-        ]);
+        if(count(Usuario::where('rut',$data['rut'])->first()) == 0){
+                Usuario::create([
+                    'rut' => (integer)$data['rut'],
+                    'nombres' => $data['nombres'],
+                    'apellidos' => $data['apellidos'],
+                    'email' => $data['email'],
+                ]);
+        }
+        elseif(count(Usuario::where('rut',$data['rut'])->first()->roles()->whereNombre('DOCENTE')->first())== 0){
+            Rol_Usuario::create([
+                'rol_id' => $id_departamento,
+                'usuario_rut' => (integer)$data['rut'],
+            ]);
+        }
+        elseif(count(Docente::where('rut',$data['rut'])->first()) == 0){
+            Docente::create([
+                'nombres' => $data['nombres'],
+                'apellidos' => $data['apellidos'],
+                'email' => $data['email'],
+                'rut' => (integer)$data['rut'],
+                'departamento_id' => (integer)$data['departamentos']
+            ]);
+        }
+        else{
+            Session::flash('message', 'Usuario actualmente creado');
+            return redirect()->route('Admin.Docente.index');
+        }
         Session::flash('message', 'Usuario Creado correctamente');
         return redirect()->route('Admin.Docente.index');
 	}

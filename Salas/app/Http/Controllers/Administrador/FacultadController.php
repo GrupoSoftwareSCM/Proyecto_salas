@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Facultad;
 use App\Models\Campus;
 use Request;
+use Illuminate\Support\Facades\Session;
 //use Illuminate\Http\Request as Request;
 
 class FacultadController extends Controller {
@@ -39,10 +40,15 @@ class FacultadController extends Controller {
 	 */
 	public function store(Requests\FacultadRequest $request)
 	{
-        $datos_nuevo_facultad = $request->only(['nombre','descripcion','campus_id']);
-        Facultad::create($datos_nuevo_facultad);
-
-        return redirect('/Admin/Facultad');
+        $data = $request->only(['nombre','descripcion','campus_id']);
+        if(count(Facultad::whereNombre($data['nombre'])->first())== 0)
+            Facultad::create($data);
+        else{
+            Session::flash('alert', $data['nombre'].' Ya existente en la base de datos');
+            return redirect()->route('Admin.Facultad.create');
+        }
+        Session::flash('message', 'Facultad '.$data['nombre'].' Creada correctamente');
+        return redirect()->route('Admin.Facultad.index');
 	}
 
 	/**
@@ -79,11 +85,11 @@ class FacultadController extends Controller {
 	{
         $Facultad = Facultad::find($id);
         if($Facultad){
-            $datos_edit_campus = Request::only(['nombre','descripcion','campus_id']);
-            $Facultad->fill($datos_edit_campus);
+            $data = Request::only(['nombre','descripcion','campus_id']);
+            $Facultad->fill($data);
             $Facultad->save();
-
-            return redirect()->route('Admin.Facultad.index')->with('mensaje','Facultad editada correctamente');
+            Session::flash('message', 'Facultad '.$data['nombre'].' Creada correctamente');
+            return redirect()->route('Admin.Facultad.index');
 
         }
         else{
@@ -100,8 +106,15 @@ class FacultadController extends Controller {
 	public function destroy($id)
 	{
         $Facultad = Facultad::find($id);
-        $Facultad->delete();
-        return redirect()->route('Admin.Facultad.index')->with('mensaje','Facultad eliminada correctamente');
+        if($Facultad){
+            Session::flash('destroy', 'Facultad '.$Facultad->nombre.' Eliminada correctamente');
+            $Facultad->delete();
+            return redirect()->route('Admin.Facultad.index');
+        }
+        else{
+            abort(404,'id no encontrado');
+        }
+
 	}
 
 }

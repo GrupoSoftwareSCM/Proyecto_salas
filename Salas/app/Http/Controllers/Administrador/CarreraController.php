@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Carrera;
 use App\Models\Escuela;
+use Illuminate\Support\Facades\Session;
 use Request;
 
 class CarreraController extends Controller {
@@ -40,16 +41,19 @@ class CarreraController extends Controller {
 	{
 		//dd($request->all());
         $data = $request->only(['nombre','codigo','escuela','descripcion']);
-        //dd($data);
-        $carrera = new Carrera();
-        $carrera->fill([
-           'nombre'         => $data['nombre'],
-            'codigo'        => $data['codigo'],
-            'escuela_id'    => $data['escuela'],
-            'descripcion'   => $data['descripcion']
-        ]);
-        $carrera->save();
-
+        if(count(Carrera::whereNombre($data['nombre'])->first()) == 0){
+            Carrera::create([
+                'nombre'         => $data['nombre'],
+                'codigo'        => $data['codigo'],
+                'escuela_id'    => $data['escuela'],
+                'descripcion'   => $data['descripcion']
+            ]);
+        }
+        else{
+            Session::flash('alert', $data['nombre'].' Ya existente en la base de datos');
+            return redirect()->route('Admin.Carrera.create');
+        }
+        Session::flash('message', 'Carrera '.$data['nombre'].' Creada correctamente');
         return redirect()->route('Admin.Carrera.index');
 
 	}
@@ -98,6 +102,7 @@ class CarreraController extends Controller {
                 'descripcion'   => $data['descripcion']
             ]);
             $carrera->save();
+            Session::flash('message', 'Carrera '.$data['nombre'].' Editada correctamente');
             return redirect()->route('Admin.Carrera.index');
         }
 	}
@@ -112,8 +117,12 @@ class CarreraController extends Controller {
 	{
 		$carrera = Carrera::find($id);
         if($carrera){
+            Session::flash('destroy', 'Carrera '.$carrera->nombre.' Eliminada correctamente');
             $carrera->delete();
             return redirect()->route('Admin.Carrera.index');
+        }
+        else{
+            abort(404,'id no encontrado');
         }
 	}
 

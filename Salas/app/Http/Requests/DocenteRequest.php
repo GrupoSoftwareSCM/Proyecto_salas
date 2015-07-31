@@ -33,7 +33,7 @@ class DocenteRequest extends Request {
                 return [
                     'nombres' => 'required|max:25|alpha_space',
                     'apellidos' => 'required|max:25|alpha_space',
-                    'rut' => 'required|numeric|max:8|max:7',
+                    'rut' => 'required|numeric',
                     'email' => 'required|email',
                     'departamentos' => 'required'
                 ];
@@ -43,7 +43,7 @@ class DocenteRequest extends Request {
                 return [
                     'nombres' => 'required|max:25|alpha_space',
                     'apellidos' => 'required|max:25|alpha_space',
-                    'rut' => 'required|numeric|max:8|max:7',
+                    'rut' => 'required|numeric',
                     'email' => 'required|email',
                     'departamentos' => 'required'
                 ];

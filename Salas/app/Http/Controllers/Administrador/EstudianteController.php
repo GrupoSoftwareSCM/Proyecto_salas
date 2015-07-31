@@ -43,23 +43,31 @@ class EstudianteController extends Controller {
 	public function store(Requests\EstudianteRequest $request)
 	{
 		$data = $request->only(['nombres','apellidos','rut','email']);
-        Usuario::create($data);
-
         $estudiante = $request->only(['nombres','apellidos','rut','email','carrera']);
-        Estudiante::create([
-            'nombres' => $estudiante['nombres'],
-            'apellidos' => $estudiante['apellidos'],
-            'rut' => (integer)$estudiante['rut'],
-            'email' => $estudiante['email'],
-            'carrera_id' => (integer)$estudiante['carrera']
-        ]);
-
         $id_estudiante = Rol::whereNombre('ESTUDIANTE')->first()->id;
-        Rol_Usuario::create([
-            'usuario_rut' => $data['rut'],
-            'rol_id' => $id_estudiante
-        ]);
 
+        if(count(Usuario::where('rut',$data['rut'])->first()) == 0)
+            Usuario::create($data);
+
+        elseif(count(Usuario::where('rut',$data['rut'])->first()->roles()->whereNombre('ESTUDIANTE')->first())== 0){
+            Rol_Usuario::create([
+                'usuario_rut' => $data['rut'],
+                'rol_id' => $id_estudiante
+            ]);
+        }
+        elseif(count(Estudiante::where('rut',$estudiante['rut'])->first())== 0){
+            Estudiante::create([
+                'nombres' => $estudiante['nombres'],
+                'apellidos' => $estudiante['apellidos'],
+                'rut' => (integer)$estudiante['rut'],
+                'email' => $estudiante['email'],
+                'carrera_id' => (integer)$estudiante['carrera']
+            ]);
+        }
+        else{
+            Session::flash('message', 'Usuario actualmente creado');
+            return redirect()->route('Admin.Estudiante.index');
+        }
         Session::flash('message', 'Usuario Creado correctamente');
         return redirect()->route('Admin.Estudiante.index');
 

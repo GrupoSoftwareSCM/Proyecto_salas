@@ -52,7 +52,7 @@ class CampusController extends Controller {
         $datos= $request->only(['nombre','direccion','latitud','longitud','descripcion','encargado']);
         //$error_bd = array();
         if(count(Campus::whereNombre($datos['nombre'])->first()) > 0){
-            Session::flash('message', 'Nombre de campus ya registrado en la base de datos');
+            Session::flash('alert', 'Nombre de campus ya registrado en la base de datos');
             //return view('Administrador.crearAdm');
             return redirect()->route('Admin.Campus.create');
         }
@@ -108,8 +108,8 @@ class CampusController extends Controller {
             $datos_edit_campus = Request::only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
             $Campus->fill($datos_edit_campus);
             $Campus->save();
-
-            return redirect()->route('Admin.Campus.index')->with('mensaje','Campus editado correctamente');
+            Session::flash('message', 'Campùs editado correctamente');
+            return redirect()->route('Admin.Campus.index');
 
         }
         else{
@@ -127,7 +127,8 @@ class CampusController extends Controller {
 	{
         $Campus = Campus::find($id);
         $Campus->delete();
-        return redirect()->route('Admin.Campus.index')->with('mensaje','Campus eliminado correctamente');
+        Session::flash('destroy', 'Campùs Eliminado correctamente');
+        return redirect()->route('Admin.Campus.index');
 	}
 
 }

@@ -28,7 +28,7 @@ class CampusRequest extends Request {
                 'direccion' => 'required|between:3,80',
                 'latitud' => 'required|numeric',
                 'longitud' => 'required|numeric',
-                'encargado' => 'required|numeric',
+                'encargado' => 'required',
                 'descripcion' => 'required|between:3,500|alpha_space'
             ];
         }
