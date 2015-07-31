@@ -1,11 +1,11 @@
-<?php namespace App\Http\Controllers\Alumnos;
+<?php namespace App\Http\Controllers\Estudiante;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class AlumUserController extends Controller {
+class EstuUserController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AlumUserController extends Controller {
 	 */
 	public function index()
 	{
-		return view('Alumnos.homeAlum');
+		return view('Estudiantes.homeAlum');
 	}
 
 	/**

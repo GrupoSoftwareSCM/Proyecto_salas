@@ -31,7 +31,7 @@ class Kernel extends HttpKernel {
         'Encar'=>  'App\Http\Middleware\EncarMiddleware',
         'redir' => 'App\Http\Middleware\RedireccionMiddleware',
         'docente' => 'App\Http\Middleware\DocenteMiddleware',
-        'Alumno' => 'App\Http\Middleware\EstudianteMiddleware'
+        'Estu' => 'App\Http\Middleware\EstudianteMiddleware'
 	];
 
 }

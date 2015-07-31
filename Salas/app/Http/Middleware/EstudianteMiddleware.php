@@ -2,6 +2,11 @@
 
 use Closure;
 
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Routing\Middleware;
+
+use Auth;
+
 class EstudianteMiddleware {
 
 	/**

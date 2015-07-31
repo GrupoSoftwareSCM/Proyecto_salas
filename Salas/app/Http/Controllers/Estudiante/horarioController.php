@@ -1,13 +1,9 @@
-<?php namespace App\Http\Controllers\Encargado;
+<?php namespace App\Http\Controllers\Estudiante;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Horario;
-//use Illuminate\Http\Request;
-use App\Models\Campus;
-use App\Models\Periodo;
-use App\Models\Curso;
-use Request;
+
+use Illuminate\Http\Request;
 
 class horarioController extends Controller {
 
@@ -18,11 +14,7 @@ class horarioController extends Controller {
 	 */
 	public function index()
 	{
-		$horario=Horario::paginate();
-		$campus=Campus::lists('nombre','id');
-		$periodo=Periodo::lists('bloque','id');
-		//dd($curso);
-         return view('Encargado.modifHorario',compact('horario','campus','periodo'));
+		return view('Estudiantes.horario');
 	}
 
 	/**
@@ -42,13 +34,7 @@ class horarioController extends Controller {
 	 */
 	public function store()
 	{
-		//dd($datos=Request::only(['campus','fecha','periodo']));
-        $campus=Request::get('campus');
-        $fecha=Request::get('fecha');
-        $periodo=Request::get('periodo');
-        $curso=Curso::paginate();
-        
-
+		//
 	}
 
 	/**
@@ -59,7 +45,7 @@ class horarioController extends Controller {
 	 */
 	public function show($id)
 	{
-		
+		//
 	}
 
 	/**

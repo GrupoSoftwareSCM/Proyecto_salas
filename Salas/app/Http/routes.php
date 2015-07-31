@@ -81,7 +81,10 @@ Route::group(['middleware' => 'Encar','prefix' =>  'encar', 'namespace' => 'Enca
     Route::resource('hora/modi','horarioController'); //CRUD PARA HORARIO
 
     });
-
+Route::group(['middleware'=>'Estu','prefix'=> 'estu','namespace'=> 'Estudiante'], function(){
+   Route::resource('home','EstuUserController');
+   Route::resource('horario','horarioController');
+});
 
 Route::resource('users/encargados', 'Encargado\EncarUserController');
 

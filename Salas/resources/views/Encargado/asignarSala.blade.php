@@ -19,7 +19,7 @@
                                             <th>seccion</th>
                                             <th># estudiantes </th>
                                             <th>accion</th>
-                                            <th>accion</th>
+                                            
 
 
                                         </tr>
@@ -38,9 +38,7 @@
                                             <td>                                     
                                             <a href="{{ route('encar.asignar.modi.show',$cursos[$i]) }}">Asignar</a>	
                                             </td>
-                                            <td>                                     
-                                            <a href="{{ route('encar.asignar.modi.edit',$cursos[$i]) }}">Editar</a>    
-                                            </td>
+                                  
                                              
                                         </tr>
                                      

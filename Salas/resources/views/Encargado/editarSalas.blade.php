@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                          {!! Form::label('descripcion', 'Descripcion') !!}
-                            {!! Form::text('descripcion',null,['class' => 'form-control',
+                            {!! Form::textarea('descripcion',null,['class' => 'form-control',
                              'placeholder' => '$sala->descripcion']) !!}
                         </div>
                         <div class="form-group">

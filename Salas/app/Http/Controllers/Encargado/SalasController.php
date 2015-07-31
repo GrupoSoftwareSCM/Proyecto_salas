@@ -37,7 +37,9 @@ class SalasController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		$campus=Campus::lists('nombre','id');
+		$tipo=Tipo_Sala::lists('nombre','id');
+		return view('Encargado.agregarSala',compact('campus','tipo'));
 	}
 
 	/**
@@ -47,7 +49,11 @@ class SalasController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$data=Request::only(['nombre','campus_id','tipo_sala_id','descripcion','capacidad']);
+		$sala=Sala::create($data);
+		$sala->save();
+		return redirect('encar/salas/modi');
+
 	}
 
 	/**
