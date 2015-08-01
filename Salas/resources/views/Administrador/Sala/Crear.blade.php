@@ -17,6 +17,13 @@
                         @endforeach
                     </ul>
                 </div>
+            @elseif(Session::has('alert'))
+                <div class="alert alert-warning">
+                    <strong>OOpps!</strong><br><br>
+                    <ul>
+                        <li>{{ Session::get('alert') }}</li>
+                    </ul>
+                </div>
             @endif
             <div class="row">
                 <div class="col-md-6">

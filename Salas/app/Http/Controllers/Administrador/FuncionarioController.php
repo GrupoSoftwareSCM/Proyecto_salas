@@ -20,7 +20,17 @@ class FuncionarioController extends Controller {
 	 */
 	public function index()
 	{
-		$funcionario = Funcionario::paginate();
+        if(Request::only(['rut'])){
+            $request = Request::only(['rut']);
+            if($request['rut'] != null){
+                $funcionario = Funcionario::where('rut',$request['rut'])->paginate(1);
+                if(count($funcionario) > 0)
+                    return view('Administrador.Funcionario.Body')->with('Funcionarios',$funcionario);
+                else
+                    Session::flash('message', 'RUT: '.$request['rut'].' No encontrado');
+            }
+        }
+		$funcionario = Funcionario::paginate(5);
         return view('Administrador.Funcionario.Body')->with('Funcionarios',$funcionario);
 	}
 
@@ -43,15 +53,21 @@ class FuncionarioController extends Controller {
 	public function store(Requests\FuncionarioRequest $request)
 	{
 		$data = $request->only(['nombres','apellidos','rut','email','departamentos']);
-        Funcionario::create([
-            'nombres'           => $data['nombres'],
-            'apellidos'         => $data['apellidos'],
-            'rut'               => $data['rut'],
-            'email'             => $data['email'],
-            'departamento_id'   => (integer)$data['departamentos'],
-        ]);
+        if(count(Funcionario::where('rut',$data['rut'])->first()) == 0){
+            Funcionario::create([
+                'nombres'           => $data['nombres'],
+                'apellidos'         => $data['apellidos'],
+                'rut'               => $data['rut'],
+                'email'             => $data['email'],
+                'departamento_id'   => (integer)$data['departamentos'],
+            ]);
 
-        Session::flash('message', 'Funcionario '.$data['nombres'].'Creado correctamente');
+            Session::flash('message', 'Funcionario '.$data['nombres'].'Creado correctamente');
+        }
+        else{
+            Session::flash('alert', 'Usuario actualmente creado');
+            return redirect()->route('Admin.Funcionario.create');
+        }
         return redirect()->route('Admin.Funcionario.index');
 	}
 
@@ -121,7 +137,7 @@ class FuncionarioController extends Controller {
 	{
 		$funcionario = Funcionario::find($id);
         if($funcionario){
-            Session::flash('message', 'Funcionario '.$funcionario->nombres.' Borrado correctamente');
+            Session::flash('destroy', 'Funcionario '.$funcionario->nombres.' Borrado correctamente');
             $funcionario->delete();
             return redirect()->route('Admin.Funcionario.index');
         }

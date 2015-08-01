@@ -18,7 +18,6 @@ class AdministradorController extends Controller {
 	public function index()
 	{
         $data = Rol::whereNombre('ADMINISTRADOR')->first();
-        //dd($data->usuarios);
         return view('Administrador.Admin.Body')->with('Adminis',$data->usuarios);
 	}
 
@@ -42,15 +41,21 @@ class AdministradorController extends Controller {
 		$data = $request->only(['nombres','apellidos','rut','email']);
         $id_administrador = Rol::whereNombre('ADMINISTRADOR')->first()->id;
 
-        if(count(Usuario::where('nombres',$data['nombres'])->first()) == 0)
+        if(count(Usuario::where('rut',$data['rut'])->first()) == 0)
             Usuario::create($data);
 
 
-        $rut_usuario = Usuario::where('nombres',$data['nombres'])->first()->rut;
-        Rol_Usuario::create([
-            'rol_id' => $id_administrador,
-            'usuario_rut' => $rut_usuario
-        ]);
+        $rut_usuario = Usuario::where('rut',$data['rut'])->first()->rut;
+        if(count(Rol_Usuario::where('usuario_rut',$data['rut'])->where('rol_id',$id_administrador)->first()) == 0){
+            Rol_Usuario::create([
+                'rol_id' => $id_administrador,
+                'usuario_rut' => $rut_usuario
+            ]);
+        }
+        else{
+            Session::flash('alert', 'rut : '.$data['rut'].' ya esta asignado al rol ADMINISTRADOR');
+            return redirect()->route('Admin.Administrador.create');
+        }
 
         Session::flash('message', 'Usuario Creado correctamente');
         return redirect()->route('Admin.Administrador.index');
@@ -114,8 +119,8 @@ class AdministradorController extends Controller {
 	{
 		$usuario = Usuario::find($id);
         if($usuario){
+            Session::flash('message', 'Usuario '.$usuario->nombres.' Eliminado correctamente');
             $usuario->delete();
-            Session::flash('message', 'Usuario Eliminado correctamente');
             return redirect()->route('Admin.Administrador.index');
         }
         else{

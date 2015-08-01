@@ -19,10 +19,19 @@ class CampusController extends Controller {
 	 */
 	public function index()
 	{
-        $reques = Request::only(['nombre']);
-        if($reques['nombre'] != ""){
-            $reques = Request::only(['nombre']);
-            dd('asdsadasd');
+        if(Request::all()){
+            $request = Request::only(['nombre_campus']);
+            if($request['nombre_campus'] != '')
+            {
+                $data_campu = Campus::whereNombre($request['nombre_campus'])->paginate(5);
+                if(count($data_campu) != 0)
+                    return view('Administrador.Campus.body')->with('campus',$data_campu);
+                else {
+                    $data_campu = Campus::paginate(5);
+                    Session::flash('message', 'No se encontraron Campus con el nombre de '.$request['nombre_campus']);
+                    return view('Administrador.Campus.body')->with('campus',$data_campu);
+                }
+            }
         }
         $data_campu = Campus::paginate(5);
         return view('Administrador.Campus.body')->with('campus',$data_campu);
@@ -132,7 +141,7 @@ class CampusController extends Controller {
 	{
         $Campus = Campus::find($id);
         $Campus->delete();
-        Session::flash('destroy', 'Campùs Eliminado correctamente');
+        Session::flash('destroy', 'Campus Eliminado correctamente');
         return redirect()->route('Admin.Campus.index');
 	}
 

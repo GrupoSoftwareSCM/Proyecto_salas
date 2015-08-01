@@ -7,7 +7,7 @@
         </div>
         <div class="panel-footer">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-12">
                     <div class="mensaje">
                         @if(Session::has('message'))
                             <div class="alert alert-info">
@@ -16,15 +16,23 @@
                                     <li>{{ Session::get('message') }}</li>
                                 </ul>
                             </div>
+                        @elseif(Session::has('destroy'))
+                            <div class="alert alert-danger">
+                                <strong>Tus deseos son ordenes!</strong><br><br>
+                                <ul>
+                                    <li>{{ Session::get('destroy') }}</li>
+                                </ul>
+                            </div>
                         @endif
                     </div>
+                    <div class="row">
+                        <nav class="navbar navbar-right">
 
-                    <nav class="navbar navbar-right">
-
-                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Administrador/create" role="button" aria-label="Left Align">
-                            Crear Administrador
-                        </a>
-                    </nav>
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Administrador/create" role="button" aria-label="Left Align">
+                                Crear Administrador
+                            </a>
+                        </nav>
+                    </div>
                     @if(count($Adminis) > 0)
                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                         <thead>
@@ -35,13 +43,9 @@
                             <th class="center">Editar</th>
                             <th class="center">Eliminar</th>
                             <th class="center">Descargar</th>
-
                         </tr>
-
-                        </thead>
-                        <tbody>
-
                         @foreach($Adminis as $Admin)
+
                             <tr>
                                 <th class="center">{{$Admin->apellidos.','.$Admin->nombres}}</th>
                                 <th class="center">{{$Admin->rut}}</th>
@@ -57,35 +61,32 @@
                                 </th>
                             </tr>
                         @endforeach
-                        </tbody>
+                        {!! $Adminis->render() !!}
                     </table>
                     <div class="row">
                         <div class="col-md-3 col-md-offset-9">
                             <nav class="navbar navbar-right">
                                 <table id="sample-table-1" class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th class="center">Descargar Usuario</th>
-                                    </tr>
-
-                                    </thead>
-                                    <tbody>
+                                    <tr><th class="center">Descargar Usuario</th></tr>
                                     <tr>
                                         <th class="center">
                                             {!!Html::link('files/administradorall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                         </th>
                                     </tr>
-                                    </tbody>
                                 </table>
                             </nav>
                         </div>
                     </div>
                     @else
-                        <div class="alert alert-info">
-                            <strong>Execelente!</strong><br><br>
-                            <ul>
-                                <li>No hay administrador(es) registrados</li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-4">
+                                <div class="alert alert-info">
+                                    <strong>Execelente!</strong><br><br>
+                                    <ul>
+                                        <li>No hay administrador(es) registrados</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     @endif
 

@@ -16,6 +16,18 @@ class CarreraController extends Controller {
 	 */
 	public function index()
     {
+        if(Request::only(['Carrera'])){
+            $request = Request::only(['Carrera']);
+            if($request['Escuela'] != ''){
+                $data = Carrera::whereNombre($request['Escuela'])->paginate(5);
+                if(count($data) > 0){
+                    return view('Administrador.Carrera.Body')->with('Carreras',$data);
+                }
+                else{
+                    Session::flash('message', 'No se encontraron Carrera con el nombre de '.$request['Carrera']);
+                }
+            }
+        }
         $data = Carrera::paginate();
 		return view('Administrador.Carrera.Body')->with('Carreras',$data);
 	}

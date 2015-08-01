@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tipo_Sala;
 use Request;
 
+use Illuminate\Support\Facades\Session;
 //use Illuminate\Http\Request;
 
 class TipoSalasController extends Controller {
@@ -16,8 +17,19 @@ class TipoSalasController extends Controller {
 	 */
 	public function index()
 	{
-        $data_Tposalas = Tipo_Sala::paginate();
-        return view('Administrador.TpoSala.Body')->with('Tposalas', $data_Tposalas);
+        if(Request::only(['TpoSala'])){
+            $request = Request::only(['TpoSala']);
+            if ($request['TpoSala'] != '') {
+                $data = Tipo_Sala::whereNombre(Request::only(['TpoSala']))->paginate(5);
+                if(count($data) > 0){
+                    return view('Administrador.TpoSala.Body')->with('Tposalas', $data);
+                }
+                else
+                    Session::flash('message', 'No se encontraron Tipo de sala con el nombre de '.$request['TpoSala']);
+            }
+        }
+        $data = Tipo_Sala::paginate(5);
+        return view('Administrador.TpoSala.Body')->with('Tposalas', $data);
 	}
 
 	/**
@@ -37,8 +49,14 @@ class TipoSalasController extends Controller {
 	 */
 	public function store(Requests\TposalaRequest $request)
 	{
-        $datos_nuevo_tposala = $request->only(['nombre','descripcion']);
-        Tipo_Sala::create($datos_nuevo_tposala);
+        $data = $request->only(['nombre','descripcion']);
+        if(count(Tipo_Sala::whereNombre($data['nombre'])->first()) == 0){
+            Tipo_Sala::create($data);
+        }
+        else{
+            Session::flash('alert', 'Tipo de sala : '.$data['nombre'].' Ya existente en la base de datos');
+            return redirect()->route('Admin.TpoSala.create');
+        }
 
         return redirect()->route('Admin.TpoSala.index');
 	}
@@ -82,10 +100,10 @@ class TipoSalasController extends Controller {
 	{
         $TpoSalas = Tipo_Sala::find($id);
         if($TpoSalas){
-            $datos_edit_tposala = Request::only(['nombre','descripcion']);
-            $TpoSalas->fill($datos_edit_tposala);
+            $data = Request::only(['nombre','descripcion']);
+            $TpoSalas->fill($data);
             $TpoSalas->save();
-
+            Session::flash('message', 'Tipo de sala '.$data['nombre'].' Editado correctamente');
             return redirect()->route('Admin.TpoSala.index')->with('mensaje','Campus editado correctamente');
         }
         else{
@@ -103,6 +121,7 @@ class TipoSalasController extends Controller {
 	{
         $TpoSalas = Tipo_Sala::find($id);
         if($TpoSalas){
+            Session::flash('destroy', 'Tipo de sala '.$TpoSalas->nombre.' Eliminado correctamente');
             $TpoSalas->delete();
             return redirect()->route('Admin.TpoSala.index')->with('mensaje','Campus eliminado correctamente');
 	    }

@@ -31,10 +31,10 @@
                             </nav>
                         </div>
                         {!!Form::open(['route'=>'Admin.Campus.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
-                        {!!Form::text('campus',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}
-                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                            {!!Form::text('nombre_campus',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}
+                            {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
                         {!!Form::close()!!}
-                        {!!Html::linkRoute('Admin.Campus.index','Mostrar todo',[],['class'=>'btn btn-default','role'=>'button'])!!}
+                        {!!Html::linkRoute('Admin.Campus.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
 
                         @if(count($campus)>0)
                             <table id="sample-table-1" class="table table-striped table-bordered table-hover">
@@ -72,6 +72,7 @@
                                         </th>
                                     </tr>
                                 @endforeach
+                                {!! $campus->render() !!}
                                 </tbody>
                             </table>
                             <div class="row">
@@ -95,11 +96,15 @@
                                 </div>
                             </div>
                         @else
-                            <div class="alert alert-info">
-                                <strong>Execelente!</strong><br><br>
-                                <ul>
-                                    <li>No hay Campus registrados</li>
-                                </ul>
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <div class="alert alert-info">
+                                        <strong>Execelente!</strong><br><br>
+                                        <ul>
+                                            <li>No hay Campus registrados</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         @endif
 

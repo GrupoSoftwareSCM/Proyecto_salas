@@ -16,6 +16,13 @@
                                     <li>{{ Session::get('message') }}</li>
                                 </ul>
                             </div>
+                        @elseif(Session::has('destroy'))
+                            <div class="alert alert-danger">
+                                <strong>Tus deseos son ordenes!</strong><br><br>
+                                <ul>
+                                    <li>{{ Session::get('destroy') }}</li>
+                                </ul>
+                            </div>
                         @endif
                     </div>
 
@@ -52,6 +59,7 @@
                                     </th>
                                 </tr>
                             @endforeach
+                            {!! $Encargados->render() !!}
                         </table>
                         <div class="row">
                             <div class="col-md-3 col-md-offset-9">
@@ -68,11 +76,15 @@
                             </div>
                         </div>
                     @else
-                        <div class="alert alert-info">
-                            <strong>Execelente!</strong><br><br>
-                            <ul>
-                                <li>No hay Encargado(s) ingresado(s)</li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-4">
+                                <div class="alert alert-info">
+                                    <strong>Execelente!</strong><br><br>
+                                    <ul>
+                                        <li>No hay Encargado(s) ingresado(s)</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     @endif
 

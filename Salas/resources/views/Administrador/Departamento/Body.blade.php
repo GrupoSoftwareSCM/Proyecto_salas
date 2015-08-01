@@ -33,9 +33,8 @@
                         </nav>
                     </div>
                     {!!Form::open(['route'=>'Admin.Depto.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
-                    {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre de Departamento'])!!}
-                    {!!Form::select('facultad',$Facultad,null,['class'=>'form-control'])!!}
-                    {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                        {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre de Departamento'])!!}
+                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
                     {!!Form::close()!!}
                     {!!Html::linkRoute('Admin.Depto.index','Mostrar todo',[],['class'=>'btn btn-default','role'=>'button'])!!}
 
@@ -91,11 +90,15 @@
                             </div>
                         </div>
                     @else
-                        <div class="alert alert-info">
-                            <strong>Execelente!</strong><br><br>
-                            <ul>
-                                <li>No hay Departamento(s) registrado(s)</li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-4">
+                                <div class="alert alert-info">
+                                    <strong>Execelente!</strong><br><br>
+                                    <ul>
+                                        <li>No hay Departamento(s) registrado(s)</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     @endif
 

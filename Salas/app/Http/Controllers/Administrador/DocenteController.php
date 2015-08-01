@@ -20,7 +20,17 @@ class DocenteController extends Controller {
 	 */
 	public function index()
 	{
-        $docente = Docente::paginate();
+        if(Request::only(['rut'])){
+            $request = Request::only(['rut']);
+            if($request['rut'] != null){
+                $docente = Docente::where('rut',$request['rut'])->paginate(1);
+                if(count($docente) > 0)
+                    return view('Administrador.Docente.Body')->with('Docentes',$docente);
+                else
+                    Session::flash('message', 'RUT: '.$request['rut'].' No encontrado');
+            }
+        }
+        $docente = Docente::paginate(5);
 		return view('Administrador.Docente.Body')->with('Docentes',$docente);
 	}
 
@@ -53,14 +63,9 @@ class DocenteController extends Controller {
                     'apellidos' => $data['apellidos'],
                     'email' => $data['email'],
                 ]);
+            Session::flash('message', 'Usuario Creado correctamente');
         }
-        elseif(count(Usuario::where('rut',$data['rut'])->first()->roles()->whereNombre('DOCENTE')->first())== 0){
-            Rol_Usuario::create([
-                'rol_id' => $id_departamento,
-                'usuario_rut' => (integer)$data['rut'],
-            ]);
-        }
-        elseif(count(Docente::where('rut',$data['rut'])->first()) == 0){
+        if(count(Docente::where('rut',$data['rut'])->first()) == 0){
             Docente::create([
                 'nombres' => $data['nombres'],
                 'apellidos' => $data['apellidos'],
@@ -68,12 +73,20 @@ class DocenteController extends Controller {
                 'rut' => (integer)$data['rut'],
                 'departamento_id' => (integer)$data['departamentos']
             ]);
+            Session::flash('message', 'Usuario Creado correctamente');
+        }
+
+        if(count(Usuario::where('rut',$data['rut'])->first()->roles()->whereNombre('DOCENTE')->first())== 0){
+            Rol_Usuario::create([
+                'rol_id' => $id_departamento,
+                'usuario_rut' => (integer)$data['rut'],
+            ]);
+            Session::flash('message', 'Usuario Creado correctamente');
         }
         else{
-            Session::flash('message', 'Usuario actualmente creado');
-            return redirect()->route('Admin.Docente.index');
+            Session::flash('alert', 'RUT: '.$data['rut'].' ya es un DOCENTE');
+            return redirect()->route('Admin.Docente.create');
         }
-        Session::flash('message', 'Usuario Creado correctamente');
         return redirect()->route('Admin.Docente.index');
 	}
 
@@ -144,9 +157,9 @@ class DocenteController extends Controller {
         if($docente){
             $usuario = Usuario::find($docente->rut);
             if($usuario){
+                Session::flash('destroy', 'Docente: '.$docente->nombres.' eliminado correctamente');
                 $usuario->delete();
                 $docente->delete();
-                Session::flash('message', 'Usuario '.$docente->nombres.' eliminado correctamente');
                 return redirect()->route('Admin.Docente.index');
             }
             else{

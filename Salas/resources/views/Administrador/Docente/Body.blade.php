@@ -16,16 +16,25 @@
                                     <li>{{ Session::get('message') }}</li>
                                 </ul>
                             </div>
+                        @elseif(Session::has('destroy'))
+                            <div class="alert alert-danger">
+                                <strong>Tus deseos son ordenes!</strong><br><br>
+                                <ul>
+                                    <li>{{ Session::get('destroy') }}</li>
+                                </ul>
+                            </div>
                         @endif
                     </div>
-
-                    <nav class="navbar navbar-right">
-
-                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Docente/create" role="button" aria-label="Left Align">
-                            Crear Docente
-                        </a>
-                    </nav>
-
+                    <div class="row">
+                        <nav class="navbar navbar-right">
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Docente/create" role="button" aria-label="Left Align">Crear Docente</a>
+                        </nav>
+                    </div>
+                    {!!Form::open(['route'=>'Admin.Docente.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
+                        {!!Form::text('rut',null,['class'=>'form-control','placeholder'=>'RUT'])!!}
+                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                    {!!Form::close()!!}
+                    {!!Html::linkRoute('Admin.Docente.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
                     @if(count($Docentes)>0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <tr>
@@ -54,6 +63,7 @@
                                     </th>
                                 </tr>
                             @endforeach
+                            {!! $Docentes->render() !!}
                         </table>
                         <div class="row">
                             <div class="col-md-3 col-md-offset-9">
@@ -71,11 +81,15 @@
                             </div>
                         </div>
                     @else
-                        <div class="alert alert-info">
-                            <strong>Execelente!</strong><br><br>
-                            <ul>
-                                <li>No hay Docente(s) ingresado(s)</li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-4">
+                                <div class="alert alert-info">
+                                    <strong>Execelente!</strong><br><br>
+                                    <ul>
+                                        <li>No hay Docente(s) ingresado(s)</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     @endif
 

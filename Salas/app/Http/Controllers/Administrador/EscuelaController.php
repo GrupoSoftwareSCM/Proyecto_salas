@@ -6,6 +6,8 @@ use App\Models\Departamento;
 use App\Models\Escuela;
 use Request;
 
+use Illuminate\Support\Facades\Session;
+
 //use Illuminate\Http\Request;
 
 class EscuelaController extends Controller {
@@ -17,7 +19,20 @@ class EscuelaController extends Controller {
 	 */
 	public function index()
 	{
-        $data_escuela = Escuela::paginate();
+        if(Request::only(['Escuela'])){
+            $request = Request::only(['Escuela','Departamento']);
+            if($request['Escuela'] != ''){
+                $data_escuela = Escuela::whereNombre($request['Escuela'])->paginate(5);
+                $data_Depto = Departamento::lists('nombre','id');
+                if(count($data_escuela) > 0){
+                    return view('Administrador.Escuela.Body')->with('Escuelas', $data_escuela)->with('Depto', $data_Depto);
+                }
+                else{
+                    Session::flash('message', 'No se encontraron Escuela con el nombre de '.$request['Escuela']);
+                }
+            }
+        }
+        $data_escuela = Escuela::paginate(5);
         $data_Depto = Departamento::lists('nombre','id');
         return view('Administrador.Escuela.Body')->with('Escuelas', $data_escuela)->with('Depto', $data_Depto);
     }
@@ -40,9 +55,20 @@ class EscuelaController extends Controller {
 	 */
 	public function store(Requests\EscuelaRequest $request)
 	{
-        $datos_nuevo_escuela = $request->only(['nombre','descripcion','departamento_id']);
-        Escuela::create($datos_nuevo_escuela);
-
+        $data = $request->only(['nombre','descripcion','departamento_id']);
+        if(count(Escuela::whereNombre($data['nombre'])->first()) == 0){
+            Escuela::create($data);
+        }
+        else{
+            if(Escuela::whereNombre($data['nombre'])->first()->departamento->id != $data['departamento_id']){
+                Escuela::create($data);
+            }
+            else{
+                Session::flash('alert', 'Escuela: '.$data['nombre'].' Perteneciente al departamento'.Departamento::find($data['departamento_id'])->nombre.' Ya existente en la base de datos');
+                return redirect()->route('Admin.Escuela.create');
+            }
+        }
+        Session::flash('message', 'Escuela: '.$data['nombre'].' Perteneciente al departamento'.Departamento::find($data['departamento_id'])->nombre.' Creado exitosamente');
         return redirect()->route('Admin.Escuela.index');
 	}
 
@@ -85,11 +111,11 @@ class EscuelaController extends Controller {
 	{
         $Escuela = Escuela::find($id);
         if($Escuela){
-            $datos_edit_Escuela = Request::only(['nombre','descripcion','departamento_id']);
-            $Escuela->fill($datos_edit_Escuela);
+            $data = Request::only(['nombre','descripcion','departamento_id']);
+            $Escuela->fill($data);
             $Escuela->save();
-
-            return redirect()->route('Admin.Escuela.index')->with('mensaje','Campus editado correctamente');
+            Session::flash('message', 'Escuela '.$data['nombre'].' Editado correctamente');
+            return redirect()->route('Admin.Escuela.index');
 
         }
         else{
@@ -107,8 +133,9 @@ class EscuelaController extends Controller {
 	{
         $Escuela = Escuela::find($id);
         if($Escuela){
+            Session::flash('destroy', 'Escuela '.$Escuela->nombre.' Eliminado correctamente');
             $Escuela->delete();
-            return redirect()->route('Admin.Escuela.index')->with('mensaje','Campus Eliminado correctamente');
+            return redirect()->route('Admin.Escuela.index');
         }
         else{
             return redirect()->route('Admin.Escuela.index')->with('mensaje','Campus No encontrado');

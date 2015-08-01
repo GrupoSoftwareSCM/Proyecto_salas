@@ -7,6 +7,8 @@ use App\Models\Sala;
 use App\Models\Tipo_Sala;
 use Request;
 
+use Illuminate\Support\Facades\Session;
+
 //use Illuminate\Http\Request;
 
 class SalasController extends Controller {
@@ -18,11 +20,20 @@ class SalasController extends Controller {
 	 */
 	public function index()
 	{
-        $data_campus = Campus::lists('nombre','id');
-        $data_tposala = Tipo_Sala::lists('nombre','id');
-        $data_salas = Sala::paginate();
 
-        return view('Administrador.Sala.Body')->with('Campus',$data_campus)->with('Tposala',$data_tposala)->with('Salas',$data_salas);
+        if(Request::only(['Sala'])){
+            $request = Request::only(['Sala']);
+            if ($request['Sala'] != '') {
+                $data = Sala::whereNombre(Request::only(['Sala']))->paginate(5);
+                if(count($data) > 0){
+                    return view('Administrador.Sala.Body')->with('Salas',$data);
+                }
+                else
+                    Session::flash('message', 'No se encontraron Salas con el nombre de '.$request['TpoSala']);
+            }
+        }
+        $data = Sala::paginate(5);
+        return view('Administrador.Sala.Body')->with('Salas',$data);
 	}
 
 	/**
@@ -46,7 +57,13 @@ class SalasController extends Controller {
 	public function store(Requests\SalaRequest $request)
 	{
 		$data = $request->only(['nombre','capacidad','descripcion','campus_id','tipo_sala_id']);
-        Sala::create($data);
+        if(count(Sala::whereNombre($data['nombre'])->first()) == 0){
+            Sala::create($data);
+        }
+        else{
+            Session::flash('alert', 'Sala: '.$data['nombre'].'Ya existente en la base de datos');
+            return redirect()->route('Admin.Salas.create');
+        }
 
         return redirect()->route('Admin.Salas.index');
 	}
@@ -89,9 +106,8 @@ class SalasController extends Controller {
             $data = Request::only(['nombre','descripcion','campus_id','tipo_sala_id']);
             $Salas->fill($data);
             $Salas->save();
-
-            return redirect()->route('Admin.Salas.index')->with('mensaje','Campus editado correctamente');
-
+            Session::flash('message', 'Sala '.$data['nombre'].' Editado correctamente');
+            return redirect()->route('Admin.Salas.index');
         }
         else{
             abort(404);
@@ -107,8 +123,13 @@ class SalasController extends Controller {
 	public function destroy($id)
 	{
         $Salas = Sala::find($id);
-        $Salas->delete();
-        return redirect()->route('Admin.Salas.index')->with('mensaje','Campus eliminado correctamente');
+        if($Salas){
+            Session::flash('destroy', 'Sala '.$Salas->nombre.' Eliminado correctamente');
+            $Salas->delete();
+            return redirect()->route('Admin.Salas.index')->with('mensaje','Campus eliminado correctamente');
+        }
+        else
+            abort(404);
 	}
 
 }

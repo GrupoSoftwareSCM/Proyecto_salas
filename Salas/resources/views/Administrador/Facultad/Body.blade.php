@@ -25,11 +25,18 @@
                             </div>
                         @endif
                     </div>
-                    <nav class="navbar navbar-right">
-                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Facultad/create" role="button" aria-label="Left Align">
-                            Crear Facultad
-                        </a>
-                    </nav>
+                    <div class="row">
+                        <nav class="navbar navbar-right">
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Facultad/create" role="button" aria-label="Left Align">
+                                Crear Facultad
+                            </a>
+                        </nav>
+                    </div>
+                    {!!Form::open(['route'=>'Admin.Facultad.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
+                        {!!Form::text('Facultad',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}
+                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                    {!!Form::close()!!}
+                    {!!Html::linkRoute('Admin.Facultad.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
                     @if(count($facultades)>0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <tr>
@@ -65,6 +72,7 @@
                                     </th>
                                 </tr>
                             @endforeach
+                            {!! $facultades->render() !!}
                         </table>
                         <div class="row">
                             <div class="col-md-3 col-md-offset-9">
@@ -81,11 +89,15 @@
                             </div>
                         </div>
                     @else
-                        <div class="alert alert-info">
-                            <strong>Execelente!</strong><br><br>
-                            <ul>
-                                <li>No hay Facultad(es) ingresada(s)</li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-4">
+                                <div class="alert alert-info">
+                                    <strong>Execelente!</strong><br><br>
+                                    <ul>
+                                        <li>No hay Facultad(es) ingresada(s)</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     @endif
 

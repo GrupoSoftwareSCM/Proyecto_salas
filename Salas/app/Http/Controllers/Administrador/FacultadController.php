@@ -17,7 +17,20 @@ class FacultadController extends Controller {
 	 */
 	public function index()
 	{
-        $data_facultad = Facultad::paginate();
+
+        if(Request::only(['Facultad'])){
+            $request = Request::only(['Facultad','Campus']);
+                if ($request['Facultad'] != '') {
+                    $data_facultad = Facultad::whereNombre($request['Facultad'])->paginate(5);
+                    if(count($data_facultad) > 0){
+                        $data_Campus = Campus::lists('nombre', 'id');
+                        return view('Administrador.Facultad.Body')->with('facultades', $data_facultad)->with('Campus', $data_Campus);
+                    }
+                    else
+                        Session::flash('message', 'No se encontraron Facultad con el nombre de '.$request['Facultad']);
+            }
+        }
+        $data_facultad = Facultad::paginate(5);
         $data_Campus = Campus::lists('nombre','id');
 		return view('Administrador.Facultad.Body')->with('facultades', $data_facultad)->with('Campus', $data_Campus);
 	}

@@ -25,12 +25,19 @@
                             </div>
                         @endif
                     </div>
-                    <nav class="navbar navbar-right">
+                    <div class="row">
+                        <nav class="navbar navbar-right">
 
-                        <a class="btn glyphicon glyphicon-plus" href="/Admin/Carrera/create" role="button" aria-label="Left Align">
-                            Crear Carrera
-                        </a>
-                    </nav>
+                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Carrera/create" role="button" aria-label="Left Align">
+                                Crear Carrera
+                            </a>
+                        </nav>
+                    </div>
+                    {!!Form::open(['route'=>'Admin.Carrera.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
+                        {!!Form::text('Carrera',null,['class'=>'form-control','placeholder'=>'Nombre de la escuela'])!!}
+                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                    {!!Form::close()!!}
+                    {!!Html::linkRoute('Admin.Carrera.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
                     @if(count($Carreras)>0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <tr>
@@ -57,6 +64,7 @@
                                     </th>
                                 </tr>
                             @endforeach
+                            {!! $Carreras->render() !!}
                         </table>
                         <div class="row">
                             <div class="col-md-3 col-md-offset-9">
@@ -80,11 +88,15 @@
                             </div>
                         </div>
                     @else
-                        <div class="alert alert-info">
-                            <strong>Execelente!</strong><br><br>
-                            <ul>
-                                <li>No hay Carrera(s) registradas</li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-4">
+                                <div class="alert alert-info">
+                                    <strong>Execelente!</strong><br><br>
+                                    <ul>
+                                        <li>No hay Carrera(s) registradas</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     @endif
 

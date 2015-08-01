@@ -7,6 +7,9 @@ use App\Models\Rol;
 use App\Models\Usuario;
 use Request;
 
+
+use Illuminate\Support\Facades\Session;
+
 class EncargadoCampusController extends Controller {
 
 	/**
@@ -39,7 +42,7 @@ class EncargadoCampusController extends Controller {
 	{
         $data = $request->only(['nombres','apellidos','rut','email']);
         $id_encargado = Rol::whereNombre('ENCARGADO_CAMPUS')->first()->id;
-        $rut_usuario = Usuario::where('nombres',$data['nombres'])->first()->rut;
+        $rut_usuario = Usuario::where('rut',$data['rut'])->first()->rut;
 
         if(count(Usuario::where('rut',$data['rut'])->first()) == 0)
             Usuario::create($data);
@@ -51,8 +54,8 @@ class EncargadoCampusController extends Controller {
             ]);
         }
         else{
-            \Session::flash('message', 'Usuario actualmente creado');
-            return redirect()->route('Admin.EncargadoCampus.index');
+            \Session::flash('alert', 'RUT :'.$data['rut'].' ya esta asignado a un CAMPUS');
+            return redirect()->route('Admin.EncargadoCampus.create');
         }
 
         \Session::flash('message', 'Usuario Creado correctamente');
@@ -118,7 +121,7 @@ class EncargadoCampusController extends Controller {
         $usuario = Usuario::find($id);
         if($usuario){
             $usuario->delete();
-            \Session::flash('message', 'Usuario Eliminado correctamente');
+            \Session::flash('destroy', 'Usuario Eliminado correctamente');
             return redirect()->route('Admin.EncargadoCampus.index');
         }
         else{

@@ -19,8 +19,17 @@ class EstudianteController extends Controller {
 	 */
 	public function index()
 	{
-        $estudiante = Estudiante::paginate();
-        //dd($estudiante);
+        if(Request::only(['rut'])){
+            $request = Request::only(['rut']);
+            if($request['rut'] != null){
+                $estudiante = Estudiante::where('rut',$request['rut'])->paginate(1);
+                if(count($estudiante) > 0)
+                    return view('Administrador.Estudiante.Body')->with('Estudiantes',$estudiante);
+                else
+                    Session::flash('message', 'RUT: '.$request['rut'].' No encontrado');
+            }
+        }
+        $estudiante = Estudiante::paginate(5);
         return view('Administrador.Estudiante.Body')->with('Estudiantes',$estudiante);
 	}
 
@@ -46,16 +55,12 @@ class EstudianteController extends Controller {
         $estudiante = $request->only(['nombres','apellidos','rut','email','carrera']);
         $id_estudiante = Rol::whereNombre('ESTUDIANTE')->first()->id;
 
-        if(count(Usuario::where('rut',$data['rut'])->first()) == 0)
+        if(count(Usuario::where('rut',$data['rut'])->first()) == 0){
+            Session::flash('message', 'Usuario '.$data['nombres'].' Creado correctamente');
             Usuario::create($data);
-
-        elseif(count(Usuario::where('rut',$data['rut'])->first()->roles()->whereNombre('ESTUDIANTE')->first())== 0){
-            Rol_Usuario::create([
-                'usuario_rut' => $data['rut'],
-                'rol_id' => $id_estudiante
-            ]);
         }
-        elseif(count(Estudiante::where('rut',$estudiante['rut'])->first())== 0){
+
+        if(count(Estudiante::where('rut',$estudiante['rut'])->first())== 0){
             Estudiante::create([
                 'nombres' => $estudiante['nombres'],
                 'apellidos' => $estudiante['apellidos'],
@@ -63,12 +68,20 @@ class EstudianteController extends Controller {
                 'email' => $estudiante['email'],
                 'carrera_id' => (integer)$estudiante['carrera']
             ]);
+            Session::flash('message', 'Usuario '.$data['nombres'].' Creado correctamente');
+        }
+
+        if(count(Usuario::where('rut',$data['rut'])->first()->roles()->whereNombre('ESTUDIANTE')->first())== 0){
+            Rol_Usuario::create([
+                'usuario_rut' => $data['rut'],
+                'rol_id' => $id_estudiante
+            ]);
+            Session::flash('message', 'Usuario '.$data['nombres'].' Creado correctamente');
         }
         else{
-            Session::flash('message', 'Usuario actualmente creado');
-            return redirect()->route('Admin.Estudiante.index');
+            Session::flash('alert', 'Usuario actualmente creado');
+            return redirect()->route('Admin.Estudiante.create');
         }
-        Session::flash('message', 'Usuario Creado correctamente');
         return redirect()->route('Admin.Estudiante.index');
 
 	}
@@ -122,7 +135,7 @@ class EstudianteController extends Controller {
                 'carrera_id' => $datos['carrera'],
             ]);
             $estudiante->save();
-            Session::flash('message', 'Usuario Editado correctamente');
+            Session::flash('message', 'Usuario '.$datos['nombres'].' Editado correctamente');
             return redirect()->route('Admin.Estudiante.index');
         }
         else{
@@ -140,9 +153,9 @@ class EstudianteController extends Controller {
 	{
 		$estudiante = Estudiante::find($id);
         $usuario = Usuario::find($estudiante->rut);
+        Session::flash('destroy', 'Estudiante '.$estudiante->nombres.' Eliminado correctamente');
         $usuario->delete();
         $estudiante->delete();
-        Session::flash('message', 'Usuario Eliminado correctamente');
         return redirect()->route('Admin.Estudiante.index');
 	}
 
