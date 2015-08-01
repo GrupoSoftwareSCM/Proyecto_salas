@@ -56,5 +56,11 @@ class Curso extends Model {
 	{
 		return $this->belongsTo('App\Models\Docente','docente_id','id');
 	}
+	public static function query_nombre($nombre){
+        return Curso::select('id')
+                ->whereNombre($nombre)
+                ->first();
+    }
+
 	
 }

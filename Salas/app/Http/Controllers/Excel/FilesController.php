@@ -18,7 +18,10 @@ use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Rol_Usuario;
 use App\Models\Carrera;
-
+use App\Models\Asignatura;
+use App\Models\Estudiante;
+use App\Models\Curso;
+use App\Models\Docente;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -726,5 +729,153 @@ public function postSalafilesEncar(Request $request){
         return redirect()->route('encar.salas.modi.index');
 
 }
+public function postAsigfilesEncar(Request $request){
+
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $key => $value)
+            {  
+                
+                if(!Asignatura::where('codigo',$value->codigo)->first()){
+                    $var = new Asignatura();
+                    $var->fill([
+                        'nombre'        => $value->nombre,
+                        'codigo'        => $value->codigo,
+                        'descripcion'   => $value->descripcion,
+                        'departamento_id'=> Departamento::whereNombre($value->departamento)->first()->id,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('encar.asig.modi.index');
+
+}   
+public function postEstufilesEncar(Request $request){
+
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $key => $value)
+            {  
+                if(!Estudiante::where('nombres',$value->nombre)->first()){
+                    $var = new Estudiante();
+                    $var->fill([
+                        'rut'           => $value->rut,
+                        'nombres'       => $value->nombres,
+                        'apellidos'     => $value->apellidos,
+                        'email'         => $value->email,
+                        'carrera_id'    => Carrera::whereNombre($value->carrera)->first()->id,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('encar.estu.modi.index');
+
+}   
+public function postCursfileEncar(Request $request){
+
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $key => $value)
+            { // dd(!(Curso::where('seccion',$value->seccion)->first()) && (Curso::where('anio',$value->anio)->first()) && (Curso::where('semestre',$value->semestre)->first()));
+                if(!(Curso::where('seccion',$value->seccion)->first()) && (Curso::where('anio',$value->anio)->first()) && (Curso::where('semestre',$value->semestre)->first())){
+                    $var = new Curso();
+                    $var->fill([
+                        'asignatura_id'    => Asignatura::where('nombre',$value->asignatura)->first()->id,
+                        'docente_id'       => Docente::where('rut',$value->docente)->first()->id,
+                        'semestre'         => $value->semestre,
+                        'anio'             => $value->anio,
+                        'seccion'          => $value->seccion,
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('encar.curs.modi.index');
+
+}   
+public function postDocefileEncar(Request $request){
+
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+         
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+       //     dd($result);
+            foreach($result as $key => $value)
+            {   
+              //  dd($value->nombres);
+                if(!(Docente::where('rut',$value->rut)->first())){
+                    $var = new Docente();
+                    $var->fill([
+                        'departamento_id'  => Departamento::whereNombre($value->departamento)->first()->id,
+                        'rut'              => $value->rut,
+                        'nombres'          => $value->nombres,
+                        'apellidos'        => $value->apellidos,                        
+                    ]);
+                    $var->save();
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('encar.doce.modi.index');
+
+}   
 
 }
