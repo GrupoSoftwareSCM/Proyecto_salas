@@ -19,7 +19,7 @@ class FacultadController extends Controller {
 	{
         $data_facultad = Facultad::paginate();
         $data_Campus = Campus::lists('nombre','id');
-		return view('Administrador.bodyAdm')->with('facultades', $data_facultad)->with('Campus', $data_Campus);
+		return view('Administrador.Facultad.Body')->with('facultades', $data_facultad)->with('Campus', $data_Campus);
 	}
 
 	/**
@@ -30,7 +30,7 @@ class FacultadController extends Controller {
 	public function create()
 	{
         $data_campus = Campus::lists('nombre','id');
-        return view('Administrador.crearAdm')->with('campus',$data_campus);
+        return view('Administrador.Facultad.Crear')->with('campus',$data_campus);
 	}
 
 	/**
@@ -72,7 +72,7 @@ class FacultadController extends Controller {
 	{
         $Facultad = Facultad::find($id);
         $Campus = Campus::lists('nombre','id');
-        return view('Administrador.editarAdm')->with('Facultad',$Facultad)->with('Campus',$Campus);
+        return view('Administrador.Facultad.Editar')->with('Facultad',$Facultad)->with('Campus',$Campus);
 	}
 
 	/**

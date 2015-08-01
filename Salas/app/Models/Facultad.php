@@ -44,7 +44,8 @@ class Facultad extends Model {
 		return $this->belongsTo('App\Models\Campus','campus_id','id');
 	}
 
-    public static function query_nombre($nombre){
+    public static function query_nombre($nombre)
+    {
         return Facultad::select('id')->whereNombre($nombre)->first();
     }
 

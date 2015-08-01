@@ -19,7 +19,7 @@ class EscuelaController extends Controller {
 	{
         $data_escuela = Escuela::paginate();
         $data_Depto = Departamento::lists('nombre','id');
-        return view('Administrador.bodyAdm')->with('Escuelas', $data_escuela)->with('Depto', $data_Depto);
+        return view('Administrador.Escuela.Body')->with('Escuelas', $data_escuela)->with('Depto', $data_Depto);
     }
 
 	/**
@@ -30,7 +30,7 @@ class EscuelaController extends Controller {
 	public function create()
 	{
         $data_departamento = Departamento::lists('nombre','id');
-        return view('Administrador.crearAdm')->with('Departamento',$data_departamento);
+        return view('Administrador.Escuela.Crear')->with('Departamento',$data_departamento);
 	}
 
 	/**
@@ -68,7 +68,7 @@ class EscuelaController extends Controller {
         $Escuela = Escuela::find($id);
         if($Escuela){
             $Departamento = Departamento::lists('nombre','id');
-            return view('Administrador.editarAdm')->with('Escuela',$Escuela)->with('Departamento',$Departamento);
+            return view('Administrador.Escuela.Editar')->with('Escuela',$Escuela)->with('Departamento',$Departamento);
         }
         else{
             abort(404,'id no encontrado');

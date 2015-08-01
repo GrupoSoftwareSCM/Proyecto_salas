@@ -21,7 +21,7 @@ class FuncionarioController extends Controller {
 	public function index()
 	{
 		$funcionario = Funcionario::paginate();
-        return view('Administrador.bodyAdm')->with('Funcionarios',$funcionario);
+        return view('Administrador.Funcionario.Body')->with('Funcionarios',$funcionario);
 	}
 
 	/**
@@ -32,7 +32,7 @@ class FuncionarioController extends Controller {
 	public function create()
 	{
         $departamento = Departamento::lists('nombre','id');
-        return view('Administrador.crearAdm')->with('depto',$departamento);
+        return view('Administrador.Funcionario.Crear')->with('depto',$departamento);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class FuncionarioController extends Controller {
 		$funcionario = Funcionario::find($id);
         if($funcionario){
             $departamento = Departamento::lists('nombre','id');
-            return view('Administrador.editarAdm')->with('funcionario',$funcionario)->with('depto',$departamento);
+            return view('Administrador.Funcionario.Editar')->with('funcionario',$funcionario)->with('depto',$departamento);
         }
         else{
             abort(404,'id no encontrado');

@@ -17,7 +17,7 @@ class CarreraController extends Controller {
 	public function index()
     {
         $data = Carrera::paginate();
-		return view('Administrador.bodyAdm')->with('Carreras',$data);
+		return view('Administrador.Carrera.Body')->with('Carreras',$data);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class CarreraController extends Controller {
 	public function create()
 	{
         $data = Escuela::lists('nombre','id');
-		return view('Administrador.crearAdm')->with('Escuela',$data);
+		return view('Administrador.Carrera.Crear')->with('Escuela',$data);
 
 	}
 
@@ -80,7 +80,7 @@ class CarreraController extends Controller {
 		$carrera = Carrera::find($id);
         if($carrera){
             $data = Escuela::lists('nombre','id');
-            return view('Administrador.editarAdm')->with('Escuela',$data)->with('Carrera', $carrera);
+            return view('Administrador.Carrera.Editar')->with('Escuela',$data)->with('Carrera', $carrera);
         }
 	}
 

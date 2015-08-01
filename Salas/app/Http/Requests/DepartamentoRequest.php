@@ -22,11 +22,29 @@ class DepartamentoRequest extends Request {
 	public function rules()
 	{
         switch($this->method()) {
+            case 'GET':
+                return [
+                    'nombre' => 'required',
+                    'facultad' => 'required',
+                ];
+            case 'DELETE':
+            {
+                return [];
+            }
             case 'POST':
                 return [
                     'nombre' => 'required|string|between:3,25',
                     'descripcion' => 'required|string|between:3,255'
                 ];
+            case 'PUT':
+            {
+                return [];
+            }
+            case 'PATCH':
+            {
+
+            }
+            default:break;
         }
 	}
 

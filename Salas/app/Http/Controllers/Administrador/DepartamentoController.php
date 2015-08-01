@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Facultad;
 use App\Models\Departamento;
 use Request;
+use Illuminate\Support\Facades\Session;
 
 //use Illuminate\Http\Request;
 
@@ -17,9 +18,22 @@ class DepartamentoController extends Controller {
 	 */
 	public function index()
 	{
-        $data_depto = Departamento::paginate();
+        if(Request::all()){
+            $request = Request::only(['facultad','nombre']);
+            if($request['nombre'] != ''){
+                $data_depto = Departamento::whereNombre($request['nombre'])->where('facultad_id',$request['facultad'])->paginate(5);
+                $data_Facultad = Facultad::lists('nombre','id');
+                return view('Administrador.Departamento.Body')->with('Departamentos', $data_depto)->with('Facultad', $data_Facultad);
+            }
+            else{
+                $data_depto = Departamento::where('facultad_id',$request['facultad'])->paginate(5);
+                $data_Facultad = Facultad::lists('nombre','id');
+                return view('Administrador.Departamento.Body')->with('Departamentos', $data_depto)->with('Facultad', $data_Facultad);
+            }
+        }
+        $data_depto = Departamento::paginate(5);
         $data_Facultad = Facultad::lists('nombre','id');
-        return view('Administrador.bodyAdm')->with('Departamentos', $data_depto)->with('Facultad', $data_Facultad);
+        return view('Administrador.Departamento.Body')->with('Departamentos', $data_depto)->with('Facultad', $data_Facultad);
 	}
 
 	/**
@@ -30,7 +44,7 @@ class DepartamentoController extends Controller {
 	public function create()
 	{
         $data_Facultad = Facultad::lists('nombre','id');
-        return view('Administrador.crearAdm')->with('Facultad',$data_Facultad);
+        return view('Administrador.Departamento.Crear')->with('Facultad',$data_Facultad);
 
 	}
 
@@ -42,8 +56,19 @@ class DepartamentoController extends Controller {
 	public function store(Requests\DepartamentoRequest $request)
 	{
         $data = $request->only(['nombre','descripcion','facultad_id']);
-        Departamento::create($data);
-
+        if(count(Departamento::whereNombre($data['nombre'])->first()) == 0){
+            Departamento::create($data);
+        }
+        else{
+            if(Departamento::whereNombre($data['nombre'])->first()->facultad->id != $data['facultad_id']){
+                Departamento::create($data);
+            }
+            else{
+                Session::flash('alert', 'Departamento: '.$data['nombre'].' Pertenciente a la Facultad'.Facultad::find($data['facultad_id'])->nombre.' Ya existente en la base de datos');
+                return redirect()->route('Admin.Depto.create');
+            }
+        }
+        Session::flash('message', 'Departamento: '.$data['nombre'].' Pertenciente a la Facultad'.Facultad::find($data['facultad_id'])->nombre.' Creado exitosamente');
         return redirect()->route('Admin.Depto.index');
 	}
 
@@ -70,7 +95,7 @@ class DepartamentoController extends Controller {
         $Departamento = Departamento::find($id);
         if($Departamento){
             $Facultad = Facultad::lists('nombre','id');
-            return view('Administrador.editarAdm')->with('Departamento',$Departamento)->with('Facultad',$Facultad);
+            return view('Administrador.Departamento.Editar')->with('Departamento',$Departamento)->with('Facultad',$Facultad);
         }
         else{
             abort(404,'id no encontrado');
@@ -87,11 +112,11 @@ class DepartamentoController extends Controller {
 	{
         $Departamento = Departamento::find($id);
         if($Departamento){
-            $datos_edit_Departamento = Request::only(['nombre','descripcion','facultad_id']);
-            $Departamento->fill($datos_edit_Departamento);
+            $data = Request::only(['nombre','descripcion','facultad_id']);
+            $Departamento->fill($data);
             $Departamento->save();
-
-            return redirect()->route('Admin.Depto.index')->with('mensaje','Campus editado correctamente');
+            Session::flash('message', 'Departamento '.$data['nombre'].' Creado correctamente');
+            return redirect()->route('Admin.Depto.index');
 
         }
         else{
@@ -109,11 +134,12 @@ class DepartamentoController extends Controller {
 	{
         $Departamento = Departamento::find($id);
         if($Departamento){
+            Session::flash('destroy', 'Departamento '.$Departamento->nombre.' Eliminado correctamente');
             $Departamento->delete();
             return redirect()->route('Admin.Depto.index')->with('mensaje','Campus Eliminado correctamente');
         }
         else{
-            return redirect()->route('Admin.Depto.index')->with('mensaje','Campus No encontrado');
+            abort(404,'id no encontrada');
         }
 
 	}

@@ -17,7 +17,7 @@ class TipoSalasController extends Controller {
 	public function index()
 	{
         $data_Tposalas = Tipo_Sala::paginate();
-        return view('Administrador.bodyAdm')->with('Tposalas', $data_Tposalas);
+        return view('Administrador.TpoSala.Body')->with('Tposalas', $data_Tposalas);
 	}
 
 	/**
@@ -27,7 +27,7 @@ class TipoSalasController extends Controller {
 	 */
 	public function create()
 	{
-        return view('Administrador.crearAdm');
+        return view('Administrador.TpoSala.Crear');
 	}
 
 	/**
@@ -64,7 +64,7 @@ class TipoSalasController extends Controller {
 	{
 		$TpoSalas = Tipo_Sala::find($id);
         if($TpoSalas){
-            return view('Administrador.editarAdm')->with('TpoSalas', $TpoSalas);
+            return view('Administrador.TpoSala.Editar')->with('TpoSalas', $TpoSalas);
         }
         else{
             abort(404,'id no encontrado');

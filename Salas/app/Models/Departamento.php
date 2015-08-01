@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Facultad;
 
 class Departamento extends Model {
 
@@ -61,4 +62,12 @@ class Departamento extends Model {
     public static function query_nombre($nombre){
         return Departamento::select('id')->whereNombre($nombre)->first();
     }
+
+    /*public function scopeFacultad($query, $facultad){
+        $facultades = Facultad::lists('nombre','id');
+        dd($facultades);
+        if($facultad != '' && isset($facultades($facultad))){
+            $query->whereNombre($facultad);
+        }
+    }*/
 }

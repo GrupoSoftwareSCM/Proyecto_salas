@@ -21,7 +21,7 @@ class DocenteController extends Controller {
 	public function index()
 	{
         $docente = Docente::paginate();
-		return view('Administrador.bodyAdm')->with('Docentes',$docente);
+		return view('Administrador.Docente.Body')->with('Docentes',$docente);
 	}
 
 	/**
@@ -32,7 +32,7 @@ class DocenteController extends Controller {
 	public function create()
 	{
         $departamento = Departamento::lists('nombre','id');
-        return view('Administrador.crearAdm')->with('depto',$departamento);
+        return view('Administrador.Docente.Crear')->with('depto',$departamento);
 	}
 
 	/**
@@ -99,7 +99,7 @@ class DocenteController extends Controller {
 		$docente = Docente::find($id);
         if($docente){
             $departamento = Departamento::lists('nombre','id');
-            return view('Administrador.editarAdm')->with('docente',$docente)->with('depto',$departamento);
+            return view('Administrador.Docente.Editar')->with('docente',$docente)->with('depto',$departamento);
         }
         else{
             abort(404,'id no encontrado');

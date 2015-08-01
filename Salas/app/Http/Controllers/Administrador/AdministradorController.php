@@ -19,7 +19,7 @@ class AdministradorController extends Controller {
 	{
         $data = Rol::whereNombre('ADMINISTRADOR')->first();
         //dd($data->usuarios);
-        return view('Administrador.bodyAdm')->with('Adminis',$data->usuarios);
+        return view('Administrador.Admin.Body')->with('Adminis',$data->usuarios);
 	}
 
 	/**
@@ -29,7 +29,7 @@ class AdministradorController extends Controller {
 	 */
 	public function create()
 	{
-		return view('Administrador.crearAdm');
+		return view('Administrador.Admin.Crear');
 	}
 
 	/**
@@ -77,7 +77,7 @@ class AdministradorController extends Controller {
 	{
         $usuario = Usuario::find($id);
         if($usuario){
-            return view('Administrador.editarAdm')->with('users',$usuario);
+            return view('Administrador.Admin.Editar')->with('users',$usuario);
         }
         else{
             abort(404,'usuario no encontrado');

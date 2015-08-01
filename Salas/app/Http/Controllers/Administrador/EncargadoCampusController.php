@@ -17,7 +17,7 @@ class EncargadoCampusController extends Controller {
 	public function index()
 	{
 		$data = Rol::whereNombre('ENCARGADO_CAMPUS')->first();
-        return view('Administrador.bodyAdm')->with('Encargados',$data->usuarios);
+        return view('Administrador.EncargadoCampus.Body')->with('Encargados',$data->usuarios);
 	}
 
 	/**
@@ -27,7 +27,7 @@ class EncargadoCampusController extends Controller {
 	 */
 	public function create()
 	{
-		return view('Administrador.crearAdm');
+		return view('Administrador.EncargadoCampus.Crear');
 	}
 
 	/**
@@ -80,7 +80,7 @@ class EncargadoCampusController extends Controller {
 	{
         $usuario = Usuario::find($id);
         if($usuario){
-            return view('Administrador.editarAdm')->with('users',$usuario);
+            return view('Administrador.EncargadoCampus.Editar')->with('users',$usuario);
         }
         else{
             abort(404,'no se encuentra el id');

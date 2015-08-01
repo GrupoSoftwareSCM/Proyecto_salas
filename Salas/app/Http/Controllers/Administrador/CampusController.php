@@ -19,8 +19,13 @@ class CampusController extends Controller {
 	 */
 	public function index()
 	{
-        $data_campu = Campus::paginate();
-        return view('Administrador.bodyAdm')->with('campus',$data_campu);
+        $reques = Request::only(['nombre']);
+        if($reques['nombre'] != ""){
+            $reques = Request::only(['nombre']);
+            dd('asdsadasd');
+        }
+        $data_campu = Campus::paginate(5);
+        return view('Administrador.Campus.body')->with('campus',$data_campu);
 	}
 
 	/**
@@ -38,7 +43,7 @@ class CampusController extends Controller {
             //array_push($encargado,[$value->rut => $value->nombres]);
         }
         //dd($encargado);
-        return view('Administrador.crearAdm')->with('Encargado',$encargado);
+        return view('Administrador.Campus.Crear')->with('Encargado',$encargado);
 	}
 
 	/**
@@ -92,7 +97,7 @@ class CampusController extends Controller {
 	public function edit($id)
 	{
         $Campus = Campus::find($id);
-        return view('Administrador.editarAdm')->with('Campus',$Campus);
+        return view('Administrador.Campus.Editar')->with('Campus',$Campus);
 	}
 
 	/**

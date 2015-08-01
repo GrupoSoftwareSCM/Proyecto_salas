@@ -22,7 +22,7 @@ class SalasController extends Controller {
         $data_tposala = Tipo_Sala::lists('nombre','id');
         $data_salas = Sala::paginate();
 
-        return view('Administrador.bodyAdm')->with('Campus',$data_campus)->with('Tposala',$data_tposala)->with('Salas',$data_salas);
+        return view('Administrador.Sala.Body')->with('Campus',$data_campus)->with('Tposala',$data_tposala)->with('Salas',$data_salas);
 	}
 
 	/**
@@ -35,7 +35,7 @@ class SalasController extends Controller {
         $data_campus = Campus::lists('nombre','id');
         $data_tposala = Tipo_Sala::lists('nombre','id');
 
-        return view('Administrador.crearAdm')->with('Campus',$data_campus)->with('Tposala',$data_tposala);
+        return view('Administrador.Sala.Crear')->with('Campus',$data_campus)->with('Tposala',$data_tposala);
 	}
 
 	/**
@@ -73,7 +73,7 @@ class SalasController extends Controller {
         $Salas = Sala::find($id);
         $data_campus = Campus::lists('nombre','id');
         $data_tposala = Tipo_Sala::lists('nombre','id');
-        return view('Administrador.editarAdm')->with('Salas',$Salas)->with('Campus',$data_campus)->with('Tposala',$data_tposala);
+        return view('Administrador.Sala.Editar')->with('Salas',$Salas)->with('Campus',$data_campus)->with('Tposala',$data_tposala);
 	}
 
 	/**

@@ -21,7 +21,7 @@ class EstudianteController extends Controller {
 	{
         $estudiante = Estudiante::paginate();
         //dd($estudiante);
-        return view('Administrador.bodyAdm')->with('Estudiantes',$estudiante);
+        return view('Administrador.Estudiante.Body')->with('Estudiantes',$estudiante);
 	}
 
 	/**
@@ -32,7 +32,7 @@ class EstudianteController extends Controller {
 	public function create()
 	{
         $carrera = Carrera::lists('nombre','id');
-		return view('Administrador.crearAdm')->with('Carreras', $carrera);
+		return view('Administrador.Estudiante.Crear')->with('Carreras', $carrera);
 	}
 
 	/**
@@ -95,7 +95,7 @@ class EstudianteController extends Controller {
         $estudiante = Estudiante::find($id);
         if($estudiante){
             $carrera = Carrera::lists('nombre','id');
-            return view('Administrador.editarAdm')->with('estudiante',$estudiante)->with('Carreras', $carrera);
+            return view('Administrador.Estudiante.Editar')->with('estudiante',$estudiante)->with('Carreras', $carrera);
         }
         else{
             abort(404,'Estudiante no encontrado');
