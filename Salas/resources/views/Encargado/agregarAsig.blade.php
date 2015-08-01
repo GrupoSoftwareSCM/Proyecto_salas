@@ -5,7 +5,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-6 col-md-offset-1">
                        <div class="panel panel-default">
                         <h1 class="page-header"> Crear Asignatura</h1>
                     <div class="panel-body">
@@ -55,6 +55,17 @@
 
                       {!! Form::close() !!}
                       </form>
+                      <div class="col-md-6">
+                        {!!Form::open(['route' => 'files.AsigEncar.up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
+                        <div class="form-group">
+                            {!!Form::label('file','Adjuntar archivo',['class' => 'col-md-6'])!!}
+                            <br/>
+                            <input type="file" name="file">
+
+                        </div>
+                        {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
+                    </div>
             </div>  
           </div>
           </div>

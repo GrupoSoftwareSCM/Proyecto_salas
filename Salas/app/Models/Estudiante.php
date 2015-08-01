@@ -39,6 +39,11 @@ class Estudiante extends Model {
 	{
 		return $this->belongsTo('App\Models\Carrera','carrera_id','id');
 	}
+	 public static function query_nombre($nombre){
+        return Estudiante::select('id')
+                ->whereNombre($nombre)
+                ->first();
+    }
 
 
 

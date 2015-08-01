@@ -39,9 +39,13 @@ class Carrera extends Model {
 	{
 		return $this->belongsTo('App\Models\Escuela','escuela_id','id');
 	}
-
+    public static function query_nombre($nombre){
+        return Campus::select('id')
+                ->whereNombre($nombre)
+                ->first();
+    }
     public static function Nombre($nombre){
-        $info = count(Carrera::whereNombre($nombre)->get());
+        $info = count(Carrera::whereNombre($nombre)->get())	;
         if($info == 0){
             return false;
         }

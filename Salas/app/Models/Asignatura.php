@@ -40,4 +40,9 @@ class Asignatura extends Model {
 		return $this->belongsTo('App\Models\Departamento','departamento_id','id');
 	}
 
+    public static function query_nombre($nombre){
+        return Asignatura::select('id')
+            ->whereNombre($nombre)
+            ->first();
+    }
 }
