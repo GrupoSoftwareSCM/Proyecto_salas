@@ -3,31 +3,33 @@
 @section('body')
     <div class="panel panel-success">
         <div class="panel-body">
-            Funcionario
+            {!! Html::linkRoute('Admin.Funcionario.index','Funcionario') !!}
             <a class="glyphicon glyphicon-menu-right"></a>
             Editar
         </div>
         <div class="panel-footer">
-            <div class="row">
-                <div class="col-md-6">
-                    {!! Form::model($funcionario,array('route' => array('Admin.Funcionario.update',$funcionario->id), 'method' => 'PUT')) !!}
-                    <div class="form-group">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-xs-9">
+                        {!! Form::model($funcionario,array('route' => array('Admin.Funcionario.update',$funcionario->id),'class'=>'form-horizontal', 'method' => 'PUT')) !!}
+                        <div class="form-group">
 
-                        {!!Form::label('nombres','Nombres',['class' => 'col-md-6'])!!}
-                        {!!Form::text('nombres',$funcionario->nombres,['class' => 'col-md-6'])!!}
+                            {!!Form::label('nombres','Nombres',['class' => 'control-label'])!!}
+                            {!!Form::text('nombres',$funcionario->nombres,['class' => 'form-control'])!!}
 
-                        {!!Form::label('apellidos','Apellidos',['class' => 'col-md-6'])!!}
-                        {!!Form::text('apellidos',$funcionario->apellidos,['class' => 'col-md-6'])!!}
+                            {!!Form::label('apellidos','Apellidos',['class' => 'control-label'])!!}
+                            {!!Form::text('apellidos',$funcionario->apellidos,['class' => 'form-control'])!!}
 
-                        {!!Form::label('email','E-MAIL',['class' => 'col-md-6'])!!}
-                        {!!Form::email('email',$funcionario->email,['class' => 'col-md-6'])!!}
+                            {!!Form::label('email','E-MAIL',['class' => 'control-label'])!!}
+                            {!!Form::email('email',$funcionario->email,['class' => 'form-control'])!!}
 
-                        {!!Form::label('departamentos','Departamento',['class' => 'col-md-6'])!!}
-                        {!!Form::select('departamentos',$depto,$funcionario->departamento->id,['class' => 'col-md-6'])!!}
+                            {!!Form::label('departamentos','Departamento',['class' => 'control-label'])!!}
+                            {!!Form::select('departamentos',$depto,$funcionario->departamento->id,['class' => 'form-control'])!!}
 
+                        </div>
+                        {!!Form::button('Editar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
                     </div>
-                    {!!Form::button('Editar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
-                    {!!Form::close()!!}
                 </div>
             </div>
         </div>

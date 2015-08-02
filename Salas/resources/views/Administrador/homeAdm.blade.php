@@ -76,8 +76,10 @@
             </nav>
 
         </div>
-        <div class="col-md-9">
-            @yield('body')
+        <div class="container-fluid">
+            <div class="col-md-9 col-xs-12">
+                @yield('body')
+            </div>
         </div>
         {{--
         <div class="col-md-9">

@@ -3,28 +3,30 @@
 @section('body')
     <div class="panel panel-success">
         <div class="panel-body">
-            Escuela
+            {!! Html::linkRoute('Admin.Escuela.index','Escuela') !!}
             <a class="glyphicon glyphicon-menu-right"></a>
             Editar
         </div>
         <div class="panel-footer">
-            <div class="row">
-                <div class="col-md-6">
-                    {!! Form::model($Escuela,array('route' => array('Admin.Escuela.update',$Escuela->id), 'method' => 'PUT')) !!}
-                    <div class="form-group">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-xs-9">
+                        {!! Form::model($Escuela,array('route' => array('Admin.Escuela.update',$Escuela->id), 'method' => 'PUT','class'=>'form-horizontal')) !!}
+                        <div class="form-group">
 
-                        {!!Form::label('departamento_id','Ingrese Facultad',['class' => 'col-md-6'])!!}
-                        {!!Form::select('departamento_id',$Departamento,$Escuela->departamento_id,['class' => 'col-md-6'])!!}
+                            {!!Form::label('departamento_id','Ingrese Facultad',['class' => 'control-label'])!!}
+                            {!!Form::select('departamento_id',$Departamento,$Escuela->departamento_id,['class' => 'form-control'])!!}
 
-                        {!!Form::label('nombre','Nombre Departamentos',['class' => 'col-md-6'])!!}
-                        {!!Form::text('nombre',$Escuela->nombre,['class' => 'col-md-6'])!!}
+                            {!!Form::label('nombre','Nombre Departamentos',['class' => 'control-label'])!!}
+                            {!!Form::text('nombre',$Escuela->nombre,['class' => 'form-control'])!!}
 
-                        {!!Form::label('descripcion','Descripcion',['class' => 'col-md-6'])!!}
-                        {!!Form::textarea('descripcion',$Escuela->descripcion,['class' => 'col-md-6'])!!}
+                            {!!Form::label('descripcion','Descripcion',['class' => 'control-label'])!!}
+                            {!!Form::textarea('descripcion',$Escuela->descripcion,['class' => 'form-control'])!!}
 
+                        </div>
+                        {!!Form::button('Editar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
+                        {!!Form::close()!!}
                     </div>
-                    {!!Form::button('Editar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
-                    {!!Form::close()!!}
                 </div>
             </div>
         </div>
