@@ -94,6 +94,9 @@ class CarreraController extends Controller {
             $data = Escuela::lists('nombre','id');
             return view('Administrador.Carrera.Editar')->with('Escuela',$data)->with('Carrera', $carrera);
         }
+        else{
+            return view('errors.404');
+        }
 	}
 
 	/**
@@ -117,6 +120,9 @@ class CarreraController extends Controller {
             Session::flash('message', 'Carrera '.$data['nombre'].' Editada correctamente');
             return redirect()->route('Admin.Carrera.index');
         }
+        else{
+            return view('errors.404');
+        }
 	}
 
 	/**
@@ -134,7 +140,7 @@ class CarreraController extends Controller {
             return redirect()->route('Admin.Carrera.index');
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 

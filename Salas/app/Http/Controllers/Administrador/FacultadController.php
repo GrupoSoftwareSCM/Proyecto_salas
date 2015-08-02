@@ -106,7 +106,7 @@ class FacultadController extends Controller {
 
         }
         else{
-            abort(404);
+            return view('errors.404');
         }
 	}
 
@@ -125,7 +125,7 @@ class FacultadController extends Controller {
             return redirect()->route('Admin.Facultad.index');
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 
 	}

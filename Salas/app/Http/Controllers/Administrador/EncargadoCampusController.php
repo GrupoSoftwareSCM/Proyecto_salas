@@ -86,7 +86,7 @@ class EncargadoCampusController extends Controller {
             return view('Administrador.EncargadoCampus.Editar')->with('users',$usuario);
         }
         else{
-            abort(404,'no se encuentra el id');
+            return view('errors.404');
         }
 	}
 
@@ -106,7 +106,7 @@ class EncargadoCampusController extends Controller {
             return redirect()->route('Admin.EncargadoCampus.index');
         }
         else{
-            abort(404,'no se encuentra el id');
+            return view('errors.404');
         }
 	}
 
@@ -125,7 +125,7 @@ class EncargadoCampusController extends Controller {
             return redirect()->route('Admin.EncargadoCampus.index');
         }
         else{
-            abort(404,'rut no encontrado');
+            return view('errors.404');
         }
 	}
 

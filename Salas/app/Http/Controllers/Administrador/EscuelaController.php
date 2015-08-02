@@ -97,7 +97,7 @@ class EscuelaController extends Controller {
             return view('Administrador.Escuela.Editar')->with('Escuela',$Escuela)->with('Departamento',$Departamento);
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -119,7 +119,7 @@ class EscuelaController extends Controller {
 
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -138,7 +138,7 @@ class EscuelaController extends Controller {
             return redirect()->route('Admin.Escuela.index');
         }
         else{
-            return redirect()->route('Admin.Escuela.index')->with('mensaje','Campus No encontrado');
+            return view('errors.404');
         }
 	}
 

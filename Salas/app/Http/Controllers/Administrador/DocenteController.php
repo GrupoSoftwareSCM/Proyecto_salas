@@ -115,7 +115,7 @@ class DocenteController extends Controller {
             return view('Administrador.Docente.Editar')->with('docente',$docente)->with('depto',$departamento);
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -141,7 +141,7 @@ class DocenteController extends Controller {
             return redirect()->route('Admin.Docente.index');
         }
         else{
-            abort(404,'id no encontrada');
+            return view('errors.404');
         }
 	}
 
@@ -163,11 +163,11 @@ class DocenteController extends Controller {
                 return redirect()->route('Admin.Docente.index');
             }
             else{
-                abort(404,'id no encontrado');
+                return view('errors.404');
             }
         }
         else {
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 

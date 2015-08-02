@@ -85,7 +85,7 @@ class TipoSalasController extends Controller {
             return view('Administrador.TpoSala.Editar')->with('TpoSalas', $TpoSalas);
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 
 	}
@@ -107,7 +107,7 @@ class TipoSalasController extends Controller {
             return redirect()->route('Admin.TpoSala.index')->with('mensaje','Campus editado correctamente');
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -126,7 +126,7 @@ class TipoSalasController extends Controller {
             return redirect()->route('Admin.TpoSala.index')->with('mensaje','Campus eliminado correctamente');
 	    }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
     }
 

@@ -96,7 +96,7 @@ class FuncionarioController extends Controller {
             return view('Administrador.Funcionario.Editar')->with('funcionario',$funcionario)->with('depto',$departamento);
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -123,7 +123,7 @@ class FuncionarioController extends Controller {
             return redirect()->route('Admin.Funcionario.index');
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -142,7 +142,7 @@ class FuncionarioController extends Controller {
             return redirect()->route('Admin.Funcionario.index');
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 

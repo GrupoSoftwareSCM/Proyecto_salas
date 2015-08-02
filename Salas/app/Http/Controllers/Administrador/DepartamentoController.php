@@ -98,7 +98,7 @@ class DepartamentoController extends Controller {
             return view('Administrador.Departamento.Editar')->with('Departamento',$Departamento)->with('Facultad',$Facultad);
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -120,7 +120,7 @@ class DepartamentoController extends Controller {
 
         }
         else{
-            abort(404,'id no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -139,7 +139,7 @@ class DepartamentoController extends Controller {
             return redirect()->route('Admin.Depto.index');
         }
         else{
-            abort(404,'id no encontrada');
+            return view('errors.404');
         }
 
 	}

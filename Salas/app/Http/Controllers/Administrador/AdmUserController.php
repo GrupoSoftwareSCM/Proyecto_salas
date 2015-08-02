@@ -90,7 +90,7 @@ class AdmUserController extends Controller {
             $Campus->save();*/
         }
         else{
-            abort(404);
+            return view('errors.404');
         }
 	}
 

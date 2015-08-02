@@ -85,7 +85,7 @@ class AdministradorController extends Controller {
             return view('Administrador.Admin.Editar')->with('users',$usuario);
         }
         else{
-            abort(404,'usuario no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -105,7 +105,7 @@ class AdministradorController extends Controller {
             return redirect()->route('Admin.Administrador.index');
         }
         else{
-            abort(404,'usuario no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -124,7 +124,7 @@ class AdministradorController extends Controller {
             return redirect()->route('Admin.Administrador.index');
         }
         else{
-            abort(404,'rut no encontrado');
+            return view('errors.404');
         }
 	}
 

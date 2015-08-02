@@ -110,7 +110,7 @@ class SalasController extends Controller {
             return redirect()->route('Admin.Salas.index');
         }
         else{
-            abort(404);
+            return view('errors.404');
         }
 	}
 
@@ -129,7 +129,7 @@ class SalasController extends Controller {
             return redirect()->route('Admin.Salas.index')->with('mensaje','Campus eliminado correctamente');
         }
         else
-            abort(404);
+            return view('errors.404');
 	}
 
 }

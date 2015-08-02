@@ -111,7 +111,7 @@ class EstudianteController extends Controller {
             return view('Administrador.Estudiante.Editar')->with('estudiante',$estudiante)->with('Carreras', $carrera);
         }
         else{
-            abort(404,'Estudiante no encontrado');
+            return view('errors.404');
         }
 
 	}
@@ -139,7 +139,7 @@ class EstudianteController extends Controller {
             return redirect()->route('Admin.Estudiante.index');
         }
         else{
-            abort(404,'Estudiante no encontrado');
+            return view('errors.404');
         }
 	}
 
@@ -152,11 +152,22 @@ class EstudianteController extends Controller {
 	public function destroy($id)
 	{
 		$estudiante = Estudiante::find($id);
-        $usuario = Usuario::find($estudiante->rut);
-        Session::flash('destroy', 'Estudiante '.$estudiante->nombres.' Eliminado correctamente');
-        $usuario->delete();
-        $estudiante->delete();
-        return redirect()->route('Admin.Estudiante.index');
-	}
+        if($estudiante){
+            $usuario = Usuario::find($estudiante->rut);
+            if($usuario){
+                Session::flash('destroy', 'Estudiante '.$estudiante->nombres.' Eliminado correctamente');
+                $usuario->delete();
+                $estudiante->delete();
+                return redirect()->route('Admin.Estudiante.index');
+            }
+            else {
+                return view('errors.404');
+            }
+        }
+        else{
+            return view('errors.404');
+        }
+
+    }
 
 }

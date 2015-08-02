@@ -106,7 +106,10 @@ class CampusController extends Controller {
 	public function edit($id)
 	{
         $Campus = Campus::find($id);
-        return view('Administrador.Campus.Editar')->with('Campus',$Campus);
+        if($Campus)
+            return view('Administrador.Campus.Editar')->with('Campus',$Campus);
+        else
+            return view('errors.404');
 	}
 
 	/**
@@ -127,7 +130,7 @@ class CampusController extends Controller {
 
         }
         else{
-            abort(404);
+            return view('errors.404');
         }
 	}
 
@@ -140,9 +143,14 @@ class CampusController extends Controller {
 	public function destroy($id)
 	{
         $Campus = Campus::find($id);
-        $Campus->delete();
-        Session::flash('destroy', 'Campus Eliminado correctamente');
-        return redirect()->route('Admin.Campus.index');
+        if($Campus){
+            $Campus->delete();
+            Session::flash('destroy', 'Campus Eliminado correctamente');
+            return redirect()->route('Admin.Campus.index');
+        }
+        else{
+            return view('errors.404');
+        }
 	}
 
 }
