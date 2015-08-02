@@ -26,11 +26,11 @@
                         @endif
                     </div>
                     <div class="row">
-                        <nav class="navbar navbar-right">
-                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Depto/create" role="button" aria-label="Left Align">
-                                Crear Departamento
-                            </a>
-                        </nav>
+                        <div class="col-md-3 col-md-offset-8">
+                            <nav class="navbar navbar-right">
+                                <a class="btn glyphicon glyphicon-plus" href="/Admin/Depto/create" role="button" aria-label="Left Align">Crear Departamento</a>
+                            </nav>
+                        </div>
                     </div>
                     {!!Form::open(['route'=>'Admin.Depto.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
                         {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre de Departamento'])!!}

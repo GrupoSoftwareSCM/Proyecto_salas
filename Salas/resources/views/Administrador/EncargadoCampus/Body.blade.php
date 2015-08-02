@@ -25,14 +25,13 @@
                             </div>
                         @endif
                     </div>
-
-                    <nav class="navbar navbar-right">
-
-                        <a class="btn glyphicon glyphicon-plus" href="/Admin/EncargadoCampus/create" role="button" aria-label="Left Align">
-                            Crear Encargado Campus
-                        </a>
-                    </nav>
-
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-8">
+                            <nav class="navbar navbar-right">
+                                <a class="btn glyphicon glyphicon-plus" href="/Admin/EncargadoCampus/create" role="button" aria-label="Left Align">Crear Encargado Campus</a>
+                            </nav>
+                        </div>
+                    </div>
                     @if(count($Encargados)>0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <tr>

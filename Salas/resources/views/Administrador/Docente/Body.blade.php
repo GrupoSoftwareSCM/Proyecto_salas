@@ -26,9 +26,11 @@
                         @endif
                     </div>
                     <div class="row">
-                        <nav class="navbar navbar-right">
-                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Docente/create" role="button" aria-label="Left Align">Crear Docente</a>
-                        </nav>
+                        <div class="col-md-3 col-md-offset-8">
+                            <nav class="navbar navbar-right">
+                                <a class="btn glyphicon glyphicon-plus" href="/Admin/Docente/create" role="button" aria-label="Left Align">Crear Docente</a>
+                            </nav>
+                        </div>
                     </div>
                     {!!Form::open(['route'=>'Admin.Docente.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
                         {!!Form::text('rut',null,['class'=>'form-control','placeholder'=>'RUT'])!!}

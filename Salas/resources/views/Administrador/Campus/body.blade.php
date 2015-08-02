@@ -26,9 +26,11 @@
                             @endif
                         </div>
                         <div class="row">
-                            <nav class="navbar navbar-right">
-                                <a class="btn glyphicon glyphicon-plus" href="/Admin/Campus/create" role="button" aria-label="Left Align">Crear Campus</a>
-                            </nav>
+                            <div class="col-md-3 col-md-offset-8">
+                                <nav class="navbar navbar-right">
+                                    <a class="btn glyphicon glyphicon-plus" href="/Admin/Campus/create" role="button" aria-label="Left Align">Crear Campus</a>
+                                </nav>
+                            </div>
                         </div>
                         {!!Form::open(['route'=>'Admin.Campus.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
                             {!!Form::text('nombre_campus',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}
@@ -44,7 +46,6 @@
                                     <th class="center">Direccion</th>
                                     <th class="center">Editar</th>
                                     <th class="center">Eliminar</th>
-                                    <th class="center">+ info</th>
                                     <th class="center">Descargar</th>
                                 </tr>
                                 </thead>
@@ -63,9 +64,6 @@
                                             </button>
 
                                             {!!Form::close()!!}
-                                        </th>
-                                        <th class="center">
-                                            {!!Html::link('bajar/campus/'.$camp->id,'',['class' => 'btn glyphicon glyphicon-inbox', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                         </th>
                                         <th class="center">
                                             {!!Html::link('files/campus/'.$camp->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}

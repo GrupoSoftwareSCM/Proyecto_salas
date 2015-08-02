@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <!-- MENU -->
 
 
@@ -19,7 +19,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Logotipo</a>
+                    <!--<a class="navbar-brand" href="#">Logotipo</a>-->
+                    {!! Html::image('/img/Logotipo_UTEM.png','logoTipo',['class'=>'navbar-brand']) !!}
                 </div>
 
                 <!-- Agrupar los enlaces de navegación, los formularios y cualquier
@@ -27,7 +28,7 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown">
                                 Universidad<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -41,7 +42,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown">
                                 Crear usuarios<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -53,8 +54,8 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Cambiar de perfil<b class="caret"></b>
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-share-alt" data-toggle="dropdown">
+                                Cambio Perfil<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 {{--dd(Auth::user()->roles)--}}

@@ -26,12 +26,11 @@
                         @endif
                     </div>
                     <div class="row">
-                        <nav class="navbar navbar-right">
-
-                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Administrador/create" role="button" aria-label="Left Align">
-                                Crear Administrador
-                            </a>
-                        </nav>
+                        <div class="col-md-3 col-md-offset-8">
+                            <nav class="navbar navbar-right">
+                                <a class="btn glyphicon glyphicon-plus" href="/Admin/Administrador/create" role="button" aria-label="Left Align">Crear Administrador</a>
+                            </nav>
+                        </div>
                     </div>
                     @if(count($Adminis) > 0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">

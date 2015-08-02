@@ -26,11 +26,11 @@
                         @endif
                     </div>
                     <div class="row">
-                        <nav class="navbar navbar-right">
-                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Salas/create" role="button" aria-label="Left Align">
-                                Crear salas
-                            </a>
-                        </nav>
+                        <div class="col-md-3 col-md-offset-8">
+                            <nav class="navbar navbar-right">
+                                <a class="btn glyphicon glyphicon-plus" href="/Admin/Salas/create" role="button" aria-label="Left Align">Crear salas</a>
+                            </nav>
+                        </div>
                     </div>
                     {!!Form::open(['route'=>'Admin.Salas.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
                         {!!Form::text('Salas',null,['class'=>'form-control','placeholder'=>'Nombre Sala'])!!}

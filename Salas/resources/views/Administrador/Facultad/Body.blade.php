@@ -26,11 +26,11 @@
                         @endif
                     </div>
                     <div class="row">
-                        <nav class="navbar navbar-right">
-                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Facultad/create" role="button" aria-label="Left Align">
-                                Crear Facultad
-                            </a>
-                        </nav>
+                        <div class="col-md-3 col-md-offset-8">
+                            <nav class="navbar navbar-right">
+                                <a class="btn glyphicon glyphicon-plus" href="/Admin/Facultad/create" role="button" aria-label="Left Align">Crear Facultad</a>
+                            </nav>
+                        </div>
                     </div>
                     {!!Form::open(['route'=>'Admin.Facultad.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
                         {!!Form::text('Facultad',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}

@@ -26,12 +26,11 @@
                         @endif
                     </div>
                     <div class="row">
-                        <nav class="navbar navbar-right">
-
-                            <a class="btn glyphicon glyphicon-plus" href="/Admin/Carrera/create" role="button" aria-label="Left Align">
-                                Crear Carrera
-                            </a>
-                        </nav>
+                        <div class="col-md-3 col-md-offset-8">
+                            <nav class="navbar navbar-right">
+                                <a class="btn glyphicon glyphicon-plus" href="/Admin/Carrera/create" role="button" aria-label="Left Align">Crear Carrera</a>
+                            </nav>
+                        </div>
                     </div>
                     {!!Form::open(['route'=>'Admin.Carrera.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
                         {!!Form::text('Carrera',null,['class'=>'form-control','placeholder'=>'Nombre de la escuela'])!!}

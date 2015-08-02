@@ -24,7 +24,7 @@ class AdmUserController extends Controller {
 	
 	public function index()
     {
-		return view('Administrador.homeAdm');
+		return view('Administrador.Body');
 	}
 
 	/**

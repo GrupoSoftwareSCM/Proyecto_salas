@@ -1,7 +1,7 @@
 <html lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>...</title>
+    <title>Login UTEM</title>
     {!!Html::style('css/login.css')!!}
 </head>
 <body>
@@ -21,7 +21,7 @@
 <div class="container">
     <section id="content">
         {!!Form::open(['route' => 'auth.login', 'method'=> 'POST'])!!}
-            <h1>UTEM</h1>
+            {!! Html::image('/img/Logo_UTEM.png','UTEM') !!}
             <div>
                 <input type="text" placeholder="Rut Dirdoc" required="" id="rut" name="rut" />
             </div>
