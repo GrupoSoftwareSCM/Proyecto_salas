@@ -7,10 +7,10 @@
         </div>
         <div class="panel-footer">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-2 visible-md-2">
                     {!! Html::image('/img/rector.jpg','rector',['class'=>'img-circle']) !!}
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-10 visible-md-2">
                     <em>
                         <br/>
                         Estimados/as Administrador,
