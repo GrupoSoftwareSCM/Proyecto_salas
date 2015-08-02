@@ -1109,7 +1109,9 @@ class FilesController extends Controller{
             //dd($result);
             foreach($result as $key => $value)
             {  
-                if(!Sala::whereNombre($value->nombre)->first()){
+                $tip_sala=Tipo_Sala::query_nombre($value->tipo_sala)->id;
+                
+                if(Count(Sala::whereNombre($value->nombre)->where('tipo_sala_id',$tip_sala)->first())==0){ 
                     $var = new Sala();
                     $var->fill([
                         'nombre'        => $value->nombre,
@@ -1120,6 +1122,9 @@ class FilesController extends Controller{
                     ]);
                     $var->save();
                 }
+               else
+                 Session::flash('message', 'Sala : \n'.$value->nombre.'Ya esta registrado');
+
             }
         })->get();
 
@@ -1147,7 +1152,7 @@ class FilesController extends Controller{
                 foreach($result as $key => $value)
                 {
 
-                    if(!Asignatura::where('codigo',$value->codigo)->first()){
+                    if(count(Asignatura::where('codigo',$value->codigo)->first()) ==0){
                         $var = new Asignatura();
                         $var->fill([
                             'nombre'        => $value->nombre,
@@ -1157,6 +1162,9 @@ class FilesController extends Controller{
                         ]);
                         $var->save();
                     }
+                    else
+                     Session::flash('message', 'Asignatura : \n'.$value->nombre.'Ya esta registrado');
+
                 }
             })->get();
 
@@ -1217,21 +1225,41 @@ public function postCursfileEncar(Request $request){
         \Excel::load('/storage/public/files/'.$nombre,function($archivo)
         {
             $result = $archivo->get();    //leer todas las filas del archivo
-            //dd($result);
+//            dd($result);
+ 
             foreach($result as $key => $value)
-            { // dd(!(Curso::where('seccion',$value->seccion)->first()) && (Curso::where('anio',$value->anio)->first()) && (Curso::where('semestre',$value->semestre)->first()));
-                if(!(Curso::where('seccion',$value->seccion)->first()) && (Curso::where('anio',$value->anio)->first()) && (Curso::where('semestre',$value->semestre)->first())){
-                    $var = new Curso();
+              {
+                //dd(Asignatura::query_nombre($value->asignatura)->id);
+                $asig_id=Asignatura::query_nombre($value->asignatura)->id;
+
+                $doce_id=Docente::query_rut($value->docente)->id;
+                //dd(count(Curso::where('asignatura_id',$asig_id)->where('docente_id',$doce_id)->where('seccion',$value->seccion)->where('anio',$value->anio)->where('semestre',$value->semestre)->first()));
+               if(count(Curso::where('asignatura_id',$asig_id)->where('docente_id',$doce_id)->where('seccion',$value->seccion)->where('anio',$value->anio)->where('semestre',$value->semestre)->first())==0)
+                $contador=0;
+               else
+                $contador=1;
+               if($contador==0){
+
+                $var = new Curso();
+                    
                     $var->fill([
-                        'asignatura_id'    => Asignatura::where('nombre',$value->asignatura)->first()->id,
-                        'docente_id'       => Docente::where('rut',$value->docente)->first()->id,
+                        'asignatura_id'    => $asig_id,
+                        'docente_id'       => $doce_id,
                         'semestre'         => $value->semestre,
                         'anio'             => $value->anio,
                         'seccion'          => $value->seccion,
                     ]);
                     $var->save();
+
+               }
+               else
+                Session::flash('message', 'Curso seccion: \n'.$value->seccion.' semestre'.$value->semestre.'Ya esta registrado');
+
+
                 }
-            }
+                
+                
+            
         })->get();
 
         \Storage::delete($nombre);

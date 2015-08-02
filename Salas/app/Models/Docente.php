@@ -39,9 +39,14 @@ class Docente extends Model {
 	{
 		return $this->belongsTo('App\Models\Departamento','departamento_id','id');
 	}
-    public static function query_nombre($nombre){
+    public static function query_rut($rut){
         return Docente::select('id')
-                ->whereNombre($nombre)
+                ->where('rut',$rut)
+                ->first();
+    }
+    public static function query_nombre($nombres){
+        return Docente::select('id')
+                ->where('nombres',$nombres)
                 ->first();
     }
 }

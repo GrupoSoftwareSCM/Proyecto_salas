@@ -89,7 +89,8 @@ Route::group(['middleware' =>'docente','prefix' =>  'Docente', 'namespace' => 'D
 
 //PROBANDO RESOURCE PARA ASIGNATURAS
 
-Route::group(['middleware' => 'Encar','prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
+//Route::group(['middleware' => 'Encar','prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
+Route::group(['prefix' =>  'encar', 'namespace' => 'Encargado'], function(){
     Route::resource('asig/modi','asigController'); //CRUD PARA ASIGNATURA
     Route::resource('estu/modi','estuController');  //CRUD PARA ESTUDIANTE
     Route::resource('curs/modi','cursController');  //CRUD PARA CURSO
