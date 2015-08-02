@@ -15,7 +15,7 @@ class DocUserController extends Controller {
 	 */
 	public function index()
 	{
-		return view('Docente.homeDoc');
+		return view('Docente.Body');
 	}
 	/**
 	 * Show the form for creating a new resource.

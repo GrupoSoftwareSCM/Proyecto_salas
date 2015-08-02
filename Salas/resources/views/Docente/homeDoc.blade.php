@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <!-- MENU -->
 
 
@@ -19,7 +19,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Logotipo</a>
+                    {!! Html::image('/img/Logotipo_UTEM.png','logoTipo',['class'=>'navbar-brand']) !!}
                 </div>
 
                 <!-- Agrupar los enlaces de navegación, los formularios y cualquier
@@ -27,8 +27,8 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Ramos<b class="caret"></b>
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-list-alt" data-toggle="dropdown">
+                                Mi Horario<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <?php $cursos = \App\Models\Docente::where('rut',Auth::user()->rut)->first()->curso ?>
@@ -40,7 +40,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-send" data-toggle="dropdown">
                                 Solicitud<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -51,7 +51,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-share-alt" data-toggle="dropdown">
                                 Cambiar de perfil<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -67,7 +67,6 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li>consultas especificas</li>
                     </ul>
                 </div>
 
@@ -75,64 +74,7 @@
 
         </div>
         <div class="col-md-9">
-            {{$_SERVER['REQUEST_URI']}}
-            @if(false)
-                @yield('body')
-            @elseif($_SERVER['REQUEST_URI']=="/Docente/home")
-                @if(Auth::user()->nombres == null)
-                    <div class="panel panel-success">
-                        <div class="panel-body">
-                            home
-                            <a class="glyphicon glyphicon-menu-right"></a>
-                            Datos Personales
-                        </div>
-                        <div class="panel-footer">
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger">
-                                    <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {!! Form::model(null,array('route' => array('Docente.home.update',Auth::user()->rut), 'method' => 'put')) !!}
-                                    <div class="form-group">
-
-                                        {!!Form::label('nombres','Nombres',['class' => 'col-md-6'])!!}
-                                        {!!Form::text('nombres',null,['class' => 'col-md-6'])!!}
-
-                                        {!!Form::label('apellidos','Apellidos',['class' => 'col-md-6'])!!}
-                                        {!!Form::text('apellidos',null,['class' => 'col-md-6'])!!}
-
-                                        {!!Form::label('email','E-mail',['class' => 'col-md-6'])!!}
-                                        {!!Form::text('email',null,['class' => 'col-md-6'])!!}
-
-                                    </div>
-                                    {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
-                                    {!!Form::close()!!}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    <div class="panel panel-success">
-                        <div class="panel-body">
-                            home
-                            <a class="glyphicon glyphicon-menu-right"></a>
-                            Bienvenida
-                        </div>
-                        <div class="panel-footer">
-                            te damos la bienvenida
-                        </div>
-                    </div>
-                @endif
-
-            @endif
-
+            @yield('body')
         </div>
     </div>
 </div>

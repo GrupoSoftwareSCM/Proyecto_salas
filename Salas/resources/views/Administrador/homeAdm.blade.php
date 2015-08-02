@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-education" data-toggle="dropdown">
                                 Universidad<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
