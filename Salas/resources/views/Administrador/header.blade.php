@@ -5,6 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     {!!Html::style('css/bootstrap.min.css')!!}
+    {{--    ICONO EN EL NAVEGADOR --}}
+    <link rel="shortcut icon" href="/img/utem_icono.png"/>
+    {{--
+    {!! Html::link('public/img/utem_icono.png','asdasd',['rel' => 'shortcut icon']) !!}
+	--}}
 	<title>Bienvenido</title>
 </head>
 <body>
