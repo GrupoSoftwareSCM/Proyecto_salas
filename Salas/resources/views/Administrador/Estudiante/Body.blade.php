@@ -26,7 +26,7 @@
                         @endif
                     </div>
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-8">
+                        <div class="col-md-12">
                             <nav class="navbar navbar-right">
                                 <a class="btn glyphicon glyphicon-plus" href="/Admin/Estudiante/create" role="button" aria-label="Left Align">Crear Estudiante</a>
                             </nav>
@@ -61,7 +61,7 @@
                                         {!!Form::close()!!}
                                     </th>
                                     <th class="center">
-                                        {!!Html::link('files/administrador/'.$estudiante->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                        {!!Html::link('files/administrador/'.$estudiante->rut,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                     </th>
                                 </tr>
                             @endforeach
@@ -74,7 +74,7 @@
                                         <tr><th class="center">Descargar Usuario</th></tr>
                                         <tr>
                                             <th class="center">
-                                                {!!Html::link('files/administradorall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                                {!!Html::link('files/estudianteall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                             </th>
                                         </tr>
                                         </tbody>

@@ -26,7 +26,7 @@
                         @endif
                     </div>
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-8">
+                        <div class="col-md-12">
                             <nav class="navbar navbar-right">
                                 <a class="btn glyphicon glyphicon-plus" href="/Admin/Administrador/create" role="button" aria-label="Left Align">Crear Administrador</a>
                             </nav>

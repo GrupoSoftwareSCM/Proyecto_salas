@@ -32,12 +32,15 @@
                             </nav>
                         </div>
                     </div>
-                    {!!Form::open(['route'=>'Admin.Depto.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
-                        {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre de Departamento'])!!}
-                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
-                    {!!Form::close()!!}
-                    {!!Html::linkRoute('Admin.Depto.index','Mostrar todo',[],['class'=>'btn btn-default','role'=>'button'])!!}
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            {!!Form::open(['route'=>'Admin.Depto.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
+                            {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre de Departamento'])!!}
+                            {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                            {!!Form::close()!!}
+                            {!!Html::linkRoute('Admin.Depto.index','Mostrar todo',[],['class'=>'btn btn-default','role'=>'button'])!!}
+                        </div>
+                    </div>
                     @if(count($Departamentos)>0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <tr>
@@ -79,7 +82,7 @@
                             <div class="col-md-3 col-md-offset-9">
                                 <nav class="navbar navbar-right">
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
-                                        <tr><th class="center">Descargar Campus</th></tr>
+                                        <tr><th class="center">Descargar Departamento(s)</th></tr>
                                         <tbody>
                                         <tr><th class="center">
                                                 {!!Html::link('files/departamentoall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}

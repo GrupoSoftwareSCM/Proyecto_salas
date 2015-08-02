@@ -64,6 +64,18 @@ class RolesUsuarioTableSeeder extends DatabaseSeeder{
             'rol_id' => $id_docente->id,
         ));
 
+        \DB::table('roles_usuarios')->insert(array(
+            'usuario_rut' => $admin->rut,
+            'rol_id' => $id_encargado->id,
+        ));
+
+        \DB::table('roles_usuarios')->insert(array(
+            'usuario_rut' => $admin->rut,
+            'rol_id' => $id_estudiante->id,
+        ));
+
+
+
         //JEAN PIERE PATRIC
         \DB::table('roles_usuarios')->insert(array(
             'usuario_rut' => $encargado->rut,
@@ -73,6 +85,16 @@ class RolesUsuarioTableSeeder extends DatabaseSeeder{
         \DB::table('roles_usuarios')->insert(array(
             'usuario_rut' => $encargado->rut,
             'rol_id' => $id_estudiante->id,
+        ));
+
+        \DB::table('roles_usuarios')->insert(array(
+            'usuario_rut' => $encargado->rut,
+            'rol_id' => $id_admin->id,
+        ));
+
+        \DB::table('roles_usuarios')->insert(array(
+            'usuario_rut' => $encargado->rut,
+            'rol_id' => $id_docente->id,
         ));
 
         //POR DEFECTO LOS DOCENTES PERTENECERAN AL DEPARTAMENTO DE INFORMATICA
@@ -93,6 +115,14 @@ class RolesUsuarioTableSeeder extends DatabaseSeeder{
             'departamento_id' => $id_depto_informatica->id
         ));
 
+        \DB::table('docentes')->insert(array(
+            'rut' => $encargado->rut,
+            'nombres' => $encargado->nombres,
+            'apellidos' => $encargado->apellidos,
+            'email' => $encargado->email,
+            'departamento_id' => $id_depto_informatica->id
+        ));
+
         //POR DEFECTO LOS ESTUDIANTES PERTENECERAN A LA ESCUELA DE INFORMATICA
         $id_carrera_informatica = Carrera::whereNombre('Ingeniería en Informática')->first();
         \DB::table('estudiantes')->insert(array(
@@ -108,6 +138,14 @@ class RolesUsuarioTableSeeder extends DatabaseSeeder{
             'nombres' => $encargado->nombres,
             'apellidos' => $encargado->apellidos,
             'email' => $encargado->email,
+            'carrera_id' => $id_carrera_informatica->id
+        ));
+
+        \DB::table('estudiantes')->insert(array(
+            'rut' => $admin->rut,
+            'nombres' => $admin->nombres,
+            'apellidos' => $admin->apellidos,
+            'email' => $admin->email,
             'carrera_id' => $id_carrera_informatica->id
         ));
     }

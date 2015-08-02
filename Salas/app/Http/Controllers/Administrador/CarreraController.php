@@ -18,7 +18,7 @@ class CarreraController extends Controller {
     {
         if(Request::only(['Carrera'])){
             $request = Request::only(['Carrera']);
-            if($request['Escuela'] != ''){
+            if($request['Carrera'] != ''){
                 $data = Carrera::whereNombre($request['Escuela'])->paginate(5);
                 if(count($data) > 0){
                     return view('Administrador.Carrera.Body')->with('Carreras',$data);

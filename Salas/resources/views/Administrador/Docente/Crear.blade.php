@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    {!!Form::open(['route' => 'files.Administrador.up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
+                    {!!Form::open(['route' => 'files.Docente.up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
                     <div class="form-group">
                         {!!Form::label('file','Adjuntar archivo',['class' => 'col-md-6'])!!}
                         <br/>

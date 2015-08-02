@@ -58,7 +58,7 @@
                                 Cambio Perfil<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                {{--dd(Auth::user()->roles)--}}
+                                {{--dd(Auth::user()->roles)
                                 @foreach(Auth::user()->roles as $perfiles)
                                     @if($perfiles->nombre == 'ENCARGADO_CAMPUS')
                                         <li>{!!Html::linkRoute('encar.home.index','Encargado Campus')!!}</li>
@@ -67,7 +67,7 @@
                                     @elseif($perfiles->nombre == 'ESTUDIANTE')
                                         <li>{!!Html::linkRoute('estu.home.index','Estudiante')!!}</li>
                                     @endif
-                                @endforeach
+                                @endforeach--}}
                             </ul>
                         </li>
                     </ul>

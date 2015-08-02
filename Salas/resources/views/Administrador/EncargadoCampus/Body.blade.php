@@ -7,7 +7,7 @@
         </div>
         <div class="panel-footer">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-12">
                     <div class="mensaje">
                         @if(Session::has('message'))
                             <div class="alert alert-info">
@@ -26,7 +26,7 @@
                         @endif
                     </div>
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-8">
+                        <div class="col-md-12">
                             <nav class="navbar navbar-right">
                                 <a class="btn glyphicon glyphicon-plus" href="/Admin/EncargadoCampus/create" role="button" aria-label="Left Align">Crear Encargado Campus</a>
                             </nav>
@@ -58,7 +58,6 @@
                                     </th>
                                 </tr>
                             @endforeach
-                            {!! $Encargados->render() !!}
                         </table>
                         <div class="row">
                             <div class="col-md-3 col-md-offset-9">
@@ -67,7 +66,7 @@
                                         <tr><th class="center">Descargar Usuario</th></tr>
                                         <tr>
                                             <th class="center">
-                                                {!!Html::link('files/administradorall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                                {!!Html::link('files/encargadoall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                             </th>
                                         </tr>
                                     </table>

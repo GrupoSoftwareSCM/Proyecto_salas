@@ -12,6 +12,7 @@ use App\Models\Campus;
 use App\Models\Facultad;
 use App\Models\Departamento;
 use App\Models\Escuela;
+use App\Models\Funcionario;
 use App\Models\Tipo_Sala;
 use App\Models\Sala;
 use App\Models\Usuario;
@@ -24,6 +25,7 @@ use App\Models\Curso;
 use App\Models\Docente;
 use Maatwebsite\Excel\Facades\Excel;
 
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 use \Illuminate\Contracts\Auth\Guard as Auth;
@@ -35,7 +37,7 @@ class FilesController extends Controller{
         //dd($Facultad);
         if($Facultad){
             $data = array(
-                array('Nombre Facultad','Campus Perteneciente','Descripcion'),
+                array('nombre_facultad','campus_perteneciente','descripcion'),
                 array($Facultad->nombre,Campus::find($Facultad->campus_id)->nombre,$Facultad->descripcion),
             );
 
@@ -57,7 +59,7 @@ class FilesController extends Controller{
         //dd($Facultad);
         if($Facultad){
             $data = array(
-                array('Nombre Facultad','Campus Perteneciente','Descripcion'),
+                array('nombre_facultad','campus_perteneciente','descripcion'),
             );
             foreach($Facultad as $Facult){
                 $datos = array();
@@ -95,21 +97,38 @@ class FilesController extends Controller{
             $result = $archivo->get();    //leer todas las filas del archivo
             foreach($result as $key => $value)
             {
-                if(!Facultad::query_nombre($value->nombre_facultad)){
-                    $var = new Facultad();
-                    $var->fill([
-                        'nombre'            => $value->nombre_facultad,
-                        'descripcion'       => $value->descripcion,
-                        'campus_id'         => Campus::query_nombre($value->campus_perteneciente)->id
-                    ]);
-                    $var->save();
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+                if(count($llaves) == 3 && in_array('nombre_facultad',$llaves) && in_array('campus_perteneciente',$llaves) && in_array('descripcion',$llaves)){
+
+                    if(count(Facultad::whereNombre($value->nombre_facultad)->first()) == 0){
+                        if(count(Campus::whereNombre($value->campus_perteneciente)->first()) > 0){
+                            $var = new Facultad();
+                            $var->fill([
+                                'nombre'            => $value->nombre_facultad,
+                                'descripcion'       => $value->descripcion,
+                                'campus_id'         => Campus::query_nombre($value->campus_perteneciente)->id
+                            ]);
+                            $var->save();
+                            Session::flash('message', 'FACULTAD(ES) CORRECTAMENTE INGRESADAS');
+                        }
+                        else{
+                            Session::flash('message', 'EL CAMPUS INGRESADO: '.$value->nombre_facultad.' NO EXISTE EN LA BASE DE DATOS');
+                        }
+                    }
+                    else{
+                        Session::flash('message', 'YA EXISTE LA FACULTAD: '.$value->nombre_facultad.' EN LA BASE DE DATOS');
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
                 }
             }
         })->get();
-
-
         \Storage::delete($nombre);
-
         return redirect()->route('Admin.Facultad.index');
 
     }
@@ -120,7 +139,7 @@ class FilesController extends Controller{
         //dd($Campus);
         if ($Campus) {
             $data = array(
-                array('Nombre', 'Direccion', 'Latitud', 'Longitud', 'Descripcion', 'Rut encargado'),
+                array('nombre', 'direccion', 'latitud', 'longitud', 'descripcion', 'rut_encargado'),
                 array($Campus->nombre, $Campus->direccion, $Campus->latitud, $Campus->longitud, $Campus->descripcion, $Campus->rut_encargado),
             );
 
@@ -142,7 +161,7 @@ class FilesController extends Controller{
     public function getCampusall(){
         $Campus = Campus::paginate();
         $data = array(
-            array('Nombre', 'Direccion', 'Latitud', 'Longitud', 'Descripcion', 'Rut encargado'),
+            array('nombre', 'direccion', 'latitud', 'longitud', 'descripcion', 'rut_encargado'),
         );
         foreach($Campus as $camp){
             $datos = array();
@@ -177,17 +196,33 @@ class FilesController extends Controller{
             $result = $archivo->get();    //leer todas las filas del archivo
             foreach($result as $key => $value)
             {
-                if(!Campus::query_nombre($value->campus_perteneciente)){
-                    $var = new Campus();
-                    $var->fill([
-                        'nombre'         => $value->nombre,
-                        'direccion'      => $value->direccion,
-                        'latitud'        => $value->latitud,
-                        'longitud'       => $value->longitud,
-                        'descripcion'    => $value->descripcion,
-                        'rut_encargado'  => $value->rut_encargado
-                    ]);
-                    $var->save();
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+                //dd($llaves);
+                if(count($llaves) == 6 && in_array('nombre',$llaves) && in_array('direccion',$llaves) && in_array('latitud',$llaves) && in_array('longitud',$llaves) && in_array('descripcion',$llaves) && in_array('rut_encargado',$llaves)) {
+
+                    if (count(Campus::whereNombre($value->campus_perteneciente)->first()) == 0) {
+                        $var = new Campus();
+                        $var->fill([
+                            'nombre' => $value->nombre,
+                            'direccion' => $value->direccion,
+                            'latitud' => $value->latitud,
+                            'longitud' => $value->longitud,
+                            'descripcion' => $value->descripcion,
+                            'rut_encargado' => $value->rut_encargado
+                        ]);
+                        $var->save();
+                        Session::flash('message', 'CAMPUS CORRECTAMENTE INGRESADOS');
+                    }
+                    else{
+                        Session::flash('message', 'YA EXISTE EL CAMPUS: '.$value->nombre.' EN LA BASE DE DATOS');
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
                 }
             }
         })->get();
@@ -202,7 +237,7 @@ class FilesController extends Controller{
         $Depto = Departamento::find($id);
         if($Depto){
             $data = array(
-                array('Nombre_Departamento','Facultad_Pertenciente','Descripcion'),
+                array('nombre_departamento','facultad_pertenciente','descripcion'),
                 array($Depto->nombre,$Depto->facultad->nombre,$Depto->descripcion),
             );
 
@@ -223,7 +258,7 @@ class FilesController extends Controller{
         //dd($Depto);
         if($Depto){
             $data = array(
-                array('Nombre_Departamento','Facultad_Pertenciente','Descripcion'),
+                array('nombre_departamento','facultad_pertenciente','descripcion'),
             );
             foreach($Depto as $departamento){
                 //dd($departamento->facultad->nombre);
@@ -260,15 +295,29 @@ class FilesController extends Controller{
 
             foreach($result as $key => $value)
             {
-                //dd(!Departamento::query_nombre($value->nombre_departamento));
-                if(!Departamento::query_nombre($value->nombre_departamento)){
-                    $var = new Departamento();
-                    $var->fill([
-                        'nombre'        => $value->nombre_departamento,
-                        'descripcion'   => $value->descripcion,
-                        'facultad_id'   => Facultad::query_nombre($value->facultad_pertenciente)->id,
-                    ]);
-                    $var->save();
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+                //'nombre_departamento','facultad_pertenciente','descripcion'
+                if(count($llaves) == 3 && in_array('nombre_departamento',$llaves) && in_array('facultad_pertenciente',$llaves) && in_array('descripcion',$llaves)) {
+
+                    if (count(Departamento::whereNombre($value->nombre_departamento)->first()) == 0) {
+                        if(count(Facultad::whereNombre($value->facultad_pertenciente)->first()) > 0){
+                            $var = new Departamento();
+                            $var->fill([
+                                'nombre' => $value->nombre_departamento,
+                                'descripcion' => $value->descripcion,
+                                'facultad_id' => Facultad::query_nombre($value->facultad_pertenciente)->id,
+                            ]);
+                            $var->save();
+                            Session::flash('message', 'DEPARTAMENTO(S) CORRECTAMENTE INGRESADO(S)');
+                        }
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
                 }
             }
         })->get();
@@ -283,7 +332,7 @@ class FilesController extends Controller{
         //dd($Escuela->departamento->nombre);
         if($Escuela){
             $data = array(
-                array('Nombre_Escuela', 'Depto_Perteneciente', 'Descripcion'),
+                array('nombre_escuela', 'pepto_perteneciente', 'descripcion'),
                 array($Escuela->nombre, $Escuela->departamento->nombre, $Escuela->descripcion),
             );
 
@@ -304,7 +353,7 @@ class FilesController extends Controller{
         //dd($Escuela);
         if($Escuela){
             $data = array(
-                array('Nombre_Escuela', 'Depto_Perteneciente', 'Descripcion'),
+                array('nombre_escuela', 'depto_perteneciente', 'descripcion'),
             );
             foreach($Escuela as $escuela){
                 array_push($data,array($escuela->nombre,$escuela->departamento->nombre,$escuela->descripcion));
@@ -342,16 +391,34 @@ class FilesController extends Controller{
             //dd($result);
             foreach($result as $key => $value)
             {
-
-                if(Escuela::Nombre($value->nombre_escuela) == false){
-                    //dd(Escuela::query_nombre($value->nombre_escuela));
-                    $var = new Escuela();
-                    $var->fill([
-                        'nombre'        => $value->nombre_escuela,
-                        'descripcion'   => $value->descripcion,
-                        'departamento_id'   => Departamento::query_nombre($value->depto_perteneciente)->id,
-                    ]);
-                    $var->save();
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+                //'nombre_escuela', 'depto_perteneciente', 'descripcion'
+                if(count($llaves) == 3 && in_array('nombre_escuela',$llaves) && in_array('depto_perteneciente',$llaves) && in_array('descripcion',$llaves)){
+                    if(count(Escuela::whereNombre($value->nombre_escuela)->first()) == 0){
+                        if(count(Departamento::whereNombre($value->depto_perteneciente)->first()) > 0){
+                            $var = new Escuela();
+                            $var->fill([
+                                'nombre'        => $value->nombre_escuela,
+                                'descripcion'   => $value->descripcion,
+                                'departamento_id'   => Departamento::query_nombre($value->depto_perteneciente)->id,
+                            ]);
+                            $var->save();
+                            Session::flash('message', 'ESCUELA(S) CORRECTAMENTE INGRESADA(S)');
+                        }
+                        else{
+                            Session::flash('message', 'NO SE PUDO INGRESAR '.$value->nombre_escuela.' PORQUE DEPARTAMENTO '.$value->depto_perteneciente.'  NO EXISTE');
+                        }
+                    }
+                    else{
+                        Session::flash('message', 'NO SE PUDO INGRESAR '.$value->nombre_escuela.' PORQUE YA EXISTE EN LA BASE DE DATOS');
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
                 }
             }
         })->get();
@@ -364,10 +431,9 @@ class FilesController extends Controller{
 
     public function getTposala($id){
         $tipo = Tipo_Sala::find($id);
-        //dd($tipo);
         if($tipo){
             $data = array(
-                array('Nombre','Descripcion'),
+                array('nombre','descripcion'),
                 array($tipo->nombre,$tipo->descripcion)
             );
 
@@ -390,13 +456,13 @@ class FilesController extends Controller{
         //dd($tipo);
         if($tipos){
             $data = array(
-                array('Nombre','Descripcion'),
+                array('nombre','descripcion'),
             );
             foreach($tipos as $tipo){
                 array_push($data,array($tipo->nombre,$tipo->descripcion));
             }
 
-            Excel::create('Tipo_de_sala_'.$tipo->nombre, function ($excel) use ($data) {
+            Excel::create('Tipo_de_sala', function ($excel) use ($data) {
 
                 $excel->sheet('Sheetname', function ($sheet) use ($data) {
 
@@ -425,13 +491,28 @@ class FilesController extends Controller{
             $result = $archivo->get();    //leer todas las filas del archivo
             foreach($result as $key => $value)
             {
-                if(!Tipo_Sala::query_nombre($value->nombre)){
-                    $var = new Tipo_Sala();
-                    $var->fill([
-                        'nombre'        => $value->nombre,
-                        'descripcion'   => $value->descripcion,
-                    ]);
-                    $var->save();
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+                //array('nombre','descripcion'),
+                if(count($llaves) == 2 && in_array('nombre',$llaves) && in_array('descripcion',$llaves)){
+                    if(count(Tipo_Sala::whereNombre($value->nombre)->first()) == 0){
+                        dd(Tipo_Sala::whereNombre($value->nombre)->first());
+                        $var = new Tipo_Sala();
+                        $var->fill([
+                            'nombre'        => $value->nombre,
+                            'descripcion'   => $value->descripcion,
+                        ]);
+                        $var->save();
+                    }
+                    else{
+                        Session::flash('message', 'TIPO DE SALA '.$value->nombre.' YA EXISTENTE EN LA BASE DE DATOS');
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
                 }
             }
         })->get();
@@ -446,7 +527,7 @@ class FilesController extends Controller{
         $sala = Sala::find($id);
         if($sala){
             $data = array(
-                array('nombre','campus_perteneciente','tipo_sala','capacidad','descripcion'),
+                array('nombre_sala','campus_perteneciente','tipo_sala','capacidad_sala','descripcion'),
                 array($sala->nombre,$sala->campus->nombre,$sala->tipo_sala->nombre,$sala->capacidad,$sala->descripcion)
             );
 
@@ -466,7 +547,7 @@ class FilesController extends Controller{
         $salas = Sala::paginate();
         if($salas){
             $data = array(
-                array('nombre','campus_perteneciente','tipo_sala','capacidad','descripcion')
+                array('nombre_sala','campus_perteneciente','tipo_sala','capacidad_sala','descripcion'),
                 );
             foreach($salas as $sala){
                 array_push($data,array($sala->nombre,$sala->campus->nombre,$sala->tipo_sala->nombre,$sala->capacidad,$sala->descripcion));
@@ -503,16 +584,38 @@ class FilesController extends Controller{
             //dd($result);
             foreach($result as $key => $value)
             {
-                if(!Sala::query_nombre($value->nombre)){
-                    $var = new Sala();
-                    $var->fill([
-                        'nombre'        => $value->nombre,
-                        'capacidad'     => $value->capacidad,
-                        'descripcion'   => $value->descripcion,
-                        'campus_id'     => Campus::query_nombre($value->campus_perteneciente)->id,
-                        'tipo_sala_id'  => Tipo_Sala::query_nombre($value->tipo_sala)->id,
-                    ]);
-                    $var->save();
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+                //array('nombre_sala','campus_perteneciente','tipo_sala','capacidad_sala','descripcion'),
+                if(count($llaves) == 5 && in_array('nombre_sala',$llaves) && in_array('campus_perteneciente',$llaves) && in_array('tipo_sala',$llaves) && in_array('capacidad_sala',$llaves) && in_array('descripcion',$llaves)){
+                    if(count(Sala::whereNombre($value->nombre_sala)->first()) == 0){
+                        if(count(Campus::whereNombre($value->campus_perteneciente)->first()) > 0){
+                            if(count(Tipo_Sala::whereNombre($value->tipo_sala)->first()) > 0){
+                                $var = new Sala();
+                                $var->fill([
+                                    'nombre'        => $value->nombre_sala,
+                                    'capacidad'     => $value->capacidad_sala,
+                                    'descripcion'   => $value->descripcion,
+                                    'campus_id'     => Campus::query_nombre($value->campus_perteneciente)->id,
+                                    'tipo_sala_id'  => Tipo_Sala::query_nombre($value->tipo_sala)->id,
+                                ]);
+                                $var->save();
+                                Session::flash('message', 'SALAS CORRECTAMENTE INGRESADA(S)');
+                            }
+                            else
+                                Session::flash('message', 'TIPO DE SALA '.$value->tipo_sala.' NO EXISTE EN LA BASE DE DATOS');
+                        }
+                        else
+                            Session::flash('message', 'Campus '.$value->campus_perteneciente.' NO EXISTE EN LA BASE DE DATOS');
+                    }
+                    else
+                        Session::flash('message', 'SALA '.$value->nombre_sala.' YA EXISTENTE EN LA BASE DE DATOS');
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
                 }
             }
         })->get();
@@ -570,53 +673,11 @@ class FilesController extends Controller{
         }
     }
 
-    public function postAdministradorfiles(Request $request){
-        //obtenemos el campo file definido en el formulario
-        $file = $request->file('file');
-
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
-
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
-
-
-        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
-        {
-            $result = $archivo->get();    //leer todas las filas del archivo
-            $id_admin = Rol::whereNombre('ADMINISTRADOR')->first()->id;
-            foreach($result as $key => $value)
-            {
-                if(count(Usuario::where('rut',$value->rut)->first()) == 0){
-
-                    $var = new Usuario();
-                    $var->fill([
-                        'nombres'       => $value->nombres,
-                        'apellidos'     => $value->apellidos,
-                        'rut'           => $value->rut,
-                    ]);
-                    $var->save();
-
-                    $rol_user = new Rol_Usuario();
-                    $rol_user->fill([
-                        'rol_id' => $id_admin,
-                        'usuario_rut' => $value->rut
-                    ]);
-                    $rol_user->save();
-                }
-            }
-        })->get();
-
-        \Storage::delete($nombre);
-
-        return redirect()->route('Admin.Administrador.index');
-    }
-
     public function getCarrera($id){
         $carrera = Carrera::find($id);
         if($carrera){
             $data = array(
-                array('nombre','codigo','Escuela','descripcion'),
+                array('nombre_carrera','codigo_carrera','escuela_perteneciente','descripcion'),
                 array($carrera->nombre,$carrera->codigo,$carrera->escuela->nombre,$carrera->descripcion)
             );
             Excel::create('Carrera_'.$carrera->nombre, function ($excel) use ($data) {
@@ -635,7 +696,7 @@ class FilesController extends Controller{
         $carreras = Carrera::paginate();
         if($carreras){
             $data = array(
-                array('nombre','codigo','Escuela','descripcion'),
+                array('nombre_carrera','codigo_carrera','escuela_perteneciente','descripcion'),
             );
             foreach($carreras as $carrera){
                 array_push($data,array($carrera->nombre,$carrera->codigo,$carrera->escuela->nombre,$carrera->descripcion));
@@ -669,20 +730,37 @@ class FilesController extends Controller{
             $result = $archivo->get();    //leer todas las filas del archivo
             //dd($result);
             foreach ($result as $key => $value) {
-                //dd($value);
-                $escuela = Escuela::Nombre($value->escuela);
-                $carrera = Carrera::Nombre($value->nombre);
-                //dd((boolean)Escuela::whereNombre('asasda')->get());
-                if ($escuela == true && $carrera == false) {
-                    $var = new Carrera();
-                    $var->fill([
-                        'nombre' => $value->nombre,
-                        'codigo' => $value->codigo,
-                        'escuela_id' => Escuela::whereNombre($value->escuela)->get()[0]->id,
-                        'descripcion' => $value->descripcion,
-                    ]);
-                    $var->save();
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
                 }
+                //array('nombre_carrera','codigo_carrera','escuela_perteneciente','descripcion'),
+                if(count($llaves) == 4 && in_array('nombre_carrera',$llaves) && in_array('codigo_carrera',$llaves) && in_array('escuela_perteneciente',$llaves) && in_array('descripcion',$llaves)){
+
+                    if(count(Carrera::whereNombre($value->nombre_carrera)->first()) == 0 ){
+                        if(count(Escuela::whereNombre($value->escuela_perteneciente)->first()) > 0){
+                            $var = new Carrera();
+                            $var->fill([
+                                'nombre' => $value->nombre_carrera,
+                                'codigo' => $value->codigo_carrera,
+                                'escuela_id' => Escuela::whereNombre($value->escuela_perteneciente)->get()[0]->id,
+                                'descripcion' => $value->descripcion,
+                            ]);
+                            $var->save();
+                        }
+                        else{
+                            Session::flash('message', 'NO SE PUDO INGRESAR '.$value->nombre_carrera.' PORQUE ESCUELA '.$value->escuela_perteneciente.'  NO EXISTE');
+                        }
+                    }
+                    else{
+                        Session::flash('message', 'NO SE PUDO INGRESAR '.$value->nombre_carrera.' PORQUE YA EXISTE EN LA BASE DE DATOS');
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
+                }
+
             }
         })->get();
 
@@ -692,7 +770,328 @@ class FilesController extends Controller{
 
 
     }
-public function postSalafilesEncar(Request $request){
+
+    public function getEncargadoall(){
+        $users = Usuario::paginate();
+        //dd($users);
+        if($users){
+            $data = array(
+                array('nombres','apellidos','rut','e-mail'),
+            );
+            foreach($users as $user){
+                foreach($user->roles as $rol){
+                    if($rol->nombre == 'ENCARGADO_CAMPUS')
+                        array_push($data,array($user->nombres,$user->apellidos,$user->rut,$user->email));
+                }
+            }
+            Excel::create('ENCARGADOS', function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function getEstudianteall(){
+        $users = Usuario::paginate();
+        //dd($users);
+        if($users){
+            $data = array(
+                array('nombres','apellidos','rut','e-mail'),
+            );
+            foreach($users as $user){
+                foreach($user->roles as $rol){
+                    if($rol->nombre == 'ESTUDIANTE')
+                        array_push($data,array($user->nombres,$user->apellidos,$user->rut,$user->email));
+                }
+            }
+            Excel::create('ESTUDIANTE', function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function postEstudiantefiles(Request $request){
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre, \File::get($file));
+
+
+        \Excel::load('/storage/public/files/' . $nombre, function ($archivo) {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach ($result as $key => $value) {
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+                //dd($value);
+                if(count($llaves) == 5 && in_array('carrera_perteneciente',$llaves) && in_array('nombres',$llaves) && in_array('apellidos',$llaves) && in_array('rut',$llaves) && in_array('e_mail',$llaves)){
+                    if(count(Estudiante::where('rut',$value->rut)->first()) == 0){
+                        if(count(Carrera::whereNombre($value->carrera_perteneciente)->first())>0){
+                            $id_rol = Rol::whereNombre('ESTUDIANTE')->first()->id;
+                            $id_carrera = Carrera::whereNombre($value->carrera_perteneciente)->first()->id;
+
+                            $estudiante = new Estudiante();
+                            $estudiante->fill([
+                                'nombres' => $value->nombres,
+                                'apellidos' => $value->apellidos,
+                                'rut' => $value->rut,
+                                'email' => $value->e_mail,
+                                'carrera_id' => $id_carrera,
+                            ]);
+                            $estudiante->save();
+
+                            if(count(Usuario::where('rut',$value->rut)->first()) == 0){
+                                $usuario = new Usuario();
+                                $usuario->fill([
+                                    'rut' => $value->rut,
+                                    'nombres' => $value->nombres,
+                                    'apellidos' => $value->apellidos,
+                                    'email'  => $value->e_mail,
+                                ]);
+                                $usuario->save();
+                            }
+
+                            $rol = new Rol_Usuario();
+                            $rol->fill([
+                                'usuario_rut' => $value->rut,
+                                'rol_id' =>  $id_rol,
+                            ]);
+                            $rol->save();
+                        }
+                    }
+                    else{
+                        Session::flash('message', 'RUT '.$value->rut.' YA REGISTRADO COMO ESTUDIANTE');
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
+                }
+
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.Estudiante.index');
+
+
+    }
+
+    public function getDocenteall(){
+        $users = Usuario::paginate();
+        //dd($users);
+        if($users){
+            $data = array(
+                array('nombres','apellidos','rut','e-mail'),
+            );
+            foreach($users as $user){
+                foreach($user->roles as $rol){
+                    if($rol->nombre == 'DOCENTE')
+                        array_push($data,array($user->nombres,$user->apellidos,$user->rut,$user->email));
+                }
+            }
+            Excel::create('DOCENTE', function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function postDocentefiles(Request $request){
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre, \File::get($file));
+
+
+        \Excel::load('/storage/public/files/' . $nombre, function ($archivo) {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            foreach ($result as $key => $value) {
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+                //  "nombres","apellidos","rut","e_mail","depto_perteneciente"
+
+                if(count($llaves) == 5 && in_array('depto_perteneciente',$llaves) && in_array('nombres',$llaves) && in_array('apellidos',$llaves) && in_array('rut',$llaves) && in_array('e_mail',$llaves)){
+                    if(count(Docente::where('rut',$value->rut)->first()) == 0){
+                        if(count(Departamento::whereNombre($value->depto_perteneciente)->first()) > 0){
+                            $id_rol = Rol::whereNombre('DOCENTE')->first()->id;
+                            $id_depto = Departamento::whereNombre($value->depto_perteneciente)->first()->id;
+
+                            $docente = new Docente();
+                            $docente->fill([
+                                'nombres' => $value->nombres,
+                                'apellidos' => $value->apellidos,
+                                'rut' => $value->rut,
+                                'email' => $value->e_mail,
+                                'carrera_id' => $id_depto,
+                            ]);
+                            $docente->save();
+
+                            if(count(Usuario::where('rut',$value->rut)->first()) == 0){
+                                $usuario = new Usuario();
+                                $usuario->fill([
+                                    'rut' => $value->rut,
+                                    'nombres' => $value->nombres,
+                                    'apellidos' => $value->apellidos,
+                                    'email'  => $value->e_mail,
+                                ]);
+                                $usuario->save();
+                            }
+
+                            $rol = new Rol_Usuario();
+                            $rol->fill([
+                                'usuario_rut' => $value->rut,
+                                'rol_id' =>  $id_rol,
+                            ]);
+                            $rol->save();
+                        }
+                    }
+                    else{
+                        Session::flash('message', 'RUT '.$value->rut.' YA REGISTRADO COMO DOCENTE');
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
+                }
+
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.Docente.index');
+
+    }
+
+    public function getFuncionario($id){
+        $funcionario = Funcionario::find($id);
+        if($funcionario){
+            $data = array(
+                array('nombres','apellidos','rut','e_mail','departamento'),
+                array($funcionario->nombres,$funcionario->apellidos,$funcionario->rut,$funcionario->email,$funcionario->departamento->nombre)
+            );
+            Excel::create('FUNCIONARIO'.$funcionario->nombres, function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+
+        }
+    }
+
+    public function getFuncionarioall(){
+        $funcionarios = Funcionario::paginate();
+        if($funcionarios){
+            $data = array(
+                array('nombres','apellidos','rut','e_mail','departamento'),
+            );
+            foreach($funcionarios as $funcionario){
+                array_push($data,array($funcionario->nombres,$funcionario->apellidos,$funcionario->rut,$funcionario->email,$funcionario->departamento->nombre));
+            }
+
+            Excel::create('FUNCIONARIO', function ($excel) use ($data) {
+
+                $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                    $sheet->fromArray($data);
+
+                });
+
+            })->download('csv');
+        }
+    }
+
+    public function postFuncionariofiles(Request $request){
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            //dd($result);
+            foreach($result as $key => $value)
+            {
+                $verificadores = $value;
+                $llaves = array();
+                foreach($verificadores as $llave => $verificador){
+                    array_push($llaves,$llave);
+                }
+
+                //array('nombres','apellidos','rut','departamento',e_mail),
+                if(count($llaves) == 5 && in_array('e_mail',$llaves) && in_array('nombres',$llaves) && in_array('apellidos',$llaves) && in_array('rut',$llaves) && in_array('departamento',$llaves) ){
+                    if(count(Funcionario::where('rut',$value->rut)->first())  == 0){
+                        if(count(Departamento::whereNombre($value->departamento)->first()) > 0){
+                            $id_depto = Departamento::whereNombre($value->departamento)->first()->id;
+
+                            $funcionario = new Funcionario();
+                            $funcionario->fill([
+                                'nombres' => $value->nombres,
+                                'apellidos' => $value->apellidos,
+                                'rut' => $value->rut,
+                                'departamento_id' => $id_depto
+                            ]);
+                            $funcionario->save();
+                        }
+                    }
+                }
+                else{
+                    Session::flash('message', 'NOMBRES DE LAS COLUMNAS MAL DEFINIDOS');
+                }
+            }
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('Admin.Funcionario.index');
+    }
+
+
+
+
+
+
+    public function postSalafilesEncar(Request $request){
 
         //obtenemos el campo file definido en el formulario
         $file = $request->file('file');
@@ -728,44 +1127,44 @@ public function postSalafilesEncar(Request $request){
 
         return redirect()->route('encar.salas.modi.index');
 
-}
-public function postAsigfilesEncar(Request $request){
+    }
+    public function postAsigfilesEncar(Request $request){
 
-        //obtenemos el campo file definido en el formulario
-        $file = $request->file('file');
+            //obtenemos el campo file definido en el formulario
+            $file = $request->file('file');
 
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
 
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put($nombre,  \File::get($file));
 
 
-        \Excel::load('/storage/public/files/'.$nombre,function($archivo)
-        {
-            $result = $archivo->get();    //leer todas las filas del archivo
-            //dd($result);
-            foreach($result as $key => $value)
-            {  
-                
-                if(!Asignatura::where('codigo',$value->codigo)->first()){
-                    $var = new Asignatura();
-                    $var->fill([
-                        'nombre'        => $value->nombre,
-                        'codigo'        => $value->codigo,
-                        'descripcion'   => $value->descripcion,
-                        'departamento_id'=> Departamento::whereNombre($value->departamento)->first()->id,
-                    ]);
-                    $var->save();
+            \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+            {
+                $result = $archivo->get();    //leer todas las filas del archivo
+                //dd($result);
+                foreach($result as $key => $value)
+                {
+
+                    if(!Asignatura::where('codigo',$value->codigo)->first()){
+                        $var = new Asignatura();
+                        $var->fill([
+                            'nombre'        => $value->nombre,
+                            'codigo'        => $value->codigo,
+                            'descripcion'   => $value->descripcion,
+                            'departamento_id'=> Departamento::whereNombre($value->departamento)->first()->id,
+                        ]);
+                        $var->save();
+                    }
                 }
-            }
-        })->get();
+            })->get();
 
-        \Storage::delete($nombre);
+            \Storage::delete($nombre);
 
-        return redirect()->route('encar.asig.modi.index');
+            return redirect()->route('encar.asig.modi.index');
 
-}   
+    }
 public function postEstufilesEncar(Request $request){
 
         //obtenemos el campo file definido en el formulario

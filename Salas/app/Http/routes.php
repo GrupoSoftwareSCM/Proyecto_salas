@@ -31,10 +31,17 @@ Route::controller('files','Excel\FilesController',[
     'postSalafiles'             => 'files.Salas.up',
     'getAdministrador'          => 'files.Administrador',
     'getAdministradorall'       => 'files.Administradorall',
-    'postAdministradorfiles'    => 'files.Administrador.up',
     'getCarrera'                => 'files.Carrera',
     'getCarrerall'              => 'files.Carrerall',
     'postCarrerafiles'          => 'files.Carrera.up',
+    'getEncargadoall'           => 'files.Encargadoall',
+    'getEstudianteall'          => 'files.Estudianteall',
+    'postEstudiantefiles'       => 'files.Estudiante.up',
+    'getDocenteall'             => 'files.Docenteall',
+    'postDocentefiles'          => 'files.Docente.up',
+    'getFuncionario'            => 'files.Funcionario',
+    'getFuncionarioall'         => 'files.Funcionarioall',
+    'postFuncionariofiles'      => 'files.Funcionario.up',
     'postSalafilesEncar'        => 'files.SalasEncar.up',
     'postAsigfilesEncar'        => 'files.AsigEncar.up',
     'postEstufilesEncar'        => 'files.EstuEncar.up',
@@ -54,8 +61,8 @@ Route::get('/home', ['as' => 'home', 'middleware' => ['auth', 'redir'], function
     return 'home';
 }]);
 
-Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
-//Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+//Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('home','AdmUserController');
     Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
     Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad

@@ -78,7 +78,7 @@
                             <div class="col-md-3 col-md-offset-9">
                                 <nav class="navbar navbar-right">
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
-                                        <tr><th class="center">Descargar Campus</th></tr>
+                                        <tr><th class="center">Descargar Facultades</th></tr>
                                         <tr>
                                             <th class="center">
                                                 {!!Html::link('files/facultadall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}

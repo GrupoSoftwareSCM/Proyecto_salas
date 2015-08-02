@@ -26,19 +26,22 @@
                         @endif
                     </div>
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-8">
+                        <div class="col-md-12">
                             <nav class="navbar navbar-right">
                                 <a class="btn glyphicon glyphicon-plus" href="/Admin/Funcionario/create" role="button" aria-label="Left Align">Crear Funcionario</a>
                             </nav>
                         </div>
                     </div>
-                    {!!Form::open(['route'=>'Admin.Funcionario.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
-                        {!!Form::text('rut',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}
-                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
-                    {!!Form::close()!!}
-                    {!!Html::linkRoute('Admin.Funcionario.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
-
-                @if(count($Funcionarios) > 0)
+                    <div class="row">
+                        <div class="col-md-12">
+                            {!!Form::open(['route'=>'Admin.Funcionario.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
+                            {!!Form::text('rut',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}
+                            {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                            {!!Form::close()!!}
+                            {!!Html::linkRoute('Admin.Funcionario.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
+                        </div>
+                    </div>
+                    @if(count($Funcionarios) > 0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <tr>
                                 <th class="center">Nombres</th>
@@ -62,7 +65,7 @@
                                         {!!Form::close()!!}
                                     </th>
                                     <th class="center">
-                                        {!!Html::link('files/administrador/'.$funcionario->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                        {!!Html::link('files/funcionario/'.$funcionario->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                     </th>
                                 </tr>
                             @endforeach
@@ -75,7 +78,7 @@
                                         <tr><th class="center">Descargar Usuario</th></tr>
                                         <tr>
                                             <th class="center">
-                                                {!!Html::link('files/administradorall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                                {!!Html::link('files/funcionarioall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
                                             </th>
                                         </tr>
                                     </table>

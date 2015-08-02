@@ -26,17 +26,23 @@
                         @endif
                     </div>
                     <div class="row">
-                        <nav class="navbar navbar-right">
-                            <a class="btn glyphicon glyphicon-plus" href="/Admin/TpoSala/create" role="button" aria-label="Left Align">
-                                Crear Tipo de sala
-                            </a>
-                        </nav>
+                        <div class="col-md-12">
+                            <nav class="navbar navbar-right">
+                                <a class="btn glyphicon glyphicon-plus" href="/Admin/TpoSala/create" role="button" aria-label="Left Align">
+                                    Crear Tipo de sala
+                                </a>
+                            </nav>
+                        </div>
                     </div>
-                    {!!Form::open(['route'=>'Admin.TpoSala.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
-                        {!!Form::text('TpoSala',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}
-                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
-                    {!!Form::close()!!}
-                    {!!Html::linkRoute('Admin.TpoSala.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {!!Form::open(['route'=>'Admin.TpoSala.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
+                            {!!Form::text('TpoSala',null,['class'=>'form-control','placeholder'=>'Nombre del Campus'])!!}
+                            {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                            {!!Form::close()!!}
+                            {!!Html::linkRoute('Admin.TpoSala.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
+                        </div>
+                    </div>
                     @if(count($Tposalas) > 0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <tr>
@@ -73,7 +79,7 @@
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th class="center">Descargar Campus</th>
+                                            <th class="center">Descargar Tipo(s) de sala(s)</th>
                                         </tr>
 
                                         </thead>

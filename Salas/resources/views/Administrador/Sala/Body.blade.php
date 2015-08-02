@@ -26,17 +26,21 @@
                         @endif
                     </div>
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-8">
+                        <div class="col-md-12">
                             <nav class="navbar navbar-right">
                                 <a class="btn glyphicon glyphicon-plus" href="/Admin/Salas/create" role="button" aria-label="Left Align">Crear salas</a>
                             </nav>
                         </div>
                     </div>
-                    {!!Form::open(['route'=>'Admin.Salas.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
-                        {!!Form::text('Salas',null,['class'=>'form-control','placeholder'=>'Nombre Sala'])!!}
-                        {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
-                    {!!Form::close()!!}
-                    {!!Html::linkRoute('Admin.Salas.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {!!Form::open(['route'=>'Admin.Salas.index','method'=>'GET','class'=>'navbar-form navbar-right pull-right'])!!}
+                            {!!Form::text('Salas',null,['class'=>'form-control','placeholder'=>'Nombre Sala'])!!}
+                            {!!Form::button('Buscar',['class' => 'btn btn-default','type' => 'submit'])!!}
+                            {!!Form::close()!!}
+                            {!!Html::linkRoute('Admin.Salas.index','Mostrar todo',null,['class'=>'btn btn-default','role'=>'button'])!!}
+                        </div>
+                    </div>
                     @if(count($Salas) > 0)
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <tr>
@@ -75,7 +79,7 @@
                                 <nav class="navbar navbar-right">
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                         <thead>
-                                        <tr><th class="center">Descargar Campus</th></tr>
+                                        <tr><th class="center">Descargar Sala(s)</th></tr>
                                         <tr>
                                             <th class="center">
                                                 {!!Html::link('files/salall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}

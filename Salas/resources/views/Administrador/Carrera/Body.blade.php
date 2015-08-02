@@ -26,7 +26,7 @@
                         @endif
                     </div>
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-8">
+                        <div class="col-md-12">
                             <nav class="navbar navbar-right">
                                 <a class="btn glyphicon glyphicon-plus" href="/Admin/Carrera/create" role="button" aria-label="Left Align">Crear Carrera</a>
                             </nav>
@@ -71,7 +71,7 @@
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th class="center">Descargar Usuario</th>
+                                            <th class="center">Descargar Carrera</th>
                                         </tr>
 
                                         </thead>
