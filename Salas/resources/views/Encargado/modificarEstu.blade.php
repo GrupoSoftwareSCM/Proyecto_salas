@@ -16,7 +16,7 @@
                            
                                 <nav class="navbar navbar-left">
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
-                                        <tr><th class="center">Descargar Sala</th></tr>
+                                        <tr><th class="center">Descargar Estudiantes</th></tr>
                                         <tr>
                                             <th class="center">
                                                 {!!Html::link('files/estudiante-encarall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
