@@ -1304,5 +1304,114 @@ public function postDocefileEncar(Request $request){
         return redirect()->route('encar.doce.modi.index');
 
 }   
+public function getSalaEncarall(){
+        $salas = Sala::paginate();
+        if($salas){
+            $data = array(
+                array('nombre','campus','tipo_sala','capacidad_sala','descripcion'),
+                );
+            foreach($salas as $sala){
+                array_push($data,array($sala->nombre,$sala->campus->nombre,$sala->tipo_sala->nombre,$sala->capacidad,$sala->descripcion));
+            }
+        }
 
+        Excel::create('Salas', function ($excel) use ($data) {
+
+            $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('csv');
+
+    }
+public function getAsignaturaEncarall(){
+        $asignatura = Asignatura::paginate();
+        if($asignatura){
+            $data = array(
+                array('nombre','codigo','departamento','descripcion'),
+                );
+            foreach($asignatura as $asig){
+                array_push($data,array($asig->nombre,$asig->codigo,$asig->departamento->nombre,$asig->descripcion));
+            }
+        }
+
+        Excel::create('Asignaturas', function ($excel) use ($data) {
+
+            $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('csv');
+
+    }
+public function getEstudianteEncarall(){
+        $estudiante = Estudiante::paginate();
+        if($estudiante){
+            $data = array(
+                array('rut','nombres','apellidos','email','carrera'),
+                );
+            foreach($estudiante as $estu){
+                array_push($data,array($estu->rut,$estu->nombres,$estu->apellidos,$estu->email,$estu->carrera->nombre));
+            }
+        }
+
+        Excel::create('Estudiantes', function ($excel) use ($data) {
+
+            $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('csv');
+
+    }
+public function getCursoEncarall(){
+        $curso = Curso::paginate();
+        if($curso){
+            $data = array(
+                array('asignatura','docente','semestre','anio','seccion'),
+                );
+            foreach($curso as $curs){
+                array_push($data,array($curs->asignatura->nombre,$curs->docente->nombres,$curs->semestre,$curs->anio,$curs->seccion));
+            }
+        }
+
+        Excel::create('Cursos', function ($excel) use ($data) {
+
+            $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('csv');
+
+    }
+public function getDocenteEncarall(){
+        $docente = Docente::paginate();
+        if($docente){
+            $data = array(
+                array('rut','nombres','apellidos','departamento'),
+                );
+            foreach($docente as $doce){
+                array_push($data,array($doce->rut,$doce->nombres,$doce->apellidos,$doce->departamento->nombre));
+            }
+        }
+
+        Excel::create('Docentes', function ($excel) use ($data) {
+
+            $excel->sheet('Sheetname', function ($sheet) use ($data) {
+
+                $sheet->fromArray($data);
+
+            });
+
+        })->download('csv');
+
+    }
 }

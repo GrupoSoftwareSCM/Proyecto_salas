@@ -46,7 +46,12 @@ Route::controller('files','Excel\FilesController',[
     'postAsigfilesEncar'        => 'files.AsigEncar.up',
     'postEstufilesEncar'        => 'files.EstuEncar.up',
     'postDocefileEncar'         => 'files.DoceEncar.up',
-    'postCursfileEncar'         => 'files.CursEncar.up'
+    'postCursfileEncar'         => 'files.CursEncar.up',
+    'getAsignaturaEncarall'     => 'files.AsignaturaEncarall',
+    'getSalaEncarall'           => 'files.SalaEncarall',
+    'getEstudianteEncarall'     => 'files.EstudianteEncarall',
+    'getDocenteEncarall'        => 'files.DocenteEncarall',
+    'getCursoEncarall'          => 'files.CursoEncarall'
 
 ]);
 
