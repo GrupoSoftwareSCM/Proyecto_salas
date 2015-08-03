@@ -66,8 +66,8 @@ Route::get('/home', ['as' => 'home', 'middleware' => ['auth', 'redir'], function
     return 'home';
 }]);
 
-//Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
-Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+Route::group(['middleware' =>'admin','prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
+//Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('home','AdmUserController');
     Route::resource('Campus','CampusController'); //CRUD PARA CAMPUS
     Route::resource('Facultad','FacultadController'); //CRUD PARA Facultad
@@ -86,8 +86,8 @@ Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('Slider','sliderController');
 });
 
-//Route::group(['middleware' =>'docente','prefix' =>  'Docente', 'namespace' => 'Docente'], function(){
-Route::group(['prefix' =>  'Docente', 'namespace' => 'Docente'], function(){
+Route::group(['middleware' =>'docente','prefix' =>  'Docente', 'namespace' => 'Docente'], function(){
+//Route::group(['prefix' =>  'Docente', 'namespace' => 'Docente'], function(){
     Route::resource('home','DocUserController');
     Route::controller('Asignatura', 'ConsultaSalasController',[
         'getShowasignatura' => 'Docente.Asignatura.show',
