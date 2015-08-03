@@ -39,9 +39,9 @@
                         <li>{!!Html::linkRoute('encar.asignar.modi.index','Asignar Salas')!!}</li>
                         <li>{!!Html::linkRoute('encar.doce.modi.index','Docente')!!}</li>
                         <li>{!!Html::linkRoute('encar.hora.modi.index','Horario')!!}</li>
+                        <li>{!!Html::linkRoute('encar.cursadas.modi.index','Asignaturas Cursadas')!!}</li>
                     </ul>
                 </div>
-            
 
         </div>
          @if($_SERVER['REQUEST_URI'] == "/encar/home")
@@ -101,6 +101,9 @@
          @endif
          @if($_SERVER['REQUEST_URI'] == "/encar/hora/modi")
                 @yield('content9')
+         @endif
+          @if($_SERVER['REQUEST_URI'] == "/encar/cursadas/modi")
+                @yield('content10')
          @endif
         </div>
     </div>

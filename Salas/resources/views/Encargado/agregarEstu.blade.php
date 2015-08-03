@@ -40,7 +40,7 @@
                              'placeholder' => 'Ingrese email']) !!}
                         </div>
                        
-                         <div class="form-group"> <!-- Esto no me funciona -->
+                         <div class="form-group"> 
                          {!! Form::label('carrera_id','Carrera')!!}
                          {!! Form::select('carrera_id',$carreras)!!}
                          </div>

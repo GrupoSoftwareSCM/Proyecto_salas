@@ -23,6 +23,7 @@ use App\Models\Asignatura;
 use App\Models\Estudiante;
 use App\Models\Curso;
 use App\Models\Docente;
+use App\Models\Asignatura_Cursada;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Support\Facades\Session;
@@ -1414,4 +1415,57 @@ public function getDocenteEncarall(){
         })->download('csv');
 
     }
+public function postAsigCursEncar(Request $request){
+     //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+        $curso_id= $request->get('curso_id');
+       // dd($curso_id);
+      //dd($request->get('curso_id'));
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
+
+        \Excel::load('/storage/public/files/'.$nombre,function($archivo) use ($curso_id)
+        {
+            $result = $archivo->get();    //leer todas las filas del archivo
+            foreach($result as $key => $value)
+              {
+
+                $estudiante_id=Estudiante::select('id')->where('rut',$value->rut)->first()->id;
+                
+               if(count(Asignatura_Cursada::where('curso_id',$curso_id)->where('estudiante_id',$estudiante_id)->first())==0)
+                $contador=0;
+               else
+                $contador=1;
+               if($contador==0){
+
+                $var = new Asignatura_Cursada();
+                    
+                    $var->fill([
+                        'curso_id'            => $curso_id,
+                        'estudiante_id'       => $estudiante_id,
+                        
+                    ]);
+                    $var->save();
+
+               }
+               else
+                Session::flash('message', 'Curso seccion: \n'.$value->seccion.' semestre'.$value->semestre.'Ya esta registrado');
+
+
+                }
+                
+                
+            
+        })->get();
+
+        \Storage::delete($nombre);
+
+        return redirect()->route('encar.cursadas.modi.index');
+
+
+}
 }

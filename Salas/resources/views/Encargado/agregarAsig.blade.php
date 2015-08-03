@@ -17,8 +17,17 @@
                          @foreach($errors->all() as $error)
                          <li>{{ $error }} </li>
                           @endforeach
+
                       </ul>
                        </div>
+                        @elseif(Session::has('message'))
+                            <div class="alert alert-warning">
+                                <strong>OOpps!</strong><br><br>
+                                <ul>
+                                    <li>{{ Session::get('message') }}</li>
+                                </ul>
+                            </div>
+                        
                       @endif
                   
                    
@@ -46,7 +55,6 @@
                          {!! Form::select('departamento_id',$departamento)!!}
                          </div>
                         
-                        
                          <button type="submit" class="btn btn-info">Crear</button>
                          
                         
@@ -55,17 +63,20 @@
 
                       {!! Form::close() !!}
                       </form>
-                      <div class="col-md-6">
+
+           
+                   <div class="col-md-6 col-xs-9">
                         {!!Form::open(['route' => 'files.AsigEncar.up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
-                        <div class="form-group">
+                       <div class="form-group">
                             {!!Form::label('file','Adjuntar archivo',['class' => 'col-md-6'])!!}
                             <br/>
                             <input type="file" name="file">
-
+                          
                         </div>
                         {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
                         {!!Form::close()!!}
-                    </div>
+                        </div>
+                    
             </div>  
           </div>
           </div>

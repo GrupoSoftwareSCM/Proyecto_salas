@@ -43,8 +43,8 @@
                         </div>
                          <div class="form-group">
                          {!! Form::label('capacidad', 'Capacidad') !!}
-                         {!! Form::text('capacidad', '',['class' => 'form-control',
-                             'placeholder' => 'Ingrese la capacidad']) !!}
+                         {!! Form::number('capacidad', '',['class' => 'form-control',
+                             'placeholder' => 'Ingrese la capacidad','min'=>'0','max'=>'50']) !!}
                         </div>
                         
                          <button type="submit" class="btn btn-info">Crear</button>

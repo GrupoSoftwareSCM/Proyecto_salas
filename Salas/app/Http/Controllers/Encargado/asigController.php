@@ -11,7 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Campus;
 
 
 class asigController extends Controller {
@@ -24,8 +25,13 @@ class asigController extends Controller {
 	public function index()
 	{
 		$asignatura = Asignatura::paginate(10);
+		//dd(Auth::user()->rut);
+		$rut=Auth::user()->rut;
+		//$nombreCampus= Campus::select('nombre')->where('rut_encargado',$rut)->first();
+		$nombreCampus= Campus::select('nombre')->where('rut_encargado',$rut)->first();
+	//	dd($nombreCampus);
+
         return view('Encargado.modificarAsig',compact('asignatura'));
-		//return view('Encargado.ejemploModificarAsig',compact('asignatura'));
 	}
 
     public function create()
@@ -49,7 +55,7 @@ class asigController extends Controller {
 	public function store()
 	{   
 		$data= Request::only(['nombre','codigo','descripcion','departamento_id']); 
-		
+	//	dd(Auth::user());
 		$rules=array(
 			'nombre' => 'required|between:3,25|alpha_space',
 			'codigo' => 'required|numeric',

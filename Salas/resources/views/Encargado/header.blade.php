@@ -70,6 +70,7 @@
     {!!Html::script('js/jquery-2.1.4.min.js')!!}
     {!!Html::script('js/jquery.min.js')!!}
     {!!Html::script('js/alert.js')!!}
+    @yield('js_bottom')
     <!--<script src="{{URL::asset('js/bootstrap.min.js')}}"></script>-->
 </body>
 </html>

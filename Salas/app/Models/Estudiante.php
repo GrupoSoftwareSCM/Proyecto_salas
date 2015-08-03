@@ -44,6 +44,11 @@ class Estudiante extends Model {
                 ->whereNombre($nombre)
                 ->first();
     }
+    public static function query_rut($rut){
+        return Estudiante::select('id')
+                ->whereNombre($rut)
+                ->first();
+    }
 
 
 
