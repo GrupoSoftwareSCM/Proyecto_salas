@@ -7,6 +7,8 @@ use App\Models\Curso;
 use App\Models\Campus;
 use App\Models\Tipo_Sala;
 use App\Models\Docente;
+use Illuminate\Support\Facades\Validator;
+
 //use Illuminate\Http\Request;
 use Request;
 use DB;
@@ -50,6 +52,20 @@ class SalasController extends Controller {
 	public function store()
 	{
 		$data=Request::only(['nombre','campus_id','tipo_sala_id','descripcion','capacidad']);
+		$rules=array(
+            		 'nombre' => 'required|max:25|alpha_space',
+                     'capacidad' => 'required|numeric|min:0|max:50',
+                              
+		 		);    				
+
+ 		$val=Validator::make($data,$rules);	
+
+ 		if($val->fails())
+ 		{
+            return redirect()->back()
+            ->withErrors($val->errors())
+            ->withInput();
+ 		}				 
 		$sala=Sala::create($data);
 		$sala->save();
 		return redirect('encar/salas/modi');

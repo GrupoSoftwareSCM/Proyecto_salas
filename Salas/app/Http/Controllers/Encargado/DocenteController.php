@@ -7,6 +7,7 @@ use App\Models\Docente;
 use App\Models\Departamento;
 use Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 
 class DocenteController extends Controller {
@@ -42,7 +43,24 @@ class DocenteController extends Controller {
 	public function store()
 	{  
 
-		$data= Request::only(['nombres','apellidos','rut','departamento_id']);  
+		$data= Request::only(['nombres','apellidos','rut','departamento_id','email']);
+		//dd(count(Docente::where('rut',Request::get('rut'))));  
+		$rules=array(
+            		 'nombres' => 'required|max:25|alpha_space',
+                     'apellidos' => 'required|max:25|alpha_space',
+                     'rut' => 'required|numeric',
+                     'departamento_id' => 'required'
+			
+ 		);    				
+
+ 		$val=Validator::make($data,$rules);	
+
+ 		if($val->fails())
+ 		{
+            return redirect()->back()
+            ->withErrors($val->errors())
+            ->withInput();
+ 		}				 
 	    $doce = Docente::create($data);
         $doce->save();
         return redirect('encar/doce/modi');
@@ -82,10 +100,16 @@ class DocenteController extends Controller {
 	public function update($id)
 	{
 		$doce= Docente::findOrFail($id);
-		$doce->fill(Request::all());
+		//dd(count(Docente::where('rut',$doce->rut)));
+	/*	if(count(Docente::where('rut',$doce->rut))>1){
+         session::get('Ya existe una persona con el rut ingresado')
+		}
+        else{*/
+		$doce->fill(Request::all());						
 		$doce->save();
 		return redirect('encar/doce/modi');
 	}
+	
 
 	/**
 	 * Remove the specified resource from storage.

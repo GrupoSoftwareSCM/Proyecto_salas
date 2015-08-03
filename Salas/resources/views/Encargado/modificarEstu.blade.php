@@ -4,8 +4,8 @@
 
 {!!Form::open(['route' => 'encar.estu.modi.index', 'method' => 'GET'])!!}
                                 
-                               <div id="dataTables-example_wrapper" 
-                                class="dataTables_wrapper form-inline dt-bootstrap no-footer"
+                              <div class="panel panel-success">
+                              <div class="panel-body">
   								<div class="panel-heading"><h1>ESTUDIANTES</h1></div>
                                     <div class="panel-body">
                                     <p>

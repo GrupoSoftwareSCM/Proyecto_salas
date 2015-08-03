@@ -23,7 +23,7 @@ class asigController extends Controller {
 	 */
 	public function index()
 	{
-		$asignatura = Asignatura::paginate();
+		$asignatura = Asignatura::paginate(10);
         return view('Encargado.modificarAsig',compact('asignatura'));
 		//return view('Encargado.ejemploModificarAsig',compact('asignatura'));
 	}

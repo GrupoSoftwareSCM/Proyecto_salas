@@ -4,17 +4,15 @@
 
 
 {!!Form::open(['route' => 'encar.curs.modi.index', 'method' => 'GET'])!!}
-                                
-                               <div id="dataTables-example_wrapper" 
-                                class="dataTables_wrapper form-inline dt-bootstrap no-footer"
-                  <div class="panel-heading"><h1>CURSOS</h1></div>
-                                    <div class="panel-body">
-                                    <p>
-                                      <a class="btn btn-info" href="modi/create" role="button">
+                                    <div class="panel panel-success">
+                                             <div class="panel-body">
 
-                                      Nuevo curso</a>
+                               <div class="panel-heading"><h1>CURSOS</h1></div>
+                                    <div class="panel-body">
+                                      <p>
+                                      <a class="btn btn-info" href="modi/create" role="button">Nuevo curso</a>
                                       <div class="row">
-                           
+                        
                                 <nav class="navbar navbar-left">
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                         <tr><th class="center">Descargar Cursos</th></tr>
@@ -29,8 +27,9 @@
                         </div>
                                     </p>
                                     <p>Hay {{ $cursos->total() }} Registros</p>
-                            <table id="table_id" class="table table-bordered">
-                                    <thead>
+                              <div class="table-responsive">
+                             <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                    
                                         <tr>
                              
                                             <th>Asignatura</th>
@@ -67,11 +66,7 @@
                                                       
                         </div> 
 
-            </div>      
-
-
-    </div>
-
+{!!Form::close()!!}
     
 
 @endsection

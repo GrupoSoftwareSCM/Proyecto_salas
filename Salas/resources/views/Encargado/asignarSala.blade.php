@@ -3,13 +3,16 @@
 @section('content6')
 {!!Form::open(['route' => 'encar.asignar.modi.index', 'method' => 'GET'])!!}
 
- <div id="dataTables-example_wrapper" 
-                                class="dataTables_wrapper form-inline dt-bootstrap no-footer"
-                  <div class="panel-heading"><h1>CURSOS </h1></div>
+                                       <div class="panel panel-success">
+                                         <div class="panel-body">
+
+                               <div class="panel-heading"><h1>CURSOS</h1></div>
+                                    <div class="panel-body">
+                                      <p>
                                     <div class="panel-body">                                    
                                     <p>Hay {{ $cursos->total() }} Registros</p>
-                            <table id="table_id" class="table table-bordered">
-                                    <thead>
+                             <div class="table-responsive">
+                             <table id="sample-table-1" class="table table-striped table-bordered table-hover">                                    <thead>
                                         <tr>
                                           
                                             <th>Asignatura</th>

@@ -6,32 +6,28 @@
 
 {!!Form::open(['route' => 'encar.asig.modi.index', 'method' => 'GET'])!!}
                                 
-                               <div id="dataTables-example_wrapper" 
-                                class="dataTables_wrapper form-inline dt-bootstrap no-footer"
+       <div class="panel panel-success">
+             <div class="panel-body">
   								<div class="panel-heading"><h1>ASIGNATURAS</h1></div>
-
-                                    <div class="panel-body">
-                                    <p>
-                                    	<a class="btn btn-info" href="modi/create" role="button">
-
-                                    	Nueva asignatura</a>
-                                      <div class="row">
+                           <div class="panel-body">
+                                    <p><a class="btn btn-info" href="modi/create" role="button">Nueva asignatura</a>
+                                    <div class="row">
                            
-                                <nav class="navbar navbar-left">
-                                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
-                                        <tr><th class="center">Descargar Asignaturas</th></tr>
-                                        <tr>
-                                            <th class="center">
-                                                {!!Html::link('files/asignatura-encarall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
-                                            </th>
-                                        </tr>
-                                    </table>
-                                </nav>
+                                       <nav class="navbar navbar-left">
+                                            <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                                <tr><th class="center">Descargar Asignaturas</th></tr>
+                                                <tr><th class="center">
+                                                    {!!Html::link('files/asignatura-encarall','',['class' => 'glyphicon glyphicon-floppy-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                        </nav>
                            
-                        </div>
+                                    </div>
                                     </p>
-                                    <p>Hay {{ $asignatura->total() }} Registros</p>
-                                        <table class="table table-bordered">
+                             <p>Hay {{ $asignatura->total() }} Registros</p>
+                             <div class="table-responsive">
+                             <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                             <tr>
                                       
                                               <th>Nombre</th>
@@ -47,14 +43,14 @@
                                                 <td>{{$Asig-> nombre}}</td>
                                                 <td>{{$Asig-> codigo}}</td>
                                                 <td>{{$Asig-> departamento->nombre}}</td>
-                                                <td><a href="{{ route('encar.asig.modi.edit', $Asig ) }}">Editar</td>      
+                                                <td><a href="{{ route('encar.asig.modi.edit', $Asig ) }}">Editar</td></a>    
                                             </tr>
                                            @endforeach
                                         </table>
                                         {!! $asignatura->render()!!}
-                                    </div>
-                                    </div>
-                                    </div>
+                               </div>
+                     </div>
+    
                                   
 {!!Form::close()!!}
 
