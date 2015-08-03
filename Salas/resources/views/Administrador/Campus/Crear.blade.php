@@ -62,7 +62,7 @@
                         {!!Form::open(['route' => 'files.campus.Up','method' => 'POST','enctype' =>'multipart/form-data', 'class'=>'form-vertical'])!!}
                         <div class="form-group">
                             {!!Form::label('file','Adjuntar archivo',['class' => 'control-label'])!!}
-                            <input type="file" name="file" class="form-control">
+                            <input type="file" name="file">
 
                         </div>
                         {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}

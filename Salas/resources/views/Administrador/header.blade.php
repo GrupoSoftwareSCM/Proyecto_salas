@@ -10,10 +10,19 @@
     {{--
     {!! Html::link('public/img/utem_icono.png','asdasd',['rel' => 'shortcut icon']) !!}
 	--}}
+    @if($_SERVER["REQUEST_URI"] == "/Admin/Slider")
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        {!!Html::style('css/jquery.gridder.min.css')!!}
+        {!!Html::style('css/demo.css')!!}
+    @endif
 	<title>Bienvenido</title>
 </head>
 <body>
-
 
 <nav class="navbar navbar-default" role="navigation">
     <!-- El logotipo y el icono que despliega el menú se agrupan
@@ -45,8 +54,8 @@
         </form>-->
 
         <ul class="nav navbar-nav navbar-right">
+            <li>{!! Html::linkRoute('Admin.Slider.index','?') !!}</li>
             @if (Auth::guest())
-
                 <li><a href="{{ url('/auth/login') }}">Entrar</a></li>
                 <li><a href="{{ url('/auth/register') }}">Registrarse</a></li>
             @else
@@ -83,5 +92,37 @@
         },4000);
     });
 </script>
+
+@if($_SERVER["REQUEST_URI"] == "/Admin/Slider")
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    {!!Html::script('js/jquery.gridder.js')!!}
+    <script>
+        jQuery(document).ready(function ($) {
+
+            // Call Gridder
+            $(".gridder").gridderExpander({
+                scrollOffset: 60,
+                scrollTo: "panel", // "panel" or "listitem"
+                animationSpeed: 400,
+                animationEasing: "easeInOutExpo",
+                onStart: function () {
+                    console.log("Gridder Inititialized");
+                },
+                onExpanded: function (object) {
+                    console.log("Gridder Expanded");
+                    $(".carousel").carousel();
+                },
+                onChanged: function (object) {
+                    console.log("Gridder Changed");
+                },
+                onClosed: function () {
+                    console.log("Gridder Closed");
+                }
+            });
+        });
+    </script>
+@endif
 </body>
 </html>
