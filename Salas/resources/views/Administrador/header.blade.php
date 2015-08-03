@@ -63,6 +63,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::user()->nombres}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ url('/auth/logout') }}">Salir</a></li>
+                        <li>{!! Html::linkRoute('contacto.index','Contacto') !!}</li>
                     </ul>
                 </li>
             @endif
