@@ -3,10 +3,10 @@
 @section('content5')
 	
 {!!Form::open(['route' => 'encar.salas.modi.index', 'method' => 'GET'])!!}
-                                
-                               <div id="dataTables-example_wrapper" 
-                                class="dataTables_wrapper form-inline dt-bootstrap no-footer"
-                  <div class="panel-heading"><h1>SALAS</h1></div>
+                                <div class="panel panel-success">
+                                             <div class="panel-body">
+
+                               <div class="panel-heading"><h1>SALAS</h1></div>
                                     <div class="panel-body">
                                       <p>
                                       <a class="btn btn-info" href="modi/create" role="button">

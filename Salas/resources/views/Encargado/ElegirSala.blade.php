@@ -13,7 +13,16 @@
               <h2>{{$campus->nombre}}</h2>
               <h2>Cantidad de alumnos: {{$cantidad_alumno}}</h2>
               <h2>Seccion: {{$cursoo->seccion}}</h2>
-        
+          @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                 <p>Complete los campos</p>
+                    <ul>
+                         @foreach($errors->all() as $error)
+                         <li>{{ $error }} </li>
+                          @endforeach
+                      </ul>
+                       </div>
+                      @endif
          {!!Form::open(['route' => 'encar.asignar.modi.store', 'method' => 'POST'])!!}
                                 
                                <div id="dataTables-example_wrapper" 
@@ -23,7 +32,7 @@
                                    </div>
                          <div class="form-group">
                          {!! Form::label('fecha','Ingrese la fecha de termino de semestre :  ')!!}
-                         {!! Form::date('fecha', \Carbon\Carbon::now())!!}
+                         {!! Form::date('fecha', \Carbon\Carbon::now(),['max'=>'2015-8-3','min'=>'2016-1-1'])!!}
                           </div>
                           <div class="form-group">
                          {!! Form::label('dias','Seleccione los dias: ')!!}

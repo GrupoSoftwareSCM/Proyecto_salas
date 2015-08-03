@@ -8,6 +8,16 @@
                        <div class="panel panel-default">
                         <h1 class="page-header"> Crear Docente</h1>
                     <div class="panel-body">
+                      @if($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                 <p>Complete los campos</p>
+                    <ul>
+                    @foreach($errors->all() as $Error)
+                    <li>{{$Error}}</li>
+                    @endforeach
+                    </ul>
+                    </div>
+                    @endif
         
 
                  {!! Form::open(['route' => 'encar.doce.modi.store', 'method' => 'POST']) !!}
@@ -27,7 +37,10 @@
                             {!! Form::text('rut', '',['class' => 'form-control',
                              'placeholder' => 'Ingrese el rut sin puntos ni comas']) !!}
                         </div>
-                                              
+                         <div class="form-group"> 
+                          {!!Form::label('email','E-MAIL',['class' => 'control-label'])!!}
+                            {!!Form::email('email','',['class' => 'form-control','placeholder' => 'ejemplo@gmail.com'])!!}
+                        </div>               
                          <div class="form-group"> 
                          {!! Form::label('departamento_id','Departamento')!!}
                          {!! Form::select('departamento_id',$depa)!!}

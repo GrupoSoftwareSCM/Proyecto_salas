@@ -8,6 +8,16 @@
                        <div class="panel panel-default">
                         <h1 class="page-header"> Crear Sala</h1>
                     <div class="panel-body">
+                              @if($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                 <p>Complete los campos</p>
+                    <ul>
+                    @foreach($errors->all() as $Error)
+                    <li>{{$Error}}</li>
+                    @endforeach
+                    </ul>
+                    </div>
+                    @endif
         
 
                  {!! Form::open(['route' => 'encar.salas.modi.store', 'method' => 'POST']) !!}

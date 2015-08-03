@@ -49,8 +49,8 @@ class cursController extends Controller {
 		$data= Request::only('asignatura_id','docente_id','semestre','anio','seccion');
          // dd($data);  
          $rules=array(
-			'semestre' => 'required|numeric',
-			'anio' => 'required|numeric',
+			'semestre' => 'required|numeric|min:1|max:2',
+			'anio' => 'required|numeric|min:2015|max:2018',
 			'seccion'=> 'required|numeric',
 			
  		);    				

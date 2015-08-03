@@ -12,6 +12,8 @@ use App\Models\Horario;
 use Illuminate\Http\RedirectResponse;
 use Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class AsignarSalasController extends Controller {
@@ -54,7 +56,8 @@ class AsignarSalasController extends Controller {
 	    $dias=Request::get('dias');
         $dato = Carbon::now(); // Fecha actual
         $lunes= $dato->subDays($dato->dayOfWeek-1); // Lunes de la semana actual
-        $fin= Request::get('fecha'); // TODO: Cambiame: el fin del semestre actual
+        $fin= Request::get('fecha'); //fin del semestre actual
+        	
 	    foreach($dias as $dia) // Iterar por los dias del formulario (lunes = 0 ... sab = 5)
 	    {
              for($dia=$lunes->copy()->addDays($dia);$dia<$fin;$dia=$dia->copy()->addWeek()) //desde el primer dia de la semana, hasta el fin de semestre correspondiente, ahumentando semanalmente

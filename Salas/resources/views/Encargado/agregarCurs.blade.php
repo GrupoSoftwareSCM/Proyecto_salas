@@ -38,13 +38,12 @@
                         
                        <div class="form-group">
                            {!! Form::label('semestre', 'Semestre') !!}
-                            {!! Form::text('semestre', '',['class' => 'form-control',
-                             'placeholder' => 'Ingrese el semestre']) !!}
+                            {!! Form::number('semestre','',['class' => 'form-control','min' => '1','max' => '2','placeholder' => 'Ingrese el semestre 1 o 2'])!!}
                         </div>
                         <div class="form-group">
                            {!! Form::label('anio', 'Año') !!}
-                            {!! Form::text('anio', '',['class' => 'form-control',
-                             'placeholder' => 'Ingrese el año']) !!}
+                           {!! Form::number('anio','',['class' => 'form-control','min' => '2015','max' => '2018','placeholder' => 'Ingrese el año'])!!}
+
                         </div>
                          <div class="form-group">
                          {!! Form::label('seccion', 'Seccion') !!}
