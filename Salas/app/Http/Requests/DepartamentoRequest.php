@@ -33,12 +33,15 @@ class DepartamentoRequest extends Request {
             }
             case 'POST':
                 return [
-                    'nombre' => 'required|string|between:3,25',
-                    'descripcion' => 'required|string|between:3,255'
+                    'nombre' => 'required|string|between:3,255|alpha_space',
+                    'descripcion' => 'required|string|between:3,255|alpha_space'
                 ];
             case 'PUT':
             {
-                return [];
+                return [
+                    'nombre' => 'required|string|between:3,255|alpha_space',
+                    'descripcion' => 'string|between:3,255|alpha_space'
+                ];
             }
             case 'PATCH':
             {

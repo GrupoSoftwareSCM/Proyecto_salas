@@ -22,38 +22,21 @@ class FuncionarioRequest extends Request {
 	public function rules()
 	{
         switch($this->method()) {
-
-            case 'GET':
-            case 'DELETE':
-            {
-                return [];
-            }
             case 'POST':
-
                 return [
                     'nombres' => 'required|max:25|alpha_space',
                     'apellidos' => 'required|max:25|alpha_space',
                     'rut' => 'required|numeric',
-                    'email' => 'required|email',
+                    'email' => 'email',
                     'departamentos' => 'required',
                 ];
-
             case 'PUT':
-            {
                 return [
                     'nombres' => 'required|max:25|alpha_space',
                     'apellidos' => 'required|max:25|alpha_space',
-                    'rut' => 'required|numeric',
-                    'email' => 'required|email',
+                    'email' => 'email',
                     'departamentos' => 'required',
                 ];
-            }
-            case 'PATCH':
-            {
-
-            }
-            default:break;
-
         }
 	}
 

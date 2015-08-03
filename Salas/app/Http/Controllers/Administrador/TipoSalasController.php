@@ -96,11 +96,11 @@ class TipoSalasController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\TposalaRequest $request,$id)
 	{
         $TpoSalas = Tipo_Sala::find($id);
         if($TpoSalas){
-            $data = Request::only(['nombre','descripcion']);
+            $data = $request->only(['nombre','descripcion']);
             $TpoSalas->fill($data);
             $TpoSalas->save();
             Session::flash('message', 'Tipo de sala '.$data['nombre'].' Editado correctamente');

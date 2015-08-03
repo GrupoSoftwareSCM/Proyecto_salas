@@ -21,10 +21,18 @@ class TposalaRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-            'nombre' => 'required|string|between:3,25',
-            'descripcion' => 'required|string|between:3,255'
-		];
+        switch($this->method()) {
+            case 'POST':
+                return [
+                    'nombre' => 'required|alpha_space|between:3,255',
+                    'descripcion' => 'alpha_space|between:3,255'
+                ];
+            case 'PUT':
+                return [
+                    'nombre' => 'required|alpha_space|between:3,255',
+                    'descripcion' => 'alpha_space|between:3,255'
+                ];
+        }
 	}
 
 }

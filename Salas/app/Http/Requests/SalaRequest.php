@@ -24,10 +24,16 @@ class SalaRequest extends Request {
         switch($this->method()) {
             case 'POST':
              return [
-                 'nombre' => 'required|between:3,25',
-                 'descripcion' => 'required|string|between:3,255',
+                 'nombre' => 'required|between:3,25|alpha_space',
+                 'descripcion' => 'alpha_space|between:3,255',
                  'capacidad' => 'required',
              ];
+            case 'PUT':
+                return [
+                    'nombre' => 'required|between:3,25|alpha_space',
+                    'descripcion' => 'alpha_space|between:3,255',
+                    'capacidad' => 'required',
+                ];
         }
 	}
 

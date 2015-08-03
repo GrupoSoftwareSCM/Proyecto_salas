@@ -125,11 +125,22 @@ class DocenteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\DocenteRequest $request,$id)
 	{
 		$docente = Docente::find($id);
         if($docente){
-            $data = Request::only(['nombres','apellidos','email','departamentos']);
+            $data = $request->only(['nombres','apellidos','email','departamentos']);
+            $rut = $request->only(['docente_rut']);
+
+            $usuario = Usuario::where('rut',$rut)->first();
+
+            $usuario->fill([
+                'nombres' => $data['nombres'],
+                'apellidos' => $data['apellidos'],
+                'email' => $data['email'],
+            ]);
+            $usuario->save();
+
             $docente->fill([
                 'nombres' => $data['nombres'],
                 'apellidos' => $data['apellidos'],
@@ -137,6 +148,7 @@ class DocenteController extends Controller {
                 'departamento_id' => $data['departamentos'],
             ]);
             $docente->save();
+
             Session::flash('message', 'Usuario '.$data['nombres'].' editado correctamente');
             return redirect()->route('Admin.Docente.index');
         }

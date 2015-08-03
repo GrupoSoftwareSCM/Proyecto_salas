@@ -22,15 +22,25 @@ class CampusRequest extends Request {
 	public function rules()
 	{
         switch($this->method()) {
-        case 'POST':
-            return [
-                'nombre' => 'required|between:3,25|alpha_space',
-                'direccion' => 'required|between:3,80',
-                'latitud' => 'required|numeric',
-                'longitud' => 'required|numeric',
-                'encargado' => 'required',
-                'descripcion' => 'required|between:3,500|alpha_space'
-            ];
+            case 'POST':
+                return [
+                    'nombre' => 'required|between:3,25|alpha_space',
+                    'direccion' => 'required|between:3,80',
+                    'latitud' => 'required|numeric',
+                    'longitud' => 'required|numeric',
+                    'encargado' => 'required',
+                    'descripcion' => 'between:3,500|alpha_space'
+                ];
+            case 'PUT': {
+                return [
+                    'nombre' => 'required|between:3,25|alpha_space',
+                    'direccion' => 'required|between:3,80',
+                    'latitud' => 'required|numeric',
+                    'longitud' => 'required|numeric',
+                    'encargado' => 'required',
+                    'descripcion' => 'between:3,500|alpha_space'
+                ];
+            }
         }
 	}
 

@@ -105,11 +105,11 @@ class CarreraController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\CarreraRequest $request,$id)
 	{
 		$carrera = Carrera::find($id);
         if($carrera){
-            $data = Request::only(['nombre','codigo','escuela','descripcion']);
+            $data = $request->only(['nombre','codigo','escuela','descripcion']);
             $carrera->fill([
                 'nombre'         => $data['nombre'],
                 'codigo'        => $data['codigo'],

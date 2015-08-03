@@ -97,7 +97,7 @@
                         @else
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-md-8 col-md-offset-4 col-xs-12">
+                                    <div class="col-md-8 col-md-offset-2 col-xs-12">
                                         <div class="alert alert-info">
                                             <strong>Execelente!</strong><br><br>
                                             <ul>

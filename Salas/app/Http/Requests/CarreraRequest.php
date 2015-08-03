@@ -27,7 +27,15 @@ class CarreraRequest extends Request {
                     'nombre' => 'required|between:3,25|alpha_space',
                     'codigo' => 'required|numeric',
                     'escuela' => 'required',
-                    'descripcion' => 'required|between:3,500'];
+                    'descripcion' => 'between:3,500'];
+            case 'PUT': {
+                return [
+                    'nombre' => 'required|between:3,25|alpha_space',
+                    'codigo' => 'required|numeric',
+                    'escuela' => 'required',
+                    'descripcion' => 'between:3,500'
+                ];
+            }
         }
 	}
 

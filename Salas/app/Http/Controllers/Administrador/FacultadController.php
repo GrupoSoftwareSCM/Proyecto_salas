@@ -94,14 +94,14 @@ class FacultadController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\FacultadRequest $request,$id)
 	{
         $Facultad = Facultad::find($id);
         if($Facultad){
-            $data = Request::only(['nombre','descripcion','campus_id']);
+            $data = $request->only(['nombre','descripcion','campus_id']);
             $Facultad->fill($data);
             $Facultad->save();
-            Session::flash('message', 'Facultad '.$data['nombre'].' Creada correctamente');
+            Session::flash('message', 'Facultad '.$data['nombre'].' Editada correctamente');
             return redirect()->route('Admin.Facultad.index');
 
         }

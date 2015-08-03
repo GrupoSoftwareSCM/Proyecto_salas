@@ -10,6 +10,22 @@
         <div class="panel-footer">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-8 col-xs-12">
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <strong>OOoops!</strong> Hubo algunos problemas con su entrada.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
                     <div class="col-md-6 col-xs-9">
                         {!! Form::model($Salas,array('route' => array('Admin.Salas.update',$Salas->id),'class'=>'form-vertical','method' => 'PUT')) !!}
                         <div class="form-group">
@@ -22,6 +38,9 @@
 
                             {!!Form::label('nombre','Nombre Sala',['class' => 'control-label'])!!}
                             {!!Form::text('nombre',$Salas->nombre,['class' => 'form-control'])!!}
+
+                            {!!Form::label('capacidad','Capacidad',['class' => 'control-label'])!!}
+                            {!!Form::number('capacidad',$Salas->capacidad,['class' => 'form-control'])!!}
 
                             {!!Form::label('descripcion','Descripcion',['class' => 'control-label'])!!}
                             {!!Form::textarea('descripcion',$Salas->descripcion,['class' => 'form-control'])!!}

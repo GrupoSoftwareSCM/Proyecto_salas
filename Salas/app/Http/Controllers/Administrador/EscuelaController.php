@@ -107,11 +107,11 @@ class EscuelaController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\EscuelaRequest $request,$id)
 	{
         $Escuela = Escuela::find($id);
         if($Escuela){
-            $data = Request::only(['nombre','descripcion','departamento_id']);
+            $data = $request->only(['nombre','descripcion','departamento_id']);
             $Escuela->fill($data);
             $Escuela->save();
             Session::flash('message', 'Escuela '.$data['nombre'].' Editado correctamente');

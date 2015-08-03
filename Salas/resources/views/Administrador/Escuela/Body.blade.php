@@ -63,7 +63,7 @@
                                             <th class="center">{{$Escuela->descripcion}}</th>
                                             <th class="center">{{$Escuela->departamento->nombre}}</th>
                                             <th class="center">
-                                                <a class="btn glyphicon glyphicon-pencil" href="Escuela/{{$Escuela->id}}/edit" role="button" aria-label="Left Align"></a>
+                                                <a class="btn glyphicon glyphicon-pencil" href="/Admin/Escuela/{{$Escuela->id}}/edit" role="button" aria-label="Left Align"></a>
                                             </th>
                                             <th class="center">
                                                 {!!Form::open(array('route' => array('Admin.Escuela.destroy',$Escuela->id), 'method' => 'DELETE'))!!}

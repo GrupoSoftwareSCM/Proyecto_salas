@@ -106,8 +106,14 @@ class CampusController extends Controller {
 	public function edit($id)
 	{
         $Campus = Campus::find($id);
-        if($Campus)
-            return view('Administrador.Campus.Editar')->with('Campus',$Campus);
+        if($Campus){
+            $encargados = Rol::whereNombre('ENCARGADO_CAMPUS')->first();
+            $encargado = array();
+            foreach($encargados->usuarios as $value){
+                $encargado[$value->rut] = $value->nombres;
+            }
+            return view('Administrador.Campus.Editar')->with('Campus',$Campus)->with('Encargado',$encargado);
+        }
         else
             return view('errors.404');
 	}
@@ -118,12 +124,19 @@ class CampusController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\CampusRequest $request,$id)
 	{
         $Campus = Campus::find($id);
         if($Campus){
-            $datos_edit_campus = Request::only(['nombre','direccion','latitud','longitud','descripcion','rut_encargado']);
-            $Campus->fill($datos_edit_campus);
+            $datos = $request->only(['nombre','direccion','latitud','longitud','descripcion','encargado']);
+            $Campus->fill([
+                'nombre' => ucwords(strtolower($datos['nombre'])),
+                'direccion' => $datos['direccion'],
+                'latitud' => $datos['latitud'],
+                'longitud' => $datos['longitud'],
+                'descripcion' => $datos['descripcion'],
+                'rut_encargado' => $datos['encargado']
+            ]);
             $Campus->save();
             Session::flash('message', 'Campùs editado correctamente');
             return redirect()->route('Admin.Campus.index');

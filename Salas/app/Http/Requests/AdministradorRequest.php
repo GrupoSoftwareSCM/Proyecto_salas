@@ -34,7 +34,7 @@ class AdministradorRequest extends Request {
                     'nombres' => 'required|max:25|alpha_space',
                     'apellidos' => 'required|max:25|alpha_space',
                     'rut' => 'required|numeric',
-                    'email' => 'required|email',
+                    'email' => 'email',
                 ];
 
             case 'PUT':
@@ -42,8 +42,7 @@ class AdministradorRequest extends Request {
                 return [
                     'nombres' => 'required|max:25|alpha_space',
                     'apellidos' => 'required|max:25|alpha_space',
-                    'rut' => 'required|numeric',
-                    'email' => 'required|email',
+                    'email' => 'email',
                 ];
             }
             case 'PATCH':

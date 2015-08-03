@@ -99,11 +99,11 @@ class SalasController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\SalaRequest $request,$id)
 	{
         $Salas = Sala::find($id);
         if($Salas){
-            $data = Request::only(['nombre','descripcion','campus_id','tipo_sala_id']);
+            $data = $request->only(['nombre','descripcion','campus_id','tipo_sala_id']);
             $Salas->fill($data);
             $Salas->save();
             Session::flash('message', 'Sala '.$data['nombre'].' Editado correctamente');

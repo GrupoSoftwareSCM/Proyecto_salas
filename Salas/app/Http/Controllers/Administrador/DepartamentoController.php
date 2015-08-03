@@ -91,7 +91,6 @@ class DepartamentoController extends Controller {
 	 */
 	public function edit($id)
 	{
-
         $Departamento = Departamento::find($id);
         if($Departamento){
             $Facultad = Facultad::lists('nombre','id');
@@ -108,11 +107,11 @@ class DepartamentoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\DepartamentoRequest $request,$id)
 	{
         $Departamento = Departamento::find($id);
         if($Departamento){
-            $data = Request::only(['nombre','descripcion','facultad_id']);
+            $data = $request->only(['nombre','descripcion','facultad_id']);
             $Departamento->fill($data);
             $Departamento->save();
             Session::flash('message', 'Departamento '.$data['nombre'].' Editado correctamente');

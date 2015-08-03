@@ -106,11 +106,11 @@ class FuncionarioController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\FuncionarioRequest $request,$id)
 	{
         $funcionario = Funcionario::find($id);
         if($funcionario){
-            $data = Request::only(['nombres','apellidos','email','departamentos']);
+            $data = $request->only(['nombres','apellidos','email','departamentos']);
             //dd($data);
             $funcionario->fill([
                 'nombres' => $data['nombres'],

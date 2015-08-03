@@ -2,6 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Docente;
+use App\Models\Estudiante;
 use App\Models\Rol_Usuario;
 use App\Models\Rol;
 use App\Models\Usuario;
@@ -96,11 +98,26 @@ class EncargadoCampusController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\EncargadoCampusRequest $request,$id)
 	{
         $usuario = Usuario::find($id);
         if($usuario){
-            $usuario->fill(Request::only(['nombres','apellidos','email']));
+            if(count($usuario->roles) > 1){
+                foreach($usuario->roles as $roles){
+                    if($roles->nombre == "DOCENTE"){
+                        $docente = Docente::where('rut',$id)->first();
+                        $docente->fill($request->only(['nombres','apellidos','email']));
+                        $docente->save();
+
+                    }
+                    if($roles->nombre == "ESTUDIANTE"){
+                        $estudiante = Estudiante::where('rut',$id)->first();
+                        $estudiante->fill($request->only(['nombres','apellidos','email']));
+                        $estudiante->save();
+                    }
+                }
+            }
+            $usuario->fill($request->only(['nombres','apellidos','email']));
             $usuario->save();
             \Session::flash('message', 'Usuario Editado correctamente');
             return redirect()->route('Admin.EncargadoCampus.index');

@@ -95,11 +95,26 @@ class AdministradorController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\AdministradorRequest $request,$id)
 	{
         $usuario = Usuario::find($id);
         if($usuario){
-            $usuario->fill(Request::only(['nombres','apellidos','email']));
+            if(count($usuario->roles) > 1){
+                foreach($usuario->roles as $roles){
+                    if($roles->nombre == "DOCENTE"){
+                        $docente = Docente::where('rut',$id)->first();
+                        $docente->fill($request->only(['nombres','apellidos','email']));
+                        $docente->save();
+
+                    }
+                    if($roles->nombre == "ESTUDIANTE"){
+                        $estudiante = Estudiante::where('rut',$id)->first();
+                        $estudiante->fill($request->only(['nombres','apellidos','email']));
+                        $estudiante->save();
+                    }
+                }
+            }
+            $usuario->fill($request->only(['nombres','apellidos','email']));
             $usuario->save();
             Session::flash('message', 'Usuario Editado correctamente');
             return redirect()->route('Admin.Administrador.index');

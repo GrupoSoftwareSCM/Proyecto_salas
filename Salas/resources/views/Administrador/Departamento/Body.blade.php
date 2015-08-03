@@ -68,7 +68,7 @@
                                                 @endif
                                             @endforeach
                                             <th class="center">
-                                                <a class="btn glyphicon glyphicon-pencil" href="Depto/{{$Departamento->id}}/edit" role="button" aria-label="Left Align"></a>
+                                                <a class="btn glyphicon glyphicon-pencil" href="/Admin/Depto/{{$Departamento->id}}/edit" role="button" aria-label="Left Align"></a>
                                             </th>
                                             <th class="center">
                                                 {!!Form::open(array('route' => array('Admin.Depto.destroy',$Departamento->id), 'method' => 'DELETE'))!!}

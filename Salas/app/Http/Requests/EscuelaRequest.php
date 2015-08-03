@@ -21,10 +21,20 @@ class EscuelaRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-            'nombre' => 'required|string|between:3,25',
-            'descripcion' => 'required|string|between:3,255'
-		];
+        switch($this->method()) {
+            case 'POST':
+                return [
+                    'nombre' => 'required|string|between:3,25|alpha_space',
+                    'descripcion' => 'string|between:3,255|alpha_space'
+                ];
+
+            case 'PUT':
+                return [
+                    'nombre' => 'required|string|between:3,25|alpha_space',
+                    'descripcion' => 'string|between:3,255|alpha_space'
+                ];
+
+        }
 	}
 
 }

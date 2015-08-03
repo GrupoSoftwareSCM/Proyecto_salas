@@ -122,7 +122,7 @@ class EstudianteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\EstudianteRequest $request,$id)
 	{
         $estudiante = Estudiante::find($id);
         if($estudiante){
@@ -135,6 +135,16 @@ class EstudianteController extends Controller {
                 'carrera_id' => $datos['carrera'],
             ]);
             $estudiante->save();
+
+            $rut = $request->only(['estudiante_rut']);
+            $usuario = Usuario::where('rut',$rut)->first();
+            $usuario->fill([
+                'nombres' => $datos['nombres'],
+                'apellidos' => $datos['apellidos'],
+                'email' => $datos['email'],
+            ]);
+            $usuario->save();
+
             Session::flash('message', 'Usuario '.$datos['nombres'].' Editado correctamente');
             return redirect()->route('Admin.Estudiante.index');
         }

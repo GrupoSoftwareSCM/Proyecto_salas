@@ -53,6 +53,7 @@
                                         <tr>
                                             <th class="center">Nombre</th>
                                             <th class="center">Direccion</th>
+                                            <th class="center">Encargado</th>
                                             <th class="center">Editar</th>
                                             <th class="center">Eliminar</th>
                                             <th class="center">Descargar</th>
@@ -63,6 +64,7 @@
                                             <tr>
                                                 <th class="center">{{$camp->nombre}}</th>
                                                 <th class="center">{{$camp->direccion}}</th>
+                                                <th class="center">{{App\Models\Usuario::find($camp->rut_encargado)->nombres.' '.App\Models\Usuario::find($camp->rut_encargado)->apellidos }}</th>
                                                 <th class="center">
                                                     <a class="btn glyphicon glyphicon-pencil" href="Campus/{{$camp->id}}/edit" role="button" aria-label="Left Align"></a>
                                                 </th>
