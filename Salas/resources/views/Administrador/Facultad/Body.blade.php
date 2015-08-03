@@ -78,7 +78,6 @@
                                             </th>
                                             <th class="center">
                                                 {!!Html::link('files/facultad/'.$facultad->id,'',['class' => 'btn glyphicon glyphicon-save', 'role' => 'button', 'aria-label' => 'Center Align'])!!}
-
                                             </th>
                                         </tr>
                                     @endforeach

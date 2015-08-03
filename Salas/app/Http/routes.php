@@ -10,6 +10,9 @@
 |
 */
 
+Route::controller('contacto','ContactoController',[
+    'getIndex' => 'contacto.index',
+]);
 Route::controller('files','Excel\FilesController',[
     'getCampus'                 => 'files.Campus',
     'getCampusall'              => 'files.Campusall',
