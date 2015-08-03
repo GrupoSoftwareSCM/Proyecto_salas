@@ -86,7 +86,8 @@ Route::group(['prefix' =>  'Admin', 'namespace' => 'Administrador'], function(){
     Route::resource('Slider','sliderController');
 });
 
-Route::group(['middleware' =>'docente','prefix' =>  'Docente', 'namespace' => 'Docente'], function(){
+//Route::group(['middleware' =>'docente','prefix' =>  'Docente', 'namespace' => 'Docente'], function(){
+Route::group(['prefix' =>  'Docente', 'namespace' => 'Docente'], function(){
     Route::resource('home','DocUserController');
     Route::controller('Asignatura', 'ConsultaSalasController',[
         'getShowasignatura' => 'Docente.Asignatura.show',
