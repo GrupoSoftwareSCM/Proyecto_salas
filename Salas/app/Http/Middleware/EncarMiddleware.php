@@ -23,13 +23,17 @@ protected $auth;
 	{
         $user = Auth::user();
         if($user){
-            if($user->roles()->get()[0]->nombre != 'ENCARGADO_CAMPUS')
-                return redirect()->route('auth.login');
+            foreach($user->roles as $perfil){
+                if($perfil->nombre == 'ENCARGADO_CAMPUS'){
+                    return $next($request);
+                }
+            }
+            return redirect()->route('auth.login');
         }
         else{
             return redirect()->route('auth.login');
         }
-		return $next($request);
+        return $next($request);
 	}
 
 }
