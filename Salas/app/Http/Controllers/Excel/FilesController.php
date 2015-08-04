@@ -1433,38 +1433,30 @@ public function postAsigCursEncar(Request $request){
             $result = $archivo->get();    //leer todas las filas del archivo
             foreach($result as $key => $value)
               {
-
+               // dd(Estudiante::select('id')->where('rut',$value->rut)->first()->id);
                 $estudiante_id=Estudiante::select('id')->where('rut',$value->rut)->first()->id;
                 
                if(count(Asignatura_Cursada::where('curso_id',$curso_id)->where('estudiante_id',$estudiante_id)->first())==0)
-                $contador=0;
-               else
-                $contador=1;
-               if($contador==0){
-
-                $var = new Asignatura_Cursada();
+                { $var = new Asignatura_Cursada();
                     
                     $var->fill([
                         'curso_id'            => $curso_id,
                         'estudiante_id'       => $estudiante_id,
                         
                     ]);
-                    $var->save();
-
-               }
-               else
-                Session::flash('message', 'Curso seccion: \n'.$value->seccion.' semestre'.$value->semestre.'Ya esta registrado');
-
-
+                    $var->save();}
+               else{
+                $seccion=Curso::select('seccion')->where('id',$curso_id)->first();
+                $rut_est=Estudiante::select('rut')->where('id',$estudiante_id)->first();
+                Session::flash('message', 'El estudiante: \n'.$rut_est.'de la seccion'.$seccion.'ya se encuentra en la lista');
                 }
-                
-                
             
-        })->get();
+        }})->get();
 
         \Storage::delete($nombre);
 
         return redirect()->route('encar.cursadas.modi.index');
+
 
 
 }

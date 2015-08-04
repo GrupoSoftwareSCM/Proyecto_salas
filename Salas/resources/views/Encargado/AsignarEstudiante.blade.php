@@ -18,6 +18,14 @@
                     @endforeach
                     </ul>
                     </div>
+                    if(Session::has('mesagge'))
+                        <div class="alert alert-warning">
+                            <strong>OOpps!</strong><br><br>
+                            <ul>
+                                <li>{{ Session::get('mesagge') }}</li>
+                            </ul>
+                        </div>
+                   
                     @endif
  {!!Form::open(['route' => 'encar.cursadas.modi.store', 'method' => 'POST'])!!}
                                 

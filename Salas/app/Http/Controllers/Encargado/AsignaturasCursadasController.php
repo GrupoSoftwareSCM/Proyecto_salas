@@ -44,11 +44,17 @@ class AsignaturasCursadasController extends Controller {
 	{
 		$rut=Request::get('rut');
         $curso=Request::get('curso_id');
+        //dd(count(Estudiante::select('id')->where('rut',$rut)->first()->id));
 		$id=Estudiante::select('id')->where('rut',$rut)->first()->id;
-
+        if(count($id)==0)
+        {
+         Session::flash('message', 'Curso seccion: \n'.$value->seccion.' semestre'.$value->semestre.'Ya esta registrado');
+        }
+        else{
 		$asigCursada = Asignatura_Cursada::create(['curso_id' => $curso,'estudiante_id'=> $id]);
         $asigCursada->save();
         return redirect('encar/cursadas/modi');
+    }
 	}
 
 	/**
