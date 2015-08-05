@@ -5,22 +5,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     {!!Html::style('css/bootstrap.min.css')!!}
+    {!!Html::style('css/modal.css')!!}
     {{--    ICONO EN EL NAVEGADOR --}}
     <link rel="shortcut icon" href="/img/utem_icono.png"/>
-    {{--
-    {!! Html::link('public/img/utem_icono.png','asdasd',['rel' => 'shortcut icon']) !!}
-	--}}
     @if($_SERVER["REQUEST_URI"] == "/Admin/Slider")
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
         {!!Html::style('css/jquery.gridder.min.css')!!}
         {!!Html::style('css/demo.css')!!}
     @endif
-	<title>Bienvenido</title>
 </head>
 <body>
 

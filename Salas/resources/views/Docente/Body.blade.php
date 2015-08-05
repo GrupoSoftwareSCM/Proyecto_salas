@@ -4,7 +4,7 @@
 
     <div class="panel panel-success">
         <div class="panel-body">
-            Bienvenido
+            Bienvenido Docente {{$user->nombres}}
         </div>
         <div class="panel-footer">
             <div class="row">

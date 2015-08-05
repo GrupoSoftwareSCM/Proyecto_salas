@@ -69,8 +69,35 @@
                         </div>
                         {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
                         {!!Form::close()!!}
+
+                        <ul class="nav nav-pills">
+                            <li><a href="#tutorial">Tutorial Subir archivos Docente</a></li>
+                        </ul>
+
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tutorial" class="modalmask">
+        <div class="modalbox movedown">
+            <a href="#close" title="Close" class="close">X</a>
+            <div id="slider">
+                <ul>
+                    <h1><p>Consejos para subir un archivo CSV</p></h1>
+                    <li>
+                        <p>Fijarse bien en los nombes <br/> Los nombres deben de ir en este orden y escritos de la misma forma, como se muestra a continuacion </p>
+                        {!! Html::image('/img/tutorial/tutorialEstudiante.png','tutorialEstudiante') !!}
+                        <p>Si el sistema no los encuentra parecido va a retornar a la vista principal con un mensaje de error</p>
+                    </li>
+                    <li>
+                        <p> el RUT es un atributo unico de cada persona, por ende no se puede replicar </p>
+                    </li>
+                    <li>
+                        <p> Basta que un Docente no exista para que el sistema lo guarde, los demas que ya existan los pasara por alto </p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 @section('body')
     <div class="panel panel-success">
         <div class="panel-body">
-            Bienvenido Administrador
+            Bienvenido Administrador {{$user->nombres}}
         </div>
         <div class="panel-footer">
             <div class="container-fluid">

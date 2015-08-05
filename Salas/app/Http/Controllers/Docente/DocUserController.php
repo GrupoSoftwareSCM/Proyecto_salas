@@ -3,8 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
+use Auth;
 
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Auth;
 
 class DocUserController extends Controller {
 
@@ -15,7 +17,8 @@ class DocUserController extends Controller {
 	 */
 	public function index()
 	{
-		return view('Docente.Body');
+        $user = Auth::user();
+		return view('Docente.Body')->with('user',$user);
 	}
 	/**
 	 * Show the form for creating a new resource.

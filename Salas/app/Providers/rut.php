@@ -13,7 +13,7 @@ class rut extends ServiceProvider {
 	{
         \Validator::extend('rut', function($attribute, $value, $parameters)
         {
-            return preg_match("\b\d{1,8}\-[K|k|0-9]", $value);
+            return preg_match('/^(\d{7,8})-([\dk]{1})$/i', $value);
         });
 	}
 

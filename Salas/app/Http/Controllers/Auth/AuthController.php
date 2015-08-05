@@ -30,7 +30,7 @@ class AuthController extends Controller
     {
         $credenciales = $request->only(['rut', 'password']);
         $rules = [ // Reglas de validacion TODO: validar rut
-            'rut' => 'required',
+            'rut' => 'required|rut',
             'password' => 'required'
         ];
 

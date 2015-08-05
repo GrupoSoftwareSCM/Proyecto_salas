@@ -59,13 +59,43 @@
                         <div class="form-group">
                             {!!Form::label('file','Adjuntar archivo',['class' => 'control-label'])!!}
                             <br/>
-                            <input type="file" name="file" class="form-control">
+                            <input type="file" name="file">
 
                         </div>
                         {!!Form::button('Enviar',['class' => 'btn btn-danger col-md-4 col-md-offset-8','type' => 'submit'])!!}
                         {!!Form::close()!!}
+
+                        <ul class="nav nav-pills">
+                            <li><a href="#tutorial">Tutorial Subir archivos Carrera</a></li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tutorial" class="modalmask">
+        <div class="modalbox movedown">
+            <a href="#close" title="Close" class="close">X</a>
+            <div id="slider">
+                <ul>
+                    <h1><p>Consejos para subir un archivo CSV</p></h1>
+                    <li>
+                        <p>Fijarse bien en los nombes <br/> Los nombres deben de ir en este orden y escritos de la misma forma, como se muestra a continuacion </p>
+                        {!! Html::image('/img/tutorial/tutorialCarrera.png','tutorialCarrera') !!}
+                        <p>Si el sistema no los encuentra parecido va a retornar a la vista principal con un mensaje de error</p>
+                    </li>
+                    <li>
+                        <p> La escuela debe de existir en el sistema de lo contrario pasara a la fila siguiente del CSV </p>
+                    </li>
+                    <li>
+                        <p> Basta que una Carrera no exista para que el sistema guarde el nombre, los demas que ya existan los pasara por alto </p>
+                    </li>
+
+                    <li>
+                        <p> El codigo de la carrera es unico, eso quiere decir el codigo de una carrera no se debe registrar dos veces </p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

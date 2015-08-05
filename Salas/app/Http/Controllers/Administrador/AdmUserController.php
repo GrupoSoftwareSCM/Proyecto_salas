@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Request;
 use DB;
+use Auth;
 
 use App\Models\Usuario;
 
@@ -11,11 +12,6 @@ use App\Models\Usuario;
 
 class AdmUserController extends Controller {
 
-
-    /*public function __construct()
-    {
-        $this->middleware('auth');
-    }*/
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -24,7 +20,8 @@ class AdmUserController extends Controller {
 	
 	public function index()
     {
-		return view('Administrador.Body');
+        $user = Auth::user();
+		return view('Administrador.Body')->with('user',$user);
 	}
 
 	/**
