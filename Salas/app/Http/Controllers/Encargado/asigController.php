@@ -24,13 +24,19 @@ class asigController extends Controller {
 	 */
 	public function index()
 	{
-		$asignatura = Asignatura::paginate(10);
+		//$asignatura = Asignatura::paginate(10);
 		//dd(Auth::user()->rut);
 		$rut=Auth::user()->rut;
 		//$nombreCampus= Campus::select('nombre')->where('rut_encargado',$rut)->first();
-		$nombreCampus= Campus::select('nombre')->where('rut_encargado',$rut)->first();
-	//	dd($nombreCampus);
-
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		//dd($id_campus);
+         $asignatura=Asignatura::join('departamentos','asignaturas.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('asignaturas.*') 
+			          ->paginate();
+			      
         return view('Encargado.modificarAsig',compact('asignatura'));
 	}
 
