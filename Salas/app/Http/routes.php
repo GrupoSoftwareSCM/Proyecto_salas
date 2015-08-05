@@ -95,6 +95,8 @@ Route::group(['middleware' =>'docente','prefix' =>  'Docente', 'namespace' => 'D
     Route::resource('home','DocUserController');
     Route::controller('Asignatura', 'ConsultaSalasController',[
         'getShowasignatura' => 'Docente.Asignatura.show',
+        'getConsulta'=>'Docente.Consulta.show',
+        'postConsutla' => 'Docente.peticion',
     ]);
 });
 

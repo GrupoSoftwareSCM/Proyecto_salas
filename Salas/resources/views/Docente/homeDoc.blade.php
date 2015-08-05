@@ -26,30 +26,8 @@
                      otro elemento que se pueda ocultar al minimizar la barra -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle glyphicon glyphicon-list-alt" data-toggle="dropdown">
-                                Mi Horario<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php $cursos = \App\Models\Docente::where('rut',Auth::user()->rut)->first()->curso ?>
-                                @foreach($cursos as $curso)
-                                    {{--PARA PODER VER LOS CURSOS, VAMOS A CREAR UNA FUNCION PARECIDA A LA AGREGAR
-                                    MASIVAMENTE, EN DONDE ESTA VA A A RESIVIR EL ID DEL CURSO Y VA CONSULTAR POR ESTE--}}
-                                    <li>{!!Html::linkRoute('Docente.Asignatura.show',$curso->nombre,[$curso->id])!!}</li>
-                                @endforeach
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle glyphicon glyphicon-send" data-toggle="dropdown">
-                                Solicitud<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </li>
+                        <li>{!! Html::linkRoute('Docente.Asignatura.show','Mi horario',null,['class'=>'glyphicon glyphicon-list-alt']) !!}</li>
+                        <li>{!! Html::linkRoute('Docente.Consulta.show','Solicitud',null,['class'=>'glyphicon glyphicon-send']) !!}</li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-share-alt" data-toggle="dropdown">
                                 Cambiar de perfil<b class="caret"></b>
