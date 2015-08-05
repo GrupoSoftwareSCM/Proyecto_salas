@@ -10,6 +10,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Campus;
+
 
 class estuController extends Controller {
 
@@ -20,8 +23,20 @@ class estuController extends Controller {
 	 */
 	public function index()
 	{
-		$estu = Estudiante::paginate();
-  		return view('Encargado.modificarEstu',compact('estu'));
+		//$estu = Estudiante::paginate();
+	    $rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+        $estu=Estudiante::join('carreras','estudiantes.carrera_id','=','carreras.id')
+                     ->join('escuelas','carreras.escuela_id','=','escuelas.id')
+                     ->join('departamentos','escuelas.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('estudiantes.*') 
+			          ->paginate();
+			          //dd($estu);
+  		return view('Encargado.modificarEstu',compact('estu','nombreCampus'));
 	}
 
 	/**
@@ -31,7 +46,17 @@ class estuController extends Controller {
 	 */
 	public function create()
 	{
-		$carreras= Carrera::lists('nombre','id');		
+		//$carreras= Carrera::lists('nombre','id');	
+		$rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+        $carreras=Carrera::join('escuelas','carreras.escuela_id','=','escuelas.id')
+                     ->join('departamentos','escuelas.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('carreras.*') 
+			          ->lists('nombre','id');	
 		return view('Encargado.agregarEstu',compact('carreras'));
 	}
 

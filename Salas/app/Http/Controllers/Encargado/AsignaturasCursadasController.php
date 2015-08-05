@@ -7,6 +7,9 @@ use App\Models\Asignatura_Cursada;
 use App\Models\Estudiante;
 //use Illuminate\Http\Request;
 use Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Campus;
+
 class AsignaturasCursadasController extends Controller {
 
 	/**
@@ -16,13 +19,22 @@ class AsignaturasCursadasController extends Controller {
 	 */
 	public function index()
 	{
-		$cursos=Curso::paginate(10);
-		$C=Curso::paginate();
+	$rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+        $cursos=Curso::join('asignaturas','cursos.asignatura_id','=','asignaturas.id')
+                     ->join('departamentos','asignaturas.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('cursos.*') 
+			          ->paginate();
 		$cantidad_alumno = array();
-		foreach ($C as $curso) {
+		foreach ($cursos as $curso) {
 			array_push($cantidad_alumno, Asignatura_Cursada::count_alumnos($curso->id));
 		}
-		return view('Encargado.modificarCursadas',compact('cursos','cantidad_alumno'));
+		return view('Encargado.modificarCursadas',compact('cursos','nombreCampus'))->with('cantidad_alumno', $cantidad_alumno);
+	//	return view('Encargado.modificarCursadas',compact('cursos','cantidad_alumno'));
 	}
 
 	/**

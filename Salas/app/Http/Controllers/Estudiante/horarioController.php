@@ -4,6 +4,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Estudiante;
+use App\Models\Asignatura;
+use App\Models\Asignatura_Cursada;
+
+use App\Models\Curso;
+
+
 
 class horarioController extends Controller {
 
@@ -14,7 +22,22 @@ class horarioController extends Controller {
 	 */
 	public function index()
 	{
-		return view('Estudiantes.horario');
+		$rut=Auth::user()->rut;
+		
+		$id_estu=Estudiante::where('rut',$rut)->first()->id;
+		//dd($id_estu);
+	    $estu=Estudiante::find($id_estu);
+	  // dd($estu->curso->asignatura()->nombre);
+	    $cursos=$estu->curso;
+	    
+	    dd($cursos->id);
+	   /*  $departamento=$docente->departamento;
+	    $facultad=$departamento->facultad;
+	    $campus=$facultad->campus;
+	    $asignatura=$cursos->asignatura;
+	    $nombre=$asignatura->nombre;
+	    dd($nombre);*/
+				return view('Estudiantes.horario');
 	}
 
 	/**

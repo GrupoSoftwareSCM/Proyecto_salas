@@ -1,10 +1,23 @@
 @extends('Encargado.homeEncar')
 
 @section('content5')
+                
+                 <div class="panel panel-success">
+                                             <div class="panel-body">
+                @if ($errors->any())
+                    <div class="alert alert-warning" role="alert">
+                 
+                    <ul>
+                         @foreach($errors->all() as $error)
+                         <li>{{ $error }} </li>
+                          @endforeach
+                      </ul>
+                      @endif
+                  </div>
 	
 {!!Form::open(['route' => 'encar.salas.modi.index', 'method' => 'GET'])!!}
-                                <div class="panel panel-success">
-                                             <div class="panel-body">
+                             
+             <h4 align="right">{{$nombreCampus->nombre}}</h4>
 
                                <div class="panel-heading"><h1>SALAS</h1></div>
                                     <div class="panel-body">

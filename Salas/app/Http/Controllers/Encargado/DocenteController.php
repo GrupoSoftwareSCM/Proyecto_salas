@@ -3,11 +3,16 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Docente;
+use App\Models\Campus;
+
 //use Illuminate\Http\Request;
 use App\Models\Departamento;
 use Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
+
 
 
 class DocenteController extends Controller {
@@ -19,8 +24,17 @@ class DocenteController extends Controller {
 	 */
 	public function index()
 	{
-		$docentes=Docente::paginate();
-        return view('Encargado.modificarDoce',compact('docentes'));
+		//$docentes=Docente::paginate();
+		$rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+        $docentes=Docente::join('departamentos','docentes.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('docentes.*') 
+			          ->paginate();
+        return view('Encargado.modificarDoce',compact('docentes','nombreCampus'));
 	}
 
 	/**
@@ -30,8 +44,15 @@ class DocenteController extends Controller {
 	 */
 	public function create()
 	{
-		$depa=Departamento::lists('nombre','id');
-
+		//$depa=Departamento::lists('nombre','id');
+        $rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+        $depa=Departamento::join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('departamentos.*') 
+			          ->lists('nombre','id');
 		return view('Encargado.agregarDoce',compact('depa'));
 	}
 
