@@ -2,8 +2,11 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Curso;
+use App\Models\Docente;
 use App\Models\Usuario;
 use Auth;
+use DB;
 
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Auth;
@@ -18,6 +21,18 @@ class DocUserController extends Controller {
 	public function index()
 	{
         $user = Auth::user();
+        $id = Docente::where('rut',$user->rut)->first()->id;
+        $join = DB::table('docentes')->select('cursos.seccion','salas.nombre as sala_nombre','periodos.bloque','asignaturas.nombre as nombre_asignatura')
+                                     ->where('docentes.id',$id)
+                                     ->join('cursos','cursos.docente_id','=','docentes.id')
+                                     ->join('asignaturas','asignaturas.id','=','cursos.asignatura_id')
+                                     ->join('horarios','horarios.curso_id','=','cursos.id')
+                                     ->join('periodos','periodos.id','=','horarios.periodo_id')
+                                     ->join('salas','salas.id','=','horarios.sala_id')
+                                     ->get();
+        //dd($join);
+
+        //dd(Curso::where('docente_id',$docente->id)->first());
 		return view('Docente.Body')->with('user',$user);
 	}
 	/**
