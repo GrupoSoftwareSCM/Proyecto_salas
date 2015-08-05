@@ -98,7 +98,14 @@ class AsignarSalasController extends Controller {
 	    $facultad=$departamento->facultad;
 	    $campus=$facultad->campus;
 	    $salass=Sala::mostrar_salas($campus->id);
-	    $sa=Sala::lists('nombre','id');  
+	    $rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+         $sa=Sala::join('campus','salas.campus_id','=', 'campus.id')
+			          ->where('salas.campus_id', $id_campus) 
+			          ->select('salas.*') 
+			          ->lists('salas.nombre','salas.id');
+	//    $sa=Sala::lists('nombre','id');  
 		$cantidad_alumno =Asignatura_Cursada::count_alumnos($cursoo->id);
 		$periodos=Periodo::lists('bloque','id');
 		

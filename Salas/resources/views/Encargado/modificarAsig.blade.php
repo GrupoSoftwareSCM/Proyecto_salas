@@ -1,10 +1,8 @@
 @extends('Encargado.homeEncar')
 
 @section('content2')
- 
 
-
-{!!Form::open(['route' => 'encar.asig.modi.index', 'method' => 'GET'])!!}
+{!!Form::open(['route' => 'encar.asig.modi.index', 'method' => 'GET']) !!}
                                 
        <div class="panel panel-success">
              <div class="panel-body">

@@ -142,7 +142,10 @@ class SalasController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$salas = Sala::find($id);
+		$salas->delete();
+		Session::flash('message', 'La sala '. $salas->nombre. ' fue eliminada con éxito');
+	    return redirect('encar/salas/modi');
 	}
 
 }
