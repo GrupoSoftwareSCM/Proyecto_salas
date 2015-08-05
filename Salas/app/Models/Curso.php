@@ -39,7 +39,7 @@ class Curso extends Model {
 
     public function estudiante()
     {
-    	return $this->belongsToMany('App\Models\Estudiante','App\Models\Asignatura_Cursada','curso_id','estudiante_id');
+    	return $this->belongsToMany('App\Models\Estudiante','asignaturas_cursadas','curso_id','estudiante_id');
     }
 
 	/*

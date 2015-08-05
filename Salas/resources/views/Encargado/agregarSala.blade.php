@@ -29,8 +29,9 @@
                         </div>
                                                            
                          <div class="form-group"> 
-                         {!! Form::label('campus_id','Campus')!!}
-                         {!! Form::select('campus_id',$campus)!!}
+                         {!! Form::label('campus_id','Pertenece :')!!}
+
+                         {!! Form::label('campus_id',$campus->nombre)!!}
                          </div>
                              <div class="form-group"> 
                          {!! Form::label('tipo_sala_id','Tipo de Sala')!!}

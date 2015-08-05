@@ -8,6 +8,7 @@
                                 
        <div class="panel panel-success">
              <div class="panel-body">
+             <h4 align="right">{{$nombreCampus->nombre}}</h4>
   								<div class="panel-heading"><h1>ASIGNATURAS</h1></div>
                            <div class="panel-body">
                                     <p><a class="btn btn-info" href="modi/create" role="button">Nueva asignatura</a>
@@ -25,7 +26,9 @@
                            
                                     </div>
                                     </p>
-                             <p>Hay {{ $asignatura->total() }} Registros</p>
+                                          
+                              <p>Hay {{ $asignatura->total() }} Registros</p>
+
                              <div class="table-responsive">
                              <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                             <tr>

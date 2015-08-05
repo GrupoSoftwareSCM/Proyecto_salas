@@ -8,9 +8,12 @@ use App\Models\Asignatura;
 use App\Models\Curso;
 use Illuminate\Http\RedirectResponse;
 use Request;
+use App\Models\Campus;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+
 
 class cursController extends Controller {
 
@@ -21,8 +24,20 @@ class cursController extends Controller {
 	 */
 	public function index()
 	{
-		$cursos=Curso::with('docente','asignatura')->paginate();
-		return view('Encargado.modificarCurso', compact('cursos'));
+		//$cursos=Curso::with('docente','asignatura')->paginate();
+		$rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+        $cursos=Curso::join('asignaturas','cursos.asignatura_id','=','asignaturas.id')
+                     ->join('departamentos','asignaturas.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('cursos.*') 
+			          ->paginate();
+			          //dd($cursos);
+
+		return view('Encargado.modificarCurso', compact('cursos','nombreCampus'));
 	}
 
 	/**
@@ -32,8 +47,24 @@ class cursController extends Controller {
 	 */
 	public function create()
 	{
-		$asignaturas=Asignatura::lists('nombre','id');
-	    $docentes=Docente::lists('nombres','id');
+	//	$asignaturas=Asignatura::lists('nombre','id');
+	  //  $docentes=Docente::lists('nombres','id');
+		$rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+        $docentes=Docente::join('departamentos','docentes.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('docentes.*') 
+			          ->lists('nombres','id');
+	    $asignaturas=Asignatura::join('departamentos','asignaturas.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('asignaturas.*') 
+			          ->lists('nombre','id');
+;
 		return view('Encargado.agregarCurs')
 		->with('asignaturas', $asignaturas)
 		->with('docentes', $docentes);

@@ -6,6 +6,8 @@
                                 
                               <div class="panel panel-success">
                               <div class="panel-body">
+                                           <h4 align="right">{{$nombreCampus->nombre}}</h4>
+
   								<div class="panel-heading"><h1>ESTUDIANTES</h1></div>
                                     <div class="panel-body">
                                     <p>

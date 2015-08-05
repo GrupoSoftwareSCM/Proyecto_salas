@@ -28,7 +28,7 @@ class Estudiante extends Model {
 
     public function curso()
     {
-    	return $this->belongsToMany('App\Models\Cursos','app\Models\Asignatura_Cursada','estudiante_id','curso_id');
+    	return $this->belongsToMany('App\Models\Curso','asignaturas_cursadas','estudiante_id','curso_id');
     }
 	/*
 	|	En la tabla hija, de la misma forma que en el caso anterior, usaremos la contraparte de la función que es:

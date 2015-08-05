@@ -13,6 +13,9 @@ use Illuminate\Http\RedirectResponse;
 use Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Campus;
+
 
 
 
@@ -25,13 +28,23 @@ class AsignarSalasController extends Controller {
 	 */
 	public function index()
 	{
-		$cursos=Curso::paginate();
-		$C=Curso::paginate();
+		//$cursos=Curso::paginate();
+		//$C=Curso::paginate();
+		$rut=Auth::user()->rut;
+		$id_campus= Campus::select('id')->where('rut_encargado',$rut)->first()->id;
+		$nombreCampus=Campus::select('nombre')->where('rut_encargado',$rut)->first();
+        $cursos=Curso::join('asignaturas','cursos.asignatura_id','=','asignaturas.id')
+                     ->join('departamentos','asignaturas.departamento_id','=','departamentos.id')
+			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
+			         ->join('campus','facultades.campus_id','=', 'campus.id')
+			          ->where('facultades.campus_id', $id_campus) 
+			          ->select('cursos.*') 
+			          ->paginate();
 		$cantidad_alumno = array();
-		foreach ($C as $curso) {
+		foreach ($cursos as $curso) {
 			array_push($cantidad_alumno, Asignatura_Cursada::count_alumnos($curso->id));
 		}
-		return view('Encargado.asignarSala',compact('cursos'))->with('cantidad_alumno', $cantidad_alumno);
+		return view('Encargado.asignarSala',compact('cursos','nombreCampus'))->with('cantidad_alumno', $cantidad_alumno);
 
 	}
 
