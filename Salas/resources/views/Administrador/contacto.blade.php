@@ -14,19 +14,26 @@
                         <p> Oscar Muñoz Bernales</p>
                         <p> munoz.bernales.oscar@gmail.com </p>
                         <p> Estudiante de ingenieria en informatica de la UTEM </p>
-                        <p> 93290186 </p>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-5">
-                        {!! Html::image('','Jean') !!}
+                        {!! Html::image('/img/contactos/jean.jpg','Jean',['class'=>'img-circle']) !!}
                     </div>
                     <div class="col-md-9 col-xs-12">
-                        <p> Estudiante de informaticaasdasdasdads</p>
+                        <p> Jean Cid Bustos</p>
+                        <p> Jeanpierre.cid@gmail.com </p>
+                        <p> Estudiante de ingenieria en informatica de la UTEM </p>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-5">
-                        {!! Html::image('','Gabo') !!}
+                        {!! Html::image('/img/contactos/gabi.jpg','Gabriel',['class'=>'img-circle']) !!}
                     </div>
                     <div class="col-md-9 col-xs-12">
-                        <p> Estudiante de informaticaasdasdasdads</p>
+                        <p> Gabriel Sanhueza Alegria</p>
+                        <p> Z.gabox@gmail.com </p>
+                        <p> Estudiante de ingenieria en informatica de la UTEM </p>
                     </div>
                 </div>
         </div>
