@@ -30,7 +30,7 @@ class horarioController extends Controller {
 	  // dd($estu->curso->asignatura()->nombre);
 	    $cursos=$estu->curso;
 	    
-	    dd($cursos->id);
+	    dd($cursos);
 	   /*  $departamento=$docente->departamento;
 	    $facultad=$departamento->facultad;
 	    $campus=$facultad->campus;

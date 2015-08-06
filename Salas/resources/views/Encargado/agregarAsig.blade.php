@@ -66,9 +66,16 @@
 
                       {!! Form::close() !!}
                       </form>
+                      </div>
+                      </div>
+                      </div>
 
            
-                   <div class="col-md-6 col-xs-9">
+  <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-1">
+                       <div class="panel panel-default">
+                          <div class="panel-body">
                         {!!Form::open(['route' => 'files.AsigEncar.up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
                        <div class="form-group">
                             {!!Form::label('file','Adjuntar archivo',['class' => 'col-md-6'])!!}

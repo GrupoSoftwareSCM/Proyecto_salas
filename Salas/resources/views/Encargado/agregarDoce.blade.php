@@ -66,6 +66,16 @@
 
                       {!! Form::close() !!}
                       </form>
+      </div>
+                      </div>
+                      </div>
+  </div>
+                      </div>
+                        <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-1">
+                       <div class="panel panel-default">
+                          <div class="panel-body">
                        <div class="col-md-6">
                         {!!Form::open(['route' => 'files.DoceEncar.up','method' => 'POST','enctype' =>'multipart/form-data'])!!}
                         <div class="form-group">

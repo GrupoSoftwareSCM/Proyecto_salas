@@ -70,7 +70,7 @@ class DocenteController extends Controller {
 		$rules=array(
             		 'nombres' => 'required|max:25|alpha_space',
                      'apellidos' => 'required|max:25|alpha_space',
-                     'rut' => 'required|numeric',
+                     'rut' => 'required|numeric|unique:docentes',
                      'departamento_id' => 'required'
 			
  		);    				

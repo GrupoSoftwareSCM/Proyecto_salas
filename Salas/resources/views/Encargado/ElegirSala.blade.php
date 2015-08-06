@@ -40,29 +40,18 @@
                          <div class="form-group">
                          {!! Form::label('dias','Lunes')!!}
                          {!! Form::checkbox('dias[]',0,null,['class' => 'field'])!!}
-                         </div>
-                           <div class="form-group">
-                         {!! Form::label('dias','Martes')!!}
+                           {!! Form::label('dias','Martes')!!}
                          {!! Form::checkbox('dias[]',1,null,['class' => 'field'])!!}
-                         </div>
-                           <div class="form-group">
-                         {!! Form::label('dias','Miercoles')!!}
+                           {!! Form::label('dias','Miercoles')!!}
                          {!! Form::checkbox('dias[]',2,null,['class' => 'field'])!!}
-                         </div>
-                           <div class="form-group">
                          {!! Form::label('dias','Jueves')!!}
                          {!! Form::checkbox('dias[]',3,null,['class' => 'field'])!!}
-                         </div>
-                           <div class="form-group">
-                         {!! Form::label('dias','Viernes')!!}
+                                {!! Form::label('dias','Viernes')!!}
                          {!! Form::checkbox('dias[]',4,null,['class' => 'field'])!!}
-                         </div>
-                           <div class="form-group">
-                         {!! Form::label('dias','Sabado')!!}
+                               {!! Form::label('dias','Sabado')!!}
                          {!! Form::checkbox('dias[]',5,null,['class' => 'field'])!!}
-                        
-
-                         </div>  
+                         </div>
+                         
                          <div class="form-group">
                          {!! Form::label('sala_id','Seleccione la sala')!!}
                          {!! Form::select('sala_id',$sa)!!}

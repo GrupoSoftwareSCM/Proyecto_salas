@@ -1,9 +1,11 @@
 @extends('Encargado.homeEncar')
 
 @section('content')
-                
-                 <div class="panel panel-success">
-                                             <div class="panel-body">
+                   <div class="container">
+                <div class="row">
+       
+                     
+  
                 @if ($errors->any())
                     <div class="alert alert-warning" role="alert">
                  
@@ -17,7 +19,12 @@
 	
 {!!Form::open(['route' => 'encar.salas.modi.show', 'method' => 'GET'])!!}
                              
-
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-1">
+                       <div class="panel panel-default">
+                          <div class="panel-body">
+               
                                <div class="panel-heading"><h1>SALAS</h1></div>
                                     <div class="panel-body">
                                       <p>
@@ -44,6 +51,8 @@
                                     </div>
 
                          <a class="btn btn-danger" href="{{url('encar/hora/modi')}}" role="button">Volver</a>
+                                    </div>
+                                    </div>
                                     </div>
                                     </div>
                                   
