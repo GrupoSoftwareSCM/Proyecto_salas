@@ -10,8 +10,10 @@
 
                                <div class="panel-heading"><h1>CURSOS</h1></div>
                                     <div class="panel-body">
-                                      <p>
-                                      <a class="btn btn-info" href="modi/create" role="button">Nuevo curso</a>
+                                       <p>
+                                <a class="btn btn-info" href="{{route('encar.curs.modi.create')}}" 
+                                role="button"> Agregar Cursos</a>
+                                </p>
                                       <div class="row">
                         
                                 <nav class="navbar navbar-left">

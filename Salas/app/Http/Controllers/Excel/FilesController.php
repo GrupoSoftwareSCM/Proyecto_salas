@@ -25,7 +25,7 @@ use App\Models\Curso;
 use App\Models\Docente;
 use App\Models\Asignatura_Cursada;
 use Maatwebsite\Excel\Facades\Excel;
-
+use Validator;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
@@ -1138,22 +1138,32 @@ class FilesController extends Controller{
 
             //obtenemos el campo file definido en el formulario
             $file = $request->file('file');
+            if(is_null($request->file('file')))
+            {
+            Session::flash('message', 'Seleccion el archivo');
+             return redirect()->back();
 
+            }
+ 
             //obtenemos el nombre del archivo
             $nombre = $file->getClientOriginalName();
 
             //indicamos que queremos guardar un nuevo archivo en el disco local
             \Storage::disk('local')->put($nombre,  \File::get($file));
 
-
-            \Excel::load('/storage/public/files/'.$nombre,function($archivo)
+             $falla= false;
+            \Excel::load('/storage/public/files/'.$nombre,function($archivo) use (&$falla)
             {
                 $result = $archivo->get();    //leer todas las filas del archivo
                 //dd($result);
                 foreach($result as $key => $value)
                 {
-
-                    if(count(Asignatura::where('codigo',$value->codigo)->first()) ==0){
+                   $departamentos= Departamento::whereNombre($value->departamento)->pluck('id');
+                    if(is_null($departamentos))
+                    { // El campus no existe, deberia hacer algo para mitigar esto, o retornarlo al usuario ...
+                        
+                    }
+                  /* if(count(Asignatura::where('codigo',$value->codigo)->first()) ==0){
                         $var = new Asignatura();
                         $var->fill([
                             'nombre'        => $value->nombre,
@@ -1166,11 +1176,35 @@ class FilesController extends Controller{
                     else
                      Session::flash('message', 'Asignatura : \n'.$value->nombre.'Ya esta registrado');
 
-                }
+               */    //dd(Departamento::whereNombre($value->departamento)->first()->id);
+                      $var = new Asignatura();
+                     $datos=[
+                        'nombre'          => $value->nombre,
+                        'codigo'          => $value->codigo,
+                        'descripcion'     => $value->descripcion,
+                        'departamento_id' => $departamentos,
+                    
+                        ];
+                    $validator = Validator::make($datos, Asignatura::storeRules());
+                    if($validator->fails()) {
+                        Session::flash('message', 'Las Asignaturas ya existen o el archivo ingresado no es valido');
+                        $falla = true;
+                    }
+                    else {
+                        $var->fill($datos);
+                        $var->save();
+                    }
+            }
+        
             })->get();
+           if($falla) { // Fallo la validacion de algun campus, retornar al index con mensaje
+            return redirect()->route('encar.asig.modi.index');
+           }
+           \Storage::delete($nombre);
+              
+         Session::flash('message', 'Las Asignaturas fueron agregadas exitosamente');
 
-            \Storage::delete($nombre);
-
+              
             return redirect()->route('encar.asig.modi.index');
 
     }
@@ -1226,13 +1260,14 @@ public function postCursfileEncar(Request $request){
         \Excel::load('/storage/public/files/'.$nombre,function($archivo)
         {
             $result = $archivo->get();    //leer todas las filas del archivo
-//            dd($result);
+        // dd($result);
  
             foreach($result as $key => $value)
               {
-                //dd(Asignatura::query_nombre($value->asignatura)->id);
+               //  dd(Asignatura::query_nombre($value->asignatura)->first()->id);
+                //dd(Asignatura::query_nombre($value->asignatura));
                 $asig_id=Asignatura::query_nombre($value->asignatura)->id;
-
+ 
                 $doce_id=Docente::query_rut($value->docente)->id;
                 //dd(count(Curso::where('asignatura_id',$asig_id)->where('docente_id',$doce_id)->where('seccion',$value->seccion)->where('anio',$value->anio)->where('semestre',$value->semestre)->first()));
                if(count(Curso::where('asignatura_id',$asig_id)->where('docente_id',$doce_id)->where('seccion',$value->seccion)->where('anio',$value->anio)->where('semestre',$value->semestre)->first())==0)

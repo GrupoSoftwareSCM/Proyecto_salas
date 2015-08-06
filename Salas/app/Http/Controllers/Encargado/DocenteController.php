@@ -4,7 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Docente;
 use App\Models\Campus;
-
+use App\Models\Usuario;
+use App\Models\Rol_Usuario;
 //use Illuminate\Http\Request;
 use App\Models\Departamento;
 use Request;
@@ -81,9 +82,17 @@ class DocenteController extends Controller {
             return redirect()->back()
             ->withErrors($val->errors())
             ->withInput();
- 		}				 
-	    $doce = Docente::create($data);
+ 		}		
+ 		$usuario=Request::only(['nombres','apellidos','rut','email']);
+ 		$usuario_rut=Request::get('rut');
+        $usua= Usuario::create($usuario);
+        $doce = Docente::create($data);
+        $usua->save();		 
         $doce->save();
+        
+        $rol_usuario=Rol_Usuario::create(['usuario_rut'=> $usuario_rut,'rol_id'=>4]);
+
+        $rol_usuario->save();
         return redirect('encar/doce/modi');
 	}
 

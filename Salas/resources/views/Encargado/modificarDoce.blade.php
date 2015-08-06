@@ -10,10 +10,10 @@
 
   								<div class="panel-heading"><h1>Docentes</h1></div>
                                     <div class="panel-body">
-                                    <p>
-                                    	<a class="btn btn-info" href="modi/create" role="button">
-
-                                    	Nuevo Docente</a>
+                                     <p>
+                                <a class="btn btn-info" href="{{route('encar.doce.modi.create')}}" 
+                                role="button"> Agregar docente</a>
+                                </p>
                                       <div class="row">
                            
                                 <nav class="navbar navbar-left">

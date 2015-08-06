@@ -21,7 +21,7 @@ class rutUtils {
         return strtoupper(chr($s ? $s + 47 : 75));
     }
 
-    public static function isRut($r) {   (())   //ve si el rut es verdadero
+    public static function isRut($r) {     //ve si el rut es verdadero
 
         $resultado = false;
 

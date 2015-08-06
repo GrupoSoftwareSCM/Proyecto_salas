@@ -42,6 +42,8 @@
                                         </table>
                                         {!! $salas->render()!!}
                                     </div>
+
+                         <a class="btn btn-danger" href="{{url('encar/hora/modi')}}" role="button">Volver</a>
                                     </div>
                                     </div>
                                   

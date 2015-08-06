@@ -2,23 +2,36 @@
 
 @section('content')
 
-     <div class="container">
+
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-6 col-md-offset-1">
                        <div class="panel panel-default">
                         <h1 class="page-header"> Crear Docente</h1>
                     <div class="panel-body">
-                      @if($errors->any())
+               
+               @if(Session::has('message'))
+
+        
+          <div class="alert alert-dismissible alert-info">
+           <strong>{{ Session::get('message') }}</strong>
+          </div>
+
+      @endif
+      
+               @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                  <p>Complete los campos</p>
                     <ul>
-                    @foreach($errors->all() as $Error)
-                    <li>{{$Error}}</li>
-                    @endforeach
-                    </ul>
-                    </div>
-                    @endif
-        
+                         @foreach($errors->all() as $error)
+                         <li>{{ $error }} </li>
+                          @endforeach
+
+                      </ul>
+                       </div>
+                       
+                        
+                      @endif
 
                  {!! Form::open(['route' => 'encar.doce.modi.store', 'method' => 'POST']) !!}
                     <form role="form">            
@@ -33,9 +46,9 @@
                              'placeholder' => 'Ingrese apellidos']) !!}
                         </div>
                          <div class="form-group">
-                         {!! Form::label('rut', 'Rut') !!}
-                            {!! Form::text('rut', '',['class' => 'form-control',
-                             'placeholder' => 'Ingrese el rut sin puntos ni comas']) !!}
+                         {!!Form::label('rut','RUT',['class' => 'control-label'])!!}
+                            {!!Form::number('rut','',['class' => 'form-control','min'=> '1000000','max'=> '99999999', 'required'=>'required','placeholder' => 'Ingrese el rut sin puntos ni comas'])!!}
+                        
                         </div>
                          <div class="form-group"> 
                           {!!Form::label('email','E-MAIL',['class' => 'control-label'])!!}

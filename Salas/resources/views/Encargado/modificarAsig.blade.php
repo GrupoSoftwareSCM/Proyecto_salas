@@ -2,6 +2,26 @@
 
 @section('content2')
 
+
+@if(Session::has('message'))
+
+               <div class="panel panel-success">
+             <div class="panel-body">
+          <div class="alert alert-dismissible alert-info">
+           <strong>{{ Session::get('message') }}</strong>
+          </div>
+
+      @endif
+                       @if ($errors->any())
+                    <div class="alert alert-warning" role="alert">
+                 
+                    <ul>
+                         @foreach($errors->all() as $error)
+                         <li>{{ $error }} </li>
+                          @endforeach
+                      </ul>
+                      @endif
+
 {!!Form::open(['route' => 'encar.asig.modi.index', 'method' => 'GET']) !!}
                                 
        <div class="panel panel-success">
@@ -9,7 +29,10 @@
              <h4 align="right">{{$nombreCampus->nombre}}</h4>
   								<div class="panel-heading"><h1>ASIGNATURAS</h1></div>
                            <div class="panel-body">
-                                    <p><a class="btn btn-info" href="modi/create" role="button">Nueva asignatura</a>
+                               <p>
+                                <a class="btn btn-info" href="{{route('encar.asig.modi.create')}}" 
+                                role="button"> Agregar Asignaturas</a>
+                                </p>
                                     <div class="row">
                            
                                        <nav class="navbar navbar-left">

@@ -10,10 +10,10 @@
 
   								<div class="panel-heading"><h1>ESTUDIANTES</h1></div>
                                     <div class="panel-body">
-                                    <p>
-                                    	<a class="btn btn-info" href="modi/create" role="button">
-
-                                    	Nuevo Estudiante</a>
+                                     <p>
+                                <a class="btn btn-info" href="{{route('encar.estu.modi.create')}}" 
+                                role="button"> Agregar Estudiantes</a>
+                                </p>
                                       <div class="row">
                            
                                 <nav class="navbar navbar-left">

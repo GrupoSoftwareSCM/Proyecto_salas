@@ -2,23 +2,36 @@
 
 @section('content')
 
-     <div class="container">
+
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-6 col-md-offset-1">
                        <div class="panel panel-default">
                         <h1 class="page-header"> Crear Curso</h1>
                     <div class="panel-body">
+               
+               @if(Session::has('message'))
 
-                    @if($errors->any())
+        
+          <div class="alert alert-dismissible alert-info">
+           <strong>{{ Session::get('message') }}</strong>
+          </div>
+
+      @endif
+      
+               @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                  <p>Complete los campos</p>
                     <ul>
-                    @foreach($errors->all() as $Error)
-                    <li>{{$Error}}</li>
-                    @endforeach
-                    </ul>
-                    </div>
-                    @endif
+                         @foreach($errors->all() as $error)
+                         <li>{{ $error }} </li>
+                          @endforeach
+
+                      </ul>
+                       </div>
+                       
+                        
+                      @endif
 
                  {!! Form::open(['route' => 'encar.curs.modi.store', 'method' => 'POST']) !!}
                     <form role="form">

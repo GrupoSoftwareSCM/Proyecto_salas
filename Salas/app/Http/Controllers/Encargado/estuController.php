@@ -4,7 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Request;
 use App\Models\Estudiante;
+use App\Models\Usuario;
 use App\Models\Carrera;
+use App\Models\Rol_Usuario;
 //use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
@@ -71,11 +73,12 @@ class estuController extends Controller {
 		$rules=array(
 			'nombres' => 'required|between:3,25|alpha_space',
 			'apellidos' => 'required|between:3,25|alpha_space',
-			'rut'=> 'required|max:13',
-			'email'=> 'required'
+			'rut'=> 'required|numeric|unique:estudiantes',
+			'email'=> 'required|email'
 			
- 		);    				
-
+ 		);
+      
+        
  		$val=Validator::make($data,$rules);	
 
  		if($val->fails())
@@ -83,9 +86,16 @@ class estuController extends Controller {
             return redirect()->back()
             ->withErrors($val->errors())
             ->withInput();
- 		}		  																										    //obtenos los datos y luego es llamado abajo
+ 		}	
+ 		$usuario=Request::only(['nombres','apellidos','rut','email']);	
+        $usuario_rut=Request::get('rut');
         $estu = Estudiante::create($data);
+        $usua= Usuario::create($usuario);
         $estu->save();
+        $usua->save();
+         $rol_usuario=Rol_Usuario::create(['usuario_rut'=> $usuario_rut,'rol_id'=>3]);
+
+        $rol_usuario->save();
         return redirect('encar/estu/modi');
 	}
 

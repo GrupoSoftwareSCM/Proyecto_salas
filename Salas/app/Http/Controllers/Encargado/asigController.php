@@ -8,12 +8,12 @@ use App\Models\Departamento;
 //use Illuminate\Support\Facades\Request;
 use Request;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Validator;
+//use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Campus;
-
+use Validator;
 
 class asigController extends Controller {
 
@@ -69,7 +69,7 @@ class asigController extends Controller {
 	//	dd(Auth::user());
 		$rules=array(
 			'nombre' => 'required|between:3,25|alpha_space',
-			'codigo' => 'required|numeric',
+			'codigo' => 'required|alpha_space|unique:asignaturas',
 			'descripcion'=> 'required|between:3,500',
 			'departamento_id' => 'required'
  		);    				

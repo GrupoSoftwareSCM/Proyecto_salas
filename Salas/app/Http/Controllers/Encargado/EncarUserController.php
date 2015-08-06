@@ -24,14 +24,7 @@ class EncarUserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
-	}
-    public function Salas()
-    {
-
-    }
+	
 
 	/**
 	 * Store a newly created resource in storage.

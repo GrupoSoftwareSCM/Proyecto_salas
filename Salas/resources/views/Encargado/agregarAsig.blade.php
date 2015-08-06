@@ -10,6 +10,15 @@
                         <h1 class="page-header"> Crear Asignatura</h1>
                     <div class="panel-body">
                
+               @if(Session::has('message'))
+
+        
+          <div class="alert alert-dismissible alert-info">
+           <strong>{{ Session::get('message') }}</strong>
+          </div>
+
+      @endif
+      
                @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                  <p>Complete los campos</p>
@@ -20,13 +29,7 @@
 
                       </ul>
                        </div>
-                        @elseif(Session::has('message'))
-                            <div class="alert alert-warning">
-                                <strong>OOpps!</strong><br><br>
-                                <ul>
-                                    <li>{{ Session::get('message') }}</li>
-                                </ul>
-                            </div>
+                       
                         
                       @endif
                   

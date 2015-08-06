@@ -63,6 +63,17 @@ class Curso extends Model {
                 ->whereNombre($nombre)
                 ->first();
     }
+      public static function storeRules()
+    {
+        return array(                     //se utiliza un arrays asociativo
+            'asignatura_id'        => 'required',
+            'docente_id'           => 'required',
+            'semestre'             => 'required',
+            'anio' 				   => 'required',
+            'seccion'			   => 'required'
+
+            );
+    }
 
 	
 }

@@ -45,4 +45,13 @@ class Asignatura extends Model {
             ->whereNombre($nombre)
             ->first();
     }
+    public static function storeRules()
+    {
+        return array(                     //se utiliza un arrays asociativo
+            'nombre'        => 'required',
+            'codigo'        => 'required|unique:asignaturas',
+            'descripcion'     => 'required',
+            'departamento_id' => 'required'
+            );
+    }
 }

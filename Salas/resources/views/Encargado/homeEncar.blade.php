@@ -41,6 +41,23 @@
                         <li>{!!Html::linkRoute('encar.hora.modi.index','Horario')!!}</li>
                         <li>{!!Html::linkRoute('encar.cursadas.modi.index','Asignaturas Cursadas')!!}</li>
                     </ul>
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-share-alt" data-toggle="dropdown">
+                                Cambio Perfil<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {{--dd(Auth::user()->roles)--}}
+                                @foreach(Auth::user()->roles as $perfiles)
+                                    @if($perfiles->nombre == 'ADMINISTRADOR')
+                                        <li>{!!Html::linkRoute('Admin.home.index','Administrador')!!}</li>
+                                    @elseif($perfiles->nombre == 'DOCENTE')
+                                        <li>{!!Html::linkRoute('Docente.home.index','Docente')!!}</li>
+                                    @elseif($perfiles->nombre == 'ESTUDIANTE')
+                                        <li>{!!Html::linkRoute('estu.home.index','Estudiante')!!}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
                 </div>
 
         </div>

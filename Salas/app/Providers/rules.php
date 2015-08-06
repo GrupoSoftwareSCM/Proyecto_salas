@@ -14,7 +14,7 @@ class rules extends ServiceProvider {
 	{
         \Validator::extend('alpha_space', function($attribute, $value, $parameters)
         {
-            return preg_match('/^([-a-z_-ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîï
+            return preg_match('/^([-a-z 0-9_-ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîï
     	      ðñòóôõöùúûüýøþÿÐdŒ,-\s])+$/i', $value);
         });
 	}

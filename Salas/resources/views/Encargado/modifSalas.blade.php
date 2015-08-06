@@ -21,11 +21,10 @@
 
                                <div class="panel-heading"><h1>SALAS</h1></div>
                                     <div class="panel-body">
-                                      <p>
-                                      <a class="btn btn-info" href="modi/create" role="button">
-
-                                      Nueva sala</a>
-                                             <div class="row">
+                                    <p>
+                                <a class="btn btn-info" href="{{route('encar.salas.modi.create')}}" 
+                                role="button"> Agregar Salas</a>
+                                </p>
                            
                                 <nav class="navbar navbar-left">
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
