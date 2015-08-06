@@ -29,15 +29,22 @@ class horarioController extends Controller {
 	    $estu=Estudiante::find($id_estu);
 	  // dd($estu->curso->asignatura()->nombre);
 	    $cursos=$estu->curso;
-	    
-	    dd($cursos);
+	    $Asignatura_Cursada=Asignatura_Cursada::join('estudiantes','asignaturas_cursadas.estudiante_id','=','estudiantes.id')
+	                                            ->join('cursos','asignaturas_cursadas.curso_id','=','cursos.id')
+	                                            ->join('asignaturas','cursos.asignatura_id','=','asignaturas.id')
+	                                            ->where('estudiantes.rut',$rut)
+	                                            ->select('asignaturas.*')
+	                                            ->paginate();
+
+	  
+	   //  dd($Asignatura_Cursadas);
 	   /*  $departamento=$docente->departamento;
 	    $facultad=$departamento->facultad;
 	    $campus=$facultad->campus;
 	    $asignatura=$cursos->asignatura;
 	    $nombre=$asignatura->nombre;
 	    dd($nombre);*/
-				return view('Estudiantes.horario');
+				return view('Estudiantes.horario',compact('Asignatura_Cursada'));
 	}
 
 	/**
