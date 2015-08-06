@@ -31,9 +31,8 @@ class asigController extends Controller {
 			         ->join('facultades','departamentos.facultad_id','=','facultades.id')
 			         ->join('campus','facultades.campus_id','=', 'campus.id')
 			          ->where('facultades.campus_id', $id_campus) 
-			          ->select('asignaturas.*') 
-			          ->paginate();
-			      
+			          ->select('asignaturas.*')->paginate() ;
+			          //dd($asignatura);
         return view('Encargado.modificarAsig',compact('asignatura','nombreCampus'));
 	}
 

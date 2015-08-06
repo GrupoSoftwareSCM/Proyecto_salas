@@ -81,28 +81,28 @@
     </div>
  @endif
         <div class="col-md-9">
-         @if($_SERVER['REQUEST_URI'] == "/encar/asig/modi")
+         @if(strpos($_SERVER['REQUEST_URI'], "/encar/asig/modi") !== false)
                 @yield('content2')
          @endif
-         @if($_SERVER['REQUEST_URI'] == "/encar/estu/modi")
+         @if(strpos($_SERVER['REQUEST_URI'], "/encar/estu/modi") !==false)
                 @yield('content4')
          @endif
-         @if($_SERVER['REQUEST_URI'] == "/encar/curs/modi")
+         @if(strpos($_SERVER['REQUEST_URI'], "/encar/curs/modi") !==false)
                 @yield('content3')
          @endif
-          @if($_SERVER['REQUEST_URI'] == "/encar/salas/modi")
+          @if(strpos($_SERVER['REQUEST_URI'], "/encar/salas/modi")!==false)
                 @yield('content5')
          @endif
-         @if($_SERVER['REQUEST_URI'] == "/encar/asignar/modi")
+         @if(strpos($_SERVER['REQUEST_URI'], "/encar/asignar/modi") !==false)
                 @yield('content6')
          @endif
-         @if($_SERVER['REQUEST_URI'] == "/encar/doce/modi")
+         @if(strpos($_SERVER['REQUEST_URI'], "/encar/doce/modi") !==false)
                 @yield('content7')
          @endif
-         @if($_SERVER['REQUEST_URI'] == "/encar/hora/modi")
+         @if(strpos($_SERVER['REQUEST_URI'], "/encar/hora/modi") !==false)
                 @yield('content9')
          @endif
-          @if($_SERVER['REQUEST_URI'] == "/encar/cursadas/modi")
+          @if(strpos($_SERVER['REQUEST_URI'], "/encar/cursadas/modi") !==false)
                 @yield('content10')
          @endif
         </div>

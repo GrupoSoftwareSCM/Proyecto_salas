@@ -11,138 +11,26 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+                                           {{$campus->nombre}}                   
+
 
 
 {!! Form::open(['route' => 'encar.hora.modi.store', 'method' => 'POST','id'=>'formularioeditar']) !!}
 
-    <div class="col-md-12">   
+  
+                         <div class="form-group">
+                         {!! Form::label('fecha','Ingrese la fecha de termino de semestre :  ')!!}
+                         {!! Form::date('fecha', \Carbon\Carbon::now(),['max'=>'2015-8-3','min'=>'2016-1-1'])!!}
+                          </div>
 
-        <div class="col-md-3">
-              <!-- FORMULARIO SEDE --> 
-                    <select class="form-control" style="width:100%" name="campus">
-                    <option value="1" selected disabled>CAMPUS</option>
-                    @foreach($campus as $campu)
-                           <option value="{{$campu->id}}">{{$campu->nombre}}</option>
-                     @endforeach
-</select>
-  <!-- FIN FORMULARIO SEDE -->
-</div>
+                            <div class="form-group"> 
+                         {!! Form::label('periodo_id','Periodos')!!}
+                         {!! Form::select('periodo_id',$bloques)!!}
+                         </div>
 
-<div class="col-md-3">
- <!-- FORMULARIO SEDE --> 
-<select class="form-control" style="width:100%" name="bloque">
-  <option value="1" selected disabled>BLOQUE</option>
-  @foreach($bloques as $bloque)
-  <option value="{{$bloque->id}}">({{$bloque->bloque}}) | {{$bloque->inicio}} - {{$bloque->fin}}</option>
-  @endforeach
-</select>
-  <!-- FIN FORMULARIO SEDE -->
-</div>
-
-<div class="col-md-3">
- <!-- FORMULARIO SEDE --> 
-<input type='date' style="width:100%" class="form-control" name="fecha"/>
-  <!-- FIN FORMULARIO SEDE -->
-</div>
-
-<div class="col-md-3">
- <!-- FORMULARIO SEDE --> 
-  <button class="btn btn-primary btn-lg" type="submit" style="background-color: rgb(87, 215, 113);">
-    Consultar
-  </button>
-  <!-- FIN FORMULARIO SEDE -->
-</div>
-{!! Form::close() !!}
-
-<br><br><br><br>
-
-<!-- ==================== -->
-<div class="row">
-
-  <div class="col-md-6">
-    
-    <div class="list-group" id="tipos" style="">
-    <!-- ACA SE CARGA CON AJAX LOS DATOS-->
-    </div>
-
-  </div>
-
-</div>
-<!-- ====================-->
-
-</div>
-
-    </div>
-
-
-
-
-                <!-- /.row -->
-            </div>          
-          
+                        <div>  <button type="submit" class="btn btn-info">Consultar</button></div>
 
 @stop
 @endsection
-@section('js_bottom')
 
-<script>
-  
-$(document).ready(function(e) {
-      $('#formularioeditar').on('submit', function(e)
-      {
-               e.preventDefault();
-               var id_campus="holahola";
-               //console.log(id_campus);
-              //var CSRF_TOKENS = $('meta[name="csrf-token"]').attr('content');
-               $.ajaxSetup({
-                headers: { 'X-XSRF-Token': $('meta[name="csrf-token"]').attr('content') }
-               });
-              $.ajax({
-                  type: 'POST',
-                  url: $(this).attr('action'),
-                  data: $(this).serialize(),
-                  dataType: "json",
-                  beforeSend: function(){
-                  },
-                  complete: function(data){
-                  },
-                  success: function (data)
-                  {
-                    console.log(data);
-
-                      var datos="";
-                       
-                         console.log(data);
-
-                          $.each(data ,function(index,value)
-                          {
-                             $.each(value ,function(index,values)
-                            {            
-                              console.log(value[index]);
-
-                          
-                      
-                             datos+=
-
-                             '<a href="#!" class="list-group-item">'+value[index].nombre+'</a>';
-
-                            //  datos+='<option value='+value[index].id+'>'+value[index].nombre+'</option>';
-                            
-                            });
-
-                         });
-
-                          if (datos == "") {datos = '<a href="#!" class="list-group-item">No hay coincidencias con su búsqueda</a>'}
-
-                            $("#tipos").html(datos);
-                 
-                  },
-                  error: function(errors){
-                    console.log(errors);
-                  }
-              });
-            });
-});      
-
-</script> 
-
+@endsection
