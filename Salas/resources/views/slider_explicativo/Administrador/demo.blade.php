@@ -13,7 +13,7 @@
                     {!! Html::image('/img/sliders/Administrador/home.png','logoTipo',['class'=>'img-responsive']) !!}
                 </li><!--
                 --><li class="gridder-list" data-griddercontent="#gridder-content-2">
-                    <img src="http://placehold.it/200x200&text=Item 2" class="img-responsive" />
+                    {!! Html::image('/img/sliders/Administrador/logout.png','logout',['class'=>'img-responsive']) !!}
                 </li><!--
                 --><li class="gridder-list" data-griddercontent="#gridder-content-3">
                     {!! Html::image('/img/sliders/Administrador/universidad.png','logoTipo',['class'=>'img-responsive']) !!}
@@ -59,9 +59,7 @@
                     </div>
                     <div class="col-sm-6">
                         <h2>Logout</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ex augue, hendrerit sed gravida ut, mattis vel tortor. Duis hendrerit sagittis bibendum. Fusce massa risus, hendrerit et est vitae, convallis accumsan ipsum. Integer vitae erat mattis, ornare tortor nec, luctus turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse finibus fermentum consectetur. Nulla vestibulum, diam ut finibus dictum, justo felis blandit mi, sed rhoncus tortor augue vitae orci. Fusce semper eu ante ut faucibus.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ex augue, hendrerit sed gravida ut, mattis vel tortor. Duis hendrerit sagittis bibendum. Fusce massa risus, hendrerit et est vitae, convallis accumsan ipsum. Integer vitae erat mattis, ornare tortor nec, luctus turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse finibus fermentum consectetur. Nulla vestibulum, diam ut finibus dictum, justo felis blandit mi, sed rhoncus tortor augue vitae orci. Fusce semper eu ante ut faucibus.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ex augue, hendrerit sed gravida ut, mattis vel tortor. Duis hendrerit sagittis bibendum. Fusce massa risus, hendrerit et est vitae, convallis accumsan ipsum. Integer vitae erat mattis, ornare tortor nec, luctus turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse finibus fermentum consectetur. Nulla vestibulum, diam ut finibus dictum, justo felis blandit mi, sed rhoncus tortor augue vitae orci. Fusce semper eu ante ut faucibus.</p>
+                        Aqui usted podra salir del sistema cuando desee.
                     </div>
                 </div>
             </div>
